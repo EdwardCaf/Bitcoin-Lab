@@ -8,6 +8,8 @@ import { PrivacyLesson } from './lessons/PrivacyLesson';
 import { MiningLesson } from './lessons/MiningLesson';
 import { BlocksLesson } from './lessons/BlocksLesson';
 import { NetworkLesson } from './lessons/NetworkLesson';
+import { LightningLesson } from './lessons/LightningLesson';
+import { LiquidLesson } from './lessons/LiquidLesson';
 import './styles/globals.css';
 import styles from './App.module.css';
 
@@ -43,6 +45,8 @@ function App() {
           <Route path="/lessons/mining" element={<MiningLesson />} />
           <Route path="/lessons/blocks" element={<BlocksLesson />} />
           <Route path="/lessons/network" element={<NetworkLesson />} />
+          <Route path="/lessons/lightning" element={<LightningLesson />} />
+          <Route path="/lessons/liquid" element={<LiquidLesson />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </AppLayout>

@@ -44,6 +44,7 @@ export function NetworkLesson() {
       currentSection={currentSection}
       onSectionChange={setCurrentSection}
       prevLesson={{ path: '/lessons/blocks', title: 'Blocks' }}
+      nextLesson={{ path: '/lessons/lightning', title: 'Lightning Network' }}
     >
       {renderSection()}
     </LessonLayout>

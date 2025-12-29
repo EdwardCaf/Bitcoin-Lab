@@ -1,0 +1,248 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+.titleSection {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+}
+
+.iconWrapper {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex-shrink: 0;
+}
+
+.title {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.subtitle {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  margin: var(--spacing-xs) 0 0 0;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.instructions {
+  display: flex;
+  justify-content: center;
+  padding: var(--spacing-md) 0;
+}
+
+/* Network Visualization */
+.networkContainer {
+  width: 100%;
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-md);
+  overflow: hidden;
+}
+
+.networkSvg {
+  width: 100%;
+  height: auto;
+  min-height: 300px;
+}
+
+/* Channels */
+.channel {
+  stroke: var(--border-medium);
+  stroke-linecap: round;
+  transition: stroke 0.3s ease, stroke-width 0.3s ease;
+}
+
+.activeChannel {
+  stroke: var(--warning);
+  filter: drop-shadow(0 0 4px var(--warning));
+}
+
+.feeLabel {
+  font-size: 10px;
+  fill: var(--text-tertiary);
+  text-anchor: middle;
+  font-family: var(--font-mono);
+}
+
+/* Nodes */
+.nodeGroup {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.nodeGroup:hover {
+  transform: scale(1.1);
+}
+
+.node {
+  transition: all 0.3s ease;
+  stroke: transparent;
+  stroke-width: 3;
+}
+
+.sourceNode {
+  stroke: var(--warning);
+  filter: drop-shadow(0 0 8px var(--warning));
+}
+
+.destNode {
+  stroke: var(--success);
+  filter: drop-shadow(0 0 8px var(--success));
+}
+
+.pathNode {
+  stroke: rgba(255, 255, 255, 0.3);
+}
+
+.nodeLabel {
+  font-size: 16px;
+  font-weight: 700;
+  fill: white;
+  text-anchor: middle;
+  pointer-events: none;
+}
+
+.nodeName {
+  font-size: 11px;
+  fill: var(--text-secondary);
+  text-anchor: middle;
+  pointer-events: none;
+}
+
+.roleLabel {
+  font-size: 10px;
+  fill: var(--warning);
+  text-anchor: middle;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* Payment packet animation */
+.paymentPacket {
+  fill: var(--warning);
+  filter: drop-shadow(0 0 10px var(--warning));
+}
+
+/* Route Details */
+.routeDetails {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-lg);
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+}
+
+.routePath h4 {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin: 0 0 var(--spacing-sm) 0;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.pathSteps {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--spacing-xs);
+}
+
+.pathStep {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.pathStep .pathNode {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-md);
+  color: white;
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+}
+
+.pathArrow {
+  color: var(--text-tertiary);
+}
+
+.routeStats {
+  display: flex;
+  gap: var(--spacing-lg);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+}
+
+.stat svg {
+  color: var(--warning);
+}
+
+/* Legend */
+.legend {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-lg);
+  padding-top: var(--spacing-md);
+  border-top: 1px solid var(--border-light);
+  margin-top: var(--spacing-md);
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-size: var(--font-size-xs);
+  color: var(--text-tertiary);
+}
+
+.legendLine {
+  width: 24px;
+  height: 2px;
+  background: var(--border-medium);
+  border-radius: 1px;
+}
+
+.legendLineActive {
+  width: 24px;
+  height: 4px;
+  background: var(--warning);
+  border-radius: 2px;
+  box-shadow: 0 0 4px var(--warning);
+}

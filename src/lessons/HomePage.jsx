@@ -6,7 +6,9 @@ import {
   EyeOff,
   Pickaxe, 
   Blocks, 
-  Network, 
+  Network,
+  Zap,
+  Droplets,
   ArrowRight,
   Sparkles,
   BookOpen,
@@ -69,6 +71,24 @@ const lessons = [
     path: '/lessons/network',
     available: true,
     topics: ['Node Types', 'Transaction Propagation', 'Consensus Rules', 'Forks']
+  },
+  {
+    id: 'lightning',
+    title: 'Lightning Network',
+    description: 'Learn how Lightning enables instant, low-fee Bitcoin payments through payment channels.',
+    icon: Zap,
+    path: '/lessons/lightning',
+    available: true,
+    topics: ['Payment Channels', 'Routing', 'HTLCs', 'Invoices']
+  },
+  {
+    id: 'liquid',
+    title: 'Liquid Network',
+    description: 'Explore Bitcoin\'s federated sidechain for fast settlement and confidential transactions.',
+    icon: Droplets,
+    path: '/lessons/liquid',
+    available: true,
+    topics: ['Peg-In/Out', 'Confidential TX', 'Issued Assets', 'Trade-offs']
   }
 ];
 

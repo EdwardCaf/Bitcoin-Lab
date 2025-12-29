@@ -6,7 +6,9 @@ import {
   EyeOff,
   Pickaxe, 
   Blocks, 
-  Network, 
+  Network,
+  Zap,
+  Droplets,
   Lock,
   ChevronRight
 } from 'lucide-react';
@@ -59,6 +61,22 @@ const lessons = [
     description: 'Nodes & propagation',
     icon: Network,
     path: '/lessons/network',
+    available: true
+  },
+  {
+    id: 'lightning',
+    title: 'Lightning',
+    description: 'Instant payments',
+    icon: Zap,
+    path: '/lessons/lightning',
+    available: true
+  },
+  {
+    id: 'liquid',
+    title: 'Liquid',
+    description: 'Federated sidechain',
+    icon: Droplets,
+    path: '/lessons/liquid',
     available: true
   }
 ];
