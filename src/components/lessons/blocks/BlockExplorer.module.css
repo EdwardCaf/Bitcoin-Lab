@@ -1,0 +1,288 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.header {
+  margin-bottom: var(--spacing-lg);
+}
+
+.titleSection {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: var(--bitcoin-orange-subtle);
+  border-radius: var(--radius-lg);
+  color: var(--bitcoin-orange);
+}
+
+.title {
+  font-size: var(--text-xl);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.subtitle {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  margin: var(--spacing-xs) 0 0;
+}
+
+/* Blockchain Chain */
+.chain {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  overflow-x: auto;
+  padding: var(--spacing-md) 0;
+  margin-bottom: var(--spacing-lg);
+}
+
+.chainItem {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.chainLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  color: var(--text-muted);
+}
+
+/* Block Card */
+.blockCard {
+  min-width: 180px;
+  padding: var(--spacing-md);
+  background: var(--bg-tertiary);
+  border: 2px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.blockCard:hover {
+  border-color: var(--border-medium);
+  background: var(--bg-elevated);
+}
+
+.blockCard.selected {
+  border-color: var(--bitcoin-orange);
+  background: var(--bitcoin-orange-subtle);
+  box-shadow: var(--shadow-glow);
+}
+
+.blockHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm);
+}
+
+.blockIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: var(--bg-elevated);
+  border-radius: var(--radius-md);
+  color: var(--bitcoin-orange);
+}
+
+.blockCard.selected .blockIcon {
+  background: var(--bitcoin-orange);
+  color: var(--text-inverse);
+}
+
+.blockInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.blockHeight {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.blockMeta {
+  display: flex;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
+}
+
+.metaItem {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+}
+
+.blockHash {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.hashLabel {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.hashValue {
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+  background: var(--bg-secondary);
+  padding: 2px 4px;
+  border-radius: var(--radius-sm);
+}
+
+/* Block Details */
+.details {
+  padding: var(--spacing-lg);
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-accent);
+  border-radius: var(--radius-lg);
+}
+
+.detailsTitle {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-lg);
+}
+
+.detailsGrid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.detailItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.detailRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-md);
+}
+
+@media (max-width: 600px) {
+  .detailRow {
+    grid-template-columns: 1fr;
+  }
+}
+
+.detailLabel {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.detailValue {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  background: var(--bg-secondary);
+  padding: var(--spacing-sm);
+  border-radius: var(--radius-sm);
+  word-break: break-all;
+  font-family: var(--font-mono);
+}
+
+.detailText {
+  font-size: var(--text-base);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+}
+
+/* Integrity Card */
+.integrityCard h4 {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-lg);
+}
+
+.integrityDemo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-lg);
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-lg);
+  overflow-x: auto;
+  margin-bottom: var(--spacing-md);
+}
+
+.integrityBlock {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-md);
+  background: var(--bg-elevated);
+  border: 2px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  min-width: 150px;
+}
+
+.integrityLabel {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-primary);
+  text-align: center;
+}
+
+.integrityHash,
+.integrityPrev {
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+}
+
+.integrityHash code,
+.integrityPrev code {
+  color: var(--bitcoin-orange);
+}
+
+.integrityPrev {
+  color: var(--success);
+}
+
+.integrityArrow {
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.integrityText {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}

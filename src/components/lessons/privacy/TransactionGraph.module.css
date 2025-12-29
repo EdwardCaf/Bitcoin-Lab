@@ -1,0 +1,267 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--spacing-lg);
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+}
+
+.titleSection {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: var(--bitcoin-orange-subtle);
+  border-radius: var(--radius-lg);
+  color: var(--bitcoin-orange);
+}
+
+.title {
+  font-size: var(--text-xl);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.subtitle {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  margin: var(--spacing-xs) 0 0;
+}
+
+/* Addresses Section */
+.addressesSection {
+  margin-bottom: var(--spacing-lg);
+}
+
+.addressesSection h4 {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin: 0 0 var(--spacing-sm);
+}
+
+.addressTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+}
+
+.addressTag {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background: var(--info-bg);
+  border: 1px solid var(--info);
+  border-radius: var(--radius-md);
+}
+
+.addressTag code {
+  font-size: var(--text-sm);
+  color: var(--info);
+}
+
+/* Transactions Section */
+.transactionsSection h4 {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin: 0 0 var(--spacing-md);
+}
+
+.transaction {
+  background: var(--bg-tertiary);
+  border: 2px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
+  transition: all var(--transition-base);
+}
+
+.transaction.highlighted {
+  border-color: var(--warning);
+  background: var(--warning-bg);
+}
+
+.txHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+}
+
+.txDescription {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+}
+
+.txFlow {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+}
+
+@media (max-width: 700px) {
+  .txFlow {
+    flex-direction: column;
+  }
+  
+  .txArrow {
+    transform: rotate(90deg);
+    align-self: center;
+  }
+}
+
+.txInputs,
+.txOutputs {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.flowLabel {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.utxoBox {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-md);
+  background: var(--bg-secondary);
+  border: 2px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+}
+
+.utxoBox.yours {
+  border-color: var(--info);
+  background: var(--info-bg);
+}
+
+.utxoBox code {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--text-primary);
+}
+
+.utxoAmount {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--bitcoin-orange);
+}
+
+.utxoLabel {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+}
+
+.txArrow {
+  display: flex;
+  align-items: center;
+  font-size: var(--text-2xl);
+  color: var(--text-muted);
+  padding: var(--spacing-lg) var(--spacing-sm);
+}
+
+.analysisNote {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-md);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--warning-bg);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  color: var(--warning);
+}
+
+/* Heuristics Section */
+.heuristicsSection {
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  margin-top: var(--spacing-md);
+}
+
+.heuristicsSection h4 {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-sm);
+}
+
+.heuristicsIntro {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  margin: 0 0 var(--spacing-md);
+}
+
+.heuristicsList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.heuristicCard {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: var(--spacing-md);
+  background: var(--bg-secondary);
+  border: 2px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  text-align: left;
+  width: 100%;
+}
+
+.heuristicCard:hover {
+  border-color: var(--border-medium);
+}
+
+.heuristicCard.selected {
+  border-color: var(--bitcoin-orange);
+  background: var(--bitcoin-orange-subtle);
+}
+
+.heuristicHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: var(--spacing-xs);
+}
+
+.heuristicTitle {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.heuristicDescription {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.4;
+}

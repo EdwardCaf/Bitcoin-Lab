@@ -1,0 +1,72 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-weight: 500;
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+}
+
+/* Sizes */
+.small {
+  padding: 2px 8px;
+  font-size: var(--text-xs);
+}
+
+.medium {
+  padding: 4px 12px;
+  font-size: var(--text-sm);
+}
+
+.large {
+  padding: 6px 16px;
+  font-size: var(--text-base);
+}
+
+/* Variants */
+.default {
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+}
+
+.primary {
+  background: var(--bitcoin-orange-subtle);
+  color: var(--bitcoin-orange);
+}
+
+.success {
+  background: var(--success-bg);
+  color: var(--success);
+}
+
+.warning {
+  background: var(--warning-bg);
+  color: var(--warning);
+}
+
+.error {
+  background: var(--error-bg);
+  color: var(--error);
+}
+
+.info {
+  background: var(--info-bg);
+  color: var(--info);
+}
+
+.outline {
+  background: transparent;
+  border: 1px solid var(--border-medium);
+  color: var(--text-secondary);
+}
+
+/* Icon */
+.icon {
+  display: flex;
+  align-items: center;
+}
+
+.icon svg {
+  width: 1em;
+  height: 1em;
+}

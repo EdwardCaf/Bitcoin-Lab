@@ -1,0 +1,318 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.header {
+  margin-bottom: var(--spacing-lg);
+}
+
+.titleSection {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: var(--bitcoin-orange-subtle);
+  border-radius: var(--radius-lg);
+  color: var(--bitcoin-orange);
+}
+
+.title {
+  font-size: var(--text-xl);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.subtitle {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  margin: var(--spacing-xs) 0 0;
+}
+
+.sliderSection {
+  margin-bottom: var(--spacing-xl);
+}
+
+.sliderLabels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: var(--spacing-xs);
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-xl);
+}
+
+@media (max-width: 768px) {
+  .statsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.statCard {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-subtle);
+}
+
+.statIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: var(--bitcoin-orange-subtle);
+  border-radius: var(--radius-md);
+  color: var(--bitcoin-orange);
+}
+
+.statContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.statLabel {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.statValue {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+}
+
+.supplySection {
+  margin-bottom: var(--spacing-xl);
+  padding: var(--spacing-lg);
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-lg);
+}
+
+.supplyHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-md);
+}
+
+.supplyLabel {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.supplyPercent {
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--bitcoin-orange);
+  font-family: var(--font-mono);
+}
+
+.supplyBar {
+  position: relative;
+  height: 24px;
+  background: var(--bg-elevated);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.supplyFill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--bitcoin-orange-dark), var(--bitcoin-orange), var(--bitcoin-orange-light));
+  border-radius: var(--radius-full);
+  box-shadow: 0 0 10px rgba(247, 147, 26, 0.3);
+}
+
+.supplyLabels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: var(--spacing-sm);
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+}
+
+.nextHalving {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  background: linear-gradient(135deg, rgba(247, 147, 26, 0.1), transparent);
+  border: 1px solid var(--border-accent);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--spacing-xl);
+}
+
+.nextHalvingIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: var(--bitcoin-orange);
+  border-radius: var(--radius-md);
+  color: var(--text-inverse);
+}
+
+.nextHalvingContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.nextHalvingLabel {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.nextHalvingValue {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--bitcoin-orange);
+}
+
+.nextHalvingMeta {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+}
+
+.timeline {
+  border-top: 1px solid var(--border-subtle);
+  padding-top: var(--spacing-lg);
+}
+
+.timelineTitle {
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-lg);
+}
+
+.timelineTrack {
+  display: flex;
+  gap: var(--spacing-xs);
+  overflow-x: auto;
+  padding-bottom: var(--spacing-md);
+}
+
+.timelineItem {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 100px;
+  padding: var(--spacing-md);
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border: 2px solid transparent;
+}
+
+.timelineItem:hover {
+  background: var(--bg-elevated);
+}
+
+.timelineItem.active {
+  border-color: var(--bitcoin-orange);
+  background: var(--bitcoin-orange-subtle);
+}
+
+.timelineItem.past {
+  opacity: 0.7;
+}
+
+.timelineDot {
+  width: 12px;
+  height: 12px;
+  background: var(--border-medium);
+  border-radius: 50%;
+  margin-bottom: var(--spacing-sm);
+}
+
+.timelineItem.active .timelineDot {
+  background: var(--bitcoin-orange);
+  box-shadow: 0 0 10px var(--bitcoin-orange);
+}
+
+.timelineItem.past .timelineDot {
+  background: var(--success);
+}
+
+.timelineContent {
+  text-align: center;
+}
+
+.timelineYear {
+  display: block;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.timelineReward {
+  display: block;
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--bitcoin-orange);
+  font-family: var(--font-mono);
+  margin: var(--spacing-xs) 0;
+}
+
+.timelineBlock {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+}
+
+.insights {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-md);
+}
+
+@media (max-width: 768px) {
+  .insights {
+    grid-template-columns: 1fr;
+  }
+}
+
+.insightCard {
+  text-align: center;
+}
+
+.insightCard h4 {
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--bitcoin-orange);
+  margin: 0 0 var(--spacing-xs);
+}
+
+.insightCard p {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.5;
+}

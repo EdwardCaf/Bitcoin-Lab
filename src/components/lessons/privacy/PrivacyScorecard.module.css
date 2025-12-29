@@ -1,0 +1,295 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--spacing-lg);
+}
+
+.titleSection {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: var(--bitcoin-orange-subtle);
+  border-radius: var(--radius-lg);
+  color: var(--bitcoin-orange);
+}
+
+.title {
+  font-size: var(--text-xl);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.subtitle {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  margin: var(--spacing-xs) 0 0;
+}
+
+/* Score Section */
+.scoreSection {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xl);
+  padding: var(--spacing-xl);
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--spacing-lg);
+}
+
+.scoreCircle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 120px;
+  border-radius: var(--radius-full);
+  border: 6px solid;
+  flex-shrink: 0;
+}
+
+.scoreCircle.success {
+  border-color: var(--success);
+  background: var(--success-bg);
+}
+
+.scoreCircle.info {
+  border-color: var(--info);
+  background: var(--info-bg);
+}
+
+.scoreCircle.warning {
+  border-color: var(--warning);
+  background: var(--warning-bg);
+}
+
+.scoreCircle.error {
+  border-color: var(--error);
+  background: var(--error-bg);
+}
+
+.scoreValue {
+  font-size: var(--text-3xl);
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.scoreMax {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+
+.gradeInfo {
+  flex: 1;
+}
+
+.gradeInfo p {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  margin: var(--spacing-sm) 0 0;
+}
+
+/* Practices List */
+.practicesList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.practiceItem {
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.practiceMain {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+}
+
+.practiceToggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 2px solid var(--border-medium);
+  border-radius: var(--radius-md);
+  background: var(--bg-secondary);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  flex-shrink: 0;
+  color: var(--text-muted);
+}
+
+.practiceToggle:hover {
+  border-color: var(--text-secondary);
+}
+
+.practiceToggle.yes {
+  background: var(--success);
+  border-color: var(--success);
+  color: white;
+}
+
+.practiceToggle.no {
+  background: var(--error);
+  border-color: var(--error);
+  color: white;
+}
+
+.emptyCheck {
+  width: 12px;
+  height: 12px;
+  border-radius: var(--radius-sm);
+  border: 2px solid var(--border-medium);
+}
+
+.practiceContent {
+  flex: 1;
+  min-width: 0;
+}
+
+.practiceHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+  margin-bottom: var(--spacing-xs);
+}
+
+.practiceTitle {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.practiceDescription {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.tipToggle {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-sm);
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  border-radius: var(--radius-md);
+}
+
+.tipToggle:hover {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+.tipToggle.expanded {
+  color: var(--bitcoin-orange);
+}
+
+.tipToggle.expanded svg:last-child {
+  transform: rotate(90deg);
+}
+
+/* Tips */
+.tips {
+  padding: 0 var(--spacing-md) var(--spacing-md);
+  padding-left: calc(32px + var(--spacing-md) * 2);
+}
+
+.tips h5 {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--bitcoin-orange);
+  margin: 0 0 var(--spacing-sm);
+}
+
+.tips ul {
+  margin: 0;
+  padding-left: var(--spacing-lg);
+}
+
+.tips li {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-xs);
+}
+
+/* Summary */
+.summary {
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  margin-top: var(--spacing-md);
+}
+
+.summary h4 {
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-md);
+}
+
+.summaryGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-md);
+}
+
+@media (max-width: 500px) {
+  .summaryGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.summaryItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--spacing-md);
+  background: var(--bg-secondary);
+  border-radius: var(--radius-md);
+  text-align: center;
+}
+
+.summaryValue {
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--bitcoin-orange);
+}
+
+.summaryLabel {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: var(--spacing-xs);
+}

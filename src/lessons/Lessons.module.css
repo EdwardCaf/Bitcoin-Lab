@@ -1,0 +1,226 @@
+.section {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.heroCard {
+  text-align: center;
+  padding: var(--spacing-2xl);
+  background: linear-gradient(135deg, var(--bg-tertiary), var(--bg-secondary));
+  border: 1px solid var(--border-accent);
+  border-radius: var(--radius-xl);
+  margin-bottom: var(--spacing-xl);
+}
+
+.heroIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  background: var(--bitcoin-orange-subtle);
+  border-radius: var(--radius-xl);
+  color: var(--bitcoin-orange);
+  margin-bottom: var(--spacing-lg);
+}
+
+.heroTitle {
+  font-size: var(--text-3xl);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-md);
+}
+
+.heroText {
+  font-size: var(--text-lg);
+  color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.sectionTitle {
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-md);
+}
+
+.sectionText {
+  font-size: var(--text-base);
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin: 0 0 var(--spacing-xl);
+}
+
+.conceptGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-xl);
+}
+
+@media (max-width: 900px) {
+  .conceptGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.conceptGrid h3 {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: var(--spacing-md) 0 var(--spacing-sm);
+}
+
+.conceptGrid p {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.conceptIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: var(--bitcoin-orange-subtle);
+  border-radius: var(--radius-lg);
+  color: var(--bitcoin-orange);
+}
+
+.utxoDemo {
+  margin-bottom: var(--spacing-xl);
+}
+
+.utxoDemo h3 {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-lg);
+}
+
+.utxoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+}
+
+.utxoCoin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-md);
+  background: var(--bg-tertiary);
+  border: 2px solid var(--bitcoin-orange);
+  border-radius: var(--radius-lg);
+  color: var(--bitcoin-orange);
+}
+
+.utxoAmount {
+  font-size: var(--text-lg);
+  font-weight: 700;
+  font-family: var(--font-mono);
+  color: var(--text-primary);
+}
+
+.utxoLabel {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.utxoNote {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  text-align: center;
+  margin: 0;
+  padding-top: var(--spacing-md);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.keyPoints {
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
+}
+
+.keyPoints h3 {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-md);
+}
+
+.keyPoints ul {
+  margin: 0;
+  padding-left: var(--spacing-lg);
+}
+
+.keyPoints li {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: var(--spacing-sm);
+}
+
+.keyPoints li:last-child {
+  margin-bottom: 0;
+}
+
+.keyPoints strong {
+  color: var(--text-primary);
+}
+
+.factBox {
+  background: linear-gradient(135deg, rgba(247, 147, 26, 0.1), transparent);
+  border: 1px solid var(--border-accent);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  margin-top: var(--spacing-xl);
+}
+
+.factBox h4 {
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--bitcoin-orange);
+  margin: 0 0 var(--spacing-md);
+  text-align: center;
+}
+
+.factGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-md);
+}
+
+@media (max-width: 600px) {
+  .factGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.fact {
+  text-align: center;
+}
+
+.factValue {
+  display: block;
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+}
+
+.factLabel {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  margin-top: var(--spacing-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}

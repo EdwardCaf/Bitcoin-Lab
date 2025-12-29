@@ -1,0 +1,208 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--spacing-lg);
+}
+
+.titleSection {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: var(--bitcoin-orange-subtle);
+  border-radius: var(--radius-lg);
+  color: var(--bitcoin-orange);
+}
+
+.title {
+  font-size: var(--text-xl);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.subtitle {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  margin: var(--spacing-xs) 0 0;
+}
+
+/* Chains Area */
+.chainsArea {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-lg);
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-lg);
+  overflow-x: auto;
+}
+
+.chainRow {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md);
+  background: var(--bg-secondary);
+  border: 2px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-base);
+}
+
+.chainRow.winner {
+  border-color: var(--success);
+  background: var(--success-bg);
+}
+
+.chainRow.loser {
+  border-color: var(--error);
+  background: var(--error-bg);
+  opacity: 0.6;
+}
+
+.chainRow.forkRow {
+  border-style: dashed;
+}
+
+.chainLabel {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.chain {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  flex-wrap: wrap;
+}
+
+.blockWrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.block {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--bg-tertiary);
+  border: 2px solid var(--bitcoin-orange);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.block.forkBlock {
+  border-color: var(--info);
+  background: var(--info-bg);
+}
+
+.arrow {
+  color: var(--text-muted);
+}
+
+.addButton {
+  margin-left: var(--spacing-sm);
+}
+
+/* Fork Indicator */
+.forkIndicator {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--warning-bg);
+  border: 1px solid var(--warning);
+  border-radius: var(--radius-md);
+  color: var(--warning);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  align-self: flex-start;
+  margin-left: var(--spacing-xl);
+}
+
+.forkStart {
+  display: flex;
+  align-items: center;
+}
+
+.forkParent {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  font-style: italic;
+  margin-right: var(--spacing-sm);
+}
+
+/* Action Area */
+.actionArea {
+  text-align: center;
+  padding: var(--spacing-xl);
+}
+
+.hint {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  margin: var(--spacing-md) 0 0;
+}
+
+/* Instructions */
+.instructions {
+  padding: var(--spacing-md);
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-md);
+  margin-top: var(--spacing-md);
+}
+
+.instructions p {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* Resolution */
+.resolution {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+  padding: var(--spacing-lg);
+  background: var(--success-bg);
+  border: 1px solid var(--success);
+  border-radius: var(--radius-lg);
+  margin-top: var(--spacing-md);
+  color: var(--success);
+}
+
+.resolution h4 {
+  font-size: var(--text-base);
+  font-weight: 600;
+  margin: 0 0 var(--spacing-xs);
+  color: var(--success);
+}
+
+.resolution p {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.5;
+}

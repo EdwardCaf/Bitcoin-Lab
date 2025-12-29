@@ -1,0 +1,182 @@
+.wallet {
+  min-height: 200px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--spacing-lg);
+}
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.title {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.infoIcon {
+  color: var(--text-muted);
+  cursor: help;
+}
+
+.balance {
+  text-align: right;
+}
+
+.balanceLabel {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.balanceAmount {
+  display: block;
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--bitcoin-orange);
+  font-family: var(--font-mono);
+}
+
+.coinsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: var(--spacing-md);
+}
+
+.coin {
+  background: var(--bg-tertiary);
+  border: 2px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-md);
+  cursor: grab;
+  transition: all var(--transition-fast);
+  position: relative;
+  user-select: none;
+}
+
+.coin:hover:not(.disabled) {
+  border-color: var(--bitcoin-orange);
+  box-shadow: var(--shadow-glow);
+}
+
+.coin.selected {
+  border-color: var(--bitcoin-orange);
+  background: var(--bitcoin-orange-subtle);
+}
+
+.coin.dragging {
+  cursor: grabbing;
+  box-shadow: var(--shadow-lg), var(--shadow-glow);
+  opacity: 0.9;
+}
+
+.coin.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.coinHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm);
+}
+
+.coinIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: var(--bitcoin-orange-subtle);
+  border-radius: var(--radius-md);
+  color: var(--bitcoin-orange);
+}
+
+.coinAmount {
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+}
+
+.coinDetails {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.coinLabel {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100px;
+}
+
+.coinMeta {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.confirmations {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+}
+
+.confirmations .confirmed {
+  color: var(--success);
+}
+
+.selectedBadge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 24px;
+  height: 24px;
+  background: var(--bitcoin-orange);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-inverse);
+  box-shadow: var(--shadow-md);
+}
+
+.selectionSummary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: var(--spacing-lg);
+  padding-top: var(--spacing-md);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.selectedAmount {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--bitcoin-orange);
+  font-family: var(--font-mono);
+}
+
+.hint {
+  margin-top: var(--spacing-md);
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  text-align: center;
+}

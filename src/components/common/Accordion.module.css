@@ -1,0 +1,112 @@
+.accordion {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+/* Variants */
+.default {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-subtle);
+}
+
+.ghost {
+  background: transparent;
+  border: none;
+}
+
+.deepdive {
+  background: linear-gradient(135deg, rgba(247, 147, 26, 0.05), transparent);
+  border: 1px solid var(--border-accent);
+}
+
+.trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-md);
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: background var(--transition-fast);
+  text-align: left;
+}
+
+.trigger:hover {
+  background: var(--bg-hover);
+}
+
+.trigger:focus-visible {
+  outline: 2px solid var(--bitcoin-orange);
+  outline-offset: -2px;
+}
+
+.triggerContent {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  color: var(--bitcoin-orange);
+}
+
+.title {
+  font-size: var(--text-base);
+  font-weight: 500;
+}
+
+.deepdive .title {
+  color: var(--bitcoin-orange);
+}
+
+.chevron {
+  display: flex;
+  align-items: center;
+  color: var(--text-muted);
+}
+
+.contentWrapper {
+  overflow: hidden;
+}
+
+.content {
+  padding: 0 var(--spacing-md) var(--spacing-md);
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+}
+
+.content p {
+  margin: 0 0 var(--spacing-sm);
+}
+
+.content p:last-child {
+  margin-bottom: 0;
+}
+
+.content code {
+  background: var(--bg-elevated);
+  padding: 0.1em 0.4em;
+  border-radius: var(--radius-sm);
+  font-size: 0.9em;
+}
+
+.content ul, .content ol {
+  margin: var(--spacing-sm) 0;
+  padding-left: var(--spacing-lg);
+}
+
+.content li {
+  margin-bottom: var(--spacing-xs);
+}
+
+/* Group */
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
