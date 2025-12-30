@@ -1,9 +1,56 @@
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Bitcoin, Menu, X } from 'lucide-react';
+import { useBlockHeight } from '../../hooks/useBlockHeight';
 import styles from './Header.module.css';
 
 export function Header({ sidebarOpen, onToggleSidebar }) {
+  const { blockHeight, isLoading, error } = useBlockHeight(5000);
+  const [isNewBlock, setIsNewBlock] = useState(false);
+  const prevBlockHeight = useRef(null);
+
+  // Detect when block height changes
+  useEffect(() => {
+    if (blockHeight && prevBlockHeight.current !== null && blockHeight > prevBlockHeight.current) {
+      // New block detected! Trigger animation
+      setIsNewBlock(true);
+      
+      // Remove animation class after it completes (3 seconds)
+      const timeout = setTimeout(() => {
+        setIsNewBlock(false);
+      }, 3000);
+      
+      return () => clearTimeout(timeout);
+    }
+    
+    prevBlockHeight.current = blockHeight;
+  }, [blockHeight]);
+
+  // Determine status display
+  const getStatusContent = () => {
+    if (isLoading && !blockHeight) {
+      return {
+        text: 'Testnet Mode',
+        dotClass: styles.statusDotYellow
+      };
+    }
+    
+    if (error && !blockHeight) {
+      return {
+        text: 'Testnet Mode',
+        dotClass: styles.statusDotYellow
+      };
+    }
+    
+    return {
+      text: `Block ${blockHeight.toLocaleString()}`,
+      dotClass: styles.statusDot
+    };
+  };
+
+  const { text, dotClass } = getStatusContent();
+
   return (
     <header className={styles.header}>
       <div className={styles.left}>
@@ -33,9 +80,9 @@ export function Header({ sidebarOpen, onToggleSidebar }) {
       </div>
       
       <div className={styles.right}>
-        <div className={styles.status}>
-          <span className={styles.statusDot} />
-          <span className={styles.statusText}>Simulation Mode</span>
+        <div className={`${styles.status} ${isNewBlock ? styles.statusNewBlock : ''}`}>
+          <span className={dotClass} />
+          <span className={styles.statusText}>{text}</span>
         </div>
       </div>
     </header>

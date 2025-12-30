@@ -1,0 +1,172 @@
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-xl);
+  position: relative;
+  min-height: 450px;
+}
+
+.viewport {
+  position: relative;
+  width: 450px;
+  height: 450px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Vortex Center */
+.vortexContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.vortexRing {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.vortexCore {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(247, 147, 26, 0.6) 0%,
+    rgba(247, 147, 26, 0.4) 30%,
+    rgba(10, 10, 10, 0.9) 70%,
+    rgba(10, 10, 10, 1) 100%
+  );
+  box-shadow: 
+    0 0 20px rgba(247, 147, 26, 0.5),
+    0 0 40px rgba(247, 147, 26, 0.3),
+    inset 0 0 20px rgba(0, 0, 0, 0.9);
+}
+
+.singularity {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(247, 147, 26, 1) 0%,
+    rgba(247, 147, 26, 0.8) 50%,
+    rgba(10, 10, 10, 1) 100%
+  );
+  box-shadow: 
+    0 0 10px rgba(247, 147, 26, 0.8),
+    0 0 20px rgba(247, 147, 26, 0.5);
+  z-index: 2;
+}
+
+/* Blocks Container */
+.blocksContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  transform: translate(-50%, -50%);
+}
+
+/* Individual Block */
+.block {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 32px;
+  height: 32px;
+  background: var(--bg-tertiary);
+  border: 1.5px solid var(--bitcoin-orange);
+  border-radius: var(--radius-md);
+  box-shadow: 
+    0 0 10px rgba(247, 147, 26, 0.3),
+    0 2px 8px rgba(0, 0, 0, 0.4);
+  transform-origin: center center;
+  will-change: transform, opacity;
+  pointer-events: none;
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+  .container {
+    padding: var(--spacing-lg);
+    min-height: 380px;
+  }
+  
+  .viewport {
+    width: 380px;
+    height: 380px;
+  }
+  
+  .vortexCore {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .singularity {
+    width: 10px;
+    height: 10px;
+  }
+  
+  .block {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: var(--spacing-md);
+    min-height: 300px;
+  }
+  
+  .viewport {
+    width: 300px;
+    height: 300px;
+  }
+  
+  .vortexCore {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .singularity {
+    width: 8px;
+    height: 8px;
+  }
+  
+  .block {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+/* Performance optimizations */
+.block,
+.vortexRing,
+.vortexCore,
+.singularity {
+  will-change: transform, opacity;
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .block,
+  .vortexRing,
+  .vortexCore {
+    animation: none;
+  }
+}

@@ -28,7 +28,7 @@ const nodeTypes = [
       { text: 'Enforces consensus rules', included: true },
       { text: 'Creates new blocks (mining)', included: false },
     ],
-    examples: ['Bitcoin Core', 'btcd', 'libbitcoin'],
+    examples: ['Bitcoin Core', 'Bitcoin Knots', 'btcd', 'libbitcoin'],
     requirements: 'Disk: 500GB+, RAM: 2GB+, Bandwidth: 200GB/month'
   },
   {

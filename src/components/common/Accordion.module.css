@@ -17,6 +17,7 @@
 .deepdive {
   background: linear-gradient(135deg, rgba(247, 147, 26, 0.05), transparent);
   border: 1px solid var(--border-accent);
+  margin: 0 0 var(--spacing-lg);
 }
 
 .trigger {

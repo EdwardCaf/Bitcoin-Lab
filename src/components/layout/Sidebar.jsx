@@ -12,7 +12,8 @@ import {
   Zap,
   Droplets,
   CircleDollarSign,
-  ChevronRight
+  ChevronRight,
+  Library
 } from 'lucide-react';
 import styles from './Sidebar.module.css';
 
@@ -102,6 +103,29 @@ export function Sidebar({ isOpen, onClose }) {
               </nav>
             </div>
           ))}
+
+          {/* Separator */}
+          <div className={styles.separator} />
+
+          {/* Resources Link */}
+          <NavLink
+            to="/resources"
+            className={({ isActive }) => `
+              ${styles.resourcesLink}
+              ${isActive ? styles.active : ''}
+            `}
+            onClick={() => {
+              if (window.innerWidth < 1024) {
+                onClose();
+              }
+            }}
+          >
+            <div className={styles.navIcon}>
+              <Library size={18} />
+            </div>
+            <span className={styles.navTitle}>Resources</span>
+            <ChevronRight size={14} className={styles.navArrow} />
+          </NavLink>
 
           <div className={styles.footer}>
             <p className={styles.footerText}>

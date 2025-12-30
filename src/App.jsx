@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Header, Sidebar } from './components/layout';
 import { HomePage } from './lessons/HomePage';
+import { ResourcesPage } from './lessons/ResourcesPage';
 import { WalletsLesson } from './lessons/WalletsLesson';
 import { TransactionsLesson } from './lessons/TransactionsLesson';
 import { UTXOManagementLesson } from './lessons/UTXOManagementLesson';
@@ -42,6 +43,7 @@ function App() {
       <AppLayout>
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/resources" element={<ResourcesPage />} />
           <Route path="/lessons/wallets" element={<WalletsLesson />} />
           <Route path="/lessons/transactions" element={<TransactionsLesson />} />
           <Route path="/lessons/utxo-management" element={<UTXOManagementLesson />} />

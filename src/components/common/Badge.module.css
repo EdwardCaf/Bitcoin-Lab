@@ -60,6 +60,26 @@
   color: var(--text-secondary);
 }
 
+.purple {
+  background: var(--purple-bg);
+  color: var(--purple);
+}
+
+.cyan {
+  background: var(--cyan-bg);
+  color: var(--cyan);
+}
+
+.node {
+  background: var(--node-bg);
+  color: var(--node);
+}
+
+.exchange {
+  background: var(--exchange-bg);
+  color: var(--exchange);
+}
+
 /* Icon */
 .icon {
   display: flex;

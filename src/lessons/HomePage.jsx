@@ -9,7 +9,7 @@ import {
   Zap
 } from 'lucide-react';
 import { Button, Badge } from '../components/common';
-import { NetworkVisualization, StatsSection, LearningPath } from '../components/home';
+import { BlackHoleVisualization, StatsSection, LearningPath } from '../components/home';
 import styles from './HomePage.module.css';
 
 export function HomePage() {
@@ -62,7 +62,7 @@ export function HomePage() {
           <div className={styles.heroBadges}>
             <span className={styles.badge}>
               <BookOpen size={16} />
-              10 Lessons
+              11 Lessons
             </span>
             <span className={styles.badge}>
               <Zap size={16} />
@@ -76,7 +76,7 @@ export function HomePage() {
         </div>
         
         <div className={styles.heroVisual}>
-          <NetworkVisualization />
+          <BlackHoleVisualization />
         </div>
       </motion.section>
 
