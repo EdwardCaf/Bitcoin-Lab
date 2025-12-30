@@ -12,9 +12,11 @@ import {
   ArrowRight,
   Sparkles,
   BookOpen,
-  Gamepad2
+  Gamepad2,
+  GraduationCap
 } from 'lucide-react';
 import { Card, Button, Badge } from '../components/common';
+import { NetworkVisualization, StatsSection, LearningPath } from '../components/home';
 import styles from './HomePage.module.css';
 
 const lessons = [
@@ -24,7 +26,8 @@ const lessons = [
     description: 'Understand how Bitcoin wallets work, from private keys to address types and scripts.',
     icon: Wallet,
     path: '/lessons/wallets',
-    available: true,
+    difficulty: 'Beginner',
+    duration: '15 min',
     topics: ['Private Keys', 'Address Types', 'Bitcoin Script', 'HD Wallets']
   },
   {
@@ -33,7 +36,8 @@ const lessons = [
     description: 'Learn how Bitcoin moves from one wallet to another through inputs, outputs, and fees.',
     icon: ArrowLeftRight,
     path: '/lessons/transactions',
-    available: true,
+    difficulty: 'Beginner',
+    duration: '20 min',
     topics: ['UTXOs', 'Inputs & Outputs', 'Transaction Fees', 'Change Addresses']
   },
   {
@@ -42,7 +46,8 @@ const lessons = [
     description: 'Explore Bitcoin privacy - how transactions can be traced and how to protect yourself.',
     icon: EyeOff,
     path: '/lessons/privacy',
-    available: true,
+    difficulty: 'Intermediate',
+    duration: '18 min',
     topics: ['Address Reuse', 'Chain Analysis', 'CoinJoin', 'Best Practices']
   },
   {
@@ -51,7 +56,8 @@ const lessons = [
     description: 'Discover how miners secure the network and create new Bitcoin through proof-of-work.',
     icon: Pickaxe,
     path: '/lessons/mining',
-    available: true,
+    difficulty: 'Intermediate',
+    duration: '20 min',
     topics: ['Hash Functions', 'Proof of Work', 'Difficulty', 'Block Rewards']
   },
   {
@@ -60,7 +66,8 @@ const lessons = [
     description: 'Understand how blocks are structured and chained together to form an immutable ledger.',
     icon: Blocks,
     path: '/lessons/blocks',
-    available: true,
+    difficulty: 'Intermediate',
+    duration: '18 min',
     topics: ['Block Structure', 'Merkle Trees', 'Chain of Hashes', 'Immutability']
   },
   {
@@ -69,7 +76,8 @@ const lessons = [
     description: 'Explore how Bitcoin\'s peer-to-peer network operates and reaches consensus.',
     icon: Network,
     path: '/lessons/network',
-    available: true,
+    difficulty: 'Intermediate',
+    duration: '20 min',
     topics: ['Node Types', 'Transaction Propagation', 'Consensus Rules', 'Forks']
   },
   {
@@ -78,7 +86,8 @@ const lessons = [
     description: 'Learn how Lightning enables instant, low-fee Bitcoin payments through payment channels.',
     icon: Zap,
     path: '/lessons/lightning',
-    available: true,
+    difficulty: 'Advanced',
+    duration: '25 min',
     topics: ['Payment Channels', 'Routing', 'HTLCs', 'Invoices']
   },
   {
@@ -87,10 +96,24 @@ const lessons = [
     description: 'Explore Bitcoin\'s federated sidechain for fast settlement and confidential transactions.',
     icon: Droplets,
     path: '/lessons/liquid',
-    available: true,
+    difficulty: 'Advanced',
+    duration: '22 min',
     topics: ['Peg-In/Out', 'Confidential TX', 'Issued Assets', 'Trade-offs']
   }
 ];
+
+const getDifficultyColor = (difficulty) => {
+  switch (difficulty) {
+    case 'Beginner':
+      return 'success';
+    case 'Intermediate':
+      return 'warning';
+    case 'Advanced':
+      return 'error';
+    default:
+      return 'secondary';
+  }
+};
 
 export function HomePage() {
   return (
@@ -104,17 +127,20 @@ export function HomePage() {
       >
         <div className={styles.heroContent}>
           <Badge variant="primary" size="medium" icon={<Sparkles size={14} />}>
-            Interactive Learning
+            Interactive Bitcoin Education
           </Badge>
+          
           <h1 className={styles.heroTitle}>
-            Master Bitcoin<br />
-            <span className={styles.heroHighlight}>Through Simulation</span>
+            Welcome to<br />
+            <span className={styles.heroHighlight}>The Bitcoin Lab</span>
           </h1>
+          
           <p className={styles.heroText}>
-            Explore how Bitcoin really works through hands-on interactive lessons. 
-            Build transactions, mine blocks, and understand the technology that's 
-            changing the world.
+            Learn Bitcoin through hands-on interactive simulations. Explore wallets, 
+            mine blocks, route Lightning payments, and master the technology that's 
+            revolutionizing money. No setup required, completely free.
           </p>
+          
           <div className={styles.heroButtons}>
             <Link to="/lessons/wallets">
               <Button 
@@ -126,33 +152,59 @@ export function HomePage() {
                 Start Learning
               </Button>
             </Link>
+            <Button 
+              variant="secondary" 
+              size="large"
+              icon={<GraduationCap size={18} />}
+              onClick={() => document.getElementById('lessons').scrollIntoView({ behavior: 'smooth' })}
+            >
+              Browse Lessons
+            </Button>
+          </div>
+          
+          <div className={styles.heroBadges}>
+            <span className={styles.badge}>
+              <BookOpen size={16} />
+              8 Lessons
+            </span>
+            <span className={styles.badge}>
+              <Zap size={16} />
+              No Setup
+            </span>
+            <span className={styles.badge}>
+              <Sparkles size={16} />
+              100% Free
+            </span>
           </div>
         </div>
         
         <div className={styles.heroVisual}>
-          <div className={styles.heroCard}>
-            <div className={styles.heroCardIcon}>
-              <BookOpen size={32} />
-            </div>
-            <span>Educational</span>
-          </div>
-          <div className={styles.heroCard}>
-            <div className={styles.heroCardIcon}>
-              <Gamepad2 size={32} />
-            </div>
-            <span>Interactive</span>
-          </div>
+          <NetworkVisualization />
         </div>
       </motion.section>
 
+      {/* Stats Section */}
+      <StatsSection />
+
+      {/* Learning Path */}
+      <LearningPath />
+
       {/* Lessons Grid */}
       <motion.section 
+        id="lessons"
         className={styles.lessonsSection}
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.3 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, margin: '-100px' }}
+        transition={{ duration: 0.5 }}
       >
-        <h2 className={styles.sectionTitle}>Available Lessons</h2>
+        <div className={styles.sectionHeader}>
+          <h2 className={styles.sectionTitle}>All Lessons</h2>
+          <p className={styles.sectionSubtitle}>
+            Comprehensive curriculum covering Bitcoin fundamentals to advanced topics
+          </p>
+        </div>
+        
         <div className={styles.lessonsGrid}>
           {lessons.map((lesson, index) => {
             const Icon = lesson.icon;
@@ -161,21 +213,28 @@ export function HomePage() {
               <motion.div
                 key={lesson.id}
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 * index }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-50px' }}
+                transition={{ delay: index * 0.05, duration: 0.4 }}
               >
                 <Card 
                   padding="large" 
-                  hover={lesson.available}
-                  className={`${styles.lessonCard} ${!lesson.available ? styles.locked : ''}`}
+                  hover
+                  className={styles.lessonCard}
                 >
                   <div className={styles.lessonHeader}>
                     <div className={styles.lessonIcon}>
                       <Icon size={24} />
                     </div>
-                    {!lesson.available && (
-                      <Badge variant="outline" size="small">Coming Soon</Badge>
-                    )}
+                    <div className={styles.lessonMeta}>
+                      <Badge 
+                        variant={getDifficultyColor(lesson.difficulty)} 
+                        size="small"
+                      >
+                        {lesson.difficulty}
+                      </Badge>
+                      <span className={styles.duration}>{lesson.duration}</span>
+                    </div>
                   </div>
                   
                   <h3 className={styles.lessonTitle}>{lesson.title}</h3>
@@ -187,18 +246,16 @@ export function HomePage() {
                     ))}
                   </div>
 
-                  {lesson.available && (
-                    <Link to={lesson.path} className={styles.lessonLink}>
-                      <Button 
-                        variant="primary"
-                        fullWidth
-                        icon={<ArrowRight size={16} />}
-                        iconPosition="right"
-                      >
-                        Start Lesson
-                      </Button>
-                    </Link>
-                  )}
+                  <Link to={lesson.path} className={styles.lessonLink}>
+                    <Button 
+                      variant="primary"
+                      fullWidth
+                      icon={<ArrowRight size={16} />}
+                      iconPosition="right"
+                    >
+                      Start Lesson
+                    </Button>
+                  </Link>
                 </Card>
               </motion.div>
             );
@@ -210,33 +267,61 @@ export function HomePage() {
       <motion.section
         className={styles.featuresSection}
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.5 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, margin: '-100px' }}
+        transition={{ duration: 0.5 }}
       >
-        <h2 className={styles.sectionTitle}>Why Learn With Us</h2>
+        <h2 className={styles.sectionTitle}>Why The Bitcoin Lab?</h2>
         <div className={styles.featuresGrid}>
           <div className={styles.feature}>
             <div className={styles.featureIcon}>
               <Gamepad2 size={24} />
             </div>
-            <h4>Interactive Simulations</h4>
-            <p>Learn by doing with hands-on exercises and real-time visualizations</p>
+            <h4>Hands-On Learning</h4>
+            <p>Interactive simulations let you experiment with Bitcoin concepts in real-time without risk</p>
           </div>
           <div className={styles.feature}>
             <div className={styles.featureIcon}>
               <BookOpen size={24} />
             </div>
             <h4>Beginner Friendly</h4>
-            <p>No technical background needed - concepts explained with simple analogies</p>
+            <p>Start from zero knowledge with clear explanations and relatable analogies</p>
           </div>
           <div className={styles.feature}>
             <div className={styles.featureIcon}>
               <Sparkles size={24} />
             </div>
-            <h4>Deep Dives Available</h4>
-            <p>Ready for more? Expand sections to learn the technical details</p>
+            <h4>Deep Technical Content</h4>
+            <p>Expand any topic to dive into the underlying technical details and cryptography</p>
           </div>
         </div>
+      </motion.section>
+
+      {/* CTA Section */}
+      <motion.section
+        className={styles.ctaSection}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, margin: '-100px' }}
+        transition={{ duration: 0.5 }}
+      >
+        <h2 className={styles.ctaTitle}>Ready to Master Bitcoin?</h2>
+        <p className={styles.ctaText}>
+          Start your journey from complete beginner to Bitcoin expert
+        </p>
+        <Link to="/lessons/wallets">
+          <Button 
+            variant="primary" 
+            size="large"
+            icon={<ArrowRight size={18} />}
+            iconPosition="right"
+          >
+            Begin Your Journey
+          </Button>
+        </Link>
+        <p className={styles.ctaSubtext}>
+          No account required • Takes 2 minutes to start • Completely free
+        </p>
       </motion.section>
     </div>
   );

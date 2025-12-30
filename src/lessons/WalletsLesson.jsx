@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Wallet, Key, Hash, Code, Grid3X3 } from 'lucide-react';
+import { Wallet, Key, Hash, Code, Grid3X3, Shield } from 'lucide-react';
 import { LessonLayout } from '../components/layout';
 import { Card, Accordion } from '../components/common';
-import { KeyPairGenerator, AddressTypeExplorer, ScriptVisualizer, SeedPhraseDemo } from '../components/lessons/wallets';
+import { KeyPairGenerator, AddressTypeExplorer, ScriptVisualizer, SeedPhraseDemo, WalletTypesExplorer } from '../components/lessons/wallets';
 import styles from './Lessons.module.css';
 
 const sections = [
@@ -11,7 +11,8 @@ const sections = [
   { id: 'keys', title: 'Keys & Addresses' },
   { id: 'types', title: 'Address Types' },
   { id: 'scripts', title: 'Bitcoin Script' },
-  { id: 'hd', title: 'HD Wallets & Seeds' }
+  { id: 'hd', title: 'HD Wallets & Seeds' },
+  { id: 'wallet-types', title: 'Hot vs Cold Wallets' }
 ];
 
 export function WalletsLesson() {
@@ -29,6 +30,8 @@ export function WalletsLesson() {
         return <ScriptsSection />;
       case 4:
         return <HDWalletsSection />;
+      case 5:
+        return <WalletTypesSection />;
       default:
         return <IntroSection />;
     }
@@ -216,6 +219,25 @@ function HDWalletsSection() {
       </p>
 
       <SeedPhraseDemo />
+    </motion.div>
+  );
+}
+
+function WalletTypesSection() {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      className={styles.section}
+    >
+      <h2 className={styles.sectionTitle}>Hot vs Cold Wallets</h2>
+      <p className={styles.sectionText}>
+        Not all wallets are created equal when it comes to security. <strong>Hot wallets</strong> are 
+        connected to the internet for convenience, while <strong>cold wallets</strong> stay offline 
+        for maximum security. Understanding the difference is crucial for protecting your Bitcoin.
+      </p>
+
+      <WalletTypesExplorer />
     </motion.div>
   );
 }

@@ -97,7 +97,7 @@ export function ScriptVisualizer() {
     setExecutionStep(0);
     
     for (let i = 1; i < script.execution.length; i++) {
-      await new Promise(resolve => setTimeout(resolve, 1200));
+      await new Promise(resolve => setTimeout(resolve, 2000));
       setExecutionStep(i);
     }
     

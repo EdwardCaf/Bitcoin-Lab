@@ -1,0 +1,65 @@
+.container {
+  padding: var(--spacing-2xl) 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-lg);
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.statCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--spacing-xl);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-base);
+}
+
+.statCard:hover {
+  border-color: var(--border-accent);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-glow);
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, var(--bitcoin-orange-subtle), rgba(247, 147, 26, 0.05));
+  border-radius: var(--radius-lg);
+  color: var(--bitcoin-orange);
+  margin-bottom: var(--spacing-md);
+}
+
+.value {
+  font-size: var(--text-3xl);
+  font-weight: 800;
+  color: var(--bitcoin-orange);
+  line-height: 1;
+  margin-bottom: var(--spacing-sm);
+}
+
+.label {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  font-weight: 500;
+}

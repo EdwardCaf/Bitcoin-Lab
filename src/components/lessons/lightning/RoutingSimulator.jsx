@@ -6,7 +6,8 @@ import {
   ArrowRight,
   RotateCcw,
   DollarSign,
-  Clock
+  Clock,
+  CheckCircle
 } from 'lucide-react';
 import { Card, Button, Badge, Accordion } from '../../common';
 import styles from './RoutingSimulator.module.css';
@@ -85,6 +86,7 @@ export function RoutingSimulator() {
   const [activePath, setActivePath] = useState(null);
   const [animatingPayment, setAnimatingPayment] = useState(false);
   const [paymentProgress, setPaymentProgress] = useState(-1);
+  const [paymentComplete, setPaymentComplete] = useState(false);
   const [paymentAmount] = useState(0.01);
 
   const nodesMap = useMemo(() => {
@@ -114,6 +116,7 @@ export function RoutingSimulator() {
     if (!activePath || animatingPayment) return;
 
     setAnimatingPayment(true);
+    setPaymentComplete(false);
     
     // Animate through each hop
     for (let i = 0; i < activePath.length; i++) {
@@ -125,7 +128,13 @@ export function RoutingSimulator() {
     await new Promise(resolve => setTimeout(resolve, 500));
     
     setPaymentProgress(-1);
+    setPaymentComplete(true);
     setAnimatingPayment(false);
+    
+    // Clear success message after 3 seconds
+    setTimeout(() => {
+      setPaymentComplete(false);
+    }, 3000);
   };
 
   const reset = () => {
@@ -134,6 +143,7 @@ export function RoutingSimulator() {
     setActivePath(null);
     setPaymentProgress(-1);
     setAnimatingPayment(false);
+    setPaymentComplete(false);
   };
 
   const totalFees = activePath ? calculateFees(activePath, CHANNELS) : 0;
@@ -218,7 +228,7 @@ export function RoutingSimulator() {
                     y1={from.y}
                     x2={to.x}
                     y2={to.y}
-                    className={`${styles.channel} ${isActive ? styles.activeChannel : ''}`}
+                    className={`${styles.channel} ${isActive ? styles.activeChannel : ''} ${isActive && paymentComplete ? styles.successChannel : ''}`}
                     strokeWidth={isActive ? 4 : 2}
                   />
                   {/* Fee label */}
@@ -352,6 +362,22 @@ export function RoutingSimulator() {
             >
               {animatingPayment ? 'Sending...' : 'Send Payment'}
             </Button>
+            
+            {/* Success Message */}
+            <AnimatePresence>
+              {paymentComplete && (
+                <motion.div
+                  className={styles.successMessage}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+                >
+                  <CheckCircle size={20} />
+                  <span>Payment Successful!</span>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </motion.div>
         )}
 

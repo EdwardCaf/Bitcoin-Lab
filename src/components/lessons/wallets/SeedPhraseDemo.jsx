@@ -228,6 +228,62 @@ export function SeedPhraseDemo() {
         </div>
       </Card>
 
+      {/* Comprehensive Security Section */}
+      <Card variant="elevated" padding="large" className={styles.securityCard}>
+        <div className={styles.securityHeader}>
+          <Shield size={24} className={styles.securityIcon} />
+          <h3 className={styles.securityTitle}>Critical Security Information</h3>
+        </div>
+        
+        <div className={styles.criticalWarning}>
+          <AlertTriangle size={20} />
+          <div>
+            <strong>Your seed phrase is the ONLY way to recover your Bitcoin</strong>
+            <p>If you lose it, your funds are permanently lost. If someone else gets it, they can steal everything.</p>
+          </div>
+        </div>
+
+        <div className={styles.securityGrid}>
+          <div className={styles.securityColumn}>
+            <h4 className={styles.doTitle}>✅ DO:</h4>
+            <ul className={styles.securityList}>
+              <li>Write seed phrase on paper or engrave on metal backup</li>
+              <li>Store in multiple secure physical locations (fireproof safe, bank vault)</li>
+              <li>Use a hardware wallet (Ledger, Trezor) for cold storage</li>
+              <li>Test recovery process before funding wallet with real Bitcoin</li>
+              <li>Keep it offline and completely private - never share with anyone</li>
+              <li>Consider using a passphrase (25th word) for additional security</li>
+            </ul>
+          </div>
+
+          <div className={styles.securityColumn}>
+            <h4 className={styles.dontTitle}>❌ NEVER:</h4>
+            <ul className={styles.securityList}>
+              <li>Take photos or screenshots of your seed phrase</li>
+              <li>Store in email, cloud storage, password managers, or any digital format</li>
+              <li>Share with anyone claiming to be "support" or "verification"</li>
+              <li>Enter into websites or apps you don't completely trust</li>
+              <li>Store on internet-connected devices (computers, phones)</li>
+              <li>Type it into any device if you can avoid it</li>
+            </ul>
+          </div>
+        </div>
+
+        <div className={styles.threatWarning}>
+          <strong>Common Threats:</strong>
+          <p>
+            Phishing websites, fake wallet apps, malware/keyloggers, physical theft, 
+            social engineering scams, clipboard hijacking, and shoulder surfing. 
+            Always verify wallet software authenticity and generate seeds offline when possible.
+          </p>
+        </div>
+
+        <div className={styles.bestPractice}>
+          <strong>Best Practice:</strong> For significant amounts, use a hardware wallet that generates 
+          the seed phrase offline and never exposes your private keys to your computer or the internet.
+        </div>
+      </Card>
+
       <Accordion
         title="Deep Dive: BIP39 & Derivation Paths"
         variant="deepdive"

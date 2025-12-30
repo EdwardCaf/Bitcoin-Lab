@@ -45,10 +45,24 @@
   }
 }
 
+.logoLink {
+  text-decoration: none;
+  color: inherit;
+}
+
 .logo {
   display: flex;
   align-items: center;
   gap: var(--spacing-sm);
+  transition: all var(--transition-fast);
+}
+
+.logoLink:hover .logo {
+  opacity: 0.8;
+}
+
+.logoLink:hover .logoIcon {
+  transform: rotate(5deg) scale(1.05);
 }
 
 .logoIcon {
@@ -60,6 +74,7 @@
   background: linear-gradient(135deg, var(--bitcoin-orange), var(--bitcoin-orange-dark));
   border-radius: var(--radius-md);
   color: var(--text-inverse);
+  transition: transform var(--transition-fast);
 }
 
 .logoText {

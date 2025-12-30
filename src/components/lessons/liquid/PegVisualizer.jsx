@@ -44,7 +44,7 @@ export function PegVisualizer() {
     setCurrentStep(0);
     
     for (let i = 1; i <= steps.length - 1; i++) {
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      await new Promise(resolve => setTimeout(resolve, 3000));
       setCurrentStep(i);
     }
     

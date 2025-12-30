@@ -1,0 +1,423 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.header {
+  margin-bottom: var(--spacing-lg);
+}
+
+.titleSection {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: var(--bitcoin-orange-subtle);
+  border-radius: var(--radius-lg);
+  color: var(--bitcoin-orange);
+}
+
+.title {
+  font-size: var(--text-xl);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.subtitle {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  margin: var(--spacing-xs) 0 0;
+}
+
+/* Type Toggle */
+.typeToggle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-xl);
+}
+
+@media (max-width: 600px) {
+  .typeToggle {
+    grid-template-columns: 1fr;
+  }
+}
+
+.typeButton {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-lg);
+  background: var(--bg-tertiary);
+  border: 2px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  text-align: left;
+}
+
+.typeButton:hover {
+  border-color: var(--border-medium);
+  transform: translateY(-2px);
+}
+
+.typeButton.active {
+  background: var(--bg-secondary);
+}
+
+.hotButton.active {
+  border-color: var(--warning);
+}
+
+.coldButton.active {
+  border-color: var(--success);
+}
+
+.typeButton svg {
+  flex-shrink: 0;
+}
+
+.hotButton svg {
+  color: var(--warning);
+}
+
+.coldButton svg {
+  color: var(--success);
+}
+
+.typeName {
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-xs);
+}
+
+.typeTagline {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+}
+
+/* Examples Section */
+.examplesSection {
+  margin-bottom: var(--spacing-xl);
+}
+
+.sectionTitle {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-lg) 0;
+}
+
+.examplesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--spacing-md);
+}
+
+.exampleCard {
+  padding: var(--spacing-lg);
+  background: var(--bg-tertiary);
+  border: 2px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-base);
+}
+
+.exampleCard:hover {
+  border-color: var(--bitcoin-orange);
+  transform: translateY(-2px);
+}
+
+.exampleIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: var(--bitcoin-orange-subtle);
+  border-radius: var(--radius-md);
+  color: var(--bitcoin-orange);
+  margin-bottom: var(--spacing-md);
+}
+
+.exampleName {
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-xs) 0;
+}
+
+.exampleDescription {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  margin: 0 0 var(--spacing-md) 0;
+  line-height: 1.5;
+}
+
+.exampleTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+}
+
+.exampleTag {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+}
+
+/* Comparison Table */
+.comparisonSection {
+  margin-bottom: var(--spacing-xl);
+}
+
+.comparisonTable {
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.tableHeader {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md) var(--spacing-lg);
+  background: var(--bg-secondary);
+  font-weight: 600;
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  border-bottom: 2px solid var(--border-subtle);
+}
+
+@media (max-width: 768px) {
+  .tableHeader {
+    grid-template-columns: 1.5fr 1fr 1fr;
+    font-size: var(--text-xs);
+  }
+}
+
+.hotColumn,
+.coldColumn {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.hotColumn {
+  color: var(--warning);
+}
+
+.coldColumn {
+  color: var(--success);
+}
+
+.tableRow {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-bottom: 1px solid var(--border-subtle);
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .tableRow {
+    grid-template-columns: 1.5fr 1fr 1fr;
+  }
+}
+
+.tableRow:last-child {
+  border-bottom: none;
+}
+
+.featureColumn {
+  font-size: var(--text-sm);
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.valueColumn {
+  display: flex;
+  justify-content: center;
+}
+
+/* Risk Assessment */
+.riskSection {
+  padding: var(--spacing-xl);
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--spacing-xl);
+}
+
+.riskQuestion {
+  font-size: var(--text-base);
+  color: var(--text-secondary);
+  margin: 0 0 var(--spacing-lg) 0;
+  text-align: center;
+}
+
+.riskSlider {
+  margin-bottom: var(--spacing-xl);
+}
+
+.sliderLabels {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-md);
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.sliderLabels span {
+  flex: 1;
+}
+
+.slider {
+  width: 100%;
+  height: 8px;
+  background: var(--bg-secondary);
+  border-radius: var(--radius-full);
+  outline: none;
+  -webkit-appearance: none;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  background: var(--bitcoin-orange);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+.slider::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  background: var(--bitcoin-orange);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  border: none;
+  transition: all var(--transition-base);
+}
+
+.slider::-moz-range-thumb:hover {
+  transform: scale(1.2);
+}
+
+.riskResult {
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-lg);
+  text-align: center;
+  border: 2px solid;
+}
+
+.riskResult.success {
+  background: rgba(34, 197, 94, 0.1);
+  border-color: var(--success);
+}
+
+.riskResult.warning {
+  background: rgba(234, 179, 8, 0.1);
+  border-color: var(--warning);
+}
+
+.riskResult.error {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: var(--error);
+}
+
+.riskBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  font-size: var(--text-base);
+  margin-bottom: var(--spacing-md);
+}
+
+.success .riskBadge {
+  background: var(--success);
+  color: white;
+}
+
+.warning .riskBadge {
+  background: var(--warning);
+  color: black;
+}
+
+.error .riskBadge {
+  background: var(--error);
+  color: white;
+}
+
+.riskRecommendation {
+  font-size: var(--text-base);
+  color: var(--text-primary);
+  margin: 0;
+  font-weight: 500;
+}
+
+/* Best Practices */
+.bestPractices {
+  margin-top: var(--spacing-xl);
+}
+
+.practicesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--spacing-md);
+}
+
+.practiceCard {
+  padding: var(--spacing-lg);
+  background: var(--bg-tertiary);
+  border: 2px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-base);
+}
+
+.practiceCard:hover {
+  border-color: var(--bitcoin-orange);
+  transform: translateY(-2px);
+}
+
+.practiceIcon {
+  color: var(--bitcoin-orange);
+  margin-bottom: var(--spacing-md);
+}
+
+.practiceCard h5 {
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-sm) 0;
+}
+
+.practiceCard p {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.6;
+}

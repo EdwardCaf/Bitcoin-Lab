@@ -12,7 +12,8 @@ import {
   Bitcoin,
   Check,
   X,
-  Minus
+  Minus,
+  Unlock
 } from 'lucide-react';
 import { Card, Badge, Accordion } from '../../common';
 import styles from './ComparisonTable.module.css';
@@ -47,6 +48,13 @@ const COMPARISON_DATA = [
     liquid: { value: 'Federated', detail: '11-of-15 multisig' },
   },
   {
+    category: 'Exit to Bitcoin',
+    icon: Unlock,
+    bitcoin: { value: 'N/A', detail: 'Already on Bitcoin' },
+    lightning: { value: 'Unilateral', detail: 'Force close anytime' },
+    liquid: { value: 'Federated', detail: 'Requires cooperation' },
+  },
+  {
     category: 'Best For',
     icon: Target,
     bitcoin: { value: 'Large settlements', detail: 'Long-term storage' },
@@ -59,6 +67,7 @@ const FEATURE_MATRIX = [
   { feature: 'Native BTC', bitcoin: true, lightning: true, liquid: true },
   { feature: 'Issued Assets', bitcoin: false, lightning: false, liquid: true },
   { feature: 'Confidential TX', bitcoin: false, lightning: 'partial', liquid: true },
+  { feature: 'Unilateral Exit', bitcoin: true, lightning: true, liquid: false },
   { feature: 'Smart Contracts', bitcoin: 'limited', lightning: 'limited', liquid: 'limited' },
   { feature: 'Offline Receive', bitcoin: true, lightning: false, liquid: true },
   { feature: 'High Throughput', bitcoin: false, lightning: true, liquid: true },
@@ -232,6 +241,13 @@ export function ComparisonTable() {
             <strong>Security vs Speed:</strong> Bitcoin is the most secure but slowest. 
             Lightning trades some security assumptions for instant payments. Liquid trades 
             trustlessness for fast finality and features.
+          </li>
+          <li>
+            <strong>Exit mechanism:</strong> Lightning allows unilateral exit - you can 
+            always close your channel and return to the Bitcoin main chain without anyone's 
+            permission. Liquid is a sidechain that requires the federation's cooperation 
+            to peg-out. This is a fundamental trust difference: Lightning is trustless 
+            exit, Liquid requires trusting the federation.
           </li>
           <li>
             <strong>On-chain vs Off-chain:</strong> Bitcoin records every transaction 
