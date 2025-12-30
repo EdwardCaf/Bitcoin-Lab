@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { Header, Sidebar } from './components/layout';
 import { HomePage } from './lessons/HomePage';
 import { ResourcesPage } from './lessons/ResourcesPage';
@@ -17,11 +17,22 @@ import { EcashLesson } from './lessons/EcashLesson';
 import './styles/globals.css';
 import styles from './App.module.css';
 
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
+
 function AppLayout({ children }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
     <div className={styles.app}>
+      <ScrollToTop />
       <Header 
         sidebarOpen={sidebarOpen} 
         onToggleSidebar={() => setSidebarOpen(!sidebarOpen)} 
