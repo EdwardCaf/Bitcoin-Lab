@@ -9,6 +9,7 @@ import {
   Network,
   Zap,
   Droplets,
+  Coins,
   ArrowRight,
   Sparkles,
   BookOpen,
@@ -99,6 +100,16 @@ const lessons = [
     difficulty: 'Advanced',
     duration: '22 min',
     topics: ['Peg-In/Out', 'Confidential TX', 'Issued Assets', 'Trade-offs']
+  },
+  {
+    id: 'ecash',
+    title: 'eCash (Cashu & Fedimint)',
+    description: 'Learn how Chaumian blind signatures enable perfect privacy with Bitcoin-backed tokens.',
+    icon: Coins,
+    path: '/lessons/ecash',
+    difficulty: 'Advanced',
+    duration: '23 min',
+    topics: ['Blind Signatures', 'Cashu Mints', 'Privacy', 'Federated Custody']
   }
 ];
 
@@ -165,7 +176,7 @@ export function HomePage() {
           <div className={styles.heroBadges}>
             <span className={styles.badge}>
               <BookOpen size={16} />
-              8 Lessons
+              9 Lessons
             </span>
             <span className={styles.badge}>
               <Zap size={16} />

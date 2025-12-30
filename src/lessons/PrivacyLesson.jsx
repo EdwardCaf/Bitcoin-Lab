@@ -4,6 +4,7 @@ import { EyeOff, Eye, Shield, Shuffle, RefreshCw } from 'lucide-react';
 import { LessonLayout } from '../components/layout';
 import { Card, Accordion } from '../components/common';
 import { AddressReuseDemo, TransactionGraph, CoinJoinVisualizer, PrivacyScorecard } from '../components/lessons/privacy';
+import { PegVisualizer } from '../components/lessons/liquid';
 import styles from './Lessons.module.css';
 
 const sections = [
@@ -11,6 +12,7 @@ const sections = [
   { id: 'reuse', title: 'Address Reuse' },
   { id: 'analysis', title: 'Chain Analysis' },
   { id: 'coinjoin', title: 'CoinJoin' },
+  { id: 'liquid-pegs', title: 'Liquid Peg Privacy' },
   { id: 'practices', title: 'Best Practices' }
 ];
 
@@ -28,6 +30,8 @@ export function PrivacyLesson() {
       case 3:
         return <CoinJoinSection />;
       case 4:
+        return <LiquidPegsSection />;
+      case 5:
         return <BestPracticesSection />;
       default:
         return <IntroSection />;
@@ -210,6 +214,28 @@ function CoinJoinSection() {
       </p>
 
       <CoinJoinVisualizer />
+    </motion.div>
+  );
+}
+
+function LiquidPegsSection() {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      className={styles.section}
+    >
+      <h2 className={styles.sectionTitle}>Liquid Peg-In/Peg-Out Privacy</h2>
+      <p className={styles.sectionText}>
+        Liquid Network offers powerful privacy features through Confidential Transactions, 
+        which hide transaction amounts and asset types. By pegging Bitcoin into Liquid 
+        (peg-in) and back out (peg-out), you can break chain analysis links while your 
+        funds benefit from confidential transfers. This is one of the most effective ways 
+        to obscure transaction amounts and break the chain of custody visible on Bitcoin's 
+        transparent blockchain.
+      </p>
+
+      <PegVisualizer />
     </motion.div>
   );
 }

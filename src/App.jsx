@@ -11,8 +11,7 @@ import { BlocksLesson } from './lessons/BlocksLesson';
 import { NetworkLesson } from './lessons/NetworkLesson';
 import { LightningLesson } from './lessons/LightningLesson';
 import { LiquidLesson } from './lessons/LiquidLesson';
-import { ColdcardQLesson } from './lessons/ColdcardQLesson';
-import { SparrowLesson } from './lessons/SparrowLesson';
+import { EcashLesson } from './lessons/EcashLesson';
 import './styles/globals.css';
 import styles from './App.module.css';
 
@@ -51,8 +50,7 @@ function App() {
           <Route path="/lessons/network" element={<NetworkLesson />} />
           <Route path="/lessons/lightning" element={<LightningLesson />} />
           <Route path="/lessons/liquid" element={<LiquidLesson />} />
-          <Route path="/lessons/coldcard-q" element={<ColdcardQLesson />} />
-          <Route path="/lessons/sparrow" element={<SparrowLesson />} />
+          <Route path="/lessons/ecash" element={<EcashLesson />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </AppLayout>

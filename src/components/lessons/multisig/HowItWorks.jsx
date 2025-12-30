@@ -39,89 +39,64 @@ const addressFormats = [
 ];
 
 function ThresholdDiagram({ m, n, activeKeys }) {
-  const keys = Array.from({ length: n }, (_, i) => i);
-  const radius = 90;
-  const centerX = 150;
-  const centerY = 110;
-  
   const signedCount = activeKeys.filter(Boolean).length;
   const thresholdMet = signedCount >= m;
   
   return (
     <div className={styles.diagramWrapper}>
-      <svg viewBox="0 0 300 220" className={styles.diagram}>
-        {/* Center vault */}
-        <g transform={`translate(${centerX}, ${centerY})`}>
-          <motion.circle 
-            r="40" 
-            fill={thresholdMet ? 'var(--success)' : 'var(--bitcoin-orange-subtle)'} 
-            fillOpacity={thresholdMet ? 0.2 : 1}
-            stroke={thresholdMet ? 'var(--success)' : 'var(--bitcoin-orange)'} 
-            strokeWidth="3"
-            animate={{ scale: thresholdMet ? [1, 1.05, 1] : 1 }}
-            transition={{ duration: 0.5 }}
-          />
-          {thresholdMet ? (
-            <Unlock x="-14" y="-14" size={28} className={styles.vaultIconUnlocked} />
-          ) : (
-            <Lock x="-14" y="-14" size={28} className={styles.vaultIconLocked} />
-          )}
-        </g>
-        
-        {/* Keys around the vault */}
-        {keys.map((_, index) => {
-          const angle = (index * 2 * Math.PI) / n - Math.PI / 2;
-          const x = centerX + radius * Math.cos(angle);
-          const y = centerY + radius * Math.sin(angle);
+      {/* Keys Grid */}
+      <div className={styles.keysGrid}>
+        {Array.from({ length: n }, (_, index) => {
           const isActive = activeKeys[index];
-          
           return (
-            <g key={index}>
-              {/* Connection line */}
-              <motion.line
-                x1={centerX}
-                y1={centerY}
-                x2={x}
-                y2={y}
-                stroke={isActive ? 'var(--success)' : 'var(--border-medium)'}
-                strokeWidth="2"
-                strokeDasharray={isActive ? 'none' : '5,5'}
-                initial={{ pathLength: 0 }}
-                animate={{ pathLength: 1 }}
-                transition={{ delay: index * 0.1, duration: 0.3 }}
-              />
-              
-              {/* Key circle */}
-              <motion.g
-                transform={`translate(${x}, ${y})`}
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ delay: index * 0.1 + 0.2 }}
-              >
-                <circle 
-                  r="24" 
-                  fill={isActive ? 'var(--success)' : 'var(--bg-tertiary)'} 
-                  fillOpacity={isActive ? 0.2 : 1}
-                  stroke={isActive ? 'var(--success)' : 'var(--border-medium)'} 
-                  strokeWidth="2" 
-                />
-                <Key 
-                  x="-11" 
-                  y="-11" 
-                  size={22} 
-                  className={isActive ? styles.activeKey : styles.inactiveKey} 
-                />
-              </motion.g>
-            </g>
+            <motion.div
+              key={index}
+              className={`${styles.keyCard} ${isActive ? styles.keyCardActive : ''}`}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.05 }}
+            >
+              <div className={styles.keyCardIcon}>
+                <Key size={24} />
+              </div>
+              <span className={styles.keyCardLabel}>Key {index + 1}</span>
+              <div className={styles.keyCardStatus}>
+                {isActive ? (
+                  <CheckCircle size={16} />
+                ) : (
+                  <XCircle size={16} />
+                )}
+              </div>
+            </motion.div>
           );
         })}
-        
-        {/* Status text */}
-        <text x={centerX} y="200" textAnchor="middle" fill="var(--text-secondary)" fontSize="13" fontWeight="600">
-          {signedCount} of {m} required signatures
-        </text>
-      </svg>
+      </div>
       
+      {/* Arrow */}
+      <div className={styles.flowArrow}>
+        <ArrowRight size={24} />
+      </div>
+      
+      {/* Vault Card */}
+      <motion.div 
+        className={`${styles.vaultCard} ${thresholdMet ? styles.vaultCardUnlocked : ''}`}
+        animate={{ scale: thresholdMet ? [1, 1.02, 1] : 1 }}
+        transition={{ duration: 0.3 }}
+      >
+        <div className={styles.vaultCardIcon}>
+          {thresholdMet ? <Unlock size={32} /> : <Lock size={32} />}
+        </div>
+        <div className={styles.vaultCardInfo}>
+          <span className={styles.vaultCardTitle}>
+            {thresholdMet ? 'Unlocked' : 'Locked'}
+          </span>
+          <span className={styles.vaultCardSubtitle}>
+            {signedCount} of {m} signatures
+          </span>
+        </div>
+      </motion.div>
+      
+      {/* Status Badge */}
       <div className={`${styles.statusBadge} ${thresholdMet ? styles.unlocked : styles.locked}`}>
         {thresholdMet ? (
           <>

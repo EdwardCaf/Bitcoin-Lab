@@ -10,8 +10,7 @@ import {
   Network,
   Zap,
   Droplets,
-  ShieldCheck,
-  Monitor,
+  Coins,
   ChevronRight
 } from 'lucide-react';
 import styles from './Sidebar.module.css';
@@ -42,14 +41,7 @@ const sections = [
     lessons: [
       { id: 'lightning', title: 'Lightning', icon: Zap, path: '/lessons/lightning' },
       { id: 'liquid', title: 'Liquid', icon: Droplets, path: '/lessons/liquid' },
-    ]
-  },
-  {
-    id: 'tools',
-    title: 'Tools',
-    lessons: [
-      { id: 'coldcard-q', title: 'Coldcard Q', icon: ShieldCheck, path: '/lessons/coldcard-q' },
-      { id: 'sparrow', title: 'Sparrow Wallet', icon: Monitor, path: '/lessons/sparrow' },
+      { id: 'ecash', title: 'eCash', icon: Coins, path: '/lessons/ecash' },
     ]
   },
 ];

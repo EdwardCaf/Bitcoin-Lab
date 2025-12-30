@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Zap, Clock, DollarSign, Network, Lock } from 'lucide-react';
 import { LessonLayout } from '../components/layout';
 import { Card, Accordion } from '../components/common';
-import { ChannelVisualizer, RoutingSimulator, HTLCDemo, InvoiceExplorer } from '../components/lessons/lightning';
+import { ChannelVisualizer, RoutingSimulator, HTLCDemo, InvoiceExplorer, PrivacyDemo } from '../components/lessons/lightning';
 import styles from './Lessons.module.css';
 
 const sections = [
@@ -11,7 +11,8 @@ const sections = [
   { id: 'channels', title: 'Payment Channels' },
   { id: 'routing', title: 'Routing Payments' },
   { id: 'htlc', title: 'HTLCs' },
-  { id: 'invoices', title: 'Using Lightning' }
+  { id: 'invoices', title: 'Using Lightning' },
+  { id: 'privacy', title: 'Privacy Benefits' }
 ];
 
 export function LightningLesson() {
@@ -29,6 +30,8 @@ export function LightningLesson() {
         return <HTLCSection />;
       case 4:
         return <InvoicesSection />;
+      case 5:
+        return <PrivacySection />;
       default:
         return <IntroSection />;
     }
@@ -228,6 +231,26 @@ function InvoicesSection() {
       </p>
 
       <InvoiceExplorer />
+    </motion.div>
+  );
+}
+
+function PrivacySection() {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      className={styles.section}
+    >
+      <h2 className={styles.sectionTitle}>Privacy Benefits of Lightning</h2>
+      <p className={styles.sectionText}>
+        Beyond speed and low fees, Lightning Network offers significant privacy improvements 
+        over on-chain Bitcoin transactions. Payments are not recorded on the public blockchain, 
+        and onion routing ensures that intermediate nodes cannot link senders to receivers. 
+        This makes Lightning an excellent choice for everyday transactions where privacy matters.
+      </p>
+
+      <PrivacyDemo />
     </motion.div>
   );
 }

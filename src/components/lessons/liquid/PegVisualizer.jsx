@@ -9,7 +9,10 @@ import {
   Unlock,
   Users,
   RotateCcw,
-  Play
+  Play,
+  EyeOff,
+  Shield,
+  Shuffle
 } from 'lucide-react';
 import { Card, Button, Badge, Accordion } from '../../common';
 import styles from './PegVisualizer.module.css';
@@ -254,6 +257,86 @@ export function PegVisualizer() {
         </div>
       </Card>
 
+      {/* Privacy Benefits Section */}
+      <Card variant="elevated" padding="large">
+        <div className={styles.privacySection}>
+          <div className={styles.privacyHeader}>
+            <EyeOff size={24} />
+            <h3>Privacy Benefits of Liquid Pegs</h3>
+          </div>
+          <p className={styles.privacyDescription}>
+            Moving funds through Liquid provides significant privacy enhancements compared to 
+            staying on Bitcoin's transparent blockchain. Here's how peg-in and peg-out can 
+            enhance your privacy:
+          </p>
+
+          <div className={styles.privacyGrid}>
+            <div className={styles.privacyCard}>
+              <div className={styles.privacyCardHeader}>
+                <Shield size={20} />
+                <h4>Confidential Transactions</h4>
+              </div>
+              <p>
+                On Liquid, transaction amounts and asset types are cryptographically hidden. 
+                Only the sender and receiver can see the actual values - everyone else sees 
+                only encrypted commitments. This breaks amount-based analysis.
+              </p>
+            </div>
+
+            <div className={styles.privacyCard}>
+              <div className={styles.privacyCardHeader}>
+                <Shuffle size={20} />
+                <h4>Break Chain Analysis</h4>
+              </div>
+              <p>
+                When you peg-in to Liquid, make confidential transfers, then peg-out, you 
+                break the direct link between your input and output UTXOs. Observers can't 
+                easily determine which peg-out corresponds to which peg-in.
+              </p>
+            </div>
+
+            <div className={styles.privacyCard}>
+              <div className={styles.privacyCardHeader}>
+                <EyeOff size={20} />
+                <h4>Obscure Transaction History</h4>
+              </div>
+              <p>
+                While on Liquid, all your transactions are confidential. This means chain 
+                analysts can't track your spending patterns, payment amounts, or determine 
+                your balance - making your financial activity private.
+              </p>
+            </div>
+          </div>
+
+          <div className={styles.privacyStrategy}>
+            <h4>Privacy Strategy Example:</h4>
+            <ol className={styles.strategySteps}>
+              <li>
+                <strong>Peg-in:</strong> Send 1 BTC from your public Bitcoin address to Liquid
+              </li>
+              <li>
+                <strong>Confidential Transfers:</strong> Make multiple confidential transactions 
+                on Liquid. Amounts are hidden, breaking amount-based clustering
+              </li>
+              <li>
+                <strong>Mix with others:</strong> Your L-BTC mixes with other users' L-BTC in 
+                the confidential transaction set
+              </li>
+              <li>
+                <strong>Peg-out:</strong> Return to Bitcoin mainchain. The link between your 
+                original peg-in and final peg-out is obscured by the confidential activity
+              </li>
+            </ol>
+            <p className={styles.strategyNote}>
+              <strong>Result:</strong> Chain analysts can see you pegged-in 1 BTC and later 
+              someone pegged-out 1 BTC, but they can't definitively link the two transactions 
+              or track what happened in between. The confidential transfers create reasonable 
+              deniability.
+            </p>
+          </div>
+        </div>
+      </Card>
+
       <Accordion
         title="Deep Dive: The Federated Peg"
         variant="deepdive"
@@ -287,6 +370,113 @@ export function PegVisualizer() {
         <p>
           <strong>Note:</strong> The federation members are well-known companies with 
           reputational and financial incentives to behave honestly.
+        </p>
+      </Accordion>
+
+      <Accordion
+        title="Privacy Deep Dive: How Confidential Transactions Work"
+        variant="deepdive"
+        icon={<EyeOff size={16} />}
+      >
+        <p>
+          Liquid's <strong>Confidential Transactions (CT)</strong> use advanced cryptography 
+          to hide transaction amounts while still allowing the network to verify that the 
+          math adds up (no coins are created or destroyed):
+        </p>
+
+        <h4>How Confidential Transactions Work:</h4>
+        <ul>
+          <li>
+            <strong>Pedersen Commitments:</strong> Transaction amounts are replaced with 
+            cryptographic commitments. These commitments hide the actual values but can 
+            still be added and subtracted mathematically.
+          </li>
+          <li>
+            <strong>Range Proofs:</strong> Zero-knowledge proofs ensure that hidden amounts 
+            are positive and within a valid range, preventing negative or overflow values.
+          </li>
+          <li>
+            <strong>Blinding Factors:</strong> Only the sender and receiver know the blinding 
+            factors needed to reveal the true amounts. Network observers see only encrypted data.
+          </li>
+          <li>
+            <strong>Asset Tags:</strong> In addition to amounts, the asset type (BTC, USDT, etc.) 
+            is also blinded, making it impossible to tell what's being transferred.
+          </li>
+        </ul>
+
+        <h4>Privacy Implications:</h4>
+        <ul>
+          <li>
+            <strong>Amount privacy:</strong> No one except sender and receiver can see how much 
+            is being transferred. This defeats amount-based clustering heuristics.
+          </li>
+          <li>
+            <strong>Balance privacy:</strong> Since amounts are hidden, observers can't determine 
+            anyone's L-BTC balance by looking at the blockchain.
+          </li>
+          <li>
+            <strong>Payment pattern privacy:</strong> Without amounts, it's harder to link 
+            transactions based on "round number" payments or unique amount patterns.
+          </li>
+          <li>
+            <strong>Cross-chain unlinkability:</strong> When combined with peg-in/peg-out, this 
+            creates gaps in the transaction graph that break chain analysis.
+          </li>
+        </ul>
+
+        <h4>Privacy Limitations:</h4>
+        <ul>
+          <li>
+            <strong>Address reuse still bad:</strong> Like Bitcoin, reusing Liquid addresses 
+            links all transactions to that address together. Always use fresh addresses.
+          </li>
+          <li>
+            <strong>Timing analysis:</strong> If you peg-in and immediately peg-out the same 
+            amount, the timing correlation can link the transactions. Add delays and make 
+            intermediate transfers.
+          </li>
+          <li>
+            <strong>Network-level privacy:</strong> Your IP address can still be exposed unless 
+            you use Tor or VPN. Liquid hides transaction data but not network metadata.
+          </li>
+          <li>
+            <strong>Peg endpoints visible:</strong> The peg-in (on Bitcoin) and peg-out (on Bitcoin) 
+            are transparent. Only the Liquid activity in between is confidential.
+          </li>
+        </ul>
+
+        <h4>Best Practices for Maximum Privacy:</h4>
+        <ul>
+          <li>
+            <strong>Wait between peg-in and peg-out:</strong> Don't immediately peg-out after 
+            pegging-in. Make multiple transactions on Liquid first.
+          </li>
+          <li>
+            <strong>Vary amounts:</strong> If pegging-in 1 BTC, consider pegging-out in different 
+            amounts (e.g., 0.6 BTC and 0.4 BTC at different times).
+          </li>
+          <li>
+            <strong>Use fresh addresses:</strong> Never reuse Liquid addresses. Generate a new 
+            address for each peg-in and peg-out.
+          </li>
+          <li>
+            <strong>Combine with other techniques:</strong> Use CoinJoin before peg-in and/or 
+            after peg-out for maximum privacy.
+          </li>
+          <li>
+            <strong>Use Tor:</strong> Connect to Liquid nodes over Tor to prevent IP-based 
+            correlation.
+          </li>
+        </ul>
+
+        <h4>Why This Matters:</h4>
+        <p>
+          Liquid's Confidential Transactions represent one of the strongest privacy technologies 
+          available in Bitcoin today. Unlike mixing techniques that rely on anonymity sets, CT 
+          provides cryptographic privacy - no one can see the amounts, period. Combined with 
+          the peg mechanism, this gives you a powerful tool to break chain surveillance while 
+          maintaining full Bitcoin custody (via the federation).
         </p>
       </Accordion>
     </div>

@@ -72,11 +72,23 @@ const practices = [
     id: 'avoid-kyc',
     title: 'Minimize KYC exposure',
     description: 'Limit how much personal info is linked to your Bitcoin.',
-    weight: 10,
+    weight: 20,
     tips: [
       'Consider peer-to-peer exchanges like Bisq or HodlHodl',
       'Use Bitcoin ATMs for small amounts (check privacy policies)',
       'Accept Bitcoin as payment for goods/services'
+    ]
+  },
+  {
+    id: 'lightning',
+    title: 'Use Lightning Network for payments',
+    description: 'Lightning offers better privacy than on-chain transactions.',
+    weight: 15,
+    tips: [
+      'Lightning payments are not recorded on the blockchain',
+      'Onion routing hides sender/receiver from intermediate nodes',
+      'Use private (unannounced) channels when possible',
+      'Avoid reusing invoices - generate a new one for each payment'
     ]
   }
 ];

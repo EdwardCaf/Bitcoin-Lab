@@ -44,6 +44,7 @@ export function LiquidLesson() {
       currentSection={currentSection}
       onSectionChange={setCurrentSection}
       prevLesson={{ path: '/lessons/lightning', title: 'Lightning Network' }}
+      nextLesson={{ path: '/lessons/ecash', title: 'eCash (Cashu & Fedimint)' }}
     >
       {renderSection()}
     </LessonLayout>
