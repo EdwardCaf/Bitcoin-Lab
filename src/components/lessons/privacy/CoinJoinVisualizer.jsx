@@ -362,6 +362,9 @@ export function CoinJoinVisualizer() {
                   Standard denomination outputs (like 0.1 BTC) are indistinguishable from each other. 
                   Non-standard "change" amounts can sometimes be linked to their owners.
                 </p>
+                <p>
+                  <b>Press "Reveal Owners" at the top of the Visualizer to view total balances.</b>
+                </p>
               </div>
             </div>
             

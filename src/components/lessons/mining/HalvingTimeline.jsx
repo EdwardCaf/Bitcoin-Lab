@@ -78,7 +78,7 @@ export function HalvingTimeline() {
           />
           <div className={styles.sliderLabels}>
             <span>Genesis (2009)</span>
-            <span>Year ~2140</span>
+            <span>Year ~2049</span>
           </div>
         </div>
 
