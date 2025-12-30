@@ -6,7 +6,7 @@ import styles from './StatsSection.module.css';
 const STATS = [
   {
     icon: BookOpen,
-    value: 10,
+    value: 11,
     label: 'Interactive Lessons',
     suffix: '',
   },

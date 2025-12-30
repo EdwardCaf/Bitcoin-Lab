@@ -2,7 +2,8 @@ import { NavLink } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Wallet,
-  ArrowLeftRight, 
+  ArrowLeftRight,
+  Coins,
   EyeOff,
   Key,
   Pickaxe, 
@@ -10,7 +11,7 @@ import {
   Network,
   Zap,
   Droplets,
-  Coins,
+  CircleDollarSign,
   ChevronRight
 } from 'lucide-react';
 import styles from './Sidebar.module.css';
@@ -22,6 +23,7 @@ const sections = [
     lessons: [
       { id: 'wallets', title: 'Wallets', icon: Wallet, path: '/lessons/wallets' },
       { id: 'transactions', title: 'Transactions', icon: ArrowLeftRight, path: '/lessons/transactions' },
+      { id: 'utxo-management', title: 'UTXO Management', icon: Coins, path: '/lessons/utxo-management' },
       { id: 'privacy', title: 'Privacy', icon: EyeOff, path: '/lessons/privacy' },
       { id: 'multisig', title: 'Multi-Signature', icon: Key, path: '/lessons/multisig' },
     ]
@@ -41,7 +43,7 @@ const sections = [
     lessons: [
       { id: 'lightning', title: 'Lightning', icon: Zap, path: '/lessons/lightning' },
       { id: 'liquid', title: 'Liquid', icon: Droplets, path: '/lessons/liquid' },
-      { id: 'ecash', title: 'eCash', icon: Coins, path: '/lessons/ecash' },
+      { id: 'ecash', title: 'eCash', icon: CircleDollarSign, path: '/lessons/ecash' },
     ]
   },
 ];

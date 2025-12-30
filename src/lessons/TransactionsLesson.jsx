@@ -42,7 +42,7 @@ export function TransactionsLesson() {
       currentSection={currentSection}
       onSectionChange={setCurrentSection}
       prevLesson={{ path: '/lessons/wallets', title: 'Wallets' }}
-      nextLesson={{ path: '/lessons/privacy', title: 'Privacy' }}
+      nextLesson={{ path: '/lessons/utxo-management', title: 'UTXO Management' }}
     >
       {renderSection()}
     </LessonLayout>

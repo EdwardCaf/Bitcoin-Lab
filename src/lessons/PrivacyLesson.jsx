@@ -47,7 +47,7 @@ export function PrivacyLesson() {
       sections={sections}
       currentSection={currentSection}
       onSectionChange={setCurrentSection}
-      prevLesson={{ path: '/lessons/transactions', title: 'Transactions' }}
+      prevLesson={{ path: '/lessons/utxo-management', title: 'UTXO Management' }}
       nextLesson={{ path: '/lessons/multisig', title: 'Multi-Signature' }}
     >
       {renderSection()}

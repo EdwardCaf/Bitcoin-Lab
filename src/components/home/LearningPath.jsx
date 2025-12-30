@@ -46,6 +46,17 @@ const LEARNING_TREE = {
   ],
   core: [
     { 
+      id: 'utxo-management', 
+      title: 'UTXO Management', 
+      icon: Coins, 
+      path: '/lessons/utxo-management', 
+      level: 2,
+      description: 'Master the art of managing your Bitcoin UTXOs for optimal fees and privacy.',
+      difficulty: 'Intermediate',
+      duration: '20 min',
+      topics: ['Consolidation', 'Coin Selection', 'Dust Management', 'Fee Optimization']
+    },
+    { 
       id: 'multisig', 
       title: 'Multi-Signature', 
       icon: Key, 

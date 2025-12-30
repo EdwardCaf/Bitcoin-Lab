@@ -4,6 +4,7 @@ import { Header, Sidebar } from './components/layout';
 import { HomePage } from './lessons/HomePage';
 import { WalletsLesson } from './lessons/WalletsLesson';
 import { TransactionsLesson } from './lessons/TransactionsLesson';
+import { UTXOManagementLesson } from './lessons/UTXOManagementLesson';
 import { PrivacyLesson } from './lessons/PrivacyLesson';
 import { MultisigLesson } from './lessons/MultisigLesson';
 import { MiningLesson } from './lessons/MiningLesson';
@@ -43,6 +44,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/lessons/wallets" element={<WalletsLesson />} />
           <Route path="/lessons/transactions" element={<TransactionsLesson />} />
+          <Route path="/lessons/utxo-management" element={<UTXOManagementLesson />} />
           <Route path="/lessons/privacy" element={<PrivacyLesson />} />
           <Route path="/lessons/multisig" element={<MultisigLesson />} />
           <Route path="/lessons/mining" element={<MiningLesson />} />
