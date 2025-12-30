@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { BookOpen, Zap, FlaskConical, Trophy } from 'lucide-react';
+import { BookOpen, Zap, BarChart3, Trophy } from 'lucide-react';
 import styles from './StatsSection.module.css';
 
 const STATS = [
   {
     icon: BookOpen,
-    value: 8,
+    value: 10,
     label: 'Interactive Lessons',
     suffix: '',
   },
@@ -17,9 +17,9 @@ const STATS = [
     suffix: '+',
   },
   {
-    icon: FlaskConical,
+    icon: BarChart3,
     value: 30,
-    label: 'Hands-On Simulations',
+    label: 'Visualizations',
     suffix: '+',
   },
   {

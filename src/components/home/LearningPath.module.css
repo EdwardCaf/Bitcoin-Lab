@@ -22,7 +22,7 @@
 }
 
 .tree {
-  max-width: 800px;
+  max-width: 1200px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -56,27 +56,33 @@
 .nodeContainer {
   display: flex;
   justify-content: center;
-  gap: var(--spacing-md);
+  gap: var(--spacing-lg);
   flex-wrap: wrap;
 }
 
 .nodeContainer.branching {
-  max-width: 600px;
+  max-width: 800px;
   margin: 0 auto;
+}
+
+.nodeWrapper {
+  flex: 1;
+  min-width: 280px;
+  max-width: 380px;
 }
 
 .node {
   display: flex;
-  align-items: center;
-  gap: var(--spacing-sm);
-  padding: var(--spacing-md) var(--spacing-lg);
+  flex-direction: column;
+  gap: var(--spacing-md);
+  padding: var(--spacing-lg);
   background: var(--bg-secondary);
   border: 2px solid var(--border-subtle);
   border-radius: var(--radius-lg);
   text-decoration: none;
   color: inherit;
   transition: all var(--transition-base);
-  min-width: 140px;
+  height: 100%;
 }
 
 .node:hover {
@@ -86,12 +92,19 @@
   box-shadow: 0 4px 12px rgba(247, 147, 26, 0.2);
 }
 
+.nodeHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-sm);
+}
+
 .nodeIcon {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   background: var(--bitcoin-orange-subtle);
   border-radius: var(--radius-md);
   color: var(--bitcoin-orange);
@@ -103,22 +116,77 @@
   color: var(--text-inverse);
 }
 
-.nodeTitle {
+.nodeMeta {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.duration {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+}
+
+.nodeContent {
   flex: 1;
-  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.nodeTitle {
+  font-weight: 700;
   color: var(--text-primary);
+  font-size: var(--text-base);
+}
+
+.nodeDescription {
   font-size: var(--text-sm);
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.nodeTopics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+  margin-top: var(--spacing-xs);
+}
+
+.topic {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  background: var(--bg-tertiary);
+  padding: 2px var(--spacing-sm);
+  border-radius: var(--radius-sm);
+}
+
+.nodeFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--spacing-md);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.startLesson {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--bitcoin-orange);
 }
 
 .nodeArrow {
-  color: var(--text-muted);
+  color: var(--bitcoin-orange);
   transition: transform var(--transition-base);
   flex-shrink: 0;
 }
 
 .node:hover .nodeArrow {
   transform: translateX(4px);
-  color: var(--bitcoin-orange);
 }
 
 .connector {
@@ -128,17 +196,31 @@
   margin: var(--spacing-sm) 0;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .nodeContainer {
     flex-direction: column;
     align-items: stretch;
   }
   
-  .node {
-    justify-content: space-between;
+  .nodeWrapper {
+    max-width: 100%;
   }
   
   .connector {
     height: 30px;
+  }
+  
+  .tree {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .title {
+    font-size: var(--text-2xl);
+  }
+  
+  .subtitle {
+    font-size: var(--text-base);
   }
 }

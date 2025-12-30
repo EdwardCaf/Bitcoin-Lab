@@ -37,7 +37,7 @@ const sections = [
   },
   {
     id: 'layer2',
-    title: 'Layer 2',
+    title: 'Layer 2 / Sidechains',
     lessons: [
       { id: 'lightning', title: 'Lightning', icon: Zap, path: '/lessons/lightning' },
       { id: 'liquid', title: 'Liquid', icon: Droplets, path: '/lessons/liquid' },

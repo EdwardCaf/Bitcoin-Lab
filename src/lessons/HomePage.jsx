@@ -1,130 +1,16 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
-  Wallet,
-  ArrowLeftRight, 
-  EyeOff,
-  Pickaxe, 
-  Blocks, 
-  Network,
-  Zap,
-  Droplets,
-  Coins,
   ArrowRight,
   Sparkles,
   BookOpen,
   Gamepad2,
-  GraduationCap
+  GraduationCap,
+  Zap
 } from 'lucide-react';
-import { Card, Button, Badge } from '../components/common';
+import { Button, Badge } from '../components/common';
 import { NetworkVisualization, StatsSection, LearningPath } from '../components/home';
 import styles from './HomePage.module.css';
-
-const lessons = [
-  {
-    id: 'wallets',
-    title: 'Wallets & Addresses',
-    description: 'Understand how Bitcoin wallets work, from private keys to address types and scripts.',
-    icon: Wallet,
-    path: '/lessons/wallets',
-    difficulty: 'Beginner',
-    duration: '15 min',
-    topics: ['Private Keys', 'Address Types', 'Bitcoin Script', 'HD Wallets']
-  },
-  {
-    id: 'transactions',
-    title: 'Transactions',
-    description: 'Learn how Bitcoin moves from one wallet to another through inputs, outputs, and fees.',
-    icon: ArrowLeftRight,
-    path: '/lessons/transactions',
-    difficulty: 'Beginner',
-    duration: '20 min',
-    topics: ['UTXOs', 'Inputs & Outputs', 'Transaction Fees', 'Change Addresses']
-  },
-  {
-    id: 'privacy',
-    title: 'Privacy',
-    description: 'Explore Bitcoin privacy - how transactions can be traced and how to protect yourself.',
-    icon: EyeOff,
-    path: '/lessons/privacy',
-    difficulty: 'Intermediate',
-    duration: '18 min',
-    topics: ['Address Reuse', 'Chain Analysis', 'CoinJoin', 'Best Practices']
-  },
-  {
-    id: 'mining',
-    title: 'Mining',
-    description: 'Discover how miners secure the network and create new Bitcoin through proof-of-work.',
-    icon: Pickaxe,
-    path: '/lessons/mining',
-    difficulty: 'Intermediate',
-    duration: '20 min',
-    topics: ['Hash Functions', 'Proof of Work', 'Difficulty', 'Block Rewards']
-  },
-  {
-    id: 'blocks',
-    title: 'Blocks & Blockchain',
-    description: 'Understand how blocks are structured and chained together to form an immutable ledger.',
-    icon: Blocks,
-    path: '/lessons/blocks',
-    difficulty: 'Intermediate',
-    duration: '18 min',
-    topics: ['Block Structure', 'Merkle Trees', 'Chain of Hashes', 'Immutability']
-  },
-  {
-    id: 'network',
-    title: 'Network & Nodes',
-    description: 'Explore how Bitcoin\'s peer-to-peer network operates and reaches consensus.',
-    icon: Network,
-    path: '/lessons/network',
-    difficulty: 'Intermediate',
-    duration: '20 min',
-    topics: ['Node Types', 'Transaction Propagation', 'Consensus Rules', 'Forks']
-  },
-  {
-    id: 'lightning',
-    title: 'Lightning Network',
-    description: 'Learn how Lightning enables instant, low-fee Bitcoin payments through payment channels.',
-    icon: Zap,
-    path: '/lessons/lightning',
-    difficulty: 'Advanced',
-    duration: '25 min',
-    topics: ['Payment Channels', 'Routing', 'HTLCs', 'Invoices']
-  },
-  {
-    id: 'liquid',
-    title: 'Liquid Network',
-    description: 'Explore Bitcoin\'s federated sidechain for fast settlement and confidential transactions.',
-    icon: Droplets,
-    path: '/lessons/liquid',
-    difficulty: 'Advanced',
-    duration: '22 min',
-    topics: ['Peg-In/Out', 'Confidential TX', 'Issued Assets', 'Trade-offs']
-  },
-  {
-    id: 'ecash',
-    title: 'eCash (Cashu & Fedimint)',
-    description: 'Learn how Chaumian blind signatures enable perfect privacy with Bitcoin-backed tokens.',
-    icon: Coins,
-    path: '/lessons/ecash',
-    difficulty: 'Advanced',
-    duration: '23 min',
-    topics: ['Blind Signatures', 'Cashu Mints', 'Privacy', 'Federated Custody']
-  }
-];
-
-const getDifficultyColor = (difficulty) => {
-  switch (difficulty) {
-    case 'Beginner':
-      return 'success';
-    case 'Intermediate':
-      return 'warning';
-    case 'Advanced':
-      return 'error';
-    default:
-      return 'secondary';
-  }
-};
 
 export function HomePage() {
   return (
@@ -167,7 +53,7 @@ export function HomePage() {
               variant="secondary" 
               size="large"
               icon={<GraduationCap size={18} />}
-              onClick={() => document.getElementById('lessons').scrollIntoView({ behavior: 'smooth' })}
+              onClick={() => document.getElementById('learning-path').scrollIntoView({ behavior: 'smooth' })}
             >
               Browse Lessons
             </Button>
@@ -176,7 +62,7 @@ export function HomePage() {
           <div className={styles.heroBadges}>
             <span className={styles.badge}>
               <BookOpen size={16} />
-              9 Lessons
+              10 Lessons
             </span>
             <span className={styles.badge}>
               <Zap size={16} />
@@ -199,80 +85,6 @@ export function HomePage() {
 
       {/* Learning Path */}
       <LearningPath />
-
-      {/* Lessons Grid */}
-      <motion.section 
-        id="lessons"
-        className={styles.lessonsSection}
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true, margin: '-100px' }}
-        transition={{ duration: 0.5 }}
-      >
-        <div className={styles.sectionHeader}>
-          <h2 className={styles.sectionTitle}>All Lessons</h2>
-          <p className={styles.sectionSubtitle}>
-            Comprehensive curriculum covering Bitcoin fundamentals to advanced topics
-          </p>
-        </div>
-        
-        <div className={styles.lessonsGrid}>
-          {lessons.map((lesson, index) => {
-            const Icon = lesson.icon;
-
-            return (
-              <motion.div
-                key={lesson.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-50px' }}
-                transition={{ delay: index * 0.05, duration: 0.4 }}
-              >
-                <Card 
-                  padding="large" 
-                  hover
-                  className={styles.lessonCard}
-                >
-                  <div className={styles.lessonHeader}>
-                    <div className={styles.lessonIcon}>
-                      <Icon size={24} />
-                    </div>
-                    <div className={styles.lessonMeta}>
-                      <Badge 
-                        variant={getDifficultyColor(lesson.difficulty)} 
-                        size="small"
-                      >
-                        {lesson.difficulty}
-                      </Badge>
-                      <span className={styles.duration}>{lesson.duration}</span>
-                    </div>
-                  </div>
-                  
-                  <h3 className={styles.lessonTitle}>{lesson.title}</h3>
-                  <p className={styles.lessonDescription}>{lesson.description}</p>
-                  
-                  <div className={styles.lessonTopics}>
-                    {lesson.topics.map((topic) => (
-                      <span key={topic} className={styles.topic}>{topic}</span>
-                    ))}
-                  </div>
-
-                  <Link to={lesson.path} className={styles.lessonLink}>
-                    <Button 
-                      variant="primary"
-                      fullWidth
-                      icon={<ArrowRight size={16} />}
-                      iconPosition="right"
-                    >
-                      Start Lesson
-                    </Button>
-                  </Link>
-                </Card>
-              </motion.div>
-            );
-          })}
-        </div>
-      </motion.section>
 
       {/* Features Section */}
       <motion.section
