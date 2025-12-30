@@ -40,7 +40,7 @@ export function MiningLesson() {
       sections={sections}
       currentSection={currentSection}
       onSectionChange={setCurrentSection}
-      prevLesson={{ path: '/lessons/privacy', title: 'Privacy' }}
+      prevLesson={{ path: '/lessons/multisig', title: 'Multi-Signature' }}
       nextLesson={{ path: '/lessons/blocks', title: 'Blocks' }}
     >
       {renderSection()}

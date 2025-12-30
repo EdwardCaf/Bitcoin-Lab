@@ -44,7 +44,7 @@ export function PrivacyLesson() {
       currentSection={currentSection}
       onSectionChange={setCurrentSection}
       prevLesson={{ path: '/lessons/transactions', title: 'Transactions' }}
-      nextLesson={{ path: '/lessons/mining', title: 'Mining' }}
+      nextLesson={{ path: '/lessons/multisig', title: 'Multi-Signature' }}
     >
       {renderSection()}
     </LessonLayout>

@@ -4,81 +4,54 @@ import {
   Wallet,
   ArrowLeftRight, 
   EyeOff,
+  Key,
   Pickaxe, 
   Blocks, 
   Network,
   Zap,
   Droplets,
-  Lock,
+  ShieldCheck,
+  Monitor,
   ChevronRight
 } from 'lucide-react';
 import styles from './Sidebar.module.css';
 
-const lessons = [
+const sections = [
   {
-    id: 'wallets',
-    title: 'Wallets & Addresses',
-    description: 'Keys & address types',
-    icon: Wallet,
-    path: '/lessons/wallets',
-    available: true
+    id: 'fundamentals',
+    title: 'Fundamentals',
+    lessons: [
+      { id: 'wallets', title: 'Wallets', icon: Wallet, path: '/lessons/wallets' },
+      { id: 'transactions', title: 'Transactions', icon: ArrowLeftRight, path: '/lessons/transactions' },
+      { id: 'privacy', title: 'Privacy', icon: EyeOff, path: '/lessons/privacy' },
+      { id: 'multisig', title: 'Multi-Signature', icon: Key, path: '/lessons/multisig' },
+    ]
   },
   {
-    id: 'transactions',
-    title: 'Transactions',
-    description: 'How Bitcoin moves',
-    icon: ArrowLeftRight,
-    path: '/lessons/transactions',
-    available: true
+    id: 'protocol',
+    title: 'Protocol',
+    lessons: [
+      { id: 'mining', title: 'Mining', icon: Pickaxe, path: '/lessons/mining' },
+      { id: 'blocks', title: 'Blocks', icon: Blocks, path: '/lessons/blocks' },
+      { id: 'network', title: 'Network', icon: Network, path: '/lessons/network' },
+    ]
   },
   {
-    id: 'privacy',
-    title: 'Privacy',
-    description: 'Protecting your identity',
-    icon: EyeOff,
-    path: '/lessons/privacy',
-    available: true
+    id: 'layer2',
+    title: 'Layer 2',
+    lessons: [
+      { id: 'lightning', title: 'Lightning', icon: Zap, path: '/lessons/lightning' },
+      { id: 'liquid', title: 'Liquid', icon: Droplets, path: '/lessons/liquid' },
+    ]
   },
   {
-    id: 'mining',
-    title: 'Mining',
-    description: 'Securing the network',
-    icon: Pickaxe,
-    path: '/lessons/mining',
-    available: true
+    id: 'tools',
+    title: 'Tools',
+    lessons: [
+      { id: 'coldcard-q', title: 'Coldcard Q', icon: ShieldCheck, path: '/lessons/coldcard-q' },
+      { id: 'sparrow', title: 'Sparrow Wallet', icon: Monitor, path: '/lessons/sparrow' },
+    ]
   },
-  {
-    id: 'blocks',
-    title: 'Blocks',
-    description: 'Building the chain',
-    icon: Blocks,
-    path: '/lessons/blocks',
-    available: true
-  },
-  {
-    id: 'network',
-    title: 'Network',
-    description: 'Nodes & propagation',
-    icon: Network,
-    path: '/lessons/network',
-    available: true
-  },
-  {
-    id: 'lightning',
-    title: 'Lightning',
-    description: 'Instant payments',
-    icon: Zap,
-    path: '/lessons/lightning',
-    available: true
-  },
-  {
-    id: 'liquid',
-    title: 'Liquid',
-    description: 'Federated sidechain',
-    icon: Droplets,
-    path: '/lessons/liquid',
-    available: true
-  }
 ];
 
 export function Sidebar({ isOpen, onClose }) {
@@ -103,46 +76,38 @@ export function Sidebar({ isOpen, onClose }) {
         initial={false}
       >
         <div className={styles.content}>
-          <div className={styles.section}>
-            <h3 className={styles.sectionTitle}>Lessons</h3>
-            <nav className={styles.nav}>
-              {lessons.map((lesson) => {
-                const Icon = lesson.icon;
+          {sections.map((section) => (
+            <div key={section.id} className={styles.section}>
+              <h3 className={styles.sectionTitle}>{section.title}</h3>
+              <nav className={styles.nav}>
+                {section.lessons.map((lesson) => {
+                  const Icon = lesson.icon;
 
-                return (
-                  <NavLink
-                    key={lesson.id}
-                    to={lesson.available ? lesson.path : '#'}
-                    className={({ isActive }) => `
-                      ${styles.navItem}
-                      ${isActive ? styles.active : ''}
-                      ${!lesson.available ? styles.locked : ''}
-                    `}
-                    onClick={(e) => {
-                      if (!lesson.available) {
-                        e.preventDefault();
-                      } else if (window.innerWidth < 1024) {
-                        onClose();
-                      }
-                    }}
-                  >
-                    <div className={styles.navIcon}>
-                      {!lesson.available ? (
-                        <Lock size={20} />
-                      ) : (
-                        <Icon size={20} />
-                      )}
-                    </div>
-                    <div className={styles.navContent}>
+                  return (
+                    <NavLink
+                      key={lesson.id}
+                      to={lesson.path}
+                      className={({ isActive }) => `
+                        ${styles.navItem}
+                        ${isActive ? styles.active : ''}
+                      `}
+                      onClick={() => {
+                        if (window.innerWidth < 1024) {
+                          onClose();
+                        }
+                      }}
+                    >
+                      <div className={styles.navIcon}>
+                        <Icon size={18} />
+                      </div>
                       <span className={styles.navTitle}>{lesson.title}</span>
-                      <span className={styles.navDescription}>{lesson.description}</span>
-                    </div>
-                    <ChevronRight size={16} className={styles.navArrow} />
-                  </NavLink>
-                );
-              })}
-            </nav>
-          </div>
+                      <ChevronRight size={14} className={styles.navArrow} />
+                    </NavLink>
+                  );
+                })}
+              </nav>
+            </div>
+          ))}
 
           <div className={styles.footer}>
             <p className={styles.footerText}>

@@ -4,6 +4,7 @@ import {
   Wallet,
   ArrowLeftRight,
   EyeOff,
+  Key,
   Pickaxe,
   Blocks,
   Network,
@@ -31,6 +32,7 @@ const LEARNING_TREE = {
   advanced: [
     { id: 'lightning', title: 'Lightning', icon: Zap, path: '/lessons/lightning', level: 4 },
     { id: 'liquid', title: 'Liquid', icon: Droplets, path: '/lessons/liquid', level: 4 },
+    { id: 'multisig', title: 'Multi-Signature', icon: Key, path: '/lessons/multisig', level: 4 },
   ],
 };
 

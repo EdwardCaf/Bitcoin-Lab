@@ -1,0 +1,314 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.sectionTitle {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-sm);
+}
+
+.sectionDescription {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0 0 var(--spacing-lg);
+}
+
+/* Do's and Don'ts */
+.dosAndDonts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-lg);
+}
+
+@media (max-width: 800px) {
+  .dosAndDonts {
+    grid-template-columns: 1fr;
+  }
+}
+
+.dosSection,
+.dontsSection {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+}
+
+.dosSection {
+  border-top: 3px solid var(--success);
+}
+
+.dontsSection {
+  border-top: 3px solid var(--error);
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-lg);
+}
+
+.dosSection .sectionHeader {
+  color: var(--success);
+}
+
+.dontsSection .sectionHeader {
+  color: var(--error);
+}
+
+.sectionHeader h5 {
+  font-size: var(--text-base);
+  font-weight: 600;
+  margin: 0;
+}
+
+.practicesList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.practiceItem {
+  display: flex;
+  gap: var(--spacing-md);
+}
+
+.practiceIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-md);
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.dosSection .practiceIcon {
+  background: color-mix(in srgb, var(--success) 10%, transparent);
+  color: var(--success);
+}
+
+.dontsSection .practiceIcon {
+  background: color-mix(in srgb, var(--error) 10%, transparent);
+  color: var(--error);
+}
+
+.practiceContent strong {
+  display: block;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.practiceContent p {
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Security Tiers */
+.tiersGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-md);
+}
+
+@media (max-width: 700px) {
+  .tiersGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.tierCard {
+  padding: var(--spacing-lg);
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  border-left: 4px solid var(--tier-color);
+}
+
+.tierHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-sm);
+}
+
+.tierName {
+  font-size: var(--text-base);
+  font-weight: 700;
+  color: var(--tier-color);
+}
+
+.tierValue {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+.tierRecommendation {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0 0 var(--spacing-md);
+}
+
+.tierSetup {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  padding: var(--spacing-sm);
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-md);
+}
+
+.tierSetup strong {
+  color: var(--text-secondary);
+}
+
+/* Common Mistakes */
+.mistakesList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.mistakeItem {
+  padding: var(--spacing-md);
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-md);
+  border-left: 3px solid var(--border-medium);
+}
+
+.mistakeItem.high {
+  border-left-color: var(--error);
+  background: color-mix(in srgb, var(--error) 5%, transparent);
+}
+
+.mistakeItem.medium {
+  border-left-color: var(--warning);
+  background: color-mix(in srgb, var(--warning) 5%, transparent);
+}
+
+.mistakeHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-sm);
+}
+
+.mistakeTitle {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.severityBadge {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  text-transform: uppercase;
+}
+
+.severityBadge.high {
+  background: var(--error);
+  color: white;
+}
+
+.severityBadge.medium {
+  background: var(--warning);
+  color: white;
+}
+
+.mistakeDescription {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* When NOT to use */
+.whenNotGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-md);
+}
+
+@media (max-width: 700px) {
+  .whenNotGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.whenNotItem {
+  display: flex;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  background: var(--bg-secondary);
+  border-radius: var(--radius-md);
+}
+
+.whenNotIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-md);
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.whenNotContent strong {
+  display: block;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.whenNotContent p {
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Final Recommendation */
+.finalRecommendation {
+  display: flex;
+  gap: var(--spacing-md);
+  padding: var(--spacing-lg);
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), transparent);
+  border: 1px solid var(--success);
+  border-radius: var(--radius-lg);
+}
+
+.finalRecommendation svg {
+  color: var(--success);
+  flex-shrink: 0;
+}
+
+.finalRecommendation strong {
+  display: block;
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--success);
+  margin-bottom: var(--spacing-xs);
+}
+
+.finalRecommendation p {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.6;
+}

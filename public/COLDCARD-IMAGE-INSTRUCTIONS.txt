@@ -1,0 +1,23 @@
+COLDCARD Q IMAGE INSTRUCTIONS
+==============================
+
+To display the Coldcard Q image in the Device Overview section:
+
+1. Get a PNG image of the Coldcard Q device
+   - Recommended: Use an official product image from coldcard.com
+   - Or take a screenshot/photo of the device
+   - Image should have a dark/transparent background
+
+2. Name the file: coldcard-q-dark.png
+
+3. Place it in this folder (public/)
+
+4. The image will automatically display in the lesson
+
+Recommended image specs:
+- Format: PNG (supports transparency)
+- Max width: 300-400px
+- Dark theme friendly (black/dark gray background or transparent)
+- Shows the full device from the front
+
+Current status: No image found (will show broken image icon until added)
