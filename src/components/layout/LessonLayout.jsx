@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
@@ -17,6 +18,11 @@ export function LessonLayout({
   prevLesson
 }) {
   const navigate = useNavigate();
+
+  // Scroll to top when section changes
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [currentSection]);
 
   const handlePrevious = () => {
     if (currentSection > 0) {
