@@ -59,12 +59,12 @@ const COMPARISON_DATA = [
     icon: Target,
     bitcoin: { value: 'Large settlements', detail: 'Long-term storage' },
     lightning: { value: 'Micropayments', detail: 'Everyday purchases' },
-    liquid: { value: 'Trading & Assets', detail: 'Exchanges, tokens' },
+    liquid: { value: 'Small TXs & Assets', detail: 'Exchanges, tokens' },
   },
 ];
 
 const FEATURE_MATRIX = [
-  { feature: 'Native BTC', bitcoin: true, lightning: true, liquid: true },
+  { feature: 'Native BTC', bitcoin: true, lightning: true, liquid: false },
   { feature: 'Issued Assets', bitcoin: false, lightning: false, liquid: true },
   { feature: 'Confidential TX', bitcoin: false, lightning: 'partial', liquid: true },
   { feature: 'Unilateral Exit', bitcoin: true, lightning: true, liquid: false },
@@ -219,7 +219,7 @@ export function ComparisonTable() {
             <Droplets size={24} style={{ color: '#14b8a6' }} />
             <h5>Use Liquid When...</h5>
             <ul>
-              <li>Trading between exchanges</li>
+              <li>Desire offline receive</li>
               <li>Privacy is important</li>
               <li>Using stablecoins/assets</li>
               <li>1-min finality needed</li>
@@ -266,7 +266,7 @@ export function ComparisonTable() {
         </ul>
         <p>
           <strong>Pro tip:</strong> Many users keep a small amount on Lightning for 
-          spending, some on Liquid for trading, and the majority on Bitcoin base layer 
+          spending, some on Liquid for spending, and the majority on Bitcoin base layer 
           for long-term savings.
         </p>
       </Accordion>

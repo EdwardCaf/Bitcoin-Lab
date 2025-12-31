@@ -64,7 +64,7 @@ function IntroSection() {
         </div>
         <h2 className={styles.heroTitle}>The Liquid Network</h2>
         <p className={styles.heroText}>
-          Liquid is a Bitcoin sidechain designed for traders and businesses. It offers 
+          Liquid is a Bitcoin sidechain. It offers 
           faster settlement, confidential transactions, and the ability to issue custom 
           assets - all backed by real Bitcoin through a federated two-way peg.
         </p>

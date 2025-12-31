@@ -68,7 +68,7 @@ function IntroSection() {
         </div>
         <h2 className={styles.heroTitle}>Chaumian eCash</h2>
         <p className={styles.heroText}>
-          eCash is a revolutionary Layer 2 technology that brings perfect privacy to Bitcoin 
+          eCash is a revolutionary technology that brings perfect privacy to Bitcoin 
           using blind signatures - a cryptographic invention from the 1980s. Unlike Lightning's 
           onion routing or Bitcoin's pseudonymity, eCash provides true unlinkability where 
           even the mint cannot track users.
@@ -138,9 +138,7 @@ function IntroSection() {
         <h4>Historical Context</h4>
         <p>
           David Chaum invented eCash in 1983 - before the internet was mainstream! His company 
-          DigiCash tried to bring it to banks in the 1990s but failed because centralized control 
-          was too risky. Bitcoin solves the trust problem, making Chaumian eCash practical again 
-          as a Layer 2.
+          DigiCash tried to bring it to banks in the 1990s but failed.
         </p>
       </div>
     </motion.div>
@@ -158,7 +156,7 @@ function CashuSection() {
       <p className={styles.sectionText}>
         Cashu is a modern implementation of Chaumian eCash built on Bitcoin and Lightning. 
         It uses blind signatures to create tokens that the mint can verify but cannot track. 
-        Let's explore the three core operations: minting tokens, swapping them between users, 
+        Let's explore two of the core operations: minting tokens
         and melting them back to Bitcoin.
       </p>
 
