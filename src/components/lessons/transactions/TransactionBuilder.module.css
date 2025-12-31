@@ -1,22 +1,4 @@
 .container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--spacing-xl);
-  align-items: start;
-}
-
-@media (max-width: 1024px) {
-  .container {
-    grid-template-columns: 1fr;
-  }
-}
-
-.walletSection {
-  position: sticky;
-  top: var(--spacing-lg);
-}
-
-.builderSection {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-lg);
@@ -52,8 +34,9 @@
   letter-spacing: 0.5px;
 }
 
-.dropZone {
-  min-height: 100px;
+/* Inputs Container - replaces drop zone */
+.inputsContainer {
+  min-height: 80px;
   border: 2px dashed var(--border-medium);
   border-radius: var(--radius-lg);
   display: flex;
@@ -63,24 +46,19 @@
   background: var(--bg-tertiary);
 }
 
-.dropZone.hasItems {
+.inputsContainer.hasItems {
   border-style: solid;
   align-items: stretch;
   padding: var(--spacing-sm);
 }
 
-.dropZoneActive {
-  border-color: var(--bitcoin-orange);
-  background: var(--bitcoin-orange-subtle);
-  box-shadow: var(--shadow-glow);
-}
-
-.dropPlaceholder {
+.emptyPlaceholder {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: var(--spacing-sm);
   color: var(--text-muted);
+  padding: var(--spacing-md);
 }
 
 .inputsList {
@@ -327,14 +305,140 @@
   font-family: var(--font-mono);
 }
 
-.dragPreview {
+/* Wallet Section */
+.walletHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--spacing-lg);
+}
+
+.walletTitle {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-xs);
+}
+
+.walletSubtitle {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.walletBalance {
+  text-align: right;
+}
+
+.walletBalanceLabel {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.walletBalanceAmount {
+  display: block;
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--bitcoin-orange);
+  font-family: var(--font-mono);
+}
+
+/* Coin Buttons Grid */
+.coinButtonsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: var(--spacing-md);
+}
+
+.coinButton {
   display: flex;
   align-items: center;
   gap: var(--spacing-sm);
-  padding: var(--spacing-sm) var(--spacing-md);
-  background: var(--bitcoin-orange);
-  color: var(--text-inverse);
+  padding: var(--spacing-md);
+  background: var(--bg-tertiary);
+  border: 2px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-align: left;
+  position: relative;
+}
+
+.coinButton:hover {
+  border-color: var(--bitcoin-orange);
+  box-shadow: var(--shadow-glow);
+}
+
+.coinButtonSelected {
+  border-color: var(--bitcoin-orange);
+  background: var(--bitcoin-orange-subtle);
+}
+
+.coinButtonIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: var(--bitcoin-orange-subtle);
   border-radius: var(--radius-md);
-  font-weight: 500;
-  box-shadow: var(--shadow-lg);
+  color: var(--bitcoin-orange);
+  flex-shrink: 0;
+}
+
+.coinButtonInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.coinButtonAmount {
+  display: block;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+}
+
+.coinButtonLabel {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.coinButtonCheck {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 24px;
+  height: 24px;
+  background: var(--bitcoin-orange);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-inverse);
+  box-shadow: var(--shadow-md);
+}
+
+/* Selection Summary */
+.selectionSummary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: var(--spacing-lg);
+  padding-top: var(--spacing-md);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.selectedAmount {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--bitcoin-orange);
+  font-family: var(--font-mono);
 }
