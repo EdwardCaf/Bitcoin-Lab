@@ -1,5 +1,4 @@
-import { useState, useMemo } from 'react';
-import { motion } from 'framer-motion';
+import { useState } from 'react';
 import { 
   FileText,
   QrCode,
@@ -59,27 +58,14 @@ const SAMPLE_INVOICES = [
   }
 ];
 
-const INVOICE_PARTS = [
-  { prefix: 'ln', label: 'Lightning Network', color: '#f97316' },
-  { prefix: 'bc', label: 'Bitcoin mainnet', color: '#3b82f6' },
-  { prefix: '10u', label: 'Amount (10 microsats)', color: '#22c55e' },
-  { prefix: '1', label: 'Separator', color: '#6b7280' },
-  { prefix: 'pjq4xyz', label: 'Timestamp', color: '#a855f7' },
-  { prefix: 'pp5...', label: 'Payment hash', color: '#ec4899' },
-  { prefix: 'dpl...', label: 'Description', color: '#14b8a6' },
-  { prefix: 'xaq...', label: 'Signature', color: '#f59e0b' },
-];
-
 export function InvoiceExplorer() {
   const [currentInvoice, setCurrentInvoice] = useState(0);
   const [copied, setCopied] = useState(false);
-  const [selectedPart, setSelectedPart] = useState(null);
 
   const invoice = SAMPLE_INVOICES[currentInvoice];
 
   const generateNewInvoice = () => {
     setCurrentInvoice((prev) => (prev + 1) % SAMPLE_INVOICES.length);
-    setSelectedPart(null);
   };
 
   const copyInvoice = async () => {
@@ -170,42 +156,45 @@ export function InvoiceExplorer() {
           </div>
         </div>
 
-        {/* Invoice Parts Breakdown */}
-        <div className={styles.partsSection}>
-          <h4>Invoice Structure</h4>
-          <p className={styles.partsHint}>Click each part to learn more</p>
-          <div className={styles.partsList}>
-            {INVOICE_PARTS.map((part, i) => (
-              <motion.button
-                key={i}
-                className={`${styles.partChip} ${selectedPart === i ? styles.selected : ''}`}
-                style={{ 
-                  backgroundColor: selectedPart === i ? part.color : `${part.color}20`,
-                  borderColor: part.color,
-                  color: selectedPart === i ? 'white' : part.color
-                }}
-                onClick={() => setSelectedPart(selectedPart === i ? null : i)}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <code>{part.prefix}</code>
-              </motion.button>
-            ))}
-          </div>
+        {/* Invoice Components */}
+        <div className={styles.componentsSection}>
+          <h4>Invoice Components</h4>
+          <p className={styles.componentsIntro}>
+            A BOLT-11 invoice encodes all the information needed to make a Lightning payment:
+          </p>
           
-          {selectedPart !== null && (
-            <motion.div
-              className={styles.partDetail}
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              style={{ borderColor: INVOICE_PARTS[selectedPart].color }}
-            >
-              <strong style={{ color: INVOICE_PARTS[selectedPart].color }}>
-                {INVOICE_PARTS[selectedPart].label}
-              </strong>
-              <p>{getPartDescription(selectedPart)}</p>
-            </motion.div>
-          )}
+          <div className={styles.componentsList}>
+            <div className={styles.componentGroup}>
+              <h5 className={styles.componentGroupTitle}>Human-Readable Part</h5>
+              <ul className={styles.componentItems}>
+                <li><strong>Prefix</strong> <code>ln</code> - Identifies this as a Lightning Network invoice</li>
+                <li><strong>Network</strong> <code>bc</code> - Which Bitcoin network (bc, tb, tbs, bcrt)</li>
+                <li><strong>Amount</strong> <code>2500u</code> - Payment amount with multiplier (m, u, n, p)</li>
+              </ul>
+            </div>
+
+            <div className={styles.componentGroup}>
+              <h5 className={styles.componentGroupTitle}>Data Part</h5>
+              <ul className={styles.componentItems}>
+                <li><strong>Timestamp</strong> <code>1496314658</code> - When the invoice was created (Unix time)</li>
+                <li><strong>Payment Hash</strong> <code>pp5...</code> - Unique 256-bit identifier; its preimage is proof of payment</li>
+                <li><strong>Payment Secret</strong> <code>sp5...</code> - Prevents probing attacks and enables multi-path payments</li>
+                <li><strong>Description</strong> <code>dq...</code> - Human-readable text explaining what the payment is for</li>
+                <li><strong>Expiry</strong> <code>xq...</code> - How long until the invoice expires (default: 1 hour)</li>
+                <li><strong>Min Final CLTV Expiry</strong> <code>cq...</code> - Minimum timelock for the final hop</li>
+                <li><strong>Routing Hints</strong> <code>rq...</code> - Channel info for reaching nodes with private channels</li>
+                <li><strong>Feature Bits</strong> <code>9q...</code> - Indicates required and supported protocol features</li>
+                <li><strong>Payee Public Key</strong> <code>nq...</code> - The recipient's node ID (optional)</li>
+              </ul>
+            </div>
+
+            <div className={styles.componentGroup}>
+              <h5 className={styles.componentGroupTitle}>Signature</h5>
+              <ul className={styles.componentItems}>
+                <li><strong>ECDSA Signature</strong> <code>3045022100...</code> - 65-byte recoverable signature proving the invoice came from the payee</li>
+              </ul>
+            </div>
+          </div>
         </div>
 
         {/* Decoded Information */}
@@ -306,54 +295,58 @@ export function InvoiceExplorer() {
       </Card>
 
       <Accordion
-        title="Deep Dive: BOLT11 Invoice Format"
+        title="Deep Dive: BOLT-12 Offers"
         variant="deepdive"
         icon={<FileText size={16} />}
       >
         <p>
-          Lightning invoices follow the BOLT11 specification, encoding payment 
-          information in a compact, human-readable format:
+          <strong>BOLT-12</strong> is the next generation of Lightning payments, solving key limitations 
+          of BOLT-11 invoices. Instead of single-use invoices, BOLT-12 introduces <strong>Offers</strong>.
         </p>
+        
+        <h5>What's an Offer?</h5>
+        <p>
+          An Offer is like a reusable payment link. You can publish one static Offer and receive 
+          unlimited payments to it - no more generating a new invoice for every transaction.
+        </p>
+
+        <h5>Key Benefits</h5>
         <ul>
           <li>
-            <strong>Human-readable part:</strong> Starts with 'ln' (Lightning Network) 
-            followed by the network ('bc' for mainnet, 'tb' for testnet) and amount
+            <strong>Reusable:</strong> One Offer can be paid multiple times, perfect for donation 
+            pages, tip jars, or recurring payments
           </li>
           <li>
-            <strong>Timestamp:</strong> Unix timestamp when the invoice was created, 
-            encoded in base32
+            <strong>No expiration:</strong> Offers don't expire like BOLT-11 invoices do
           </li>
           <li>
-            <strong>Tagged fields:</strong> Include payment hash, description, expiry, 
-            routing hints, and feature bits
+            <strong>Better privacy:</strong> Uses onion messages so the payer doesn't learn the 
+            recipient's node ID
           </li>
           <li>
-            <strong>Signature:</strong> The payee's signature over the entire invoice, 
-            proving authenticity
+            <strong>Refunds built-in:</strong> Native support for the merchant to send money back 
+            to the payer
+          </li>
+          <li>
+            <strong>Payer proofs:</strong> Cryptographic proof that you made a specific payment
           </li>
         </ul>
+
+        <h5>How It Works</h5>
         <p>
-          <strong>Why invoices?</strong> Unlike Bitcoin addresses, Lightning invoices 
-          are single-use and include the amount. This prevents payment errors and 
-          enables the receiver to know exactly what payment to expect.
+          When you scan an Offer, your wallet sends an onion message to request a fresh invoice. 
+          The recipient's node automatically responds with a unique invoice just for you. This 
+          happens instantly and privately over the Lightning Network itself - no web server needed.
+        </p>
+
+        <p>
+          <strong>Adoption:</strong> BOLT-12 is implemented in Core Lightning and is being added 
+          to other implementations. Look for Offers starting with <code>lno1...</code> instead 
+          of the familiar <code>lnbc...</code> invoices.
         </p>
       </Accordion>
     </div>
   );
-}
-
-function getPartDescription(index) {
-  const descriptions = [
-    'Indicates this is a Lightning Network invoice, distinguishing it from regular Bitcoin addresses.',
-    'Specifies the Bitcoin network - "bc" for mainnet, "tb" for testnet, "bcrt" for regtest.',
-    'The payment amount encoded using multiplier suffixes (m=milli, u=micro, n=nano, p=pico).',
-    'A separator between the human-readable and data parts of the invoice.',
-    'The creation timestamp, telling wallets when this invoice was generated.',
-    'A unique 256-bit hash that identifies this specific payment. The preimage is revealed on success.',
-    'A short description of what this payment is for, helping the payer identify the purchase.',
-    'The payee\'s cryptographic signature, proving this invoice came from the intended recipient.',
-  ];
-  return descriptions[index] || '';
 }
 
 export default InvoiceExplorer;

@@ -126,12 +126,12 @@
   margin: 0;
 }
 
-/* Parts Section */
-.partsSection {
+/* Components Section */
+.componentsSection {
   margin-top: var(--spacing-lg);
 }
 
-.partsSection h4 {
+.componentsSection h4 {
   font-size: var(--font-size-sm);
   font-weight: 600;
   color: var(--text-secondary);
@@ -140,58 +140,58 @@
   letter-spacing: 0.05em;
 }
 
-.partsHint {
-  font-size: var(--font-size-xs);
-  color: var(--text-tertiary);
+.componentsIntro {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
   margin: 0 0 var(--spacing-md) 0;
+  line-height: 1.5;
 }
 
-.partsList {
+.componentsList {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.componentGroup {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+}
+
+.componentGroupTitle {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--primary);
+  margin: 0 0 var(--spacing-sm) 0;
+}
+
+.componentItems {
+  margin: 0;
+  padding-left: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
   gap: var(--spacing-xs);
 }
 
-.partChip {
-  padding: var(--spacing-xs) var(--spacing-sm);
-  border-radius: var(--radius-md);
-  border: 1px solid;
-  font-size: var(--font-size-xs);
-  cursor: pointer;
-  transition: all 0.2s ease;
-  background: none;
-}
-
-.partChip:hover {
-  transform: translateY(-1px);
-}
-
-.partChip.selected {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-}
-
-.partChip code {
-  font-family: var(--font-mono);
-}
-
-.partDetail {
-  margin-top: var(--spacing-md);
-  padding: var(--spacing-md);
-  background: var(--bg-secondary);
-  border-radius: var(--radius-md);
-  border-left: 3px solid;
-}
-
-.partDetail strong {
-  display: block;
-  margin-bottom: var(--spacing-xs);
-}
-
-.partDetail p {
+.componentItems li {
   font-size: var(--font-size-sm);
   color: var(--text-secondary);
-  margin: 0;
-  line-height: 1.6;
+  line-height: 1.5;
+}
+
+.componentItems li strong {
+  color: var(--text-primary);
+}
+
+.componentItems li code {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-xs);
+  background: var(--bg-tertiary);
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  color: var(--primary);
+  margin-left: var(--spacing-xs);
 }
 
 /* Decoded Section */

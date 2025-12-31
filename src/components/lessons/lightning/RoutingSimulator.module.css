@@ -99,7 +99,7 @@
 
 .feeLabel {
   font-size: 10px;
-  fill: var(--text-tertiary);
+  fill: var(--text-primary);
   text-anchor: middle;
   font-family: var(--font-mono);
 }
