@@ -289,7 +289,7 @@ export const COIN_SELECTION_STRATEGIES = {
     id: 'random',
     name: 'Random Selection',
     description: 'Randomly selects UTXOs. Better privacy but unpredictable fees.',
-    privacy: 'high',
+    privacy: 'medium',
     efficiency: 'medium',
     select: (utxos, targetAmount, feeRate) => {
       const shuffled = [...utxos].sort(() => Math.random() - 0.5);

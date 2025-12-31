@@ -212,7 +212,7 @@ export function PrivacyComparison() {
                 <div className={styles.propertyLabel}>
                   {formatPropertyLabel(key)}
                 </div>
-                <div className={styles.propertyValue}>
+                <div className={`${styles.propertyValue} ${getPropertyValueClass(value)}`}>
                   {getPropertyIcon(value)}
                   <span>{value}</span>
                 </div>
@@ -533,14 +533,42 @@ function formatPropertyLabel(key) {
   return labels[key] || key;
 }
 
+function isNegativeProperty(value) {
+  const lowerValue = value.toLowerCase();
+  return lowerValue.includes('visible') || 
+         lowerValue.includes('public') || 
+         lowerValue.includes('vulnerable') ||
+         lowerValue.includes('linkable');
+}
+
+function isPositiveProperty(value) {
+  const lowerValue = value.toLowerCase();
+  return lowerValue.includes('hidden') || 
+         lowerValue.includes('hide') ||
+         lowerValue.includes('unlinkable') || 
+         lowerValue.includes('no ') ||
+         lowerValue.startsWith('no ') ||
+         lowerValue.includes('not on');
+}
+
 function getPropertyIcon(value) {
-  if (value.includes('Visible') || value.includes('public') || value.includes('Vulnerable')) {
+  if (isNegativeProperty(value)) {
     return <XCircle size={16} className={styles.iconNegative} />;
   }
-  if (value.includes('Hidden') || value.includes('unlinkable') || value.includes('No ')) {
+  if (isPositiveProperty(value)) {
     return <CheckCircle size={16} className={styles.iconPositive} />;
   }
   return <Info size={16} className={styles.iconNeutral} />;
+}
+
+function getPropertyValueClass(value) {
+  if (isNegativeProperty(value)) {
+    return styles.propertyValueNegative;
+  }
+  if (isPositiveProperty(value)) {
+    return styles.propertyValuePositive;
+  }
+  return styles.propertyValueNeutral;
 }
 
 export default PrivacyComparison;

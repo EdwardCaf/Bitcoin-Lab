@@ -315,3 +315,66 @@
   margin: 0;
 }
 
+/* Warning Card Styling */
+.warningHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+  padding-bottom: var(--spacing-md);
+  border-bottom: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.warningHeader svg {
+  color: var(--warning-500);
+  flex-shrink: 0;
+}
+
+.warningHeader h3 {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.warningText {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0 0 var(--spacing-sm);
+}
+
+.warningText:last-of-type {
+  margin-bottom: var(--spacing-sm);
+}
+
+.warningText strong {
+  color: var(--text-primary);
+}
+
+/* Warning card lists */
+.warningHeader + p + ul,
+.warningText + ul {
+  margin: 0 0 var(--spacing-lg);
+  padding-left: var(--spacing-lg);
+}
+
+.warningHeader + p + ul li,
+.warningText + ul li {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: var(--spacing-xs);
+  position: relative;
+}
+
+.warningHeader + p + ul li::marker,
+.warningText + ul li::marker {
+  color: var(--warning-500);
+}
+
+.warningHeader + p + ul li:last-child,
+.warningText + ul li:last-child {
+  margin-bottom: 0;
+}
+

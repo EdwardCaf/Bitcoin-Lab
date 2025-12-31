@@ -44,12 +44,12 @@ const comparisonData = [
   { 
     feature: 'Convenience', 
     hot: { value: 'Very convenient', icon: Check, variant: 'success' }, 
-    cold: { value: 'Less convenient', icon: X, variant: 'error' }
+    cold: { value: 'Less convenient', icon: AlertTriangle, variant: 'warning' }
   },
   { 
     feature: 'Transaction Speed', 
     hot: { value: 'Instant', icon: Zap, variant: 'success' }, 
-    cold: { value: 'Slower process', icon: X, variant: 'error' }
+    cold: { value: 'Slower process', icon: AlertTriangle, variant: 'warning' }
   },
   { 
     feature: 'Vulnerable To', 
@@ -69,7 +69,7 @@ const comparisonData = [
   { 
     feature: 'Cost', 
     hot: { value: 'Free', icon: Check, variant: 'success' }, 
-    cold: { value: '$50-$300 for hardware', icon: X, variant: 'error' }
+    cold: { value: '$50-$300 for hardware', icon: AlertTriangle, variant: 'warning' }
   }
 ];
 

@@ -193,8 +193,7 @@ function ConsolidationSection() {
               Why Consolidate Even If You Don't Save on Fees?
             </h4>
             <p style={{ margin: 0, lineHeight: '1.6' }}>
-              Even if the calculator shows you won't save money on fees when consolidating small UTXOs, 
-              it's often still worth doing. As fee rates rise over time, small UTXOs can become <strong>dust</strong>—
+              As fee rates rise over time, small UTXOs can become <strong>dust</strong>—
               too expensive to ever spend. Consolidating them during low-fee periods prevents them from 
               becoming permanently locked. Think of it as preventative maintenance for your wallet's health.
             </p>

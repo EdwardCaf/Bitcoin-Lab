@@ -5,10 +5,6 @@ import {
   Zap,
   ArrowDown,
   ArrowUp,
-  ArrowRight,
-  RefreshCw,
-  Users,
-  Wallet,
   Building,
   Sparkles,
   Info
@@ -18,7 +14,6 @@ import styles from './MintVisualizer.module.css';
 
 const OPERATIONS = [
   { id: 'mint', label: 'Mint', icon: ArrowDown, description: 'Convert Lightning to eCash tokens' },
-  { id: 'swap', label: 'Swap', icon: RefreshCw, description: 'Exchange tokens between users' },
   { id: 'melt', label: 'Melt', icon: ArrowUp, description: 'Convert eCash tokens back to Lightning' }
 ];
 
@@ -42,9 +37,6 @@ export function MintVisualizer() {
       // Generate token breakdown
       const breakdown = getTokenBreakdown(amount);
       setTokens(breakdown);
-    } else if (operation === 'swap') {
-      // Simulate token swap
-      await new Promise(resolve => setTimeout(resolve, 1000));
     } else if (operation === 'melt') {
       setTokens([]);
     }
@@ -166,12 +158,6 @@ export function MintVisualizer() {
               isProcessing={isProcessing}
               tokens={tokens}
               showBreakdown={showBreakdown}
-            />
-          )}
-          {operation === 'swap' && (
-            <SwapOperation
-              amount={amount}
-              isProcessing={isProcessing}
             />
           )}
           {operation === 'melt' && (
@@ -352,79 +338,6 @@ function MintOperation({ amount, isProcessing, tokens, showBreakdown }) {
   );
 }
 
-function SwapOperation({ amount, isProcessing }) {
-  return (
-    <div className={styles.swapOperation}>
-      <div className={styles.participant}>
-        <div className={styles.participantHeader}>
-          <div className={styles.avatar}>👤</div>
-          <div>
-            <h5>Alice</h5>
-            <Badge variant="success" size="small">Sender</Badge>
-          </div>
-        </div>
-        <motion.div 
-          className={styles.walletBox}
-          animate={isProcessing ? { x: [0, -5, 0] } : {}}
-          transition={{ duration: 0.5, repeat: isProcessing ? Infinity : 0 }}
-        >
-          <Wallet size={24} />
-          <span>{amount} sats</span>
-        </motion.div>
-      </div>
-
-      <div className={styles.swapFlow}>
-        <motion.div 
-          className={styles.flowArrow}
-          animate={isProcessing ? { x: [0, 20, 0] } : {}}
-          transition={{ duration: 1, repeat: isProcessing ? Infinity : 0 }}
-        >
-          <ArrowRight size={32} />
-        </motion.div>
-
-        <div className={styles.mintBadge}>
-          <Building size={20} />
-          <span>Mint blindly swaps tokens</span>
-        </div>
-
-        <motion.div 
-          className={styles.flowArrow}
-          animate={isProcessing ? { x: [0, 20, 0] } : {}}
-          transition={{ duration: 1, repeat: isProcessing ? Infinity : 0, delay: 0.3 }}
-        >
-          <ArrowRight size={32} />
-        </motion.div>
-      </div>
-
-      <div className={styles.participant}>
-        <div className={styles.participantHeader}>
-          <div className={styles.avatar}>👥</div>
-          <div>
-            <h5>Bob</h5>
-            <Badge variant="primary" size="small">Receiver</Badge>
-          </div>
-        </div>
-        <motion.div 
-          className={styles.walletBox}
-          animate={isProcessing ? { x: [0, 5, 0] } : {}}
-          transition={{ duration: 0.5, repeat: isProcessing ? Infinity : 0 }}
-        >
-          <Wallet size={24} />
-          <span>{amount} sats</span>
-        </motion.div>
-      </div>
-
-      <div className={styles.infoBox} style={{ marginTop: 'var(--spacing-lg)' }}>
-        <Info size={14} />
-        <span>
-          Alice sends tokens to Bob. The mint swaps them for fresh tokens, breaking the 
-          link between Alice and Bob. Perfect privacy!
-        </span>
-      </div>
-    </div>
-  );
-}
-
 function MeltOperation({ amount, isProcessing, showBreakdown }) {
   return (
     <div className={styles.operation}>
@@ -449,14 +362,14 @@ function MeltOperation({ amount, isProcessing, showBreakdown }) {
 
       <motion.div 
         className={styles.flowArrow}
-        animate={isProcessing ? { y: [0, -10, 0] } : {}}
+        animate={isProcessing ? { y: [0, 10, 0] } : {}}
         transition={{ duration: 1, repeat: isProcessing ? Infinity : 0 }}
       >
-        <ArrowUp size={32} />
+        <ArrowDown size={32} />
         {isProcessing && (
           <motion.div
             className={styles.flowParticle}
-            animate={{ y: [100, 0] }}
+            animate={{ y: [0, 100] }}
             transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
           />
         )}

@@ -136,7 +136,7 @@ function IntroSection() {
             <span className={styles.factLabel}>Possible keys</span>
           </div>
           <div className={styles.fact}>
-            <span className={styles.factValue}>12+ words</span>
+            <span className={styles.factValue}>24 words</span>
             <span className={styles.factLabel}>Seed phrase backup</span>
           </div>
         </div>
@@ -154,7 +154,7 @@ function KeysSection() {
     >
       <h2 className={styles.sectionTitle}>Private Keys, Public Keys & Addresses</h2>
       <p className={styles.sectionText}>
-        Every Bitcoin address starts with a private key - a random 256-bit number. 
+        Every Bitcoin address starts with a private key - a random 256-bit (24 words) number. 
         Through cryptographic magic, this creates a public key, which is then hashed 
         to create your address. The math works one way only: you can't reverse-engineer 
         a private key from an address.

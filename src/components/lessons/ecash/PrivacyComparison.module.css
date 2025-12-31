@@ -218,7 +218,18 @@
   align-items: center;
   gap: var(--spacing-sm);
   font-size: var(--font-sm);
-  color: var(--text-primary);
+}
+
+.propertyValuePositive {
+  color: var(--success-500);
+}
+
+.propertyValueNegative {
+  color: var(--error-500);
+}
+
+.propertyValueNeutral {
+  color: var(--warning-500);
 }
 
 .iconPositive {

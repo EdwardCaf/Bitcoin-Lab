@@ -360,7 +360,6 @@
   border: 1px solid var(--border-accent);
   border-radius: var(--radius-lg);
   padding: var(--spacing-md);
-  margin-top: var(--spacing-lg);
 }
 
 .insightBox p {

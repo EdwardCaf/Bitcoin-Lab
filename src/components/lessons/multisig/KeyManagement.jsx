@@ -27,7 +27,7 @@ const keyHolderTypes = [
     description: 'Dedicated signing devices like Coldcard, Trezor, or Ledger',
     pros: ['Air-gapped security', 'Secure elements protect keys', 'Purpose-built for Bitcoin'],
     cons: ['Cost ($50-$250 each)', 'Learning curve', 'Device can fail/break'],
-    examples: ['Coldcard Q', 'Trezor Model T', 'Ledger Nano X', 'BitBox02', 'Keystone Pro']
+    examples: ['Coldcard Q', 'Trezor Safe 7', 'BitBox02', 'Tapsigner']
   },
   {
     id: 'software',
@@ -37,7 +37,7 @@ const keyHolderTypes = [
     description: 'Desktop or mobile apps that can sign transactions',
     pros: ['Free', 'Accessible', 'Can run on existing devices'],
     cons: ['Computer vulnerabilities', 'Malware risk', 'Less secure than hardware'],
-    examples: ['Sparrow (desktop)', 'BlueWallet (mobile)', 'Nunchuk (mobile)', 'Specter (desktop)']
+    examples: ['Sparrow (desktop)', 'BlueWallet (mobile)', 'Nunchuk (mobile)']
   },
   {
     id: 'custodian',
@@ -47,7 +47,7 @@ const keyHolderTypes = [
     description: 'Professional services that hold one key as a recovery backup',
     pros: ['Professional security', 'Recovery assistance', 'Often includes insurance'],
     cons: ['Trust required', 'Monthly fees', 'Potential regulatory issues'],
-    examples: ['Unchained', 'Casa', 'Nunchuk Assisted']
+    examples: ['Nunchuk Honey Badger']
   },
   {
     id: 'backup',
@@ -57,7 +57,7 @@ const keyHolderTypes = [
     description: 'Seed phrase stored on paper or stamped in metal',
     pros: ['No electronics to fail', 'Long-term durability (metal)', 'Air-gapped by nature'],
     cons: ['Physical security needed', 'Can be lost/destroyed', 'Must protect from discovery'],
-    examples: ['Paper in fireproof safe', 'Steel plate backup', 'Cryptosteel', 'Seedplate']
+    examples: ['Paper in fireproof safe', 'Steel plate backup', 'StampSeed', 'Seedplate', 'SEEDOR']
   }
 ];
 
@@ -79,48 +79,16 @@ const coordinatorSoftware = [
     features: ['Collaborative signing', 'Inheritance planning', 'Key recovery service', 'Cross-platform']
   },
   {
-    id: 'caravan',
-    name: 'Caravan',
-    type: 'Web',
-    url: 'https://unchained.com/caravan',
-    description: 'Open-source web-based multisig coordinator by Unchained. No account required.',
-    features: ['No installation needed', 'Open source', 'Hardware wallet support', 'Address verification']
-  },
-  {
     id: 'specter',
     name: 'Specter Desktop',
     type: 'Desktop',
     url: 'https://specter.solutions',
     description: 'Bitcoin Core focused wallet with strong multisig capabilities.',
     features: ['Bitcoin Core integration', 'Hardware wallet support', 'DIY node friendly', 'Open source']
-  },
-  {
-    id: 'bluewallet',
-    name: 'BlueWallet',
-    type: 'Mobile',
-    url: 'https://bluewallet.io',
-    description: 'Popular mobile wallet with vault (multisig) feature for on-the-go management.',
-    features: ['Mobile-first', 'Watch-only vaults', 'PSBT support', 'Lightning support']
   }
 ];
 
 const collaborativeCustody = [
-  {
-    id: 'unchained',
-    name: 'Unchained',
-    model: '2-of-3 (you hold 2 keys)',
-    url: 'https://unchained.com',
-    description: 'Concierge onboarding, key recovery, and inheritance services. Enterprise-grade security.',
-    features: ['White-glove setup', 'IRA/401k support', 'Inheritance planning', 'Trading desk']
-  },
-  {
-    id: 'casa',
-    name: 'Casa',
-    model: '2-of-3 or 3-of-5',
-    url: 'https://casa.io',
-    description: 'Mobile-first collaborative custody with health checks and recovery options.',
-    features: ['Mobile app', 'Key health checks', 'Emergency recovery', 'Inheritance protocol']
-  },
   {
     id: 'nunchuk-assisted',
     name: 'Nunchuk Assisted',

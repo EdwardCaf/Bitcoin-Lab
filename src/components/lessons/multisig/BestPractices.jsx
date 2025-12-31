@@ -106,7 +106,7 @@ const securityTiers = [
     value: '$500K+',
     color: 'var(--bitcoin-orange)',
     recommendation: '3-of-5 or collaborative custody with professional services. Involve legal/estate planning.',
-    setup: '3-of-5 or 2-of-3 with Unchained/Casa holding one key for recovery'
+    setup: '3-of-5 or 2-of-3 with Nunchuk or others holding one key for recovery'
   }
 ];
 

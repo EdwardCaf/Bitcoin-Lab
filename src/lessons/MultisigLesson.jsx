@@ -156,8 +156,8 @@ function IntroSection() {
             <span className={styles.factLabel}>Most Popular Config</span>
           </div>
           <div className={styles.fact}>
-            <span className={styles.factValue}>15</span>
-            <span className={styles.factLabel}>Max Keys (Bitcoin limit)</span>
+            <span className={styles.factValue}>20</span>
+            <span className={styles.factLabel}>Max Keys (Native Segwit limit)</span>
           </div>
           <div className={styles.fact}>
             <span className={styles.factValue}>2012</span>

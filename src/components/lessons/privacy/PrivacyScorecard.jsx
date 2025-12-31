@@ -17,7 +17,7 @@ const practices = [
     id: 'fresh-address',
     title: 'Use fresh addresses for each transaction',
     description: 'Never reuse addresses. Modern wallets do this automatically.',
-    weight: 20,
+    weight: 15,
     tips: [
       'Enable "generate new address" in your wallet settings',
       'Share a new address for each payment you receive',
@@ -28,7 +28,7 @@ const practices = [
     id: 'coinjoin',
     title: 'Use CoinJoin or mixing services',
     description: 'Break transaction links by mixing your coins with others.',
-    weight: 25,
+    weight: 20,
     tips: [
       'Use Wasabi Wallet or Whirlpool for automated CoinJoin',
       'Multiple rounds of mixing provide better privacy',
@@ -39,7 +39,7 @@ const practices = [
     id: 'full-node',
     title: 'Run your own full node',
     description: 'Avoid leaking transaction data to third-party servers.',
-    weight: 15,
+    weight: 10,
     tips: [
       'Bitcoin Core is the reference implementation',
       'Use hardware like Umbrel or RaspiBlitz for easy setup',
@@ -50,7 +50,7 @@ const practices = [
     id: 'tor',
     title: 'Use Tor or VPN',
     description: 'Hide your IP address when broadcasting transactions.',
-    weight: 15,
+    weight: 10,
     tips: [
       'Enable Tor in your wallet settings if available',
       'Use Tor Browser for any Bitcoin-related web activity',
@@ -83,7 +83,7 @@ const practices = [
     id: 'lightning',
     title: 'Use Lightning Network for payments',
     description: 'Lightning offers better privacy than on-chain transactions.',
-    weight: 15,
+    weight: 10,
     tips: [
       'Lightning payments are not recorded on the blockchain',
       'Onion routing hides sender/receiver from intermediate nodes',

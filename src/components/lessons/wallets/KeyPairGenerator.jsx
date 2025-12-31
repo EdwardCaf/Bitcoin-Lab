@@ -173,7 +173,6 @@ export function KeyPairGenerator() {
           {/* Arrow */}
           <div className={styles.arrow}>
             <ArrowRight size={24} />
-            <span>ECDSA</span>
           </div>
           
           {/* Public Key */}
@@ -210,7 +209,6 @@ export function KeyPairGenerator() {
           {/* Arrow */}
           <div className={styles.arrow}>
             <ArrowRight size={24} />
-            <span>Hash</span>
           </div>
           
           {/* Address */}
@@ -286,7 +284,7 @@ export function KeyPairGenerator() {
           </li>
           <li>
             <strong>256-bit security:</strong> There are 2^256 possible private keys - more 
-            than atoms in the observable universe.
+            than atoms in the observable universe for a 24 word seed phrase.
           </li>
           <li>
             <strong>Digital signatures:</strong> Your private key can create signatures that 
