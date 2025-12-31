@@ -129,7 +129,7 @@ export function ComparisonTable() {
           </button>
         </div>
 
-        {/* Comparison Table */}
+        {/* Comparison Table - Desktop */}
         <div className={styles.table}>
           {COMPARISON_DATA.map((row, i) => (
             <motion.div
@@ -156,6 +156,56 @@ export function ComparisonTable() {
               <div className={`${styles.valueCell} ${styles.liquidCell} ${selectedNetwork === 'liquid' ? styles.highlight : ''}`}>
                 <span className={styles.value}>{row.liquid.value}</span>
                 <span className={styles.detail}>{row.liquid.detail}</span>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Mobile Comparison Cards */}
+        <div className={styles.mobileComparison}>
+          {COMPARISON_DATA.map((row, i) => (
+            <motion.div
+              key={row.category}
+              className={styles.mobileCard}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.05 }}
+            >
+              <div className={styles.mobileCardHeader}>
+                <row.icon size={18} />
+                <span>{row.category}</span>
+              </div>
+              <div className={styles.mobileCardBody}>
+                <div className={styles.mobileRow}>
+                  <div className={`${styles.mobileNetworkLabel} ${styles.bitcoin}`}>
+                    <Bitcoin size={16} />
+                    <span>Bitcoin</span>
+                  </div>
+                  <div className={styles.mobileValueSection}>
+                    <span className={styles.mobileValue}>{row.bitcoin.value}</span>
+                    <span className={styles.mobileDetail}>{row.bitcoin.detail}</span>
+                  </div>
+                </div>
+                <div className={styles.mobileRow}>
+                  <div className={`${styles.mobileNetworkLabel} ${styles.lightning}`}>
+                    <Zap size={16} />
+                    <span>Lightning</span>
+                  </div>
+                  <div className={styles.mobileValueSection}>
+                    <span className={styles.mobileValue}>{row.lightning.value}</span>
+                    <span className={styles.mobileDetail}>{row.lightning.detail}</span>
+                  </div>
+                </div>
+                <div className={styles.mobileRow}>
+                  <div className={`${styles.mobileNetworkLabel} ${styles.liquid}`}>
+                    <Droplets size={16} />
+                    <span>Liquid</span>
+                  </div>
+                  <div className={styles.mobileValueSection}>
+                    <span className={styles.mobileValue}>{row.liquid.value}</span>
+                    <span className={styles.mobileDetail}>{row.liquid.detail}</span>
+                  </div>
+                </div>
               </div>
             </motion.div>
           ))}

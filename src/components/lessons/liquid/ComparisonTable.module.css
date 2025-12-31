@@ -53,7 +53,7 @@
 
 @media (max-width: 768px) {
   .networkHeaders {
-    grid-template-columns: 1fr;
+    display: none;
   }
   
   .categoryHeader {
@@ -294,4 +294,115 @@
   .summaryGrid {
     grid-template-columns: 1fr;
   }
+  
+  .legend {
+    flex-wrap: wrap;
+    gap: var(--spacing-sm) var(--spacing-md);
+  }
+  
+  .featureHeader,
+  .featureRow {
+    grid-template-columns: 1fr 50px 50px 50px;
+    gap: var(--spacing-xs);
+  }
+  
+  .featureRow {
+    padding: var(--spacing-xs) var(--spacing-sm);
+  }
+  
+  .featureHeader {
+    padding: var(--spacing-xs) var(--spacing-sm);
+  }
+  
+  .featureLabel {
+    font-size: var(--font-size-xs);
+  }
+}
+
+/* Mobile Card View for Comparison */
+.mobileComparison {
+  display: none;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-md);
+}
+
+@media (max-width: 768px) {
+  .mobileComparison {
+    display: flex;
+  }
+}
+
+.mobileCard {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.mobileCardHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md);
+  background: var(--bg-tertiary);
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+}
+
+.mobileCardHeader svg {
+  color: var(--text-tertiary);
+  flex-shrink: 0;
+}
+
+.mobileCardBody {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--border-light);
+}
+
+.mobileRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--bg-secondary);
+  gap: var(--spacing-sm);
+}
+
+.mobileNetworkLabel {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  flex-shrink: 0;
+  min-width: 90px;
+}
+
+.mobileNetworkLabel svg {
+  flex-shrink: 0;
+}
+
+.mobileNetworkLabel.bitcoin { color: #f97316; }
+.mobileNetworkLabel.lightning { color: #facc15; }
+.mobileNetworkLabel.liquid { color: #14b8a6; }
+
+.mobileValueSection {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+}
+
+.mobileValue {
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+  color: var(--text-primary);
+}
+
+.mobileDetail {
+  font-size: var(--font-size-xs);
+  color: var(--text-tertiary);
 }

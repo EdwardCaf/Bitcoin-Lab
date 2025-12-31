@@ -327,14 +327,31 @@ export function NonceFinder() {
       <AnimatePresence>
         {found && (
           <motion.div
-            className={styles.celebration}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
+            className={styles.celebrationOverlay}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={handleReset}
           >
-            <Trophy size={48} />
-            <h4>Block Mined!</h4>
-            <p>You found a valid hash after {attempts.toLocaleString()} attempts!</p>
+            <motion.div
+              className={styles.celebration}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <Trophy size={48} />
+              <h4>Block Mined!</h4>
+              <p>You found a valid hash after {attempts.toLocaleString()} attempts!</p>
+              <Button 
+                variant="success" 
+                size="medium" 
+                onClick={handleReset}
+                className={styles.celebrationButton}
+              >
+                Try Again
+              </Button>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

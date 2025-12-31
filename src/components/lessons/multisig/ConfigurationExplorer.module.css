@@ -124,6 +124,13 @@
   border-radius: var(--radius-md);
 }
 
+@media (max-width: 480px) {
+  .metersRow {
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+}
+
 .meter {
   display: flex;
   align-items: center;

@@ -62,34 +62,35 @@ export function ConfidentialTxDemo() {
 
         {/* Toggle Switch */}
         <div className={styles.toggleSection}>
-          <button
-            className={`${styles.modeButton} ${!isConfidential ? styles.active : ''}`}
-            onClick={() => setIsConfidential(false)}
-          >
-            <Eye size={18} />
-            <span>Transparent</span>
-            <span className={styles.modeSubtext}>Like Bitcoin</span>
-          </button>
-          
-          <div className={styles.toggleSwitch}>
-            <motion.div 
-              className={styles.toggleKnob}
-              animate={{ x: isConfidential ? 40 : 0 }}
-              transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-              onClick={() => setIsConfidential(!isConfidential)}
+          <div className={styles.toggleRow}>
+            <button
+              className={`${styles.modeButton} ${!isConfidential ? styles.active : ''}`}
+              onClick={() => setIsConfidential(false)}
             >
-              {isConfidential ? <Lock size={16} /> : <Unlock size={16} />}
-            </motion.div>
+              <Eye size={18} />
+              <span>Transparent</span>
+              <span className={styles.modeSubtext}>Like Bitcoin</span>
+            </button>
+            
+            <div className={styles.toggleSwitch} onClick={() => setIsConfidential(!isConfidential)}>
+              <motion.div 
+                className={styles.toggleKnob}
+                animate={{ x: isConfidential ? 40 : 0 }}
+                transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+              >
+                {isConfidential ? <Lock size={16} /> : <Unlock size={16} />}
+              </motion.div>
+            </div>
+            
+            <button
+              className={`${styles.modeButton} ${isConfidential ? styles.active : ''}`}
+              onClick={() => setIsConfidential(true)}
+            >
+              <EyeOff size={18} />
+              <span>Confidential</span>
+              <span className={styles.modeSubtext}>Liquid default</span>
+            </button>
           </div>
-          
-          <button
-            className={`${styles.modeButton} ${isConfidential ? styles.active : ''}`}
-            onClick={() => setIsConfidential(true)}
-          >
-            <EyeOff size={18} />
-            <span>Confidential</span>
-            <span className={styles.modeSubtext}>Liquid default</span>
-          </button>
         </div>
 
         {/* Transaction Visualization */}
