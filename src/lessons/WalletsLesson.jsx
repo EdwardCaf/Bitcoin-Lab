@@ -1,16 +1,15 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Wallet, Key, Hash, Code, Grid3X3, Shield } from 'lucide-react';
+import { Wallet, Key, Hash, Grid3X3 } from 'lucide-react';
 import { LessonLayout } from '../components/layout';
 import { Card, Accordion } from '../components/common';
-import { KeyPairGenerator, AddressTypeExplorer, ScriptVisualizer, SeedPhraseDemo, WalletTypesExplorer } from '../components/lessons/wallets';
+import { KeyPairGenerator, AddressTypeExplorer, SeedPhraseDemo, WalletTypesExplorer } from '../components/lessons/wallets';
 import styles from './Lessons.module.css';
 
 const sections = [
   { id: 'intro', title: 'Introduction' },
   { id: 'keys', title: 'Keys & Addresses' },
   { id: 'types', title: 'Address Types' },
-  { id: 'scripts', title: 'Bitcoin Script' },
   { id: 'hd', title: 'HD Wallets & Seeds' },
   { id: 'wallet-types', title: 'Hot vs Cold Wallets' }
 ];
@@ -27,10 +26,8 @@ export function WalletsLesson() {
       case 2:
         return <AddressTypesSection />;
       case 3:
-        return <ScriptsSection />;
-      case 4:
         return <HDWalletsSection />;
-      case 5:
+      case 4:
         return <WalletTypesSection />;
       default:
         return <IntroSection />;
@@ -137,7 +134,7 @@ function IntroSection() {
           </div>
           <div className={styles.fact}>
             <span className={styles.factValue}>24 words</span>
-            <span className={styles.factLabel}>Seed phrase backup</span>
+            <span className={styles.factLabel}>Backup</span>
           </div>
         </div>
       </div>
@@ -180,26 +177,6 @@ function AddressTypesSection() {
       </p>
 
       <AddressTypeExplorer />
-    </motion.div>
-  );
-}
-
-function ScriptsSection() {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      className={styles.section}
-    >
-      <h2 className={styles.sectionTitle}>Bitcoin Script: The Spending Rules</h2>
-      <p className={styles.sectionText}>
-        When you send Bitcoin, you're not just transferring coins - you're creating 
-        a puzzle (script) that must be solved to spend them. Most scripts simply 
-        require a valid signature, but Bitcoin can do much more: multisig, timelocks, 
-        and smart contracts.
-      </p>
-
-      <ScriptVisualizer />
     </motion.div>
   );
 }

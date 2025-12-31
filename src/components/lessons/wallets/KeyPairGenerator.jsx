@@ -185,7 +185,6 @@ export function KeyPairGenerator() {
             <div className={styles.keyHeader}>
               <Unlock size={18} />
               <span>Public Key</span>
-              <Badge variant="success" size="small">Shareable</Badge>
             </div>
             <div className={styles.keyValue}>
               <code className={styles.keyCode}>
@@ -221,6 +220,7 @@ export function KeyPairGenerator() {
             <div className={styles.keyHeader}>
               <Key size={18} />
               <span>Bitcoin Address</span>
+              <Badge variant="success" size="small">Shareable</Badge>
             </div>
             <div className={styles.keyValue}>
               <code className={styles.keyCode}>
@@ -283,8 +283,8 @@ export function KeyPairGenerator() {
             the private key, but it's computationally impossible to reverse.
           </li>
           <li>
-            <strong>256-bit security:</strong> There are 2^256 possible private keys - more 
-            than atoms in the observable universe for a 24 word seed phrase.
+            <strong>256-bit security:</strong> There are 2^256 possible private keys - almost as many 
+           atoms in the observable universe for a 24 word seed phrase.
           </li>
           <li>
             <strong>Digital signatures:</strong> Your private key can create signatures that 

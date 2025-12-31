@@ -11,7 +11,6 @@ import {
   Check,
   X,
   Laptop,
-  Globe,
   Lock
 } from 'lucide-react';
 import { Card, Button, Badge, Accordion } from '../../common';
@@ -19,9 +18,8 @@ import styles from './WalletTypesExplorer.module.css';
 
 const walletExamples = {
   hot: [
-    { name: 'Mobile Wallets', icon: Smartphone, examples: ['Blue Wallet', 'Nunchuk', 'Bull Wallet'], description: 'Apps on your phone for daily spending' },
-    { name: 'Desktop Wallets', icon: Laptop, examples: ['Sparrow', 'Nunchuk', 'Bitcoin Core'], description: 'Software on your computer' },
-    { name: 'Web Wallets', icon: Globe, examples: ['Wallet of Satoshi', 'Strike'], description: 'Browser-based or custodial services' }
+    { name: 'Mobile Wallets', icon: Smartphone, examples: ['Blue Wallet', 'Nunchuk', 'Bull Bitcoin Wallet'], description: 'Apps on your phone for daily spending' },
+    { name: 'Desktop Wallets', icon: Laptop, examples: ['Sparrow', 'Nunchuk', 'Bitcoin Core'], description: 'Software on your computer' }
   ],
   cold: [
     { name: 'Hardware Wallets', icon: HardDrive, examples: ['Coldcard', 'Trezor', 'Jade'], description: 'Dedicated physical devices for secure storage' },
