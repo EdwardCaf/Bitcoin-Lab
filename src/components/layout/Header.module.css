@@ -89,6 +89,10 @@
   line-height: 1.2;
 }
 
+.logoOrange {
+  color: var(--bitcoin-orange);
+}
+
 .logoSubtitle {
   font-size: var(--text-xs);
   color: var(--text-muted);

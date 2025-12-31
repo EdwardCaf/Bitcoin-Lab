@@ -38,7 +38,7 @@ export function LiquidLesson() {
     <LessonLayout
       lessonId="liquid"
       title="Liquid Network"
-      description="Explore Bitcoin's federated sidechain for trading and privacy"
+      description="Explore Bitcoin's federated sidechain for spending, trading, and privacy"
       icon={Droplets}
       sections={sections}
       currentSection={currentSection}

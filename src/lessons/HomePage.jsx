@@ -29,13 +29,13 @@ export function HomePage() {
           
           <h1 className={styles.heroTitle}>
             Welcome to<br />
-            <span className={styles.heroHighlight}>The Bitcoin Lab</span>
+            <span className={styles.heroHighlight}>The Bitcoin OPtic</span>
           </h1>
           
           <p className={styles.heroText}>
-            Learn Bitcoin through hands-on interactive simulations. Explore wallets, 
+            Learn Bitcoin through beautiful visualizations. Explore wallets, 
             mine blocks, route Lightning payments, and master the technology that's 
-            revolutionizing money. No setup required, completely free.
+            revolutionizing money. No setup required, all completely free.
           </p>
           
           <div className={styles.heroButtons}>
@@ -94,7 +94,7 @@ export function HomePage() {
         viewport={{ once: true, margin: '-100px' }}
         transition={{ duration: 0.5 }}
       >
-        <h2 className={styles.sectionTitle}>Why The Bitcoin Lab?</h2>
+        <h2 className={styles.sectionTitle}>Why The Bitcoin <span className={styles.sectionOrange}>OP</span>tic?</h2>
         <div className={styles.featuresGrid}>
           <div className={styles.feature}>
             <div className={styles.featureIcon}>

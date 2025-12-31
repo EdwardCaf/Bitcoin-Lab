@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Bitcoin, Menu, X } from 'lucide-react';
+import { Eye, Menu, X } from 'lucide-react';
 import { useBlockHeight } from '../../hooks/useBlockHeight';
 import styles from './Header.module.css';
 
@@ -69,11 +69,11 @@ export function Header({ sidebarOpen, onToggleSidebar }) {
             animate={{ opacity: 1, x: 0 }}
           >
             <div className={styles.logoIcon}>
-              <Bitcoin size={28} />
+              <Eye size={28} />
             </div>
             <div className={styles.logoText}>
-              <span className={styles.logoTitle}>The Bitcoin Lab</span>
-              <span className={styles.logoSubtitle}>Learn by Doing</span>
+              <span className={styles.logoTitle}>The Bitcoin <span className={styles.logoOrange}>OP</span>tic</span>
+              <span className={styles.logoSubtitle}>See Bitcoin Clearly</span>
             </div>
           </motion.div>
         </Link>

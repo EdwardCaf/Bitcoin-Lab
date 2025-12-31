@@ -32,7 +32,8 @@ const RESOURCES = {
         url: 'https://sparrowwallet.com',
         description: 'Full-featured desktop wallet with advanced coin control and privacy features.',
         tags: ['Desktop'],
-        icon: Monitor
+        icon: Monitor,
+        favorite: true
       },
       {
         name: 'Nunchuk',
@@ -60,6 +61,7 @@ const RESOURCES = {
         url: 'https://bullbitcoin.com',
         description: 'Non-custodial mobile wallet focused on Canadian Bitcoin users.',
         tags: ['Mobile', 'Liquid'],
+        favorite: true,
         icon: Smartphone
       }
     ]
@@ -144,6 +146,7 @@ const RESOURCES = {
         url: 'https://coldcard.com',
         description: 'Air-gapped Bitcoin hardware wallet with advanced security features.',
         tags: ['Air-gapped'],
+        favorite: true,
         icon: Shield
       },
       {
@@ -193,7 +196,8 @@ const RESOURCES = {
         url: 'https://start9.com',
         description: 'Sovereign computing platform for running Bitcoin and other services.',
         tags: ['Node'],
-        icon: Server
+        icon: Server,
+        favorite: true
       }
     ]
   },
@@ -214,7 +218,8 @@ const RESOURCES = {
         url: 'https://strike.me',
         description: 'Lightning-native app for sending money globally.',
         tags: ['Exchange', 'Global', 'Lightning'],
-        icon: Zap
+        icon: Zap,
+        favorite: true
       },
       {
         name: 'Cash App',
@@ -263,7 +268,8 @@ const RESOURCES = {
         url: 'https://youtube.com/@BTCSessions',
         description: 'Video tutorials covering wallets, nodes, Lightning, and privacy.',
         tags: ['Video', 'Tutorials'],
-        icon: BookOpen
+        icon: BookOpen,
+        favorite: true
       },
       {
         name: 'Nakamoto Institute',
@@ -348,19 +354,23 @@ const getAllTags = () => {
 
 function ResourceCard({ resource }) {
   const Icon = resource.icon;
+  const cardClasses = [styles.card, resource.favorite && styles.cardFavorite].filter(Boolean).join(' ');
 
   return (
     <motion.a
       href={resource.url}
       target="_blank"
       rel="noopener noreferrer"
-      className={styles.card}
+      className={cardClasses}
       initial={{ opacity: 0, scale: 0.95 }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: 0.3 }}
       whileHover={{ y: -4 }}
     >
+      {resource.favorite && (
+        <span className={styles.favoriteBadge}>Favorite</span>
+      )}
       <div className={styles.cardHeader}>
         <div className={styles.cardIcon}>
           <Icon size={20} />
@@ -573,7 +583,7 @@ export function ResourcesPage() {
         <p>
           <strong>Disclaimer:</strong> These resources are provided for educational purposes. 
           Always do your own research (DYOR) before using any service or product. 
-          The Bitcoin Lab is not responsible for any losses incurred from using these resources.
+          The Bitcoin OPtic is not responsible for any losses incurred from using these resources.
         </p>
       </motion.div>
     </div>
