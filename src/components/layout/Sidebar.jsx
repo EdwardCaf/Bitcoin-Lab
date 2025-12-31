@@ -13,7 +13,8 @@ import {
   Droplets,
   CircleDollarSign,
   ChevronRight,
-  Library
+  Library,
+  Handshake
 } from 'lucide-react';
 import styles from './Sidebar.module.css';
 
@@ -124,6 +125,26 @@ export function Sidebar({ isOpen, onClose }) {
               <Library size={18} />
             </div>
             <span className={styles.navTitle}>Resources</span>
+            <ChevronRight size={14} className={styles.navArrow} />
+          </NavLink>
+
+          {/* Support Link */}
+          <NavLink
+            to="/support"
+            className={({ isActive }) => `
+              ${styles.supportLink}
+              ${isActive ? styles.active : ''}
+            `}
+            onClick={() => {
+              if (window.innerWidth < 1024) {
+                onClose();
+              }
+            }}
+          >
+            <div className={styles.navIcon}>
+              <Handshake size={18} />
+            </div>
+            <span className={styles.navTitle}>1-on-1 Support</span>
             <ChevronRight size={14} className={styles.navArrow} />
           </NavLink>
 

@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-route
 import { Header, Sidebar } from './components/layout';
 import { HomePage } from './lessons/HomePage';
 import { ResourcesPage } from './lessons/ResourcesPage';
+import { SupportPage } from './lessons/SupportPage';
 import { WalletsLesson } from './lessons/WalletsLesson';
 import { TransactionsLesson } from './lessons/TransactionsLesson';
 import { UTXOManagementLesson } from './lessons/UTXOManagementLesson';
@@ -55,6 +56,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/resources" element={<ResourcesPage />} />
+          <Route path="/support" element={<SupportPage />} />
           <Route path="/lessons/wallets" element={<WalletsLesson />} />
           <Route path="/lessons/transactions" element={<TransactionsLesson />} />
           <Route path="/lessons/utxo-management" element={<UTXOManagementLesson />} />

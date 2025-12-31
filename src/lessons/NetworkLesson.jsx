@@ -214,7 +214,7 @@ function ForksSection() {
         must coordinate changes through "forks" - modifications to the protocol rules.
       </p>
 
-      <div className={styles.conceptGrid}>
+      <div className={styles.conceptGridTwo}>
         <Card padding="large" hover>
           <div className={styles.conceptIcon}>
             <GitFork size={24} style={{ transform: 'rotate(180deg)' }} />

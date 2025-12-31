@@ -56,10 +56,8 @@
 
 .forkOptions {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: var(--spacing-lg);
-  max-width: 600px;
-  margin: 0 auto;
 }
 
 .forkOption {
@@ -492,7 +490,7 @@
 }
 
 /* Responsive */
-@media (max-width: 600px) {
+@media (max-width: 640px) {
   .forkOptions {
     grid-template-columns: 1fr;
   }

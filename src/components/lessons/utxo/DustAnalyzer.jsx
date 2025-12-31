@@ -316,14 +316,6 @@ export function DustAnalyzer() {
           <li>Change outputs from transactions with poor coin selection</li>
           <li>Consolidating at high fee rates (change becomes dust)</li>
         </ul>
-        <p>
-          <strong>Prevention Tips:</strong>
-        </p>
-        <ul>
-          <li>Request payments be sent to new addresses above a minimum threshold</li>
-          <li>Use wallets with good coin selection that minimize change</li>
-          <li>Periodically consolidate during low-fee weekends</li>
-        </ul>
       </Accordion>
     </div>
   );

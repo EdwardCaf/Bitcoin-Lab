@@ -30,7 +30,7 @@ const practices = [
     description: 'Break transaction links by mixing your coins with others.',
     weight: 20,
     tips: [
-      'Use Wasabi Wallet or Whirlpool for automated CoinJoin',
+      'Use Wasabi Wallet for automated CoinJoin',
       'Multiple rounds of mixing provide better privacy',
       'Mix coins before making sensitive purchases'
     ]
@@ -42,8 +42,8 @@ const practices = [
     weight: 10,
     tips: [
       'Bitcoin Core is the reference implementation',
-      'Use hardware like Umbrel or RaspiBlitz for easy setup',
-      'Connect your wallet to your own node via Electrum or similar'
+      'Use hardware like Umbrel or Start9 for easy setup',
+      'Connect your wallet to your own node via Electrum'
     ]
   },
   {
@@ -87,8 +87,7 @@ const practices = [
     tips: [
       'Lightning payments are not recorded on the blockchain',
       'Onion routing hides sender/receiver from intermediate nodes',
-      'Use private (unannounced) channels when possible',
-      'Avoid reusing invoices - generate a new one for each payment'
+      'Use private (unannounced) channels when possible'
     ]
   }
 ];

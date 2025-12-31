@@ -60,20 +60,35 @@
   margin-bottom: var(--spacing-xl);
 }
 
+.conceptGridTwo {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-xl);
+}
+
 @media (max-width: 900px) {
   .conceptGrid {
     grid-template-columns: 1fr;
   }
 }
 
-.conceptGrid h3 {
+@media (max-width: 640px) {
+  .conceptGridTwo {
+    grid-template-columns: 1fr;
+  }
+}
+
+.conceptGrid h3,
+.conceptGridTwo h3 {
   font-size: var(--text-lg);
   font-weight: 600;
   color: var(--text-primary);
   margin: var(--spacing-md) 0 var(--spacing-sm);
 }
 
-.conceptGrid p {
+.conceptGrid p,
+.conceptGridTwo p {
   font-size: var(--text-sm);
   color: var(--text-secondary);
   line-height: 1.6;

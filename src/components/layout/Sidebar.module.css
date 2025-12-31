@@ -214,6 +214,66 @@
   color: var(--cyan);
 }
 
+/* Support Link - Orange styling */
+.supportLink {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-sm);
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  position: relative;
+  margin-bottom: var(--spacing-md);
+  background: linear-gradient(135deg, rgba(247, 147, 26, 0.05), rgba(247, 147, 26, 0.02));
+  border: 1px solid rgba(247, 147, 26, 0.2);
+}
+
+.supportLink:hover {
+  background: linear-gradient(135deg, rgba(247, 147, 26, 0.1), rgba(247, 147, 26, 0.05));
+  border-color: rgba(247, 147, 26, 0.4);
+  color: var(--text-primary);
+}
+
+.supportLink.active {
+  background: linear-gradient(135deg, rgba(247, 147, 26, 0.15), rgba(247, 147, 26, 0.08));
+  border-color: var(--bitcoin-orange);
+  color: var(--text-primary);
+}
+
+.supportLink.active .navIcon {
+  color: var(--bitcoin-orange);
+  background: var(--bitcoin-orange);
+}
+
+.supportLink.active .navIcon svg {
+  color: var(--text-inverse);
+}
+
+.supportLink.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 70%;
+  background: var(--bitcoin-orange);
+  border-radius: var(--radius-full);
+}
+
+.supportLink:hover .navArrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.supportLink.active .navArrow {
+  opacity: 1;
+  transform: translateX(0);
+  color: var(--bitcoin-orange);
+}
+
 .footer {
   margin-top: auto;
   padding-top: var(--spacing-md);

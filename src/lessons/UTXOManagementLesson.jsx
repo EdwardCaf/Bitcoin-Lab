@@ -293,10 +293,6 @@ function DustSection() {
         </p>
         <ul>
           <li>
-            <strong>Set minimum receive amounts:</strong> Configure your wallet to warn 
-            about incoming payments below a threshold (e.g., 10,000 sats)
-          </li>
-          <li>
             <strong>Use good wallets:</strong> Modern wallets like Sparrow and Bitcoin Core 
             have sophisticated coin selection that minimizes dust creation
           </li>

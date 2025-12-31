@@ -2,7 +2,6 @@ import { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { 
   GitBranch, 
-  Eye,
   AlertTriangle,
   Search,
   RotateCcw
@@ -85,7 +84,6 @@ const generateTransactionHistory = () => {
 export function TransactionGraph() {
   const [data] = useState(() => generateTransactionHistory());
   const [selectedHeuristic, setSelectedHeuristic] = useState(null);
-  const [showAnalysis, setShowAnalysis] = useState(false);
 
   const affectedTxs = selectedHeuristic 
     ? data.heuristics.find(h => h.type === selectedHeuristic)?.affected || []
@@ -106,15 +104,6 @@ export function TransactionGraph() {
               </p>
             </div>
           </div>
-          
-          <Button
-            variant={showAnalysis ? 'primary' : 'secondary'}
-            size="small"
-            icon={<Eye size={14} />}
-            onClick={() => setShowAnalysis(!showAnalysis)}
-          >
-            {showAnalysis ? 'Hide' : 'Show'} Analysis
-          </Button>
         </div>
 
         {/* Your Addresses */}
@@ -184,7 +173,7 @@ export function TransactionGraph() {
                 </div>
               </div>
               
-              {showAnalysis && affectedTxs.includes(tx.id) && (
+              {affectedTxs.includes(tx.id) && (
                 <motion.div 
                   className={styles.analysisNote}
                   initial={{ opacity: 0, height: 0 }}
@@ -199,46 +188,40 @@ export function TransactionGraph() {
         </div>
 
         {/* Heuristics Panel */}
-        {showAnalysis && (
-          <motion.div 
-            className={styles.heuristicsSection}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-          >
-            <h4>
-              <Search size={18} />
-              Chain Analysis Heuristics
-            </h4>
-            <p className={styles.heuristicsIntro}>
-              Click a heuristic to see which transactions it affects:
-            </p>
-            
-            <div className={styles.heuristicsList}>
-              {data.heuristics.map(heuristic => (
-                <button
-                  key={heuristic.type}
-                  className={`${styles.heuristicCard} ${
-                    selectedHeuristic === heuristic.type ? styles.selected : ''
-                  }`}
-                  onClick={() => setSelectedHeuristic(
-                    selectedHeuristic === heuristic.type ? null : heuristic.type
-                  )}
-                >
-                  <div className={styles.heuristicHeader}>
-                    <span className={styles.heuristicTitle}>{heuristic.title}</span>
-                    <Badge 
-                      variant={heuristic.risk === 'high' ? 'error' : 'warning'} 
-                      size="small"
-                    >
-                      {heuristic.risk} risk
-                    </Badge>
-                  </div>
-                  <p className={styles.heuristicDescription}>{heuristic.description}</p>
-                </button>
-              ))}
-            </div>
-          </motion.div>
-        )}
+        <div className={styles.heuristicsSection}>
+          <h4>
+            <Search size={18} />
+            Chain Analysis Heuristics
+          </h4>
+          <p className={styles.heuristicsIntro}>
+            Click a heuristic to see which transactions it affects:
+          </p>
+          
+          <div className={styles.heuristicsList}>
+            {data.heuristics.map(heuristic => (
+              <button
+                key={heuristic.type}
+                className={`${styles.heuristicCard} ${
+                  selectedHeuristic === heuristic.type ? styles.selected : ''
+                }`}
+                onClick={() => setSelectedHeuristic(
+                  selectedHeuristic === heuristic.type ? null : heuristic.type
+                )}
+              >
+                <div className={styles.heuristicHeader}>
+                  <span className={styles.heuristicTitle}>{heuristic.title}</span>
+                  <Badge 
+                    variant={heuristic.risk === 'high' ? 'error' : 'warning'} 
+                    size="small"
+                  >
+                    {heuristic.risk} risk
+                  </Badge>
+                </div>
+                <p className={styles.heuristicDescription}>{heuristic.description}</p>
+              </button>
+            ))}
+          </div>
+        </div>
       </Card>
 
       <Accordion
