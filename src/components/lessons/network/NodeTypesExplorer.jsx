@@ -21,7 +21,7 @@ const nodeTypes = [
     color: '#22c55e',
     description: 'The backbone of the Bitcoin network. Fully validates all rules.',
     features: [
-      { text: 'Stores complete blockchain (~500GB+)', included: true },
+      { text: 'Stores complete blockchain (~800GB+)', included: true },
       { text: 'Validates all transactions independently', included: true },
       { text: 'Validates all blocks independently', included: true },
       { text: 'Relays transactions and blocks to peers', included: true },
@@ -29,7 +29,7 @@ const nodeTypes = [
       { text: 'Creates new blocks (mining)', included: false },
     ],
     examples: ['Bitcoin Core', 'Bitcoin Knots', 'btcd', 'libbitcoin'],
-    requirements: 'Disk: 500GB+, RAM: 2GB+, Bandwidth: 200GB/month'
+    requirements: 'Disk: 2TB, RAM: 8-16GB, Bandwidth: 200GB/month'
   },
   {
     id: 'mining',
@@ -49,21 +49,22 @@ const nodeTypes = [
     requirements: 'ASICs, cheap electricity, full node + pool software'
   },
   {
-    id: 'spv',
-    name: 'Light Client (SPV)',
+    id: 'neutrino',
+    name: 'Light Client (Neutrino)',
     icon: Smartphone,
     color: '#3b82f6',
-    description: 'Simplified Payment Verification. Fast and lightweight.',
+    description: 'BIP 157/158 compact block filters. Privacy-preserving light client.',
     features: [
-      { text: 'Stores only block headers (~50MB)', included: true },
-      { text: 'Verifies own transactions via Merkle proofs', included: true },
-      { text: 'Trusts full nodes for validation', included: true },
+      { text: 'Stores block headers + compact filters', included: true },
+      { text: 'Downloads only relevant blocks', included: true },
+      { text: 'Privacy-preserving (no address leakage)', included: true },
       { text: 'Fast sync, low resource usage', included: true },
       { text: 'Cannot validate all transactions', included: false },
       { text: 'Cannot enforce consensus rules', included: false },
+      { text: 'Trusts full nodes for filter accuracy', included: false },
     ],
-    examples: ['Electrum', 'BlueWallet', 'Most mobile wallets'],
-    requirements: 'Minimal - works on any smartphone'
+    examples: ['Lightning wallets (Breez, Phoenix)', 'Wasabi Wallet', 'btcd/lnd'],
+    requirements: 'Minimal - works on smartphones and desktops'
   },
   {
     id: 'pruned',
@@ -80,7 +81,7 @@ const nodeTypes = [
       { text: 'Cannot help new nodes sync from scratch', included: false },
     ],
     examples: ['Bitcoin Core with -prune flag'],
-    requirements: 'Disk: 10GB+, RAM: 2GB+, Initial sync needs ~500GB temp'
+    requirements: 'Disk: 30GB+, RAM: 8-16GB+'
   },
 ];
 

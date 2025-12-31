@@ -458,7 +458,7 @@ export function ForksVisualizer() {
           <div className={styles.comparisonRow}>
             <div className={styles.rowLabel}>Rule Changes</div>
             <div className={styles.softForkCell}>Only tightening (stricter)</div>
-            <div className={styles.hardForkCell}>Any change possible</div>
+            <div className={styles.hardForkCell}>Loosening of rules</div>
           </div>
           
           <div className={styles.comparisonRow}>

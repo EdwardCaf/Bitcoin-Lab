@@ -222,7 +222,7 @@ export function ConsensusDemo() {
               <h4>Consensus Reached!</h4>
               <p>
                 The {winner === 'main' ? 'main chain' : 'competing chain'} won because 
-                it became longer. The other chain's blocks are now "orphaned" and 
+                it became longer/heavier. The other chain's blocks are now "orphaned" and 
                 its transactions return to the mempool.
               </p>
             </div>
@@ -232,8 +232,8 @@ export function ConsensusDemo() {
         {hasFork && !resolved && (
           <div className={styles.instructions}>
             <p>
-              <strong>The Longest Chain Rule:</strong> Add blocks to either chain. 
-              The chain that becomes longer will be accepted by the network.
+              <strong>The Heaviest Chain Rule:</strong> Add blocks to either chain. 
+              The chain that becomes heavier will be accepted by the network.
             </p>
           </div>
         )}
@@ -262,7 +262,7 @@ export function ConsensusDemo() {
         </ul>
         <p>
           The beauty of this system is that it requires no voting, no central 
-          authority, and no coordination. Nodes simply follow the longest valid chain.
+          authority, and no coordination. Nodes simply follow the longest/heaviest valid chain.
         </p>
       </Accordion>
     </div>

@@ -191,7 +191,7 @@ function ConsensusSection() {
       <h2 className={styles.sectionTitle}>Reaching Consensus</h2>
       <p className={styles.sectionText}>
         How does a decentralized network agree on which transactions are valid? 
-        Bitcoin uses the "longest chain" rule: nodes always follow the chain 
+        Bitcoin uses the "longest/heaviest chain" rule: nodes always follow the chain 
         with the most accumulated proof-of-work.
       </p>
 

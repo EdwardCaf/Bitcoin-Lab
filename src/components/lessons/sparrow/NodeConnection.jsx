@@ -31,7 +31,7 @@ const connectionTypes = [
       'Supports all Sparrow features'
     ],
     cons: [
-      'Requires running Bitcoin Core (500GB+ disk space)',
+      'Requires running Bitcoin Core (800GB+ disk space)',
       'Initial sync takes hours to days',
       'More technical setup'
     ],

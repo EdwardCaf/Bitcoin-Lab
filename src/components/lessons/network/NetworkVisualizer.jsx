@@ -308,10 +308,6 @@ export function NetworkVisualizer() {
             <strong>Mining Nodes:</strong> Full nodes that also compete to create new 
             blocks through proof-of-work
           </li>
-          <li>
-            <strong>Light Clients (SPV):</strong> Don't store the full blockchain; 
-            rely on full nodes for verification
-          </li>
         </ul>
         <p>
           When a new transaction or block is created, it propagates through the 
