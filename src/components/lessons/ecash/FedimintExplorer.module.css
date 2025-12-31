@@ -426,6 +426,30 @@
   margin-top: 2px;
 }
 
+.comparisonItem li.positive {
+  color: var(--success);
+}
+
+.comparisonItem li.positive svg {
+  color: var(--success);
+}
+
+.comparisonItem li.negative {
+  color: var(--error);
+}
+
+.comparisonItem li.negative svg {
+  color: var(--error);
+}
+
+.comparisonItem li.warning {
+  color: var(--warning);
+}
+
+.comparisonItem li.warning svg {
+  color: var(--warning);
+}
+
 .comparisonDivider {
   display: flex;
   align-items: center;

@@ -106,78 +106,15 @@
   transition: background-color 0.2s ease;
 }
 
-/* Graph Section */
-.graphSection {
-  margin-bottom: var(--spacing-xl);
-}
-
-.graphHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: var(--spacing-md);
-}
-
-.graphHeader h4 {
-  font-size: var(--font-lg);
-  font-weight: 600;
-  color: var(--text-primary);
-  margin: 0;
-}
-
-.graph {
-  padding: var(--spacing-xl);
-  background: var(--bg-secondary);
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--border-color);
-  margin-bottom: var(--spacing-md);
-}
-
-.graphTitle {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-sm);
-  font-size: var(--font-sm);
-  font-weight: 600;
-  color: var(--text-secondary);
-  margin-bottom: var(--spacing-lg);
-}
-
-.graphSvg {
-  width: 100%;
-  height: 200px;
-  margin-bottom: var(--spacing-md);
-}
-
-.graphNote {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-sm);
-  padding: var(--spacing-md);
-  background: var(--bg-primary);
-  border-radius: var(--radius-md);
-  font-size: var(--font-sm);
-  color: var(--text-secondary);
-}
-
-.graphNote svg {
-  flex-shrink: 0;
-}
-
-.bitcoinGraph .graphNote svg {
-  color: var(--error-500);
-}
-
-.lightningGraph .graphNote svg,
-.ecashGraph .graphNote svg {
-  color: var(--success-500);
-}
-
-.graphDescription {
+/* Layer Description */
+.layerDescription {
   font-size: var(--font-sm);
   color: var(--text-secondary);
   text-align: center;
-  margin: var(--spacing-md) 0 0 0;
+  margin: 0 0 var(--spacing-xl) 0;
+  padding: var(--spacing-md);
+  background: var(--bg-secondary);
+  border-radius: var(--radius-md);
 }
 
 /* Properties Table */
@@ -220,28 +157,20 @@
   font-size: var(--font-sm);
 }
 
-.propertyValuePositive {
-  color: var(--success-500);
+.propertyValue.propertyValuePositive {
+  color: var(--success);
 }
 
-.propertyValueNegative {
-  color: var(--error-500);
+.propertyValue.propertyValuePositive svg {
+  color: var(--success);
 }
 
-.propertyValueNeutral {
-  color: var(--warning-500);
+.propertyValue.propertyValueNegative {
+  color: var(--error);
 }
 
-.iconPositive {
-  color: var(--success-500);
-}
-
-.iconNegative {
-  color: var(--error-500);
-}
-
-.iconNeutral {
-  color: var(--warning-500);
+.propertyValue.propertyValueNegative svg {
+  color: var(--error);
 }
 
 /* Scenarios Section */

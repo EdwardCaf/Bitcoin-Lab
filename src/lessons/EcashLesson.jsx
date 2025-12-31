@@ -68,7 +68,7 @@ function IntroSection() {
         </div>
         <h2 className={styles.heroTitle}>Chaumian eCash</h2>
         <p className={styles.heroText}>
-          eCash is a revolutionary technology that brings perfect privacy to Bitcoin 
+          eCash is a revolutionary technology that helps bring perfect privacy to Bitcoin 
           using blind signatures - a cryptographic invention from the 1980s. Unlike Lightning's 
           onion routing or Bitcoin's pseudonymity, eCash provides true unlinkability where 
           even the mint cannot track users.
@@ -231,7 +231,7 @@ function PrivacySection() {
           <li>Disappear with your funds (rug pull)</li>
           <li>Be shut down by authorities</li>
           <li>Suffer a technical failure or hack</li>
-          <li>Freeze your tokens or refuse redemption</li>
+          <li>Freeze all tokens or refuse redemption</li>
         </ul>
         <p className={styles.warningText}>
           <strong>Mitigation strategies:</strong>
@@ -270,7 +270,7 @@ function PrivacySection() {
             random third party.
           </li>
           <li>
-            <strong>Layer of abstraction:</strong> eCash can sit "on top" of Lightning, 
+            <strong>Layer of abstraction:</strong> eCash is interoperable with Lightning, 
             giving you Lightning's global reach with eCash's local privacy.
           </li>
         </ul>
@@ -512,10 +512,6 @@ function UseCasesSection() {
           <li>
             <strong>Privacy by default:</strong> Unlike Bitcoin or Lightning where privacy 
             requires extra steps, eCash gives you perfect privacy automatically.
-          </li>
-          <li>
-            <strong>Programmable privacy:</strong> Future versions might add smart contract 
-            capabilities while maintaining privacy guarantees.
           </li>
           <li>
             <strong>Interoperability:</strong> eCash mints can connect via Lightning, creating 

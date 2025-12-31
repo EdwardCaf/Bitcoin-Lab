@@ -96,9 +96,9 @@ export function FedimintExplorer() {
   };
 
   const getResultColor = () => {
-    if (scenario.result === 'success') return 'var(--success-500)';
-    if (scenario.result === 'failure') return 'var(--error-500)';
-    return 'var(--warning-500)';
+    if (scenario.result === 'success') return 'var(--success)';
+    if (scenario.result === 'failure') return 'var(--error)';
+    return 'var(--warning)';
   };
 
   return (
@@ -201,15 +201,17 @@ export function FedimintExplorer() {
             <motion.div
               className={styles.progressFill}
               style={{ 
-                backgroundColor: getResultColor()
+                backgroundColor: isProcessing ? 'var(--warning)' : getResultColor()
               }}
               initial={{ width: 0 }}
               animate={{ 
-                width: showSignatures 
+                width: isProcessing 
                   ? `${(scenario.honestGuardians.length / GUARDIANS.length) * 100}%`
-                  : 0
+                  : showSignatures 
+                    ? `${(scenario.honestGuardians.length / GUARDIANS.length) * 100}%`
+                    : 0
               }}
-              transition={{ duration: 0.5, delay: 0.5 }}
+              transition={{ duration: isProcessing ? 1.2 : 0.5, delay: isProcessing ? 0 : 0.5 }}
             />
             <div 
               className={styles.thresholdMarker}
@@ -322,23 +324,23 @@ export function FedimintExplorer() {
               <h4>Single Mint (Cashu)</h4>
             </div>
             <ul>
-              <li>
+              <li className={styles.negative}>
                 <XCircle size={16} />
                 <span>One party holds all funds</span>
               </li>
-              <li>
+              <li className={styles.negative}>
                 <XCircle size={16} />
                 <span>Single point of failure</span>
               </li>
-              <li>
+              <li className={styles.positive}>
                 <CheckCircle size={16} />
                 <span>Simple to set up and use</span>
               </li>
-              <li>
+              <li className={styles.positive}>
                 <CheckCircle size={16} />
                 <span>Perfect privacy via blind signatures</span>
               </li>
-              <li>
+              <li className={styles.warning}>
                 <AlertTriangle size={16} />
                 <span>Best for small amounts with trusted mints</span>
               </li>
@@ -355,23 +357,23 @@ export function FedimintExplorer() {
               <h4>Federated Mint (Fedimint)</h4>
             </div>
             <ul>
-              <li>
+              <li className={styles.positive}>
                 <CheckCircle size={16} />
                 <span>Distributed trust across guardians</span>
               </li>
-              <li>
+              <li className={styles.positive}>
                 <CheckCircle size={16} />
                 <span>Resilient to individual failures</span>
               </li>
-              <li>
+              <li className={styles.positive}>
                 <CheckCircle size={16} />
                 <span>Community-managed custody</span>
               </li>
-              <li>
+              <li className={styles.positive}>
                 <CheckCircle size={16} />
                 <span>Same blind signature privacy</span>
               </li>
-              <li>
+              <li className={styles.warning}>
                 <AlertTriangle size={16} />
                 <span>More complex setup, requires trusted guardians</span>
               </li>

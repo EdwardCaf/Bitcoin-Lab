@@ -1,8 +1,6 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { 
-  Eye,
-  EyeOff,
   Shield,
   AlertTriangle,
   CheckCircle,
@@ -10,11 +8,9 @@ import {
   Bitcoin,
   Zap,
   Coins,
-  Info,
-  Users,
-  Lock
+  Info
 } from 'lucide-react';
-import { Card, Button, Badge, Accordion } from '../../common';
+import { Card, Badge, Accordion } from '../../common';
 import styles from './PrivacyComparison.module.css';
 
 const LAYERS = [
@@ -85,7 +81,7 @@ const SCENARIOS = [
     concern: 'You don\'t want your employer tracking how you spend money',
     layers: {
       bitcoin: { risk: 'high', description: 'Employer can follow the chain and see where you spend' },
-      lightning: { risk: 'medium', description: 'Channel opens visible, but payments are private' },
+      lightning: { risk: 'low', description: 'Channel opens visible, but payments are private' },
       ecash: { risk: 'none', description: 'Once converted to eCash, spending is completely untraceable' }
     }
   },
@@ -104,7 +100,6 @@ const SCENARIOS = [
 export function PrivacyComparison() {
   const [selectedLayer, setSelectedLayer] = useState('bitcoin');
   const [selectedScenario, setSelectedScenario] = useState(0);
-  const [showGraph, setShowGraph] = useState(true);
 
   const currentLayer = LAYERS.find(l => l.id === selectedLayer);
   const scenario = SCENARIOS[selectedScenario];
@@ -168,34 +163,10 @@ export function PrivacyComparison() {
           })}
         </div>
 
-        {/* Transaction Graph Visualization */}
-        <div className={styles.graphSection}>
-          <div className={styles.graphHeader}>
-            <h4>Transaction Graph Visibility</h4>
-            <Badge variant={currentLayer.privacy === 'high' ? 'success' : currentLayer.privacy === 'medium' ? 'warning' : 'error'}>
-              {currentLayer.privacy.toUpperCase()} Privacy
-            </Badge>
-          </div>
-
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={selectedLayer}
-              className={styles.graph}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
-            >
-              {selectedLayer === 'bitcoin' && <BitcoinGraph />}
-              {selectedLayer === 'lightning' && <LightningGraph />}
-              {selectedLayer === 'ecash' && <EcashGraph />}
-            </motion.div>
-          </AnimatePresence>
-
-          <p className={styles.graphDescription}>
-            {currentLayer.description}
-          </p>
-        </div>
+        {/* Layer Description */}
+        <p className={styles.layerDescription}>
+          {currentLayer.description}
+        </p>
 
         {/* Properties Table */}
         <div className={styles.propertiesSection}>
@@ -324,204 +295,6 @@ export function PrivacyComparison() {
   );
 }
 
-function BitcoinGraph() {
-  return (
-    <div className={styles.bitcoinGraph}>
-      <div className={styles.graphTitle}>
-        <Eye size={16} />
-        <span>Fully Public Transaction Graph</span>
-      </div>
-      <svg className={styles.graphSvg} viewBox="0 0 400 200">
-        {/* Addresses */}
-        <motion.g
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-        >
-          {/* Alice's addresses */}
-          <circle cx="50" cy="50" r="20" fill="#3b82f6" opacity="0.3" />
-          <circle cx="50" cy="150" r="20" fill="#3b82f6" opacity="0.3" />
-          
-          {/* Bob's addresses */}
-          <circle cx="200" cy="100" r="20" fill="#8b5cf6" opacity="0.3" />
-          
-          {/* Carol's addresses */}
-          <circle cx="350" cy="50" r="20" fill="#ec4899" opacity="0.3" />
-          <circle cx="350" cy="150" r="20" fill="#ec4899" opacity="0.3" />
-        </motion.g>
-
-        {/* Transactions */}
-        <motion.g
-          initial={{ pathLength: 0, opacity: 0 }}
-          animate={{ pathLength: 1, opacity: 0.6 }}
-          transition={{ duration: 1, delay: 0.3 }}
-        >
-          <motion.path
-            d="M 70 50 L 180 100"
-            stroke="#f7931a"
-            strokeWidth="2"
-            fill="none"
-            strokeDasharray="5,5"
-          />
-          <motion.path
-            d="M 70 150 L 180 100"
-            stroke="#f7931a"
-            strokeWidth="2"
-            fill="none"
-            strokeDasharray="5,5"
-          />
-          <motion.path
-            d="M 220 100 L 330 50"
-            stroke="#f7931a"
-            strokeWidth="2"
-            fill="none"
-            strokeDasharray="5,5"
-          />
-          <motion.path
-            d="M 220 100 L 330 150"
-            stroke="#f7931a"
-            strokeWidth="2"
-            fill="none"
-            strokeDasharray="5,5"
-          />
-        </motion.g>
-
-        {/* Labels */}
-        <text x="50" y="190" textAnchor="middle" fontSize="12" fill="var(--text-secondary)">
-          Alice
-        </text>
-        <text x="200" y="190" textAnchor="middle" fontSize="12" fill="var(--text-secondary)">
-          Bob
-        </text>
-        <text x="350" y="190" textAnchor="middle" fontSize="12" fill="var(--text-secondary)">
-          Carol
-        </text>
-      </svg>
-      <div className={styles.graphNote}>
-        <XCircle size={14} />
-        <span>All amounts, addresses, and connections are permanently visible</span>
-      </div>
-    </div>
-  );
-}
-
-function LightningGraph() {
-  return (
-    <div className={styles.lightningGraph}>
-      <div className={styles.graphTitle}>
-        <EyeOff size={16} />
-        <span>Onion-Routed Payments</span>
-      </div>
-      <svg className={styles.graphSvg} viewBox="0 0 400 200">
-        {/* Nodes */}
-        <motion.g
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ type: 'spring', stiffness: 200 }}
-        >
-          <circle cx="50" cy="100" r="25" fill="#ffc107" opacity="0.2" stroke="#ffc107" strokeWidth="2" />
-          <circle cx="200" cy="60" r="25" fill="#ffc107" opacity="0.1" stroke="#ffc107" strokeWidth="1" />
-          <circle cx="200" cy="140" r="25" fill="#ffc107" opacity="0.1" stroke="#ffc107" strokeWidth="1" />
-          <circle cx="350" cy="100" r="25" fill="#ffc107" opacity="0.2" stroke="#ffc107" strokeWidth="2" />
-        </motion.g>
-
-        {/* Onion layers */}
-        <motion.g
-          initial={{ opacity: 0 }}
-          animate={{ opacity: [0, 1, 0.5] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        >
-          <path
-            d="M 75 100 Q 137 60 175 60"
-            stroke="#ffc107"
-            strokeWidth="3"
-            fill="none"
-            opacity="0.6"
-          />
-          <path
-            d="M 225 60 Q 287 60 325 100"
-            stroke="#ffc107"
-            strokeWidth="3"
-            fill="none"
-            opacity="0.4"
-          />
-        </motion.g>
-
-        {/* Labels */}
-        <text x="50" y="145" textAnchor="middle" fontSize="12" fill="var(--text-primary)" fontWeight="600">
-          Alice
-        </text>
-        <text x="200" y="40" textAnchor="middle" fontSize="10" fill="var(--text-tertiary)">
-          Routing
-        </text>
-        <text x="350" y="145" textAnchor="middle" fontSize="12" fill="var(--text-primary)" fontWeight="600">
-          Bob
-        </text>
-      </svg>
-      <div className={styles.graphNote}>
-        <CheckCircle size={14} />
-        <span>Payment path hidden via onion routing - intermediaries can't see endpoints</span>
-      </div>
-    </div>
-  );
-}
-
-function EcashGraph() {
-  return (
-    <div className={styles.ecashGraph}>
-      <div className={styles.graphTitle}>
-        <Lock size={16} />
-        <span>No Transaction Graph</span>
-      </div>
-      <svg className={styles.graphSvg} viewBox="0 0 400 200">
-        {/* Mint in center */}
-        <motion.g
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ type: 'spring' }}
-        >
-          <circle cx="200" cy="100" r="40" fill="#22c55e" opacity="0.1" stroke="#22c55e" strokeWidth="2" />
-          <text x="200" y="105" textAnchor="middle" fontSize="14" fill="var(--text-primary)" fontWeight="600">
-            Mint
-          </text>
-        </motion.g>
-
-        {/* Users around mint - disconnected */}
-        <motion.g
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3 }}
-        >
-          <circle cx="50" cy="50" r="20" fill="#3b82f6" opacity="0.3" />
-          <circle cx="350" cy="50" r="20" fill="#8b5cf6" opacity="0.3" />
-          <circle cx="50" cy="150" r="20" fill="#ec4899" opacity="0.3" />
-          <circle cx="350" cy="150" r="20" fill="#f97316" opacity="0.3" />
-          
-          <text x="50" y="185" textAnchor="middle" fontSize="10" fill="var(--text-secondary)">Alice</text>
-          <text x="350" y="185" textAnchor="middle" fontSize="10" fill="var(--text-secondary)">Bob</text>
-          <text x="50" y="30" textAnchor="middle" fontSize="10" fill="var(--text-secondary)">Carol</text>
-          <text x="350" y="30" textAnchor="middle" fontSize="10" fill="var(--text-secondary)">Dave</text>
-        </motion.g>
-
-        {/* Question marks - unknown connections */}
-        <motion.g
-          animate={{ opacity: [0.3, 0.6, 0.3] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        >
-          <text x="125" y="75" fontSize="24" fill="var(--text-tertiary)">?</text>
-          <text x="275" y="75" fontSize="24" fill="var(--text-tertiary)">?</text>
-          <text x="125" y="135" fontSize="24" fill="var(--text-tertiary)">?</text>
-          <text x="275" y="135" fontSize="24" fill="var(--text-tertiary)">?</text>
-        </motion.g>
-      </svg>
-      <div className={styles.graphNote}>
-        <CheckCircle size={14} />
-        <span>Blind signatures mean the mint cannot link tokens to users - perfect privacy!</span>
-      </div>
-    </div>
-  );
-}
-
 function formatPropertyLabel(key) {
   const labels = {
     addressReuse: 'Address Tracking',
@@ -535,40 +308,28 @@ function formatPropertyLabel(key) {
 
 function isNegativeProperty(value) {
   const lowerValue = value.toLowerCase();
+  // Check for 'linkable' but not 'unlinkable'
+  const hasLinkable = lowerValue.includes('linkable') && !lowerValue.includes('unlinkable');
+  // Check for 'public' but not 'no public'
+  const hasPublic = lowerValue.includes('public') && !lowerValue.includes('no public');
   return lowerValue.includes('visible') || 
-         lowerValue.includes('public') || 
+         hasPublic || 
          lowerValue.includes('vulnerable') ||
-         lowerValue.includes('linkable');
-}
-
-function isPositiveProperty(value) {
-  const lowerValue = value.toLowerCase();
-  return lowerValue.includes('hidden') || 
-         lowerValue.includes('hide') ||
-         lowerValue.includes('unlinkable') || 
-         lowerValue.includes('no ') ||
-         lowerValue.startsWith('no ') ||
-         lowerValue.includes('not on');
+         hasLinkable;
 }
 
 function getPropertyIcon(value) {
   if (isNegativeProperty(value)) {
-    return <XCircle size={16} className={styles.iconNegative} />;
+    return <XCircle size={16} />;
   }
-  if (isPositiveProperty(value)) {
-    return <CheckCircle size={16} className={styles.iconPositive} />;
-  }
-  return <Info size={16} className={styles.iconNeutral} />;
+  return <CheckCircle size={16} />;
 }
 
 function getPropertyValueClass(value) {
   if (isNegativeProperty(value)) {
     return styles.propertyValueNegative;
   }
-  if (isPositiveProperty(value)) {
-    return styles.propertyValuePositive;
-  }
-  return styles.propertyValueNeutral;
+  return styles.propertyValuePositive;
 }
 
 export default PrivacyComparison;

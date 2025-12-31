@@ -1,11 +1,12 @@
 .container {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-xl);
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
 }
 
 .header {
-  margin-bottom: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
 }
 
 .titleSection {
@@ -42,7 +43,7 @@
 /* Operation Selector */
 .operationSelector {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: var(--spacing-md);
   margin-bottom: var(--spacing-xl);
 }
@@ -92,7 +93,7 @@
 
 /* Amount Section */
 .amountSection {
-  margin-bottom: var(--spacing-xl);
+  margin-bottom: var(--spacing-lg);
 }
 
 .label {
@@ -163,19 +164,18 @@
 
 /* Visualization */
 .visualization {
-  min-height: 350px;
-  padding: var(--spacing-xl);
+  min-height: 320px;
+  padding: var(--spacing-lg);
   background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), rgba(139, 92, 246, 0.05));
   border-radius: var(--radius-lg);
   border: 1px solid var(--border-color);
-  margin-bottom: var(--spacing-xl);
 }
 
 .operation {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--spacing-xl);
+  gap: var(--spacing-lg);
 }
 
 .participant {
@@ -217,7 +217,7 @@
 
 .balanceBox {
   position: relative;
-  padding: var(--spacing-xl);
+  padding: var(--spacing-lg);
   background: var(--bg-primary);
   border: 2px solid var(--border-color);
   border-radius: var(--radius-lg);
@@ -238,19 +238,18 @@
 }
 
 .balanceAmount {
-  font-size: var(--font-2xl);
-  font-weight: 800;
+  font-size: var(--font-xl);
+  font-weight: 700;
   color: var(--text-primary);
-  margin-bottom: var(--spacing-md);
 }
 
 .balanceIcon {
   opacity: 0.1;
   position: absolute;
-  bottom: -10px;
-  right: -10px;
-  width: 80px;
-  height: 80px;
+  bottom: -8px;
+  right: -8px;
+  width: 64px;
+  height: 64px;
 }
 
 .flowArrow {
@@ -329,8 +328,8 @@
 
 /* Token Breakdown */
 .breakdown {
-  margin-top: var(--spacing-xl);
-  padding: var(--spacing-xl);
+  margin-top: var(--spacing-lg);
+  padding: var(--spacing-lg);
   background: linear-gradient(135deg, rgba(34, 197, 94, 0.05), rgba(22, 163, 74, 0.02));
   border: 2px solid var(--success-500);
   border-radius: var(--radius-lg);
@@ -400,13 +399,17 @@
 
 /* Actions */
 .actions {
-  margin-top: var(--spacing-lg);
+  margin-top: var(--spacing-md);
 }
 
 /* Responsive */
-@media (max-width: 768px) {
+@media (max-width: 600px) {
   .operationSelector {
     grid-template-columns: 1fr;
+  }
+
+  .operationButton {
+    padding: var(--spacing-md);
   }
 
   .swapFlow {
@@ -419,5 +422,13 @@
 
   .tokenGrid {
     justify-content: center;
+  }
+
+  .visualization {
+    padding: var(--spacing-lg);
+  }
+
+  .participant {
+    max-width: 100%;
   }
 }
