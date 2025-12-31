@@ -1,69 +1,32 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { 
   ArrowRight,
   ArrowLeft,
   Clock,
-  CheckCircle,
-  Lock,
-  Unlock,
   Users,
-  RotateCcw,
-  Play,
   EyeOff,
   Shield,
   Shuffle
 } from 'lucide-react';
-import { Card, Button, Badge, Accordion } from '../../common';
+import { Card, Accordion } from '../../common';
 import styles from './PegVisualizer.module.css';
 
 const PEG_IN_STEPS = [
-  { id: 0, title: 'Start', description: 'You have BTC on the Bitcoin mainchain and want to use Liquid.' },
-  { id: 1, title: 'Send to Federation', description: 'Send BTC to a special federation address. This is a multi-signature address controlled by Liquid functionaries.' },
-  { id: 2, title: 'Wait for Confirmations', description: 'Wait for 102 Bitcoin confirmations (~17 hours). This ensures the transaction is deeply buried and irreversible.' },
-  { id: 3, title: 'Receive L-BTC', description: 'The federation sees your confirmed deposit and mints an equivalent amount of L-BTC on the Liquid sidechain.' },
-  { id: 4, title: 'Complete!', description: 'You now have L-BTC on Liquid. It\'s pegged 1:1 with BTC and can be transferred with 1-minute finality.' },
+  { id: 1, title: 'Send BTC', description: 'Send BTC to the federation\'s multisig address' },
+  { id: 2, title: 'Wait 102 blocks', description: '~17 hours for confirmations' },
+  { id: 3, title: 'Receive L-BTC', description: 'Federation mints L-BTC 1:1' },
 ];
 
 const PEG_OUT_STEPS = [
-  { id: 0, title: 'Start', description: 'You have L-BTC on Liquid and want to move back to Bitcoin mainchain.' },
-  { id: 1, title: 'Burn L-BTC', description: 'Send your L-BTC to a special peg-out address, specifying your Bitcoin destination. The L-BTC is burned.' },
-  { id: 2, title: 'Federation Signs', description: 'The federation verifies the burn and creates a Bitcoin transaction to your address.' },
-  { id: 3, title: 'Wait for Release', description: 'The federation releases BTC from the reserve. This typically takes 2 Liquid blocks (~2 minutes) plus Bitcoin confirmation time.' },
-  { id: 4, title: 'Complete!', description: 'You receive BTC on the Bitcoin mainchain. The 1:1 peg is maintained.' },
+  { id: 1, title: 'Burn L-BTC', description: 'Send L-BTC to peg-out address' },
+  { id: 2, title: 'Federation signs', description: 'Verifies and creates BTC tx' },
+  { id: 3, title: 'Receive BTC', description: '~2 min + BTC confirmations' },
 ];
 
 export function PegVisualizer() {
-  const [direction, setDirection] = useState('in'); // 'in' or 'out'
-  const [currentStep, setCurrentStep] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
+  const [direction, setDirection] = useState('in');
 
   const steps = direction === 'in' ? PEG_IN_STEPS : PEG_OUT_STEPS;
-  const step = steps[currentStep];
-
-  const runAnimation = async () => {
-    if (isAnimating) return;
-    setIsAnimating(true);
-    setCurrentStep(0);
-    
-    for (let i = 1; i <= steps.length - 1; i++) {
-      await new Promise(resolve => setTimeout(resolve, 3000));
-      setCurrentStep(i);
-    }
-    
-    setIsAnimating(false);
-  };
-
-  const reset = () => {
-    setCurrentStep(0);
-    setIsAnimating(false);
-  };
-
-  const switchDirection = (newDirection) => {
-    setDirection(newDirection);
-    setCurrentStep(0);
-    setIsAnimating(false);
-  };
 
   return (
     <div className={styles.container}>
@@ -79,21 +42,10 @@ export function PegVisualizer() {
               </h3>
               <p className={styles.subtitle}>
                 {direction === 'in' 
-                  ? 'Move BTC from Bitcoin to Liquid (BTC → L-BTC)'
-                  : 'Move L-BTC from Liquid to Bitcoin (L-BTC → BTC)'}
+                  ? 'Move BTC from Bitcoin to Liquid'
+                  : 'Move L-BTC from Liquid to Bitcoin'}
               </p>
             </div>
-          </div>
-          
-          <div className={styles.controls}>
-            <Button
-              variant="ghost"
-              size="small"
-              icon={<RotateCcw size={14} />}
-              onClick={reset}
-            >
-              Reset
-            </Button>
           </div>
         </div>
 
@@ -101,159 +53,91 @@ export function PegVisualizer() {
         <div className={styles.directionToggle}>
           <button
             className={`${styles.toggleBtn} ${direction === 'in' ? styles.active : ''}`}
-            onClick={() => switchDirection('in')}
+            onClick={() => setDirection('in')}
           >
             <ArrowRight size={16} />
-            Peg-In (BTC → L-BTC)
+            <span>Peg-In</span>
           </button>
           <button
             className={`${styles.toggleBtn} ${direction === 'out' ? styles.active : ''}`}
-            onClick={() => switchDirection('out')}
+            onClick={() => setDirection('out')}
           >
             <ArrowLeft size={16} />
-            Peg-Out (L-BTC → BTC)
+            <span>Peg-Out</span>
           </button>
         </div>
 
-        {/* Chain Visualization */}
-        <div className={styles.chainViz}>
-          {/* Bitcoin Side */}
-          <div className={`${styles.chain} ${styles.bitcoinChain}`}>
-            <div className={styles.chainLabel}>
-              <span className={styles.chainIcon}>₿</span>
-              Bitcoin Mainchain
+        {/* Simple Flow Diagram */}
+        <div className={styles.flowDiagram}>
+          {/* Source Chain */}
+          <div className={`${styles.chainBox} ${direction === 'in' ? styles.bitcoin : styles.liquid}`}>
+            <div className={styles.chainIcon}>
+              {direction === 'in' ? '₿' : 'L'}
             </div>
-            <motion.div 
-              className={styles.balanceBox}
-              animate={{
-                scale: direction === 'in' && currentStep >= 1 ? 0.9 : 1,
-                opacity: direction === 'in' && currentStep >= 1 ? 0.5 : 1
-              }}
-            >
-              <span className={styles.balanceAmount}>
-                {direction === 'in' 
-                  ? (currentStep >= 1 ? '0.0 BTC' : '1.0 BTC')
-                  : (currentStep >= 4 ? '1.0 BTC' : '0.0 BTC')
-                }
+            <div className={styles.chainInfo}>
+              <span className={styles.chainName}>
+                {direction === 'in' ? 'Bitcoin' : 'Liquid'}
               </span>
-              <span className={styles.balanceLabel}>Your Balance</span>
-            </motion.div>
-          </div>
-
-          {/* Bridge / Federation */}
-          <div className={styles.bridge}>
-            <motion.div 
-              className={styles.federationBox}
-              animate={{
-                backgroundColor: currentStep >= 1 && currentStep <= 3 
-                  ? 'rgba(249, 115, 22, 0.2)' 
-                  : 'var(--bg-secondary)'
-              }}
-            >
-              <Users size={24} />
-              <span>Federation</span>
-              <span className={styles.federationSubtext}>11-of-15 multisig</span>
-            </motion.div>
-
-            {/* Animation Arrow */}
-            <AnimatePresence>
-              {isAnimating && currentStep >= 1 && currentStep <= 3 && (
-                <motion.div
-                  className={styles.transferAnimation}
-                  initial={{ 
-                    x: direction === 'in' ? -50 : 50,
-                    opacity: 0 
-                  }}
-                  animate={{ 
-                    x: direction === 'in' ? 50 : -50,
-                    opacity: [0, 1, 1, 0]
-                  }}
-                  transition={{ duration: 1, repeat: Infinity }}
-                >
-                  {direction === 'in' ? '₿ →' : '← L-₿'}
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-
-          {/* Liquid Side */}
-          <div className={`${styles.chain} ${styles.liquidChain}`}>
-            <div className={styles.chainLabel}>
-              <span className={styles.chainIcon}>L</span>
-              Liquid Sidechain
-            </div>
-            <motion.div 
-              className={styles.balanceBox}
-              animate={{
-                scale: direction === 'out' && currentStep >= 1 ? 0.9 : 1,
-                opacity: direction === 'out' && currentStep >= 1 ? 0.5 : 1
-              }}
-            >
-              <span className={styles.balanceAmount}>
-                {direction === 'in' 
-                  ? (currentStep >= 4 ? '1.0 L-BTC' : '0.0 L-BTC')
-                  : (currentStep >= 1 ? '0.0 L-BTC' : '1.0 L-BTC')
-                }
+              <span className={styles.chainAmount}>
+                1.0 {direction === 'in' ? 'BTC' : 'L-BTC'}
               </span>
-              <span className={styles.balanceLabel}>Your Balance</span>
-            </motion.div>
+            </div>
+          </div>
+
+          {/* Arrow and Steps */}
+          <div className={styles.flowSteps}>
+            <div className={styles.flowArrow}>
+              <ArrowRight size={20} />
+            </div>
+            <div className={styles.stepsContainer}>
+              {steps.map((step, index) => (
+                <div key={step.id} className={styles.stepItem}>
+                  <div className={styles.stepNumber}>{step.id}</div>
+                  <div className={styles.stepContent}>
+                    <span className={styles.stepTitle}>{step.title}</span>
+                    <span className={styles.stepDesc}>{step.description}</span>
+                  </div>
+                  {index < steps.length - 1 && (
+                    <div className={styles.stepConnector} />
+                  )}
+                </div>
+              ))}
+            </div>
+            <div className={styles.flowArrow}>
+              <ArrowRight size={20} />
+            </div>
+          </div>
+
+          {/* Destination Chain */}
+          <div className={`${styles.chainBox} ${direction === 'in' ? styles.liquid : styles.bitcoin}`}>
+            <div className={styles.chainIcon}>
+              {direction === 'in' ? 'L' : '₿'}
+            </div>
+            <div className={styles.chainInfo}>
+              <span className={styles.chainName}>
+                {direction === 'in' ? 'Liquid' : 'Bitcoin'}
+              </span>
+              <span className={styles.chainAmount}>
+                1.0 {direction === 'in' ? 'L-BTC' : 'BTC'}
+              </span>
+            </div>
           </div>
         </div>
 
-        {/* Step Progress */}
-        <div className={styles.stepProgress}>
-          {steps.map((s, i) => (
-            <div 
-              key={s.id}
-              className={`${styles.stepDot} ${i === currentStep ? styles.active : ''} ${i < currentStep ? styles.completed : ''}`}
-            >
-              {i < currentStep ? <CheckCircle size={14} /> : i + 1}
-            </div>
-          ))}
+        {/* Federation Note */}
+        <div className={styles.federationNote}>
+          <Users size={16} />
+          <span>Managed by 11-of-15 federation multisig</span>
         </div>
 
-        {/* Current Step Info */}
-        <motion.div
-          key={`${direction}-${currentStep}`}
-          className={styles.stepInfo}
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-        >
-          <Badge variant={currentStep === steps.length - 1 ? 'success' : 'primary'}>
-            Step {currentStep + 1} of {steps.length}
-          </Badge>
-          <h4>{step.title}</h4>
-          <p>{step.description}</p>
-        </motion.div>
-
-        {/* Run Button */}
-        <div className={styles.actions}>
-          <Button
-            variant="primary"
-            icon={<Play size={16} />}
-            onClick={runAnimation}
-            disabled={isAnimating || currentStep === steps.length - 1}
-          >
-            {isAnimating ? 'Processing...' : 'Run Animation'}
-          </Button>
-        </div>
-
-        {/* Time Comparison */}
-        <div className={styles.timeComparison}>
-          <div className={styles.timeCard}>
-            <Clock size={18} />
-            <div>
-              <strong>Peg-In Time</strong>
-              <span>~102 confirmations (~17 hours)</span>
-            </div>
-          </div>
-          <div className={styles.timeCard}>
-            <Clock size={18} />
-            <div>
-              <strong>Peg-Out Time</strong>
-              <span>~2 minutes + Bitcoin confirmations</span>
-            </div>
-          </div>
+        {/* Time Info */}
+        <div className={styles.timeInfo}>
+          <Clock size={16} />
+          <span>
+            {direction === 'in' 
+              ? 'Total time: ~17 hours (102 Bitcoin confirmations)'
+              : 'Total time: ~2 minutes + Bitcoin confirmations'}
+          </span>
         </div>
       </Card>
 
@@ -266,8 +150,7 @@ export function PegVisualizer() {
           </div>
           <p className={styles.privacyDescription}>
             Moving funds through Liquid provides significant privacy enhancements compared to 
-            staying on Bitcoin's transparent blockchain. Here's how peg-in and peg-out can 
-            enhance your privacy:
+            staying on Bitcoin's transparent blockchain.
           </p>
 
           <div className={styles.privacyGrid}>
@@ -278,8 +161,7 @@ export function PegVisualizer() {
               </div>
               <p>
                 On Liquid, transaction amounts and asset types are cryptographically hidden. 
-                Only the sender and receiver can see the actual values - everyone else sees 
-                only encrypted commitments. This breaks amount-based analysis.
+                Only the sender and receiver can see the actual values.
               </p>
             </div>
 
@@ -289,9 +171,8 @@ export function PegVisualizer() {
                 <h4>Break Chain Analysis</h4>
               </div>
               <p>
-                When you peg-in to Liquid, make confidential transfers, then peg-out, you 
-                break the direct link between your input and output UTXOs. Observers can't 
-                easily determine which peg-out corresponds to which peg-in.
+                When you peg-in, make confidential transfers, then peg-out, you break the 
+                direct link between your input and output UTXOs.
               </p>
             </div>
 
@@ -301,9 +182,8 @@ export function PegVisualizer() {
                 <h4>Obscure Transaction History</h4>
               </div>
               <p>
-                While on Liquid, all your transactions are confidential. This means chain 
-                analysts can't track your spending patterns, payment amounts, or determine 
-                your balance - making your financial activity private.
+                While on Liquid, all your transactions are confidential. Chain analysts can't 
+                track your spending patterns or determine your balance.
               </p>
             </div>
           </div>
@@ -319,20 +199,10 @@ export function PegVisualizer() {
                 on Liquid. Amounts are hidden, breaking amount-based clustering
               </li>
               <li>
-                <strong>Mix with others:</strong> Your L-BTC mixes with other users' L-BTC in 
-                the confidential transaction set
-              </li>
-              <li>
                 <strong>Peg-out:</strong> Return to Bitcoin mainchain. The link between your 
-                original peg-in and final peg-out is obscured by the confidential activity
+                original peg-in and final peg-out is obscured
               </li>
             </ol>
-            <p className={styles.strategyNote}>
-              <strong>Result:</strong> Chain analysts can see you pegged-in 1 BTC and later 
-              someone pegged-out 1 BTC, but they can't definitively link the two transactions 
-              or track what happened in between. The confidential transfers create reasonable 
-              deniability.
-            </p>
           </div>
         </div>
       </Card>
@@ -349,31 +219,22 @@ export function PegVisualizer() {
         <ul>
           <li>
             <strong>Federation:</strong> A group of trusted entities (exchanges, infrastructure 
-            providers) who collectively manage the Bitcoin reserves. They use an 11-of-15 
-            multisig scheme - at least 11 must sign to move funds.
+            providers) who collectively manage the Bitcoin reserves using an 11-of-15 multisig.
           </li>
           <li>
             <strong>102 Confirmations:</strong> The long wait for peg-ins ensures the Bitcoin 
-            deposit is practically irreversible before L-BTC is issued. This protects against 
-            reorg attacks.
+            deposit is practically irreversible before L-BTC is issued.
           </li>
           <li>
             <strong>1:1 Backing:</strong> Every L-BTC in circulation is backed by real BTC 
-            held in the federation's multisig wallet. The peg is fully auditable on-chain.
+            held in the federation's multisig wallet.
           </li>
           <li>
             <strong>Trust tradeoff:</strong> Unlike Lightning (trustless), Liquid requires 
-            trusting the federation won't collude. The tradeoff is faster finality and 
-            features like confidential transactions.
+            trusting the federation. The tradeoff is faster finality and confidential transactions.
           </li>
         </ul>
-        <p>
-          <strong>Note:</strong> The federation members are well-known companies with 
-          reputational and financial incentives to behave honestly.
-        </p>
       </Accordion>
-
-      
     </div>
   );
 }

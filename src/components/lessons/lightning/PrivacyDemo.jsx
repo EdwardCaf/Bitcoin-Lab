@@ -1,83 +1,21 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { 
   EyeOff, 
   Eye,
   Zap,
   Shield,
-  Play,
-  RotateCcw,
   Check,
   X,
-  Info,
-  Lock
+  Lock,
+  ArrowRight,
+  FileText,
+  Clock
 } from 'lucide-react';
-import { Card, Button, Badge, Accordion } from '../../common';
+import { Card, Badge, Accordion } from '../../common';
 import styles from './PrivacyDemo.module.css';
 
-const nodes = [
-  { id: 'alice', name: 'Alice', role: 'Sender', x: 50, color: '#f97316' },
-  { id: 'bob', name: 'Bob', role: 'Routing Node', x: 250, color: '#3b82f6' },
-  { id: 'carol', name: 'Carol', role: 'Routing Node', x: 450, color: '#22c55e' },
-  { id: 'dave', name: 'Dave', role: 'Receiver', x: 650, color: '#a855f7' },
-];
-
-const PAYMENT_AMOUNT = 50000; // sats
-const PAYMENT_DESC = 'Coffee';
+const PAYMENT_AMOUNT = '50,000';
 
 export function PrivacyDemo() {
-  const [step, setStep] = useState(0); // 0: initial, 1-4: routing animation, 5: complete
-  const [showOnChain, setShowOnChain] = useState(false);
-  const [selectedNode, setSelectedNode] = useState(null);
-
-  const runPayment = async () => {
-    setStep(0);
-    // Animate through each hop with slower timing
-    for (let i = 1; i <= 5; i++) {
-      await new Promise(resolve => setTimeout(resolve, 1200));
-      setStep(i);
-    }
-  };
-
-  const reset = () => {
-    setStep(0);
-    setSelectedNode(null);
-  };
-
-  // What each node can see
-  const nodeVisibility = {
-    alice: {
-      sender: true,
-      receiver: true,
-      amount: true,
-      description: true,
-      fullPath: true
-    },
-    bob: {
-      sender: false,
-      receiver: false,
-      amount: false,
-      description: false,
-      fullPath: false,
-      knows: 'Previous hop and next hop only'
-    },
-    carol: {
-      sender: false,
-      receiver: false,
-      amount: false,
-      description: false,
-      fullPath: false,
-      knows: 'Previous hop and next hop only'
-    },
-    dave: {
-      sender: false,
-      receiver: true,
-      amount: true,
-      description: true,
-      fullPath: false
-    }
-  };
-
   return (
     <div className={styles.container}>
       <Card variant="elevated" padding="large">
@@ -89,340 +27,248 @@ export function PrivacyDemo() {
             <div>
               <h3 className={styles.title}>Lightning Privacy</h3>
               <p className={styles.subtitle}>
-                See how Lightning protects your privacy with onion routing
+                How Lightning protects your financial privacy
               </p>
             </div>
           </div>
-          
-          <div className={styles.controls}>
-            <Button
-              variant="ghost"
-              size="small"
-              icon={<RotateCcw size={14} />}
-              onClick={reset}
-            >
-              Reset
-            </Button>
-          </div>
         </div>
 
-        {/* Comparison Toggle */}
-        <div className={styles.comparisonToggle}>
-          <button
-            className={`${styles.toggleButton} ${!showOnChain ? styles.active : ''}`}
-            onClick={() => setShowOnChain(false)}
-          >
-            <Zap size={16} />
-            Lightning Payment
-            <Badge variant="success" size="small">Private</Badge>
-          </button>
-          <button
-            className={`${styles.toggleButton} ${showOnChain ? styles.active : ''}`}
-            onClick={() => setShowOnChain(true)}
-          >
-            <Eye size={16} />
-            On-Chain Transaction
-            <Badge variant="error" size="small">Public</Badge>
-          </button>
-        </div>
-
-        {showOnChain ? (
-          // On-Chain Comparison View
-          <div className={styles.onChainView}>
-            <div className={styles.publicLedger}>
-              <h4>
+        {/* Comparison Section */}
+        <div className={styles.comparisonSection}>
+          {/* On-Chain Column */}
+          <div className={styles.comparisonColumn} data-type="onchain">
+            <div className={styles.columnHeader}>
+              <div className={styles.columnIcon} data-type="onchain">
                 <Eye size={18} />
-                Public Blockchain Record
-              </h4>
-              <div className={styles.txRecord}>
-                <div className={styles.txRow}>
-                  <span className={styles.label}>From Address:</span>
-                  <code>bc1q...alice...xyz</code>
-                  <Badge variant="error" size="small">Visible to all</Badge>
-                </div>
-                <div className={styles.txRow}>
-                  <span className={styles.label}>To Address:</span>
-                  <code>bc1q...dave...xyz</code>
-                  <Badge variant="error" size="small">Visible to all</Badge>
-                </div>
-                <div className={styles.txRow}>
-                  <span className={styles.label}>Amount:</span>
-                  <strong>{PAYMENT_AMOUNT.toLocaleString()} sats</strong>
-                  <Badge variant="error" size="small">Visible to all</Badge>
-                </div>
-                <div className={styles.txRow}>
-                  <span className={styles.label}>Timestamp:</span>
-                  <span>2025-12-30 14:32:15</span>
-                  <Badge variant="error" size="small">Visible to all</Badge>
-                </div>
               </div>
-              
-              <div className={styles.warningBox}>
-                <Eye size={20} />
-                <div>
-                  <strong>Everything is public forever</strong>
-                  <p>
-                    Anyone can see exactly who sent money to whom, how much, and when. 
-                    Chain analysis companies can link addresses to real identities.
-                  </p>
-                </div>
+              <div>
+                <h4>On-Chain</h4>
+                <Badge variant="error" size="small">Public</Badge>
+              </div>
+            </div>
+            
+            <div className={styles.visibilityList}>
+              <div className={styles.visibilityItem} data-visible="true">
+                <Eye size={14} />
+                <span>Sender address</span>
+              </div>
+              <div className={styles.visibilityItem} data-visible="true">
+                <Eye size={14} />
+                <span>Receiver address</span>
+              </div>
+              <div className={styles.visibilityItem} data-visible="true">
+                <Eye size={14} />
+                <span>Amount sent</span>
+              </div>
+              <div className={styles.visibilityItem} data-visible="true">
+                <Eye size={14} />
+                <span>Transaction time</span>
+              </div>
+              <div className={styles.visibilityItem} data-visible="true">
+                <Eye size={14} />
+                <span>Permanent record</span>
+              </div>
+            </div>
+            
+            <div className={styles.columnFooter} data-type="onchain">
+              <X size={16} />
+              <span>Anyone can trace payments</span>
+            </div>
+          </div>
+
+          {/* Lightning Column */}
+          <div className={styles.comparisonColumn} data-type="lightning">
+            <div className={styles.columnHeader}>
+              <div className={styles.columnIcon} data-type="lightning">
+                <Zap size={18} />
+              </div>
+              <div>
+                <h4>Lightning</h4>
+                <Badge variant="success" size="small">Private</Badge>
+              </div>
+            </div>
+            
+            <div className={styles.visibilityList}>
+              <div className={styles.visibilityItem} data-visible="false">
+                <EyeOff size={14} />
+                <span>Sender hidden</span>
+              </div>
+              <div className={styles.visibilityItem} data-visible="false">
+                <EyeOff size={14} />
+                <span>Receiver hidden</span>
+              </div>
+              <div className={styles.visibilityItem} data-visible="false">
+                <EyeOff size={14} />
+                <span>Amount hidden</span>
+              </div>
+              <div className={styles.visibilityItem} data-visible="false">
+                <EyeOff size={14} />
+                <span>No public record</span>
+              </div>
+              <div className={styles.visibilityItem} data-visible="false">
+                <EyeOff size={14} />
+                <span>Onion routing</span>
+              </div>
+            </div>
+            
+            <div className={styles.columnFooter} data-type="lightning">
+              <Check size={16} />
+              <span>Only sender & receiver know</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Onion Routing Visualization */}
+        <div className={styles.onionSection}>
+          <h4 className={styles.sectionTitle}>
+            <Lock size={18} />
+            Onion Routing
+          </h4>
+          <p className={styles.sectionDesc}>
+            Each routing node only sees the previous and next hop - never the full path
+          </p>
+          
+          <div className={styles.routePath}>
+            <div className={styles.routeNode} data-role="sender">
+              <div className={styles.nodeAvatar}>A</div>
+              <span className={styles.nodeName}>Alice</span>
+              <span className={styles.nodeRole}>Sender</span>
+              <div className={styles.nodeKnows}>
+                <Check size={12} /> Knows full route
+              </div>
+            </div>
+            
+            <div className={styles.routeArrow}>
+              <div className={styles.arrowLine} />
+              <div className={styles.encryptedLabel}>
+                <Lock size={10} />
+                <span>Encrypted</span>
+              </div>
+            </div>
+            
+            <div className={styles.routeNode} data-role="routing">
+              <div className={styles.nodeAvatar}>B</div>
+              <span className={styles.nodeName}>Bob</span>
+              <span className={styles.nodeRole}>Routing</span>
+              <div className={styles.nodeKnows}>
+                <EyeOff size={12} /> Only sees neighbors
+              </div>
+            </div>
+            
+            <div className={styles.routeArrow}>
+              <div className={styles.arrowLine} />
+              <div className={styles.encryptedLabel}>
+                <Lock size={10} />
+                <span>Encrypted</span>
+              </div>
+            </div>
+            
+            <div className={styles.routeNode} data-role="routing">
+              <div className={styles.nodeAvatar}>C</div>
+              <span className={styles.nodeName}>Carol</span>
+              <span className={styles.nodeRole}>Routing</span>
+              <div className={styles.nodeKnows}>
+                <EyeOff size={12} /> Only sees neighbors
+              </div>
+            </div>
+            
+            <div className={styles.routeArrow}>
+              <div className={styles.arrowLine} />
+              <div className={styles.encryptedLabel}>
+                <Lock size={10} />
+                <span>Encrypted</span>
+              </div>
+            </div>
+            
+            <div className={styles.routeNode} data-role="receiver">
+              <div className={styles.nodeAvatar}>D</div>
+              <span className={styles.nodeName}>Dave</span>
+              <span className={styles.nodeRole}>Receiver</span>
+              <div className={styles.nodeKnows}>
+                <Check size={12} /> Knows payment details
               </div>
             </div>
           </div>
-        ) : (
-          // Lightning Privacy View
-          <>
-            {/* Payment Route Visualization */}
-            <div className={styles.routeContainer}>
-              <div className={styles.paymentInfo}>
-                <div className={styles.infoRow}>
-                  <span>Sending:</span>
-                  <strong>{PAYMENT_AMOUNT.toLocaleString()} sats</strong>
-                </div>
-                <div className={styles.infoRow}>
-                  <span>For:</span>
-                  <span>{PAYMENT_DESC}</span>
-                </div>
+        </div>
+
+        {/* Privacy Benefits Grid */}
+        <div className={styles.benefitsSection}>
+          <h4 className={styles.sectionTitle}>
+            <Shield size={18} />
+            Privacy Benefits
+          </h4>
+          
+          <div className={styles.benefitsGrid}>
+            <div className={styles.benefitCard}>
+              <div className={styles.benefitIcon}>
+                <FileText size={20} />
               </div>
-
-              <div className={styles.route}>
-                {nodes.map((node, index) => {
-                  const isActive = step > index;
-                  const isCurrent = step === index + 1;
-                  const isComplete = step > index + 1;
-
-                  return (
-                    <div key={node.id} className={styles.nodeWrapper}>
-                      <motion.div
-                        className={`${styles.node} ${isActive ? styles.active : ''} ${isCurrent ? styles.current : ''}`}
-                        style={{ borderColor: isActive ? node.color : 'var(--border-medium)' }}
-                        onClick={() => setSelectedNode(node.id)}
-                        animate={{
-                          scale: isCurrent ? 1.1 : 1,
-                          backgroundColor: isActive ? `${node.color}20` : 'var(--bg-secondary)'
-                        }}
-                      >
-                        <div className={styles.nodeIcon} style={{ backgroundColor: isActive ? node.color : 'var(--text-tertiary)' }}>
-                          {isComplete ? <Check size={20} /> : node.name.charAt(0)}
-                        </div>
-                        <div className={styles.nodeName}>{node.name}</div>
-                        <div className={styles.nodeRole}>{node.role}</div>
-                        
-                        {/* Onion layers visualization */}
-                        {step > 0 && step <= index + 1 && (
-                          <motion.div 
-                            className={styles.onionLayers}
-                            initial={{ opacity: 0, scale: 1.5 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            exit={{ opacity: 0 }}
-                          >
-                            {Array.from({ length: 4 - index }).map((_, i) => (
-                              <motion.div
-                                key={i}
-                                className={styles.onionLayer}
-                                initial={{ scale: 1 + (i * 0.15) }}
-                                animate={{ scale: 1 + (i * 0.15) }}
-                                style={{ 
-                                  opacity: 0.3 - (i * 0.08),
-                                  borderColor: node.color
-                                }}
-                              />
-                            ))}
-                            <Lock size={12} className={styles.lockIcon} />
-                          </motion.div>
-                        )}
-                      </motion.div>
-
-                      {/* Arrow between nodes */}
-                      {index < nodes.length - 1 && (
-                        <div className={styles.arrowContainer}>
-                          <motion.div 
-                            className={styles.arrow}
-                            animate={{
-                              opacity: step > index ? 1 : 0.3,
-                              scaleX: step > index ? 1 : 0
-                            }}
-                            transition={{ duration: 0.8 }}
-                          >
-                            <div className={styles.arrowLine} />
-                            <div className={styles.arrowHead} />
-                            
-                            {/* Traveling payment packet */}
-                            {step === index + 1 && (
-                              <motion.div
-                                className={styles.packet}
-                                initial={{ left: '0%' }}
-                                animate={{ left: '100%' }}
-                                transition={{ duration: 1, ease: 'linear' }}
-                              >
-                                <Zap size={16} />
-                              </motion.div>
-                            )}
-                          </motion.div>
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
+              <div className={styles.benefitContent}>
+                <strong>No Public Record</strong>
+                <p>Payments aren't recorded on the blockchain</p>
               </div>
-
-              {step === 0 && (
-                <Button
-                  variant="primary"
-                  icon={<Play size={16} />}
-                  onClick={runPayment}
-                  fullWidth
-                >
-                  Send Payment
-                </Button>
-              )}
-
-              {step === 5 && (
-                <motion.div
-                  className={styles.successBox}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                >
-                  <Check size={24} />
-                  <div>
-                    <strong>Payment Successful!</strong>
-                    <p>No public record created. Only sender and receiver know the details.</p>
-                  </div>
-                </motion.div>
-              )}
             </div>
+            
+            <div className={styles.benefitCard}>
+              <div className={styles.benefitIcon}>
+                <EyeOff size={20} />
+              </div>
+              <div className={styles.benefitContent}>
+                <strong>Sender/Receiver Unlinkable</strong>
+                <p>Routing nodes can't connect endpoints</p>
+              </div>
+            </div>
+            
+            <div className={styles.benefitCard}>
+              <div className={styles.benefitIcon}>
+                <Lock size={20} />
+              </div>
+              <div className={styles.benefitContent}>
+                <strong>Amount Hidden</strong>
+                <p>Intermediaries don't see payment amounts</p>
+              </div>
+            </div>
+            
+            <div className={styles.benefitCard}>
+              <div className={styles.benefitIcon}>
+                <Zap size={20} />
+              </div>
+              <div className={styles.benefitContent}>
+                <strong>Instant & Private</strong>
+                <p>Fast settlement with strong privacy</p>
+              </div>
+            </div>
+          </div>
+        </div>
 
-            {/* Information Visibility Table */}
-            {step > 0 && (
-              <motion.div
-                className={styles.visibilitySection}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-              >
-                <h4>
-                  <Info size={18} />
-                  What Each Participant Knows
-                  <span className={styles.hint}>Click a node above to see their view</span>
-                </h4>
-                
-                <div className={styles.visibilityGrid}>
-                  {nodes.map(node => {
-                    const visibility = nodeVisibility[node.id];
-                    const isSelected = selectedNode === node.id;
-                    
-                    return (
-                      <div
-                        key={node.id}
-                        className={`${styles.visibilityCard} ${isSelected ? styles.selected : ''}`}
-                        style={{ borderColor: isSelected ? node.color : 'var(--border-medium)' }}
-                        onClick={() => setSelectedNode(node.id)}
-                      >
-                        <div className={styles.cardHeader} style={{ backgroundColor: `${node.color}20` }}>
-                          <strong style={{ color: node.color }}>{node.name}</strong>
-                          <span className={styles.roleLabel}>{node.role}</span>
-                        </div>
-                        
-                        <div className={styles.visibilityList}>
-                          <div className={styles.visibilityItem}>
-                            <span>Sender Identity:</span>
-                            {visibility.sender ? (
-                              <Badge variant="error" size="small"><Eye size={12} /> Knows</Badge>
-                            ) : (
-                              <Badge variant="success" size="small"><EyeOff size={12} /> Hidden</Badge>
-                            )}
-                          </div>
-                          
-                          <div className={styles.visibilityItem}>
-                            <span>Receiver Identity:</span>
-                            {visibility.receiver ? (
-                              <Badge variant="error" size="small"><Eye size={12} /> Knows</Badge>
-                            ) : (
-                              <Badge variant="success" size="small"><EyeOff size={12} /> Hidden</Badge>
-                            )}
-                          </div>
-                          
-                          <div className={styles.visibilityItem}>
-                            <span>Payment Amount:</span>
-                            {visibility.amount ? (
-                              <Badge variant="error" size="small"><Eye size={12} /> Knows</Badge>
-                            ) : (
-                              <Badge variant="success" size="small"><EyeOff size={12} /> Hidden</Badge>
-                            )}
-                          </div>
-                          
-                          <div className={styles.visibilityItem}>
-                            <span>Description:</span>
-                            {visibility.description ? (
-                              <Badge variant="error" size="small"><Eye size={12} /> Knows</Badge>
-                            ) : (
-                              <Badge variant="success" size="small"><EyeOff size={12} /> Hidden</Badge>
-                            )}
-                          </div>
-
-                          {visibility.knows && (
-                            <div className={styles.knowsInfo}>
-                              <Info size={14} />
-                              <span>{visibility.knows}</span>
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </motion.div>
-            )}
-
-            {/* Privacy Summary */}
-            {step === 5 && (
-              <motion.div
-                className={styles.privacySummary}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-              >
-                <div className={styles.summaryHeader}>
-                  <Shield size={24} />
-                  <h4>Privacy Benefits</h4>
-                </div>
-                
-                <div className={styles.benefitsList}>
-                  <div className={styles.benefit}>
-                    <Check size={18} />
-                    <div>
-                      <strong>No Public Record</strong>
-                      <p>Payment not recorded on the blockchain</p>
-                    </div>
-                  </div>
-                  
-                  <div className={styles.benefit}>
-                    <Check size={18} />
-                    <div>
-                      <strong>Sender/Receiver Unlinkable</strong>
-                      <p>Routing nodes can't connect sender to receiver</p>
-                    </div>
-                  </div>
-                  
-                  <div className={styles.benefit}>
-                    <Check size={18} />
-                    <div>
-                      <strong>Amount Hidden</strong>
-                      <p>Intermediaries don't know payment amount</p>
-                    </div>
-                  </div>
-                  
-                  <div className={styles.benefit}>
-                    <Check size={18} />
-                    <div>
-                      <strong>Fast & Private</strong>
-                      <p>Instant settlement with enhanced privacy</p>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            )}
-          </>
-        )}
+        {/* Quick Comparison Table */}
+        <div className={styles.comparisonTable}>
+          <div className={styles.tableHeader}>
+            <span>Visibility</span>
+            <span>On-Chain</span>
+            <span>Lightning</span>
+          </div>
+          <div className={styles.tableRow}>
+            <span>Sender</span>
+            <span data-status="visible"><Eye size={14} /> Public</span>
+            <span data-status="hidden"><EyeOff size={14} /> Hidden</span>
+          </div>
+          <div className={styles.tableRow}>
+            <span>Receiver</span>
+            <span data-status="visible"><Eye size={14} /> Public</span>
+            <span data-status="hidden"><EyeOff size={14} /> Hidden</span>
+          </div>
+          <div className={styles.tableRow}>
+            <span>Amount</span>
+            <span data-status="visible"><Eye size={14} /> Public</span>
+            <span data-status="hidden"><EyeOff size={14} /> Hidden</span>
+          </div>
+          <div className={styles.tableRow}>
+            <span>Routing</span>
+            <span data-status="visible"><Eye size={14} /> Traceable</span>
+            <span data-status="hidden"><EyeOff size={14} /> Onion</span>
+          </div>
+        </div>
       </Card>
 
       {/* Technical Deep Dive */}

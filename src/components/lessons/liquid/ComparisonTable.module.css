@@ -63,128 +63,99 @@
   }
 }
 
-/* Network Headers */
-.networkHeaders {
+/* Comparison Cards */
+.comparisonCards {
   display: grid;
-  grid-template-columns: 140px repeat(3, 1fr);
-  gap: var(--spacing-sm);
-  margin-top: var(--spacing-lg);
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-md);
 }
 
-@media (max-width: 768px) {
-  .networkHeaders {
-    display: none;
-  }
-  
-  .categoryHeader {
-    display: none;
-  }
-  
-  .table {
-    display: none;
+@media (max-width: 900px) {
+  .comparisonCards {
+    grid-template-columns: 1fr;
   }
 }
 
-.categoryHeader {
-  /* Empty space for alignment */
-}
-
-.networkHeader {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--spacing-xs);
-  padding: var(--spacing-md);
-  border: 2px solid transparent;
+.comparisonCard {
+  background: var(--bg-secondary);
   border-radius: var(--radius-lg);
-  background: var(--bg-secondary);
-  cursor: pointer;
-  transition: all 0.2s ease;
+  overflow: hidden;
 }
 
-.networkHeader:hover {
-  background: var(--bg-tertiary);
-}
-
-.networkHeader.selected {
-  border-color: currentColor;
-}
-
-.networkHeader span {
-  font-weight: 600;
-  color: var(--text-primary);
-}
-
-.networkSubtext {
-  font-size: var(--text-xs) !important;
-  font-weight: 400 !important;
-  color: var(--text-muted) !important;
-}
-
-.networkHeader.bitcoin { color: #f97316; }
-.networkHeader.lightning { color: #facc15; }
-.networkHeader.liquid { color: #14b8a6; }
-
-/* Table */
-.table {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-xs);
-  margin-top: var(--spacing-sm);
-}
-
-.row {
-  display: grid;
-  grid-template-columns: 140px repeat(3, 1fr);
-  gap: var(--spacing-sm);
-  padding: var(--spacing-sm) 0;
-  border-radius: var(--radius-md);
-  transition: background 0.2s ease;
-}
-
-.row.hovered {
-  background: var(--bg-secondary);
-}
-
-.categoryCell {
+.cardHeader {
   display: flex;
   align-items: center;
   gap: var(--spacing-sm);
-  color: var(--text-secondary);
-  font-weight: 500;
+  padding: var(--spacing-md);
+  background: var(--bg-tertiary);
+  font-weight: 600;
   font-size: var(--text-sm);
+  color: var(--text-secondary);
 }
 
-.categoryCell svg {
+.cardHeader svg {
   color: var(--text-muted);
+  flex-shrink: 0;
 }
 
-.valueCell {
+.cardBody {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-xs);
+  gap: 1px;
+  background: var(--border-subtle);
+}
+
+.cardRow {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  align-items: center;
   padding: var(--spacing-sm) var(--spacing-md);
-  border-radius: var(--radius-md);
   background: var(--bg-secondary);
-  transition: all 0.2s ease;
+  gap: var(--spacing-md);
 }
 
-.valueCell.highlight {
-  background: var(--bg-tertiary);
-  box-shadow: 0 0 0 2px currentColor;
+@media (max-width: 380px) {
+  .cardRow {
+    grid-template-columns: 85px 1fr;
+    padding: var(--spacing-sm);
+    gap: var(--spacing-sm);
+  }
 }
 
-.bitcoinCell { color: #f97316; }
-.lightningCell { color: #facc15; }
-.liquidCell { color: #14b8a6; }
+.networkLabel {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  flex-shrink: 0;
+}
 
-.value {
+.networkLabel svg {
+  flex-shrink: 0;
+}
+
+.networkLabel.bitcoin { color: #f97316; }
+.networkLabel.lightning { color: #facc15; }
+.networkLabel.liquid { color: #14b8a6; }
+
+.valueSection {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  min-width: 0;
+}
+
+.valueText {
   font-weight: 600;
   font-size: var(--text-sm);
   color: var(--text-primary);
+  word-break: break-word;
 }
 
-.detail {
+.detailText {
   font-size: var(--text-xs);
   color: var(--text-muted);
 }
@@ -356,101 +327,4 @@
     width: 12px;
     height: 12px;
   }
-}
-
-/* Mobile Card View for Comparison */
-.mobileComparison {
-  display: none;
-  flex-direction: column;
-  gap: var(--spacing-md);
-  margin-top: var(--spacing-md);
-}
-
-@media (max-width: 768px) {
-  .mobileComparison {
-    display: flex;
-  }
-}
-
-.mobileCard {
-  background: var(--bg-secondary);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-}
-
-.mobileCardHeader {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-sm);
-  padding: var(--spacing-md);
-  background: var(--bg-tertiary);
-  font-weight: 600;
-  font-size: var(--text-sm);
-  color: var(--text-secondary);
-}
-
-.mobileCardHeader svg {
-  color: var(--text-muted);
-  flex-shrink: 0;
-}
-
-.mobileCardBody {
-  display: flex;
-  flex-direction: column;
-  gap: 1px;
-  background: var(--border-subtle);
-}
-
-.mobileRow {
-  display: grid;
-  grid-template-columns: 100px 1fr;
-  align-items: center;
-  padding: var(--spacing-sm) var(--spacing-md);
-  background: var(--bg-secondary);
-  gap: var(--spacing-md);
-}
-
-@media (max-width: 380px) {
-  .mobileRow {
-    grid-template-columns: 85px 1fr;
-    padding: var(--spacing-sm);
-    gap: var(--spacing-sm);
-  }
-}
-
-.mobileNetworkLabel {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-xs);
-  font-size: var(--text-sm);
-  font-weight: 500;
-  flex-shrink: 0;
-}
-
-.mobileNetworkLabel svg {
-  flex-shrink: 0;
-}
-
-.mobileNetworkLabel.bitcoin { color: #f97316; }
-.mobileNetworkLabel.lightning { color: #facc15; }
-.mobileNetworkLabel.liquid { color: #14b8a6; }
-
-.mobileValueSection {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-  min-width: 0;
-}
-
-.mobileValue {
-  font-weight: 600;
-  font-size: var(--text-sm);
-  color: var(--text-primary);
-  word-break: break-word;
-}
-
-.mobileDetail {
-  font-size: var(--text-xs);
-  color: var(--text-muted);
 }

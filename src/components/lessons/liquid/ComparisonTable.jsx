@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { 
   GitCompare,
@@ -74,9 +73,6 @@ const FEATURE_MATRIX = [
 ];
 
 export function ComparisonTable() {
-  const [hoveredRow, setHoveredRow] = useState(null);
-  const [selectedNetwork, setSelectedNetwork] = useState(null);
-
   const getStatusIcon = (value) => {
     if (value === true) return <Check size={16} className={styles.checkIcon} />;
     if (value === false) return <X size={16} className={styles.xIcon} />;
@@ -100,110 +96,49 @@ export function ComparisonTable() {
           </div>
         </div>
 
-        {/* Network Headers */}
-        <div className={styles.networkHeaders}>
-          <div className={styles.categoryHeader}></div>
-          <button
-            className={`${styles.networkHeader} ${styles.bitcoin} ${selectedNetwork === 'bitcoin' ? styles.selected : ''}`}
-            onClick={() => setSelectedNetwork(selectedNetwork === 'bitcoin' ? null : 'bitcoin')}
-          >
-            <Bitcoin size={24} />
-            <span>Bitcoin</span>
-            <span className={styles.networkSubtext}>Layer 1</span>
-          </button>
-          <button
-            className={`${styles.networkHeader} ${styles.lightning} ${selectedNetwork === 'lightning' ? styles.selected : ''}`}
-            onClick={() => setSelectedNetwork(selectedNetwork === 'lightning' ? null : 'lightning')}
-          >
-            <Zap size={24} />
-            <span>Lightning</span>
-            <span className={styles.networkSubtext}>Layer 2</span>
-          </button>
-          <button
-            className={`${styles.networkHeader} ${styles.liquid} ${selectedNetwork === 'liquid' ? styles.selected : ''}`}
-            onClick={() => setSelectedNetwork(selectedNetwork === 'liquid' ? null : 'liquid')}
-          >
-            <Droplets size={24} />
-            <span>Liquid</span>
-            <span className={styles.networkSubtext}>Sidechain</span>
-          </button>
-        </div>
-
-        {/* Comparison Table - Desktop */}
-        <div className={styles.table}>
+        {/* Comparison Cards */}
+        <div className={styles.comparisonCards}>
           {COMPARISON_DATA.map((row, i) => (
             <motion.div
               key={row.category}
-              className={`${styles.row} ${hoveredRow === i ? styles.hovered : ''}`}
-              onMouseEnter={() => setHoveredRow(i)}
-              onMouseLeave={() => setHoveredRow(null)}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: i * 0.1 }}
-            >
-              <div className={styles.categoryCell}>
-                <row.icon size={18} />
-                <span>{row.category}</span>
-              </div>
-              <div className={`${styles.valueCell} ${styles.bitcoinCell} ${selectedNetwork === 'bitcoin' ? styles.highlight : ''}`}>
-                <span className={styles.value}>{row.bitcoin.value}</span>
-                <span className={styles.detail}>{row.bitcoin.detail}</span>
-              </div>
-              <div className={`${styles.valueCell} ${styles.lightningCell} ${selectedNetwork === 'lightning' ? styles.highlight : ''}`}>
-                <span className={styles.value}>{row.lightning.value}</span>
-                <span className={styles.detail}>{row.lightning.detail}</span>
-              </div>
-              <div className={`${styles.valueCell} ${styles.liquidCell} ${selectedNetwork === 'liquid' ? styles.highlight : ''}`}>
-                <span className={styles.value}>{row.liquid.value}</span>
-                <span className={styles.detail}>{row.liquid.detail}</span>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Mobile Comparison Cards */}
-        <div className={styles.mobileComparison}>
-          {COMPARISON_DATA.map((row, i) => (
-            <motion.div
-              key={row.category}
-              className={styles.mobileCard}
+              className={styles.comparisonCard}
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.05 }}
             >
-              <div className={styles.mobileCardHeader}>
+              <div className={styles.cardHeader}>
                 <row.icon size={18} />
                 <span>{row.category}</span>
               </div>
-              <div className={styles.mobileCardBody}>
-                <div className={styles.mobileRow}>
-                  <div className={`${styles.mobileNetworkLabel} ${styles.bitcoin}`}>
+              <div className={styles.cardBody}>
+                <div className={styles.cardRow}>
+                  <div className={`${styles.networkLabel} ${styles.bitcoin}`}>
                     <Bitcoin size={16} />
                     <span>Bitcoin</span>
                   </div>
-                  <div className={styles.mobileValueSection}>
-                    <span className={styles.mobileValue}>{row.bitcoin.value}</span>
-                    <span className={styles.mobileDetail}>{row.bitcoin.detail}</span>
+                  <div className={styles.valueSection}>
+                    <span className={styles.valueText}>{row.bitcoin.value}</span>
+                    <span className={styles.detailText}>{row.bitcoin.detail}</span>
                   </div>
                 </div>
-                <div className={styles.mobileRow}>
-                  <div className={`${styles.mobileNetworkLabel} ${styles.lightning}`}>
+                <div className={styles.cardRow}>
+                  <div className={`${styles.networkLabel} ${styles.lightning}`}>
                     <Zap size={16} />
                     <span>Lightning</span>
                   </div>
-                  <div className={styles.mobileValueSection}>
-                    <span className={styles.mobileValue}>{row.lightning.value}</span>
-                    <span className={styles.mobileDetail}>{row.lightning.detail}</span>
+                  <div className={styles.valueSection}>
+                    <span className={styles.valueText}>{row.lightning.value}</span>
+                    <span className={styles.detailText}>{row.lightning.detail}</span>
                   </div>
                 </div>
-                <div className={styles.mobileRow}>
-                  <div className={`${styles.mobileNetworkLabel} ${styles.liquid}`}>
+                <div className={styles.cardRow}>
+                  <div className={`${styles.networkLabel} ${styles.liquid}`}>
                     <Droplets size={16} />
                     <span>Liquid</span>
                   </div>
-                  <div className={styles.mobileValueSection}>
-                    <span className={styles.mobileValue}>{row.liquid.value}</span>
-                    <span className={styles.mobileDetail}>{row.liquid.detail}</span>
+                  <div className={styles.valueSection}>
+                    <span className={styles.valueText}>{row.liquid.value}</span>
+                    <span className={styles.detailText}>{row.liquid.detail}</span>
                   </div>
                 </div>
               </div>
