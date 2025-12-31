@@ -341,3 +341,49 @@
 .celebrationButton {
   margin-top: var(--spacing-md);
 }
+
+/* Mobile styles */
+@media (max-width: 480px) {
+  .header {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+  
+  .stats {
+    grid-template-columns: 1fr;
+  }
+  
+  .targetPattern {
+    font-size: var(--text-xl);
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .targetZero {
+    width: 24px;
+    height: 32px;
+  }
+  
+  .nonceControls {
+    flex-wrap: wrap;
+  }
+  
+  .hashDisplay {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .historyItem {
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    text-align: center;
+  }
+  
+  .historyNonce {
+    min-width: auto;
+  }
+  
+  .celebration {
+    padding: var(--spacing-lg);
+  }
+}

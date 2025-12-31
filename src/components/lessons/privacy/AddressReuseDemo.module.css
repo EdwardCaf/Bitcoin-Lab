@@ -253,3 +253,52 @@
   border-radius: var(--radius-sm);
   font-size: var(--text-xs);
 }
+
+/* Mobile styles */
+@media (max-width: 480px) {
+  .header {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+  
+  .modeSelector {
+    grid-template-columns: 1fr;
+  }
+  
+  .walletSection,
+  .paymentsSection,
+  .observerSection {
+    padding: var(--spacing-md);
+  }
+  
+  .addressCard {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
+  }
+  
+  .addressCard code {
+    font-size: var(--text-xs);
+    word-break: break-all;
+  }
+  
+  .paymentCard {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+  
+  .paymentArrow {
+    transform: rotate(90deg);
+    align-self: center;
+  }
+  
+  .paymentAddress {
+    word-break: break-all;
+  }
+  
+  .observerBox {
+    flex-direction: column;
+    padding: var(--spacing-md);
+  }
+}

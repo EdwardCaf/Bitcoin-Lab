@@ -259,3 +259,32 @@
 .explanation p:last-child {
   margin-bottom: 0;
 }
+
+/* Mobile styles */
+@media (max-width: 480px) {
+  .header {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+  
+  .blockchain {
+    /* Allow horizontal scroll on mobile - this is intentional for the visualization */
+    padding: var(--spacing-sm) 0;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .block {
+    min-width: 240px;
+    padding: var(--spacing-sm);
+  }
+  
+  .explanation {
+    padding: var(--spacing-md);
+  }
+  
+  .statusBar {
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+  }
+}

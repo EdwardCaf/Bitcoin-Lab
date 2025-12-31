@@ -442,3 +442,42 @@
   color: var(--bitcoin-orange);
   font-family: var(--font-mono);
 }
+
+/* Mobile styles */
+@media (max-width: 480px) {
+  .builderHeader {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+  
+  .walletHeader {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+  
+  .walletBalance {
+    text-align: left;
+  }
+  
+  .coinButtonsGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .selectionSummary {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    text-align: center;
+  }
+  
+  .feeDetails {
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    text-align: center;
+  }
+  
+  .summaryRow {
+    flex-direction: column;
+    gap: 2px;
+    text-align: center;
+  }
+}

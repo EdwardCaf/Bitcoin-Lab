@@ -102,3 +102,22 @@
   align-items: center;
   gap: var(--spacing-sm);
 }
+
+/* Mobile styles */
+@media (max-width: 480px) {
+  .padding-large {
+    padding: var(--spacing-md);
+  }
+  
+  .padding-medium {
+    padding: var(--spacing-sm);
+  }
+  
+  .title {
+    font-size: var(--text-base);
+  }
+  
+  .footer {
+    flex-wrap: wrap;
+  }
+}

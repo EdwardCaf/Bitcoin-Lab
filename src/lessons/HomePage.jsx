@@ -24,7 +24,7 @@ export function HomePage() {
       >
         <div className={styles.heroContent}>
           <Badge variant="primary" size="medium" icon={<Sparkles size={14} />}>
-            Interactive Bitcoin Education
+            Visualized Bitcoin Education
           </Badge>
           
           <h1 className={styles.heroTitle}>

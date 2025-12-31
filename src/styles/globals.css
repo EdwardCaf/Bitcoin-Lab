@@ -89,6 +89,29 @@
   /* Layout */
   --sidebar-width: 220px;
   --header-height: 64px;
+  
+  /* Breakpoints (for reference - CSS custom properties can't be used in media queries)
+   * --breakpoint-sm: 480px   (small mobile)
+   * --breakpoint-md: 640px   (large mobile)
+   * --breakpoint-lg: 768px   (tablet)
+   * --breakpoint-xl: 1024px  (desktop)
+   */
+}
+
+/* Mobile utility: horizontal scroll container */
+.scrollX {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 /* Reset */

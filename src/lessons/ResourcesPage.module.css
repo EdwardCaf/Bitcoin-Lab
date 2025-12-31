@@ -255,7 +255,7 @@
   position: absolute;
   top: -10px;
   left: var(--spacing-md);
-  background: linear-gradient(135deg, #d4920a 0%,#d7a85c  100%);
+  background: linear-gradient(135deg, #c08002 0%,#d7a85c  100%);
   color: #1a1a1a;
   font-size: var(--text-xs);
   font-weight: 700;

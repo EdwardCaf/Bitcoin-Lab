@@ -90,3 +90,16 @@
   width: 1em;
   height: 1em;
 }
+
+/* Mobile styles */
+@media (max-width: 480px) {
+  .large {
+    padding: 4px 12px;
+    font-size: var(--text-sm);
+  }
+  
+  .medium {
+    padding: 2px 8px;
+    font-size: var(--text-xs);
+  }
+}

@@ -82,3 +82,11 @@
   border-top: none;
   border-right: none;
 }
+
+/* Mobile styles - allow wrapping for long content */
+@media (max-width: 480px) {
+  .tooltip {
+    white-space: normal;
+    max-width: 200px;
+  }
+}
