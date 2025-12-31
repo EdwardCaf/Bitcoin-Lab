@@ -255,12 +255,12 @@
   position: absolute;
   top: -10px;
   left: var(--spacing-md);
-  background: linear-gradient(135deg, #f5a623 0%, #d4920a 100%);
+  background: linear-gradient(135deg, #d4920a 0%,#d7a85c  100%);
   color: #1a1a1a;
   font-size: var(--text-xs);
   font-weight: 700;
-  padding: 4px 10px;
-  border-radius: var(--radius-sm);
+  padding: 1px 8px;
+  border-radius: var(--radius-lg);
   text-transform: uppercase;
   letter-spacing: 0.5px;
   box-shadow: 0 2px 8px rgba(245, 166, 35, 0.4);

@@ -82,7 +82,7 @@ export function SupportPage() {
 
         <div className={styles.heroCta}>
           <a 
-            href="https://bitcoinmentor.io" 
+            href="https://bitcoinmentor.io/?fluent-booking=calendar&host=edward-1712805121&event=30min" 
             target="_blank" 
             rel="noopener noreferrer"
             className={styles.ctaButtonLink}

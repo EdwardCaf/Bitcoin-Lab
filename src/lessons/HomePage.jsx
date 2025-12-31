@@ -29,7 +29,7 @@ export function HomePage() {
           
           <h1 className={styles.heroTitle}>
             Welcome to<br />
-            <span className={styles.heroHighlight}>The Bitcoin OPtic</span>
+            The Bitcoin <span className={styles.heroHighlight}>OP</span>tic
           </h1>
           
           <p className={styles.heroText}>
@@ -101,7 +101,7 @@ export function HomePage() {
               <Gamepad2 size={24} />
             </div>
             <h4>Hands-On Learning</h4>
-            <p>Interactive simulations let you experiment with Bitcoin concepts in real-time without risk</p>
+            <p>Interactive visualizations let you experiment with Bitcoin concepts in real-time without risk</p>
           </div>
           <div className={styles.feature}>
             <div className={styles.featureIcon}>
@@ -129,9 +129,6 @@ export function HomePage() {
         transition={{ duration: 0.5 }}
       >
         <h2 className={styles.ctaTitle}>Ready to Master Bitcoin?</h2>
-        <p className={styles.ctaText}>
-          Start your journey from complete beginner to Bitcoin expert
-        </p>
         <Link to="/lessons/wallets">
           <Button 
             variant="primary" 

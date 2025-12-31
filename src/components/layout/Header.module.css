@@ -106,6 +106,41 @@
   gap: var(--spacing-md);
 }
 
+.supportButton {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-xs) var(--spacing-md);
+  background: linear-gradient(135deg, rgba(247, 147, 26, 0.1), rgba(247, 147, 26, 0.05));
+  border: 1px solid rgba(247, 147, 26, 0.3);
+  border-radius: var(--radius-full);
+  color: var(--bitcoin-orange);
+  text-decoration: none;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  transition: all var(--transition-fast);
+}
+
+.supportButton:hover {
+  background: linear-gradient(135deg, rgba(247, 147, 26, 0.2), rgba(247, 147, 26, 0.1));
+  border-color: rgba(247, 147, 26, 0.5);
+  transform: translateY(-1px);
+}
+
+.supportText {
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .supportText {
+    display: none;
+  }
+  
+  .supportButton {
+    padding: var(--spacing-xs) var(--spacing-sm);
+  }
+}
+
 .status {
   display: flex;
   align-items: center;
