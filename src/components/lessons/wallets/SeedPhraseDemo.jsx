@@ -249,7 +249,7 @@ export function SeedPhraseDemo() {
             <ul className={styles.securityList}>
               <li>Write seed phrase on paper or engrave on metal backup</li>
               <li>Store in multiple secure physical locations (fireproof safe, bank vault)</li>
-              <li>Use a hardware wallet (Ledger, Trezor) for cold storage</li>
+              <li>Use a hardware wallet (Coldcard, Jade) for cold storage</li>
               <li>Test recovery process before funding wallet with real Bitcoin</li>
               <li>Keep it offline and completely private - never share with anyone</li>
               <li>Consider using a passphrase (25th word) for additional security</li>

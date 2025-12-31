@@ -72,10 +72,10 @@ function IntroSection() {
           <div className={styles.conceptIcon}>
             <Hash size={24} />
           </div>
-          <h3>Solving Puzzles</h3>
+          <h3>Finding the Nonce</h3>
           <p>
-            Miners compete to solve a mathematical puzzle. The first to find the 
-            solution wins the right to add a new block.
+            Miners compete to find a number (nonce) that produces a valid hash. 
+            The first to find it wins the right to add a new block.
           </p>
         </Card>
 
@@ -85,7 +85,7 @@ function IntroSection() {
           </div>
           <h3>Proof of Work</h3>
           <p>
-            The puzzle requires computational work to solve, proving the miner 
+            Finding a valid nonce requires computational work, proving the miner 
             invested real resources. This secures the network.
           </p>
         </Card>
@@ -105,7 +105,7 @@ function IntroSection() {
       <Accordion title="Analogy: The Global Lottery" defaultOpen>
         <p>
           Imagine a global lottery that happens every 10 minutes. To enter, you must 
-          show proof that you did a lot of work (solved a puzzle). The winner gets 
+          show proof that you did a lot of work (found a valid nonce). The winner gets 
           to record the latest transactions and receives a reward.
         </p>
         <p>
@@ -164,7 +164,7 @@ function PuzzleSection() {
     >
       <h2 className={styles.sectionTitle}>The Mining Puzzle</h2>
       <p className={styles.sectionText}>
-        Miners must find a hash that starts with a certain number of zeros. The only 
+        Miners must find a hash that starts with a certain number of zeros (Difficulty target). The only 
         way to do this is to keep trying different numbers (called a "nonce") until 
         one works. It's pure trial and error!
       </p>

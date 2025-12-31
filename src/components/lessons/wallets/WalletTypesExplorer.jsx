@@ -40,11 +40,6 @@ const comparisonData = [
     cold: { value: 'Very high', icon: Shield, variant: 'success' }
   },
   { 
-    feature: 'Convenience', 
-    hot: { value: 'Very convenient', icon: Check, variant: 'success' }, 
-    cold: { value: 'Less convenient', icon: AlertTriangle, variant: 'warning' }
-  },
-  { 
     feature: 'Transaction Speed', 
     hot: { value: 'Instant', icon: Zap, variant: 'success' }, 
     cold: { value: 'Slower process', icon: AlertTriangle, variant: 'warning' }

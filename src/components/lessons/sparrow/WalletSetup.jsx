@@ -61,7 +61,7 @@ const walletTypes = [
     id: 'hardware',
     title: 'Hardware Wallet',
     icon: HardDrive,
-    description: 'Connect a hardware wallet like Coldcard, Ledger, or Trezor',
+    description: 'Connect a hardware wallet like Coldcard, Jade, or Trezor',
     color: 'var(--warning)',
     steps: [
       'Click "New Wallet" in Sparrow',
@@ -75,7 +75,7 @@ const walletTypes = [
     tips: [
       'Your private keys never leave the hardware wallet',
       'Coldcard can export wallet files via SD card for air-gapped setup',
-      'Supports Coldcard, Trezor, Ledger, BitBox, Keystone, and more'
+      'Supports Coldcard, Trezor, Jade, BitBox, and more'
     ]
   },
   {

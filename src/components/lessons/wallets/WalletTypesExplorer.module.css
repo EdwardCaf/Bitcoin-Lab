@@ -292,6 +292,7 @@
   background: var(--bg-secondary);
   border-radius: var(--radius-full);
   outline: none;
+  appearance: none;
   -webkit-appearance: none;
 }
 

@@ -113,7 +113,7 @@ const securityTiers = [
 const commonMistakes = [
   {
     title: 'Single Vendor Dependency',
-    description: 'Using three Ledgers means one firmware bug could affect all your keys. Mix vendors: Coldcard + Trezor + Ledger, or similar.',
+    description: 'Using three hardware wallets means one firmware bug could affect all your keys. Mix vendors: Coldcard + Trezor + Jade, or similar.',
     severity: 'high'
   },
   {

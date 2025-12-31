@@ -24,7 +24,7 @@ const keyHolderTypes = [
     title: 'Hardware Wallet',
     icon: HardDrive,
     color: 'var(--success)',
-    description: 'Dedicated signing devices like Coldcard, Trezor, or Ledger',
+    description: 'Dedicated signing devices like Coldcard, Trezor, or Jade',
     pros: ['Air-gapped security', 'Secure elements protect keys', 'Purpose-built for Bitcoin'],
     cons: ['Cost ($50-$250 each)', 'Learning curve', 'Device can fail/break'],
     examples: ['Coldcard Q', 'Trezor Safe 7', 'BitBox02', 'Tapsigner']

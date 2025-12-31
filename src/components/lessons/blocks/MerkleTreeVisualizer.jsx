@@ -1,15 +1,11 @@
-import { useState, useEffect, useMemo } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useMemo } from 'react';
+import { motion } from 'framer-motion';
 import { 
   GitBranch, 
   FileText, 
-  Hash,
-  Plus,
-  Trash2,
-  RefreshCw
+  Hash
 } from 'lucide-react';
-import { Card, Button, Accordion } from '../../common';
-import { sha256 } from '../../../utils/hash';
+import { Card, Accordion } from '../../common';
 import styles from './MerkleTreeVisualizer.module.css';
 
 // Simple hash for demo (synchronous)
@@ -82,46 +78,15 @@ function TreeNode({ node, level, isHighlighted, delay = 0 }) {
   );
 }
 
+const transactions = [
+  { id: 1, label: 'Tx1', data: 'Alice sends 1 BTC to Bob' },
+  { id: 2, label: 'Tx2', data: 'Bob sends 0.5 BTC to Charlie' },
+  { id: 3, label: 'Tx3', data: 'Charlie sends 0.2 BTC to Dave' },
+  { id: 4, label: 'Tx4', data: 'Dave sends 0.1 BTC to Eve' }
+];
+
 export function MerkleTreeVisualizer() {
-  const [transactions, setTransactions] = useState([
-    { id: 1, label: 'Tx1', data: 'Alice sends 1 BTC to Bob' },
-    { id: 2, label: 'Tx2', data: 'Bob sends 0.5 BTC to Charlie' },
-    { id: 3, label: 'Tx3', data: 'Charlie sends 0.2 BTC to Dave' },
-    { id: 4, label: 'Tx4', data: 'Dave sends 0.1 BTC to Eve' }
-  ]);
-  const [nextId, setNextId] = useState(5);
-  const [highlightedPath, setHighlightedPath] = useState(null);
-  
-  const tree = useMemo(() => buildMerkleTree(transactions), [transactions]);
-  
-  const addTransaction = () => {
-    const names = ['Frank', 'Grace', 'Henry', 'Ivy', 'Jack'];
-    const randomName = names[Math.floor(Math.random() * names.length)];
-    const amount = (Math.random() * 2).toFixed(2);
-    
-    setTransactions([...transactions, {
-      id: nextId,
-      label: `Tx${nextId}`,
-      data: `${randomName} sends ${amount} BTC`
-    }]);
-    setNextId(nextId + 1);
-  };
-  
-  const removeTransaction = (id) => {
-    if (transactions.length > 2) {
-      setTransactions(transactions.filter(tx => tx.id !== id));
-    }
-  };
-  
-  const resetTransactions = () => {
-    setTransactions([
-      { id: 1, label: 'Tx1', data: 'Alice sends 1 BTC to Bob' },
-      { id: 2, label: 'Tx2', data: 'Bob sends 0.5 BTC to Charlie' },
-      { id: 3, label: 'Tx3', data: 'Charlie sends 0.2 BTC to Dave' },
-      { id: 4, label: 'Tx4', data: 'Dave sends 0.1 BTC to Eve' }
-    ]);
-    setNextId(5);
-  };
+  const tree = useMemo(() => buildMerkleTree(transactions), []);
   
   return (
     <div className={styles.container}>
@@ -139,25 +104,6 @@ export function MerkleTreeVisualizer() {
             </div>
           </div>
           
-          <div className={styles.controls}>
-            <Button
-              variant="secondary"
-              size="small"
-              icon={<Plus size={14} />}
-              onClick={addTransaction}
-              disabled={transactions.length >= 8}
-            >
-              Add Tx
-            </Button>
-            <Button
-              variant="ghost"
-              size="small"
-              icon={<RefreshCw size={14} />}
-              onClick={resetTransactions}
-            >
-              Reset
-            </Button>
-          </div>
         </div>
         
         {/* Transactions List */}
@@ -170,13 +116,6 @@ export function MerkleTreeVisualizer() {
                   <span className={styles.txLabel}>{tx.label}</span>
                   <span className={styles.txData}>{tx.data}</span>
                 </div>
-                <button
-                  className={styles.txRemove}
-                  onClick={() => removeTransaction(tx.id)}
-                  disabled={transactions.length <= 2}
-                >
-                  <Trash2 size={14} />
-                </button>
               </div>
             ))}
           </div>
@@ -268,7 +207,7 @@ export function MerkleTreeVisualizer() {
         </ul>
         <p>
           This is how lightweight wallets (SPV) can verify transactions 
-          without downloading the entire 500+ GB blockchain.
+          without downloading the entire 800+ GB blockchain.
         </p>
       </Accordion>
     </div>

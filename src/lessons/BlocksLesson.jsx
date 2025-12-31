@@ -122,11 +122,11 @@ function IntroSection() {
         <h4>Blockchain by the Numbers</h4>
         <div className={styles.factGrid}>
           <div className={styles.fact}>
-            <span className={styles.factValue}>840,000+</span>
+            <span className={styles.factValue}>900,000+</span>
             <span className={styles.factLabel}>Blocks mined</span>
           </div>
           <div className={styles.fact}>
-            <span className={styles.factValue}>~500 GB</span>
+            <span className={styles.factValue}>~800 GB</span>
             <span className={styles.factLabel}>Full blockchain size</span>
           </div>
           <div className={styles.fact}>

@@ -34,15 +34,21 @@ export function getHalvingEvents(maxBlockHeight = 2100000) {
   let blockHeight = 0;
   let reward = INITIAL_REWARD;
   
+  // Actual halving years (approximately every 4 years)
+  // Genesis: 2009, then halvings in 2012, 2016, 2020, 2024, 2028, ...
+  const halvingYears = [2009, 2012, 2016, 2020, 2024, 2028, 2032, 2036, 2040, 2044, 2048, 2052, 2056, 2060, 2064, 2068, 2072, 2076, 2080, 2084, 2088, 2092, 2096, 2100, 2104, 2108, 2112, 2116, 2120, 2124, 2128, 2132, 2136, 2140];
+  let halvingIndex = 0;
+  
   while (blockHeight <= maxBlockHeight && reward >= 0.00000001) {
     events.push({
       blockHeight,
       reward,
-      year: 2009 + Math.floor(blockHeight / 52500), // ~52500 blocks per year
+      year: halvingYears[halvingIndex] || (2009 + halvingIndex * 4),
       supply: getTotalSupply(blockHeight)
     });
     blockHeight += HALVING_INTERVAL;
     reward /= 2;
+    halvingIndex++;
   }
   
   return events;

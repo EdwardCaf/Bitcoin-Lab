@@ -69,7 +69,7 @@ const keystoreTypes = [
   {
     type: 'Connected Hardware Wallet',
     description: 'Plug in via USB, click "Scan" to detect device and import xpub directly.',
-    devices: ['Coldcard', 'Trezor', 'Ledger', 'BitBox', 'Keystone']
+    devices: ['Coldcard', 'Trezor', 'BitBox', 'Keystone']
   },
   {
     type: 'Airgapped Hardware Wallet',

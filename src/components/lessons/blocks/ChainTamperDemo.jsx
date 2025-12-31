@@ -33,23 +33,27 @@ export function ChainTamperDemo() {
   const [editingBlock, setEditingBlock] = useState(null);
   const [editValue, setEditValue] = useState('');
   
-  // Calculate hashes for all blocks
+  // Calculate hashes for all blocks, considering in-progress edits
   const calculateChain = useCallback(() => {
     let prevHash = '0000000000000000';
     return blocks.map((block, index) => {
-      const fullData = `${prevHash}|${block.data}`;
+      // Use the edit value if this block is being edited, otherwise use block data
+      const currentData = editingBlock === block.id ? editValue : block.data;
+      const fullData = `${prevHash}|${currentData}`;
       const hash = simpleHash(fullData);
+      const isModified = currentData !== block.originalData;
       const result = {
         ...block,
         prevHash,
         hash,
-        isValid: block.data === block.originalData,
+        currentData,
+        isValid: !isModified,
         index
       };
       prevHash = hash;
       return result;
     });
-  }, [blocks]);
+  }, [blocks, editingBlock, editValue]);
   
   const chainData = calculateChain();
   const isChainBroken = chainData.some(b => !b.isValid);

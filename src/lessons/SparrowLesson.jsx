@@ -154,7 +154,7 @@ function IntroSection() {
           </div>
           <h3>Hardware Wallet Support</h3>
           <p>
-            Works seamlessly with Coldcard, Trezor, Ledger, BitBox, Keystone, and more. 
+            Works seamlessly with Coldcard, Trezor, BitBox, and more. 
             Sign transactions via USB, QR codes, or SD card.
           </p>
         </Card>
