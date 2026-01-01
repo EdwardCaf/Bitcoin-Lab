@@ -143,7 +143,7 @@ const LEARNING_TREE = {
       icon: Coins, 
       path: '/lessons/ecash', 
       level: 4,
-      description: 'Learn how Chaumian blind signatures enable perfect privacy with Bitcoin-backed tokens.',
+      description: 'Learn how Chaumian blind signatures enable perfect near-privacy with Bitcoin-backed tokens.',
       difficulty: 'Advanced',
       duration: '23 min',
       topics: ['Blind Signatures', 'Cashu Mints', 'Privacy', 'Federated Custody']

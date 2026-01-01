@@ -146,7 +146,7 @@ export function BlindSignatureDemo() {
             <div>
               <h3 className={styles.title}>Blind Signature Protocol</h3>
               <p className={styles.subtitle}>
-                See how Chaumian blind signatures enable perfect privacy
+                See how Chaumian blind signatures enable near-perfect privacy
               </p>
             </div>
           </div>
@@ -295,7 +295,7 @@ export function BlindSignatureDemo() {
         </ul>
         <p>
           <strong>The key insight:</strong> The mint proves the token is worth 100 sats without 
-          knowing who withdrew it. This gives eCash users perfect privacy - even better than 
+          knowing who withdrew it. This gives eCash users near-perfect privacy - even better than 
           cash, since there are no serial numbers!
         </p>
       </Accordion>
@@ -747,7 +747,7 @@ function VerifyStep({ message, unblindedSig, showMintView, setShowMintView }) {
               >
                 <Sparkles size={16} />
                 <div>
-                  <strong>Perfect Privacy Achieved!</strong>
+                  <strong>Privacy Achieved!</strong>
                   <p>
                     The mint sees a valid signature but cannot link this token to Alice's 
                     original withdrawal. The blind signature broke the connection forever.
@@ -765,7 +765,7 @@ function VerifyStep({ message, unblindedSig, showMintView, setShowMintView }) {
           <strong>Privacy Preserved!</strong>
           <p>
             The mint verified the token is valid and worth {message.value} sats, but has 
-            no way to know it came from Alice. This is perfect privacy - better than physical cash!
+            no way to know it came from Alice. This is near-perfect privacy - better than physical cash!
           </p>
         </div>
       </div>

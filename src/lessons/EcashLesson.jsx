@@ -43,7 +43,7 @@ export function EcashLesson() {
     <LessonLayout
       lessonId="ecash"
       title="eCash (Cashu & Fedimint)"
-      description="Learn how Chaumian eCash enables perfect privacy on Bitcoin"
+      description="Learn how Chaumian eCash enables near-perfect privacy on Bitcoin"
       icon={Coins}
       sections={sections}
       currentSection={currentSection}
@@ -68,7 +68,7 @@ function IntroSection() {
         </div>
         <h2 className={styles.heroTitle}>Chaumian eCash</h2>
         <p className={styles.heroText}>
-          eCash is a revolutionary technology that helps bring perfect privacy to Bitcoin 
+          eCash is a revolutionary technology that helps bring near-perfect privacy to Bitcoin 
           using blind signatures - a cryptographic invention from the 1980s. Unlike Lightning's 
           onion routing or Bitcoin's pseudonymity, eCash provides true unlinkability where 
           even the mint cannot track users.
@@ -80,7 +80,7 @@ function IntroSection() {
           <div className={styles.conceptIcon}>
             <Lock size={24} />
           </div>
-          <h3>Perfect Privacy</h3>
+          <h3>Near-perfect Privacy</h3>
           <p>
             Blind signatures mean the mint cannot link withdrawals to spends. Your transactions 
             are completely untraceable - better privacy than physical cash.
@@ -104,7 +104,7 @@ function IntroSection() {
           </div>
           <h3>Custodial Trade-off</h3>
           <p>
-            The mint holds your Bitcoin. You trade custody risk for perfect privacy. 
+            The mint holds your Bitcoin. You trade custody risk for near-perfect privacy. 
             This is why small amounts and trusted mints are critical.
           </p>
         </Card>
@@ -257,7 +257,7 @@ function PrivacySection() {
           <li>
             <strong>Privacy is worth it for some use cases:</strong> If you're making 
             privacy-critical payments (donations, sensitive purchases), the risk of losing 
-            100 sats is worth the guarantee of perfect privacy.
+            100 sats is worth the guarantee of near-perfect privacy.
           </li>
           <li>
             <strong>Better than custodial Lightning:</strong> Many users already trust 
@@ -325,7 +325,7 @@ function FedimintSection() {
           </li>
           <li>
             <strong>Practical for everyday use:</strong> Residents can pay for coffee, groceries, 
-            and services with perfect privacy and instant settlement, while trusting a distributed 
+            and services with near-perfect privacy and instant settlement, while trusting a distributed 
             set of community members instead of a single bank or company.
           </li>
         </ul>
@@ -511,7 +511,7 @@ function UseCasesSection() {
           </li>
           <li>
             <strong>Privacy by default:</strong> Unlike Bitcoin or Lightning where privacy 
-            requires extra steps, eCash gives you perfect privacy automatically.
+            requires extra steps, eCash gives you ear-perfect privacy automatically.
           </li>
           <li>
             <strong>Interoperability:</strong> eCash mints can connect via Lightning, creating 

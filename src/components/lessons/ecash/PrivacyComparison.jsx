@@ -60,7 +60,7 @@ const LAYERS = [
       graphAnalysis: 'No transaction graph exists'
     },
     rating: 5,
-    description: 'Perfect privacy via blind signatures - mint cannot track users'
+    description: 'Near-perfect privacy via blind signatures - mint cannot track users'
   }
 ];
 
@@ -72,7 +72,7 @@ const SCENARIOS = [
     layers: {
       bitcoin: { risk: 'high', description: 'Charity can see all your addresses and balance history' },
       lightning: { risk: 'low', description: 'Only the payment amount is visible, not your balance' },
-      ecash: { risk: 'none', description: 'Perfect privacy - charity can\'t link payment to you at all' }
+      ecash: { risk: 'none', description: 'Near-perfect privacy - charity can\'t link payment to you at all' }
     }
   },
   {
@@ -287,7 +287,7 @@ export function PrivacyComparison() {
         </ul>
 
         <p>
-          <strong>The key insight:</strong> eCash trades custody risk for perfect privacy. Bitcoin trades 
+          <strong>The key insight:</strong> eCash trades custody risk for near-perfect privacy. Bitcoin trades 
           privacy for trustlessness. Lightning sits in the middle. Choose the right tool for each use case!
         </p>
       </Accordion>

@@ -338,7 +338,7 @@ export function FedimintExplorer() {
               </li>
               <li className={styles.positive}>
                 <CheckCircle size={16} />
-                <span>Perfect privacy via blind signatures</span>
+                <span>Near-perfect privacy via blind signatures</span>
               </li>
               <li className={styles.warning}>
                 <AlertTriangle size={16} />

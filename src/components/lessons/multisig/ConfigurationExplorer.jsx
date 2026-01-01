@@ -300,7 +300,7 @@ export function ConfigurationExplorer() {
             </div>
             <div className={styles.factor}>
               <strong>Risk tolerance</strong>
-              <p>Can you tolerate losing one key? Two? No key loss tolerance means 3-of-3 or similar.</p>
+              <p>Can you tolerate losing one key? Two? No key loss tolerance means 1-of-3 or similar.</p>
             </div>
           </div>
           
