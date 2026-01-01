@@ -162,41 +162,6 @@ function CashuSection() {
 
       <MintVisualizer />
 
-      <Accordion 
-        title="Technical Deep Dive: Blind Signatures"
-        variant="deepdive"
-        icon={<Lock size={16} />}
-      >
-        <p>
-          Blind signatures are the cryptographic magic that makes eCash work:
-        </p>
-        <ul>
-          <li>
-            <strong>Step 1 - Blinding:</strong> Alice creates a message (representing a token) 
-            and multiplies it by a random "blinding factor" before sending it to the mint. 
-            This is like putting a message in a sealed envelope with carbon paper.
-          </li>
-          <li>
-            <strong>Step 2 - Signing:</strong> The mint signs the blinded message without 
-            knowing its contents. The signature goes through the "carbon paper" onto the 
-            message inside the envelope.
-          </li>
-          <li>
-            <strong>Step 3 - Unblinding:</strong> Alice removes the blinding factor (opens 
-            the envelope) to reveal a valid signature on her original message.
-          </li>
-          <li>
-            <strong>The magic:</strong> When Alice later spends the token, the mint sees a 
-            valid signature but mathematically cannot determine which blinded message it 
-            originally came from. Perfect unlinkability!
-          </li>
-        </ul>
-        <p>
-          This is fundamentally different from Lightning's onion routing (which hides sender/receiver 
-          from intermediaries) or Bitcoin's pseudonymity (where all transactions are public). With 
-          eCash, even the mint - the party you're trusting with custody - cannot spy on you.
-        </p>
-      </Accordion>
 
       <BlindSignatureDemo />
     </motion.div>
@@ -219,7 +184,7 @@ function PrivacySection() {
 
       <PrivacyComparison />
 
-      <Card variant="warning" padding="large">
+      <Card variant="warning" padding="large" style={{ marginTop: 'var(--spacing-xl)' }}>
         <div className={styles.warningHeader}>
           <AlertTriangle size={24} />
           <h3>Understanding the Custodial Risk</h3>
@@ -511,7 +476,7 @@ function UseCasesSection() {
           </li>
           <li>
             <strong>Privacy by default:</strong> Unlike Bitcoin or Lightning where privacy 
-            requires extra steps, eCash gives you ear-perfect privacy automatically.
+            requires extra steps, eCash gives you near-perfect privacy automatically.
           </li>
           <li>
             <strong>Interoperability:</strong> eCash mints can connect via Lightning, creating 

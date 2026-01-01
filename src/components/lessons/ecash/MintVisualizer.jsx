@@ -229,40 +229,6 @@ export function MintVisualizer() {
         </AnimatePresence>
       </Card>
 
-      {/* Deep Dive */}
-      <Accordion
-        title="Deep Dive: Token Denominations & Privacy"
-        variant="deepdive"
-        icon={<Coins size={16} />}
-      >
-        <p>
-          Cashu uses fixed denominations (powers of 2) for several important reasons:
-        </p>
-        <ul>
-          <li>
-            <strong>Anonymity sets:</strong> All 64-sat tokens look identical. This creates 
-            large anonymity sets - the mint cannot distinguish between different 64-sat tokens.
-          </li>
-          <li>
-            <strong>Efficient splitting:</strong> Any amount can be represented as a sum of 
-            powers of 2. This is the same principle as binary numbers!
-          </li>
-          <li>
-            <strong>No change addresses:</strong> Unlike Bitcoin, you can make exact payments. 
-            If you have a 64-sat token but only need 50 sats, you ask the mint to split it 
-            into 32 + 16 + 2, creating fresh tokens that aren't linked to the original.
-          </li>
-          <li>
-            <strong>Blinded at each step:</strong> Every mint, split, or combine operation uses 
-            blind signatures, so the mint never knows which tokens belong to whom.
-          </li>
-        </ul>
-        <p>
-          <strong>Trade-off:</strong> You must trust the mint not to run away with the funds. 
-          This is why it's recommended to use multiple small mints and not store large amounts 
-          in eCash.
-        </p>
-      </Accordion>
     </div>
   );
 }

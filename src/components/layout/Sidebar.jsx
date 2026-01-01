@@ -14,7 +14,7 @@ import {
   CircleDollarSign,
   ChevronRight,
   Library,
-  Handshake
+  Users
 } from 'lucide-react';
 import styles from './Sidebar.module.css';
 
@@ -142,9 +142,9 @@ export function Sidebar({ isOpen, onClose }) {
             }}
           >
             <div className={styles.navIcon}>
-              <Handshake size={18} />
+              <Users size={18} />
             </div>
-            <span className={styles.navTitle}>1-on-1 Support</span>
+            <span className={styles.navTitle}>Bitcoin Mentor</span>
             <ChevronRight size={14} className={styles.navArrow} />
           </NavLink>
 

@@ -382,53 +382,7 @@ export function FedimintExplorer() {
         </div>
       </Card>
 
-      {/* Deep Dive */}
-      <Accordion
-        title="Deep Dive: How Federated Consensus Works"
-        variant="deepdive"
-        icon={<Users size={16} />}
-      >
-        <h4>Threshold Signatures</h4>
-        <p>
-          Fedimint uses threshold cryptography to split custody across multiple parties. Here's how it works:
-        </p>
-        <ul>
-          <li>
-            <strong>Key Generation:</strong> The federation creates a shared public key, but the private 
-            key is split into "shares" that no single guardian has access to.
-          </li>
-          <li>
-            <strong>Threshold Signing:</strong> To approve a transaction, a minimum number of guardians 
-            (the threshold) must cooperate. With 3-of-5, you need any 3 guardians to sign.
-          </li>
-          <li>
-            <strong>No Single Point of Failure:</strong> Up to 2 guardians can go offline, be compromised, 
-            or turn malicious without affecting the system.
-          </li>
-          <li>
-            <strong>Byzantine Fault Tolerance:</strong> The system can tolerate (threshold - 1) malicious 
-            guardians. With 3-of-5, it takes 3+ malicious guardians to steal funds.
-          </li>
-        </ul>
-
-        <h4>Community Custody Model</h4>
-        <p>
-          Fedimint is designed for local communities. Imagine a "Bitcoin Beach" scenario:
-        </p>
-        <ul>
-          <li>Guardians are respected community members: shop owners, the local church, tech volunteers</li>
-          <li>Social reputation keeps guardians honest - they live in the community</li>
-          <li>Lower trust requirement than a random third-party custodian</li>
-          <li>Perfect for emerging Bitcoin circular economies</li>
-        </ul>
-
-        <h4>Still Custodial</h4>
-        <p>
-          <strong>Important:</strong> Fedimint is still custodial! You're trusting the federation not to 
-          collude. But it's a middle ground - better than a single custodian, more private and practical 
-          than full Lightning for small communities.
-        </p>
-      </Accordion>
+      
     </div>
   );
 }

@@ -68,16 +68,16 @@ export function SupportPage() {
         </Badge>
         
         <h1 className={styles.heroTitle}>
-          1-on-1 Bitcoin <span className={styles.heroHighlight}>Support</span>
+          Bitcoin <span className={styles.heroHighlight}>Mentorship</span>
         </h1>
 
         <p className={styles.heroTagline}>
-          True bitcoin ownership, taught the right way.
+          Guidance to Financial Sovereignty
         </p>
         
         <p className={styles.heroText}>
-          The bitcoin journey is unique to everyone. Get personalized guidance from 
-          experienced mentors who will help you achieve true self-sovereign bitcoin ownership.
+          The bitcoin journey is unique to everyone. Get personalized guidance from an
+          experienced mentor who will help you achieve true self-sovereign bitcoin ownership.
         </p>
 
         <div className={styles.heroCta}>

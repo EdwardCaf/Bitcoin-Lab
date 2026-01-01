@@ -213,48 +213,7 @@ export function ComparisonTable() {
         </div>
       </Card>
 
-      <Accordion
-        title="Deep Dive: Choosing the Right Layer"
-        variant="deepdive"
-        icon={<GitCompare size={16} />}
-      >
-        <p>
-          Each layer serves different use cases. Here's how to think about the tradeoffs:
-        </p>
-        <ul>
-          <li>
-            <strong>Security vs Speed:</strong> Bitcoin is the most secure but slowest. 
-            Lightning trades some security assumptions for instant payments. Liquid trades 
-            trustlessness for fast finality and features.
-          </li>
-          <li>
-            <strong>Exit mechanism:</strong> Lightning allows unilateral exit - you can 
-            always close your channel and return to the Bitcoin main chain without anyone's 
-            permission. Liquid is a sidechain that requires the federation's cooperation 
-            to peg-out. This is a fundamental trust difference: Lightning is trustless 
-            exit, Liquid requires trusting the federation.
-          </li>
-          <li>
-            <strong>On-chain vs Off-chain:</strong> Bitcoin records every transaction 
-            forever. Lightning keeps most activity off-chain. Liquid is a separate chain 
-            with its own blockchain.
-          </li>
-          <li>
-            <strong>Capacity:</strong> Bitcoin: ~7 TPS. Lightning: millions of TPS 
-            (theoretical). Liquid: ~1000s TPS with larger blocks.
-          </li>
-          <li>
-            <strong>Interoperability:</strong> You can move between all three! BTC → 
-            Lightning channel, BTC → Liquid peg-in, or even Lightning ↔ Liquid via 
-            submarine swaps.
-          </li>
-        </ul>
-        <p>
-          <strong>Pro tip:</strong> Many users keep a small amount on Lightning for 
-          spending, some on Liquid for spending, and the majority on Bitcoin base layer 
-          for long-term savings.
-        </p>
-      </Accordion>
+      
     </div>
   );
 }

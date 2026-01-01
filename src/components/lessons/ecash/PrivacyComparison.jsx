@@ -255,42 +255,7 @@ export function PrivacyComparison() {
         </div>
       </Card>
 
-      {/* Deep Dive */}
-      <Accordion
-        title="Deep Dive: Privacy Trade-offs"
-        variant="deepdive"
-        icon={<Shield size={16} />}
-      >
-        <p>
-          Each layer makes different privacy trade-offs:
-        </p>
-        
-        <h4>Bitcoin (Layer 1)</h4>
-        <ul>
-          <li><strong>Pro:</strong> Fully trustless, censorship-resistant, permanent settlement</li>
-          <li><strong>Con:</strong> All transactions public forever. Chain analysis can cluster addresses and track funds</li>
-          <li><strong>Best for:</strong> Large, final settlements where transparency is acceptable</li>
-        </ul>
-
-        <h4>Lightning (Layer 2)</h4>
-        <ul>
-          <li><strong>Pro:</strong> Instant payments, onion routing hides sender/receiver from intermediaries</li>
-          <li><strong>Con:</strong> Channel opens/closes are on-chain. Routing nodes can theoretically correlate timing/amounts</li>
-          <li><strong>Best for:</strong> Everyday payments where privacy is important but trust in routing is acceptable</li>
-        </ul>
-
-        <h4>eCash (Cashu/Fedimint)</h4>
-        <ul>
-          <li><strong>Pro:</strong> Near-perfect cryptographic privacy via blind signatures. Mint cannot track users</li>
-          <li><strong>Con:</strong> Custodial - you must trust the mint not to steal funds or be shut down</li>
-          <li><strong>Best for:</strong> Privacy-critical payments in small amounts with trusted community mints</li>
-        </ul>
-
-        <p>
-          <strong>The key insight:</strong> eCash trades custody risk for near-perfect privacy. Bitcoin trades 
-          privacy for trustlessness. Lightning sits in the middle. Choose the right tool for each use case!
-        </p>
-      </Accordion>
+      
     </div>
   );
 }

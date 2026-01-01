@@ -31,7 +31,7 @@ const walletExamples = {
 const comparisonData = [
   { 
     feature: 'Internet Connection', 
-    hot: { value: 'Always connected', icon: Wifi, variant: 'warning' }, 
+    hot: { value: 'Always connected', icon: Wifi, variant: 'error' }, 
     cold: { value: 'Offline/disconnected', icon: WifiOff, variant: 'success' }
   },
   { 
@@ -47,7 +47,7 @@ const comparisonData = [
   { 
     feature: 'Vulnerable To', 
     hot: { value: 'Malware, hacks, phishing', icon: AlertTriangle, variant: 'error' }, 
-    cold: { value: 'Physical theft & User error', icon: Shield, variant: 'success' }
+    cold: { value: 'Physical theft & User error', icon: Shield, variant: 'warning' }
   },
   { 
     feature: 'Best Use Case', 
@@ -57,7 +57,7 @@ const comparisonData = [
   { 
     feature: 'Setup Difficulty', 
     hot: { value: 'Easy', icon: Check, variant: 'success' }, 
-    cold: { value: 'Moderate to complex', icon: AlertTriangle, variant: 'warning' }
+    cold: { value: 'Moderate', icon: AlertTriangle, variant: 'warning' }
   },
   { 
     feature: 'Cost', 

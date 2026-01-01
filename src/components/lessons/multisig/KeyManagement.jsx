@@ -27,7 +27,7 @@ const keyHolderTypes = [
     description: 'Dedicated signing devices like Coldcard, Trezor, or Jade',
     pros: ['Air-gapped security', 'Secure elements protect keys', 'Purpose-built for Bitcoin'],
     cons: ['Cost ($50-$250 each)', 'Learning curve', 'Device can fail/break'],
-    examples: ['Coldcard Q', 'Trezor Safe 7', 'BitBox02', 'Tapsigner']
+    examples: ['Coldcard Q', 'Trezor Safe 7', 'BitBox02']
   },
   {
     id: 'software',
@@ -45,8 +45,8 @@ const keyHolderTypes = [
     icon: Building,
     color: 'var(--warning)',
     description: 'Professional services that hold one key as a recovery backup',
-    pros: ['Professional security', 'Recovery assistance', 'Often includes insurance'],
-    cons: ['Trust required', 'Monthly fees', 'Potential regulatory issues'],
+    pros: ['Professional security', 'Recovery assistance', 'Often includes inheritance'],
+    cons: ['Trust required', 'Monthly fees', 'Privacy leaked to third party'],
     examples: ['Nunchuk Honey Badger']
   },
   {
@@ -77,21 +77,13 @@ const coordinatorSoftware = [
     url: 'https://nunchuk.io',
     description: 'Collaborative multisig with inheritance planning. Mobile and desktop apps available.',
     features: ['Collaborative signing', 'Inheritance planning', 'Key recovery service', 'Cross-platform']
-  },
-  {
-    id: 'specter',
-    name: 'Specter Desktop',
-    type: 'Desktop',
-    url: 'https://specter.solutions',
-    description: 'Bitcoin Core focused wallet with strong multisig capabilities.',
-    features: ['Bitcoin Core integration', 'Hardware wallet support', 'DIY node friendly', 'Open source']
   }
 ];
 
 const collaborativeCustody = [
   {
     id: 'nunchuk-assisted',
-    name: 'Nunchuk Assisted',
+    name: 'Nunchuk Honey Badger',
     model: 'Flexible configurations',
     url: 'https://nunchuk.io',
     description: 'Optional assisted custody layer on top of Nunchuk\'s self-custody platform.',

@@ -226,41 +226,7 @@ export function ConfidentialTxDemo() {
         </div>
       </Card>
 
-      <Accordion
-        title="Deep Dive: Confidential Transactions"
-        variant="deepdive"
-        icon={<Shield size={16} />}
-      >
-        <p>
-          Confidential Transactions (CT) were invented by Greg Maxwell and are a core 
-          feature of Liquid:
-        </p>
-        <ul>
-          <li>
-            <strong>Pedersen Commitments:</strong> Amounts are replaced with cryptographic 
-            commitments. The commitment hides the value but is mathematically bound to it.
-          </li>
-          <li>
-            <strong>Homomorphic property:</strong> You can add and subtract commitments 
-            just like regular numbers. This allows verifying that inputs = outputs + fee 
-            without knowing the actual amounts.
-          </li>
-          <li>
-            <strong>Range proofs:</strong> Attached proofs that demonstrate amounts are 
-            positive and within a valid range (preventing overflow attacks). These are 
-            the main contributor to CT transaction size.
-          </li>
-          <li>
-            <strong>Blinding keys:</strong> The sender and receiver share a blinding key 
-            that allows them to "unblind" and see the actual amounts.
-          </li>
-        </ul>
-        <p>
-          <strong>Tradeoff:</strong> Confidential transactions are larger (~3x) than 
-          regular transactions, but Liquid's 1-minute blocks and federation model make 
-          this practical.
-        </p>
-      </Accordion>
+      
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Eye, Menu, X, Handshake } from 'lucide-react';
+import { Eye, Menu, X, Users } from 'lucide-react';
 import { useBlockHeight } from '../../hooks/useBlockHeight';
 import styles from './Header.module.css';
 
@@ -81,8 +81,8 @@ export function Header({ sidebarOpen, onToggleSidebar }) {
       
       <div className={styles.right}>
         <Link to="/support" className={styles.supportButton}>
-          <Handshake size={18} />
-          <span className={styles.supportText}>1-on-1 Support</span>
+          <Users size={18} />
+          <span className={styles.supportText}>Bitcoin Mentor</span>
         </Link>
         <div className={`${styles.status} ${isNewBlock ? styles.statusNewBlock : ''}`}>
           <span className={dotClass} />

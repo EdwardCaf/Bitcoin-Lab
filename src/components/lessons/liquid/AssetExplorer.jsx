@@ -210,39 +210,7 @@ export function AssetExplorer() {
         </div>
       </Card>
 
-      <Accordion
-        title="Deep Dive: Issued Assets on Liquid"
-        variant="deepdive"
-        icon={<Coins size={16} />}
-      >
-        <p>
-          Liquid supports the issuance of arbitrary assets, similar to tokens on Ethereum 
-          but with some key differences:
-        </p>
-        <ul>
-          <li>
-            <strong>Native protocol support:</strong> Assets are first-class citizens in 
-            Liquid, not smart contracts. This makes them simpler and more efficient.
-          </li>
-          <li>
-            <strong>Confidential Assets:</strong> Not only are amounts hidden, but the 
-            asset type itself can be hidden! Observers can't tell if a transaction moved 
-            L-BTC, USDt, or any other asset.
-          </li>
-          <li>
-            <strong>Reissuance tokens:</strong> Issuers can create "reissuance tokens" that 
-            allow minting more of an asset later. Without one, supply is permanently fixed.
-          </li>
-          <li>
-            <strong>Atomic swaps:</strong> Multiple assets can be exchanged in a single 
-            transaction, enabling trustless peer-to-peer trading.
-          </li>
-        </ul>
-        <p>
-          <strong>Use cases:</strong> Stablecoins, security tokens, reward points, 
-          tokenized commodities, collectibles, and more.
-        </p>
-      </Accordion>
+      
     </div>
   );
 }

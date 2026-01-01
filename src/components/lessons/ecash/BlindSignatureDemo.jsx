@@ -263,41 +263,7 @@ export function BlindSignatureDemo() {
         </div>
       </Card>
 
-      {/* Deep Dive Accordion */}
-      <Accordion
-        title="Deep Dive: The Mathematics of Blind Signatures"
-        variant="deepdive"
-        icon={<Sparkles size={16} />}
-      >
-        <p>
-          Blind signatures use clever cryptographic math to allow signing without revealing 
-          the message content. Here's how it works:
-        </p>
-        <ul>
-          <li>
-            <strong>Blinding:</strong> Alice multiplies her message by a random blinding 
-            factor. Think of this like putting a message in a sealed envelope with carbon 
-            paper inside.
-          </li>
-          <li>
-            <strong>Signing:</strong> The mint signs the blinded message without opening 
-            the envelope. The signature goes through the carbon paper onto the message inside.
-          </li>
-          <li>
-            <strong>Unblinding:</strong> Alice removes the blinding factor (opens the envelope) 
-            to reveal a valid signature on her original message.
-          </li>
-          <li>
-            <strong>Privacy:</strong> When Alice later spends the token, the mint sees a valid 
-            signature but cannot determine which blinded message it originally signed. It's 
-            unlinkable!
-          </li>
-        </ul>
-        <p>
-          <strong>The key insight:</strong> The mint proves the token is worth 100 sats without 
-          knowing who withdrew it. This gives eCash users near-perfect privacy.
-        </p>
-      </Accordion>
+      
     </div>
   );
 }

@@ -104,16 +104,16 @@ const configurations = [
     subtitle: 'Maximum Agreement',
     icon: Building,
     popular: false,
-    security: 5,
+    security: 3,
     convenience: 2,
     description: 'All keys must sign. Highest security but no tolerance for lost keys. Best with reliable backup procedures.',
     useCases: [
-      'Ultra-high security',
+      'Strict conditions to spend',
       'Unanimous board decisions',
       'Regulatory compliance'
     ],
     example: 'Three co-founders must all agree to any company Bitcoin expenditure, preventing unauthorized spending.',
-    pros: ['All parties must agree', 'Maximum security', 'No single point of compromise'],
+    pros: ['Maximum security', 'No single point of compromise'],
     cons: ['No key loss tolerance', 'All parties must coordinate', 'Single unavailable party blocks spending']
   }
 ];
@@ -298,14 +298,10 @@ export function ConfigurationExplorer() {
               <strong>Access frequency</strong>
               <p>Frequent spending needs lower friction (2-of-3). Long-term storage can tolerate higher thresholds.</p>
             </div>
-            <div className={styles.factor}>
-              <strong>Risk tolerance</strong>
-              <p>Can you tolerate losing one key? Two? No key loss tolerance means 1-of-3 or similar.</p>
-            </div>
           </div>
           
           <div className={styles.recommendation}>
-            <h5>Our Recommendation</h5>
+            <h5>My Recommendation</h5>
             <p>
               <strong>For most individuals:</strong> Start with 2-of-3. It's the best balance of security, 
               redundancy, and usability. You can always migrate to a more complex setup later as your 

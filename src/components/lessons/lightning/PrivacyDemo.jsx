@@ -50,10 +50,6 @@ export function PrivacyDemo() {
             <div className={styles.visibilityList}>
               <div className={styles.visibilityItem} data-visible="true">
                 <Eye size={14} />
-                <span>Sender address</span>
-              </div>
-              <div className={styles.visibilityItem} data-visible="true">
-                <Eye size={14} />
                 <span>Receiver address</span>
               </div>
               <div className={styles.visibilityItem} data-visible="true">
@@ -95,11 +91,7 @@ export function PrivacyDemo() {
               </div>
               <div className={styles.visibilityItem} data-visible="false">
                 <EyeOff size={14} />
-                <span>Receiver hidden</span>
-              </div>
-              <div className={styles.visibilityItem} data-visible="false">
-                <EyeOff size={14} />
-                <span>Amount hidden</span>
+                <span>Amount hidden to Public</span>
               </div>
               <div className={styles.visibilityItem} data-visible="false">
                 <EyeOff size={14} />
@@ -113,7 +105,7 @@ export function PrivacyDemo() {
             
             <div className={styles.columnFooter} data-type="lightning">
               <Check size={16} />
-              <span>Only sender & receiver know</span>
+              <span>Only sender, receiver, and routers know</span>
             </div>
           </div>
         </div>
@@ -241,106 +233,8 @@ export function PrivacyDemo() {
           </div>
         </div>
 
-        {/* Quick Comparison Table */}
-        <div className={styles.comparisonTable}>
-          <div className={styles.tableHeader}>
-            <span>Visibility</span>
-            <span>On-Chain</span>
-            <span>Lightning</span>
-          </div>
-          <div className={styles.tableRow}>
-            <span>Sender</span>
-            <span data-status="visible"><Eye size={14} /> Public</span>
-            <span data-status="hidden"><EyeOff size={14} /> Hidden</span>
-          </div>
-          <div className={styles.tableRow}>
-            <span>Receiver</span>
-            <span data-status="visible"><Eye size={14} /> Public</span>
-            <span data-status="hidden"><EyeOff size={14} /> Hidden</span>
-          </div>
-          <div className={styles.tableRow}>
-            <span>Amount</span>
-            <span data-status="visible"><Eye size={14} /> Public</span>
-            <span data-status="hidden"><EyeOff size={14} /> Hidden</span>
-          </div>
-          <div className={styles.tableRow}>
-            <span>Routing</span>
-            <span data-status="visible"><Eye size={14} /> Traceable</span>
-            <span data-status="hidden"><EyeOff size={14} /> Onion</span>
-          </div>
-        </div>
       </Card>
-
-      {/* Technical Deep Dive */}
-      <Accordion
-        title="Deep Dive: How Onion Routing Works"
-        variant="deepdive"
-        icon={<Lock size={16} />}
-      >
-        <p>
-          Lightning uses <strong>onion routing</strong>, similar to the Tor network, to protect 
-          payment privacy. The sender creates multiple "layers" of encryption, like layers of an onion.
-        </p>
-        
-        <h4>Technical Details:</h4>
-        <ul>
-          <li>
-            <strong>Source routing:</strong> The sender (Alice) chooses the entire payment path and 
-            encrypts routing information for each hop in layers
-          </li>
-          <li>
-            <strong>Layered encryption:</strong> Each routing node can only decrypt one layer, 
-            revealing only the next hop. They cannot see the final destination or full path
-          </li>
-          <li>
-            <strong>HTLC privacy:</strong> Each hop creates an HTLC (Hash Time-Locked Contract) 
-            for a slightly different amount (to account for fees), making it harder to trace
-          </li>
-          <li>
-            <strong>Payment hash:</strong> All HTLCs use the same payment hash, but nodes don't 
-            know if they're the final recipient or just forwarding
-          </li>
-        </ul>
-
-        <h4>What Each Hop Knows:</h4>
-        <ul>
-          <li><strong>Routing nodes (Bob, Carol):</strong> Only know the previous hop and next hop. 
-          They don't know if the previous hop is the sender or the next hop is the receiver</li>
-          <li><strong>Amount privacy:</strong> Each hop sees slightly different amounts due to fees, 
-          making amount correlation more difficult</li>
-          <li><strong>Timing attacks:</strong> Sophisticated attackers could potentially correlate 
-          payments by timing, but this is much harder than on-chain analysis</li>
-        </ul>
-
-        <h4>Privacy Limitations:</h4>
-        <ul>
-          <li>
-            <strong>Channel graph is public:</strong> Opening and closing channels requires on-chain 
-            transactions, which are visible
-          </li>
-          <li>
-            <strong>Network topology:</strong> The network of channels is public knowledge, allowing 
-            some statistical analysis
-          </li>
-          <li>
-            <strong>Invoice metadata:</strong> Lightning invoices can contain descriptions that 
-            leak information. Use generic descriptions for better privacy
-          </li>
-          <li>
-            <strong>Balance probing:</strong> Malicious nodes might try to probe channel balances, 
-            though this is being addressed in newer protocol versions
-          </li>
-        </ul>
-
-        <h4>Best Practices:</h4>
-        <ul>
-          <li>Use multiple channels to different peers for better privacy</li>
-          <li>Avoid reusing invoices (each invoice should be single-use)</li>
-          <li>Keep invoice descriptions generic when possible</li>
-          <li>Consider using Tor for additional network-level privacy</li>
-          <li>Private channels (unannounced) offer even better privacy but limit routing</li>
-        </ul>
-      </Accordion>
+      
     </div>
   );
 }

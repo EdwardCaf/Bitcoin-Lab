@@ -20,11 +20,6 @@ import styles from './BestPractices.module.css';
 const dosAndDonts = {
   dos: [
     {
-      icon: TestTube,
-      title: 'Test with small amounts first',
-      description: 'Send a small test transaction before depositing significant funds. Verify you can actually spend.'
-    },
-    {
       icon: MapPin,
       title: 'Store keys in different locations',
       description: 'Geographic distribution protects against localized disasters like fire, flood, or theft.'
@@ -38,6 +33,11 @@ const dosAndDonts = {
       icon: FileCheck,
       title: 'Back up the wallet descriptor',
       description: 'The output descriptor is required to reconstruct your wallet. Store copies with each seed backup.'
+    },
+    {
+      icon: TestTube,
+      title: 'Test with small amounts first',
+      description: 'Send a small test transaction before depositing significant funds. Verify you can actually spend.'
     },
     {
       icon: Users,
@@ -82,31 +82,31 @@ const dosAndDonts = {
 const securityTiers = [
   {
     tier: 'Learning',
-    value: '< $1,000',
+    value: '< $10,000',
     color: 'var(--success)',
     recommendation: 'Single-sig hardware wallet is sufficient for learning. The complexity of multisig isn\'t worth it yet.',
     setup: 'Single hardware wallet with seed backup'
   },
   {
     tier: 'Moderate',
-    value: '$1K - $50K',
+    value: '$10K - $100K',
     color: 'var(--info)',
-    recommendation: 'Consider 2-of-3 multisig with two hardware wallets and one paper backup.',
-    setup: '2-of-3: Hardware wallet (home) + Hardware wallets (secure location) + Paper backups'
+    recommendation: 'Consider 2-of-3 multisig with three hardware wallets',
+    setup: '2-of-3: Hardware wallet (home) + two Hardware wallets in separate secure locations'
   },
   {
     tier: 'Significant',
-    value: '$50K - $500K',
+    value: '$100K - $500K',
     color: 'var(--warning)',
     recommendation: '2-of-3 with geographic distribution and different vendors. Consider professional guidance.',
-    setup: '2-of-3: Coldcard (home) + Trezor (bank safe) + Paper/Metal or hardware (family)'
+    setup: '2-of-3: Hardware wallet (home) + two Hardware wallets in separate secure locations. Inheritance planning should be considered'
   },
   {
     tier: 'High Value',
     value: '$500K+',
     color: 'var(--bitcoin-orange)',
-    recommendation: '3-of-5 or collaborative custody with professional services. Involve legal/estate planning.',
-    setup: '3-of-5 or 2-of-3 with Nunchuk or others holding one key for recovery'
+    recommendation: '2-of-3 or collaborative custody with professional services. Involve legal/estate planning.',
+    setup: '2-of-4 with Nunchuk or 2-of-3 for recovery and robust inheritance protocol.'
   }
 ];
 
@@ -147,7 +147,7 @@ const whenNotToUse = [
   {
     icon: DollarSign,
     title: 'Very Small Amounts',
-    description: 'The complexity overhead isn\'t worth it for amounts you\'d be OK losing. A hardware wallet is simpler and sufficient.'
+    description: 'The complexity overhead isn\'t worth it for amounts you\'d be OK losing. A single-sig hardware wallet is simpler and sufficient.'
   },
   {
     icon: Clock,
@@ -317,7 +317,7 @@ export function BestPractices() {
         <div>
           <strong>Start Simple, Upgrade Later</strong>
           <p>
-            Begin with a 2-of-3 setup using two hardware wallets from different vendors plus 
+            Begin with a single-sig hardware wallet or a 2-of-3 setup using two hardware wallets from different vendors plus 
             a paper/metal backup. Test thoroughly with small amounts. Document everything. 
             You can always migrate to a more complex setup as your experience and holdings grow.
           </p>
