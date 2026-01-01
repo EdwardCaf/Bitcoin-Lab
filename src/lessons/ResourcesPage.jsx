@@ -52,7 +52,7 @@ const RESOURCES = {
       {
         name: 'Blue Wallet',
         url: 'https://bluewallet.io',
-        description: 'Easy-to-use mobile wallet with Lightning Network support built-in.',
+        description: 'Easy-to-use mobile wallet with Watch-only support.',
         tags: ['Mobile'],
         icon: Smartphone
       },
@@ -169,6 +169,20 @@ const RESOURCES = {
         description: 'NFC card for secure Bitcoin key storage in your wallet.',
         tags: ['NFC', 'Budget'],
         icon: Shield
+      },
+      {
+        name: 'Foundation Passport',
+        url: 'https://foundation.xyz/passport',
+        description: 'Open-source, air-gapped hardware wallet with a beautiful interface.',
+        tags: ['Air-gapped'],
+        icon: Shield
+      },
+      {
+        name: 'Trezor Safe 7',
+        url: 'https://trezor.io/trezor-safe-7',
+        description: 'Bitcoin-only edition hardware wallet with secure element and touchscreen.',
+        tags: ['Bitcoin-only'],
+        icon: Shield
       }
     ]
   },
@@ -229,7 +243,7 @@ const RESOURCES = {
         icon: ArrowLeftRight
       },
       {
-        name: 'Bisq',
+        name: 'Bisq 2',
         url: 'https://bisq.network',
         description: 'Decentralized peer-to-peer Bitcoin exchange.',
         tags: ['P2P'],

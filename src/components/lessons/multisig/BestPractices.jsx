@@ -92,14 +92,14 @@ const securityTiers = [
     value: '$1K - $50K',
     color: 'var(--info)',
     recommendation: 'Consider 2-of-3 multisig with two hardware wallets and one paper backup.',
-    setup: '2-of-3: Hardware wallet (home) + Hardware wallet (secure location) + Paper backup'
+    setup: '2-of-3: Hardware wallet (home) + Hardware wallets (secure location) + Paper backups'
   },
   {
     tier: 'Significant',
     value: '$50K - $500K',
     color: 'var(--warning)',
     recommendation: '2-of-3 with geographic distribution and different vendors. Consider professional guidance.',
-    setup: '2-of-3: Coldcard (home) + Trezor (bank safe) + Paper/Metal (family)'
+    setup: '2-of-3: Coldcard (home) + Trezor (bank safe) + Paper/Metal or hardware (family)'
   },
   {
     tier: 'High Value',

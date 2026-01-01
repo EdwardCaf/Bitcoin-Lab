@@ -47,7 +47,7 @@ const comparisonData = [
   { 
     feature: 'Vulnerable To', 
     hot: { value: 'Malware, hacks, phishing', icon: AlertTriangle, variant: 'error' }, 
-    cold: { value: 'Physical theft only', icon: Shield, variant: 'success' }
+    cold: { value: 'Physical theft & User error', icon: Shield, variant: 'success' }
   },
   { 
     feature: 'Best Use Case', 

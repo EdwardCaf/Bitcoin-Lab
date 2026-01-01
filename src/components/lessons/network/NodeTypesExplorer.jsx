@@ -5,7 +5,6 @@ import {
   Smartphone, 
   HardDrive,
   Shield,
-  Pickaxe,
   Zap,
   CheckCircle2,
   XCircle
@@ -31,23 +30,7 @@ const nodeTypes = [
     examples: ['Bitcoin Core', 'Bitcoin Knots', 'btcd', 'libbitcoin'],
     requirements: 'Disk: 2TB, RAM: 8-16GB, Bandwidth: 200GB/month'
   },
-  {
-    id: 'mining',
-    name: 'Mining Node',
-    icon: Pickaxe,
-    color: '#f7931a',
-    description: 'A full node that also competes to create new blocks.',
-    features: [
-      { text: 'All full node capabilities', included: true },
-      { text: 'Creates new blocks via proof-of-work', included: true },
-      { text: 'Earns block rewards and fees', included: true },
-      { text: 'Requires specialized hardware (ASICs)', included: true },
-      { text: 'Usually connects to mining pools', included: true },
-      { text: 'High electricity consumption', included: true },
-    ],
-    examples: ['Mining farms', 'Pool operators'],
-    requirements: 'ASICs, cheap electricity, full node + pool software'
-  },
+
   {
     id: 'neutrino',
     name: 'Light Client (Neutrino)',

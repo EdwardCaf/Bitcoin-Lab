@@ -175,7 +175,7 @@ export function ConfidentialTxDemo() {
             <div className={styles.txFooter}>
               <span>Transaction Fee:</span>
               <span className={isConfidential ? styles.hidden : ''}>
-                {isConfidential ? '••••••••' : '0.001 L-BTC'}
+                {'0.001 L-BTC'}
               </span>
             </div>
           </motion.div>

@@ -76,7 +76,6 @@ const addressTypes = [
     ],
     cons: [
       'Not supported by very old wallets',
-      'Case-insensitive (potential confusion)',
       'Longer address string'
     ],
     fees: 'low',

@@ -127,7 +127,7 @@ function IntroSection() {
             <span className={styles.factLabel}>Current block reward</span>
           </div>
           <div className={styles.fact}>
-            <span className={styles.factValue}>~600 EH/s</span>
+            <span className={styles.factValue}>~900 EH/s</span>
             <span className={styles.factLabel}>Network hash rate</span>
           </div>
         </div>

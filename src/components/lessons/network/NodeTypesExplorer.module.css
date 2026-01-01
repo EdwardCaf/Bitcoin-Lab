@@ -41,14 +41,14 @@
 /* Type Selector */
 .typeSelector {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--spacing-sm);
   margin-bottom: var(--spacing-lg);
 }
 
-@media (max-width: 800px) {
+@media (max-width: 700px) {
   .typeSelector {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
   }
 }
 

@@ -169,7 +169,7 @@ export function InvoiceExplorer() {
               <ul className={styles.componentItems}>
                 <li><strong>Prefix</strong> <code>ln</code> - Identifies this as a Lightning Network invoice</li>
                 <li><strong>Network</strong> <code>bc</code> - Which Bitcoin network (bc, tb, tbs, bcrt)</li>
-                <li><strong>Amount</strong> <code>2500u</code> - Payment amount with multiplier (m, u, n, p)</li>
+                <li><strong>Amount</strong> <code>10u</code> - Payment amount with multiplier (m, u, n, p)</li>
               </ul>
             </div>
 

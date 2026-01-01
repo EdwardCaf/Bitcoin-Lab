@@ -72,7 +72,7 @@ const SCENARIOS = [
     layers: {
       bitcoin: { risk: 'high', description: 'Charity can see all your addresses and balance history' },
       lightning: { risk: 'low', description: 'Only the payment amount is visible, not your balance' },
-      ecash: { risk: 'none', description: 'Near-perfect privacy - charity can\'t link payment to you at all' }
+      ecash: { risk: 'low', description: 'Near-perfect privacy - charity can\'t link payment to you at all' }
     }
   },
   {
@@ -82,7 +82,7 @@ const SCENARIOS = [
     layers: {
       bitcoin: { risk: 'high', description: 'Employer can follow the chain and see where you spend' },
       lightning: { risk: 'low', description: 'Channel opens visible, but payments are private' },
-      ecash: { risk: 'none', description: 'Once converted to eCash, spending is completely untraceable' }
+      ecash: { risk: 'low', description: 'Once converted to eCash, spending is completely untraceable' }
     }
   },
   {
@@ -92,7 +92,7 @@ const SCENARIOS = [
     layers: {
       bitcoin: { risk: 'high', description: 'Merchant sees your transaction history and can estimate balance' },
       lightning: { risk: 'low', description: 'Merchant only sees this payment, not your channels or balance' },
-      ecash: { risk: 'none', description: 'Tokens reveal nothing about your financial history' }
+      ecash: { risk: 'low', description: 'Tokens reveal nothing about your financial history' }
     }
   }
 ];
@@ -281,7 +281,7 @@ export function PrivacyComparison() {
 
         <h4>eCash (Cashu/Fedimint)</h4>
         <ul>
-          <li><strong>Pro:</strong> Perfect cryptographic privacy via blind signatures. Mint cannot track users</li>
+          <li><strong>Pro:</strong> Near-perfect cryptographic privacy via blind signatures. Mint cannot track users</li>
           <li><strong>Con:</strong> Custodial - you must trust the mint not to steal funds or be shut down</li>
           <li><strong>Best for:</strong> Privacy-critical payments in small amounts with trusted community mints</li>
         </ul>

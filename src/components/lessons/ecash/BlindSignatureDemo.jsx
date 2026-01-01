@@ -295,8 +295,7 @@ export function BlindSignatureDemo() {
         </ul>
         <p>
           <strong>The key insight:</strong> The mint proves the token is worth 100 sats without 
-          knowing who withdrew it. This gives eCash users near-perfect privacy - even better than 
-          cash, since there are no serial numbers!
+          knowing who withdrew it. This gives eCash users near-perfect privacy.
         </p>
       </Accordion>
     </div>
