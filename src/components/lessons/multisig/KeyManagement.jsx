@@ -112,7 +112,7 @@ function GeographicDistribution() {
           </div>
           <div className={styles.geoInfo}>
             <strong>Bank Safe Deposit</strong>
-            <span>Metal backup of seed phrase</span>
+            <span>Hardware Wallet with PIN and secure element</span>
           </div>
         </div>
         
@@ -146,8 +146,7 @@ export function KeyManagement() {
       <Card variant="elevated" padding="large">
         <h4 className={styles.sectionTitle}>Types of Key Holders</h4>
         <p className={styles.sectionDescription}>
-          In a multisig setup, each key can be held by different types of devices or services. 
-          Mixing different types adds defense in depth.
+          In a multisig setup, each key can be held by different types of devices or services.
         </p>
         
         <div className={styles.holderSelector}>

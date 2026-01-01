@@ -23,7 +23,7 @@ const walletExamples = {
   ],
   cold: [
     { name: 'Hardware Wallets', icon: HardDrive, examples: ['Coldcard', 'Trezor', 'Jade'], description: 'Dedicated physical devices for secure storage' },
-    { name: 'Paper/Steel Wallets', icon: Lock, examples: ['Printed keys', 'Steel backups'], description: 'Keys stored on physical media only' },
+    { name: 'Paper/Steel Wallets', icon: Lock, examples: ['Paper backups', 'Steel backups'], description: 'Keys stored on physical media only' },
     { name: 'Air-Gapped Devices', icon: WifiOff, examples: ['Offline computer', 'DIY solutions'], description: 'Completely isolated from internet' }
   ]
 };
@@ -270,7 +270,7 @@ export function WalletTypesExplorer() {
 
         <p>
           <strong>Summary:</strong> Hot wallets are vulnerable 
-          to digital attacks. Cold wallets protect against digital threats but still require careful physical 
+          to digital attacks. Cold wallets protect against most digital threats but still require careful physical 
           security. The best approach is layered security using both.
         </p>
       </Accordion>

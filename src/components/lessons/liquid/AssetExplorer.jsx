@@ -203,7 +203,7 @@ export function AssetExplorer() {
           <div>
             <strong>Asset ID</strong>
             <p>
-              Each asset has a unique 64-character hex ID derived from its issuance transaction. 
+              Each asset has a unique ID derived from its issuance transaction. 
               This prevents asset spoofing - you always know exactly which asset you're receiving.
             </p>
           </div>

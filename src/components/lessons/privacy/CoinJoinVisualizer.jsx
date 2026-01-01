@@ -408,9 +408,6 @@ export function CoinJoinVisualizer() {
           <li>
             <strong>Label UTXOs:</strong> Make sure to label where each UTXO has come from and/or what it will be used for.
           </li>
-          <li>
-            <strong>Fees:</strong> An amount goes to transaction fees for each round of Coinjoin(not shown in this demo)
-          </li>
         </ul>
       </Accordion>
     </div>

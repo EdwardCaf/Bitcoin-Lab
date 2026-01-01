@@ -4,7 +4,6 @@ import { Coins, Shield, Lock, Users, Target, AlertTriangle, Sparkles } from 'luc
 import { LessonLayout } from '../components/layout';
 import { Card, Accordion } from '../components/common';
 import { 
-  BlindSignatureDemo, 
   MintVisualizer, 
   PrivacyComparison, 
   FedimintExplorer 
@@ -161,9 +160,6 @@ function CashuSection() {
       </p>
 
       <MintVisualizer />
-
-
-      <BlindSignatureDemo />
     </motion.div>
   );
 }
@@ -266,61 +262,7 @@ function FedimintSection() {
 
       <FedimintExplorer />
 
-      <Accordion
-        title="Community Custody in Practice"
-        variant="deepdive"
-        icon={<Users size={16} />}
-      >
-        <h4>The Bitcoin Beach Example</h4>
-        <p>
-          Imagine a Bitcoin circular economy in El Salvador's Bitcoin Beach:
-        </p>
-        <ul>
-          <li>
-            <strong>Guardians:</strong> 5 trusted community members - the local surf shop 
-            owner, a teacher, the pastor, a Bitcoin educator, and a tech volunteer.
-          </li>
-          <li>
-            <strong>Threshold:</strong> 3-of-5 signatures required. Any 3 guardians can 
-            approve transactions, so 2 can be offline or compromised without breaking the system.
-          </li>
-          <li>
-            <strong>Social trust:</strong> These are known community members with reputations 
-            to protect. Rug-pulling would destroy their standing in the community.
-          </li>
-          <li>
-            <strong>Practical for everyday use:</strong> Residents can pay for coffee, groceries, 
-            and services with near-perfect privacy and instant settlement, while trusting a distributed 
-            set of community members instead of a single bank or company.
-          </li>
-        </ul>
-
-        <h4>Why Not Just Use Lightning?</h4>
-        <p>
-          Fedimint makes sense when:
-        </p>
-        <ul>
-          <li>Users lack the technical skill to run Lightning nodes</li>
-          <li>Privacy is paramount (Lightning's privacy has limitations)</li>
-          <li>The community wants local control instead of depending on external Lightning infrastructure</li>
-          <li>Users prefer simple token-based payments over channel management</li>
-        </ul>
-
-        <h4>The Trust Model</h4>
-        <p>
-          Fedimint doesn't eliminate trust - it distributes it. You're trusting:
-        </p>
-        <ul>
-          <li>That a majority of guardians won't collude to steal funds</li>
-          <li>That guardians will maintain uptime and security</li>
-          <li>That the community will hold guardians accountable</li>
-        </ul>
-        <p>
-          This is a significant improvement over trusting a single custodian, but it's still 
-          custodial. For many communities, especially in the Global South where traditional 
-          banking is predatory, this trade-off makes sense.
-        </p>
-      </Accordion>
+      
     </motion.div>
   );
 }

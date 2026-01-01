@@ -235,37 +235,7 @@ export function AddressReuseDemo() {
         </div>
       </Card>
 
-      <Accordion
-        title="Deep Dive: Why Address Reuse is Dangerous"
-        variant="deepdive"
-        icon={<AlertTriangle size={16} />}
-      >
-        <p>
-          <strong>Problems with address reuse:</strong>
-        </p>
-        <ul>
-          <li>
-            <strong>Balance exposure:</strong> Anyone who paid you can see your total 
-            balance and all other payments
-          </li>
-          <li>
-            <strong>Transaction linking:</strong> Observers can connect your real-world 
-            identity to your Bitcoin activity
-          </li>
-          <li>
-            <strong>Spending patterns:</strong> When you spend, observers learn which 
-            payments were yours
-          </li>
-          <li>
-            <strong>Security risk:</strong> Reusing addresses slightly weakens the 
-            cryptographic security model (theoretically)
-          </li>
-        </ul>
-        <p>
-          Modern HD wallets automatically generate new addresses for each transaction. 
-          There's no reason to reuse addresses - fresh addresses are free!
-        </p>
-      </Accordion>
+      
     </div>
   );
 }

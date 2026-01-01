@@ -1,374 +1,166 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Coins,
   Zap,
-  ArrowDown,
-  ArrowUp,
+  ArrowRight,
   Building,
-  Sparkles,
-  Info
+  Check
 } from 'lucide-react';
-import { Card, Button, Badge, Accordion } from '../../common';
+import { Card } from '../../common';
 import styles from './MintVisualizer.module.css';
 
-const OPERATIONS = [
-  { id: 'mint', label: 'Mint', icon: ArrowDown, description: 'Convert Lightning to eCash tokens' },
-  { id: 'melt', label: 'Melt', icon: ArrowUp, description: 'Convert eCash tokens back to Lightning' }
-];
-
-const TOKEN_DENOMINATIONS = [1, 2, 4, 8, 16, 32, 64];
-
 export function MintVisualizer() {
-  const [operation, setOperation] = useState('mint');
-  const [amount, setAmount] = useState(100);
-  const [isProcessing, setIsProcessing] = useState(false);
-  const [tokens, setTokens] = useState([]);
-  const [showBreakdown, setShowBreakdown] = useState(false);
-
-  const handleOperation = async () => {
-    setIsProcessing(true);
-    setShowBreakdown(true);
-    
-    // Simulate processing
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    if (operation === 'mint') {
-      // Generate token breakdown
-      const breakdown = getTokenBreakdown(amount);
-      setTokens(breakdown);
-    } else if (operation === 'melt') {
-      setTokens([]);
-    }
-    
-    setIsProcessing(false);
-  };
-
-  const getTokenBreakdown = (value) => {
-    const result = [];
-    let remaining = value;
-    
-    for (let i = TOKEN_DENOMINATIONS.length - 1; i >= 0; i--) {
-      const denom = TOKEN_DENOMINATIONS[i];
-      while (remaining >= denom) {
-        result.push({
-          id: Math.random().toString(36).substr(2, 9),
-          value: denom,
-          color: getTokenColor(denom)
-        });
-        remaining -= denom;
-      }
-    }
-    
-    return result;
-  };
-
-  const getTokenColor = (value) => {
-    const colors = {
-      1: '#ef4444',
-      2: '#f97316',
-      4: '#f59e0b',
-      8: '#eab308',
-      16: '#84cc16',
-      32: '#22c55e',
-      64: '#10b981'
-    };
-    return colors[value] || '#3b82f6';
-  };
-
   return (
     <div className={styles.container}>
       <Card variant="elevated" padding="large">
         <div className={styles.header}>
-          <div className={styles.titleSection}>
-            <div className={styles.iconWrapper}>
-              <Coins size={24} />
-            </div>
-            <div>
-              <h3 className={styles.title}>Cashu Mint Operations</h3>
-              <p className={styles.subtitle}>
-                See how Bitcoin moves in and out of eCash tokens
-              </p>
-            </div>
+          <div className={styles.iconWrapper}>
+            <Coins size={24} />
+          </div>
+          <div>
+            <h3 className={styles.title}>Cashu Basics</h3>
+            <p className={styles.subtitle}>
+              How Bitcoin becomes eCash tokens (and back again)
+            </p>
           </div>
         </div>
 
-        {/* Operation Selector */}
-        <div className={styles.operationSelector}>
-          {OPERATIONS.map((op) => {
-            const Icon = op.icon;
-            return (
-              <motion.button
-                key={op.id}
-                className={`${styles.operationButton} ${
-                  operation === op.id ? styles.active : ''
-                }`}
-                onClick={() => {
-                  setOperation(op.id);
-                  setTokens([]);
-                  setShowBreakdown(false);
-                }}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <Icon size={20} />
-                <div>
-                  <span className={styles.opLabel}>{op.label}</span>
-                  <span className={styles.opDesc}>{op.description}</span>
+        {/* Simple explanation */}
+        <div className={styles.explainer}>
+          <p>
+            A <strong>mint</strong> is like a bank that holds your Bitcoin and gives you 
+            digital tokens in return. These tokens can be sent to anyone instantly and privately.
+          </p>
+        </div>
+
+        {/* Two operations side by side */}
+        <div className={styles.operationsGrid}>
+          {/* Minting */}
+          <div className={styles.operationCard}>
+            <h4 className={styles.operationTitle}>
+              <span className={styles.stepNumber}>1</span>
+              Minting (Deposit)
+            </h4>
+            <p className={styles.operationDesc}>
+              Convert your Bitcoin into eCash tokens
+            </p>
+            
+            <div className={styles.flowDiagram}>
+              <div className={styles.flowItem}>
+                <div className={styles.flowIcon} data-type="lightning">
+                  <Zap size={20} />
                 </div>
-              </motion.button>
-            );
-          })}
-        </div>
-
-        {/* Amount Input */}
-        <div className={styles.amountSection}>
-          <label className={styles.label}>Amount (sats)</label>
-          <div className={styles.amountInput}>
-            <input
-              type="number"
-              value={amount}
-              onChange={(e) => setAmount(Math.max(1, Math.min(1000, parseInt(e.target.value) || 0)))}
-              min="1"
-              max="1000"
-              step="1"
-              disabled={isProcessing}
-            />
-            <span className={styles.unit}>sats</span>
-          </div>
-          <div className={styles.presetButtons}>
-            {[10, 50, 100, 500].map((preset) => (
-              <button
-                key={preset}
-                className={styles.presetButton}
-                onClick={() => setAmount(preset)}
-                disabled={isProcessing}
-              >
-                {preset}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Visualization */}
-        <div className={styles.visualization}>
-          {operation === 'mint' && (
-            <MintOperation
-              amount={amount}
-              isProcessing={isProcessing}
-              tokens={tokens}
-              showBreakdown={showBreakdown}
-            />
-          )}
-          {operation === 'melt' && (
-            <MeltOperation
-              amount={amount}
-              isProcessing={isProcessing}
-              showBreakdown={showBreakdown}
-            />
-          )}
-        </div>
-
-        {/* Action Button */}
-        <div className={styles.actions}>
-          <Button
-            variant="primary"
-            size="large"
-            onClick={handleOperation}
-            disabled={isProcessing}
-            fullWidth
-          >
-            {isProcessing ? 'Processing...' : `${operation.charAt(0).toUpperCase() + operation.slice(1)} ${amount} sats`}
-          </Button>
-        </div>
-
-        {/* Token Breakdown */}
-        <AnimatePresence>
-          {showBreakdown && tokens.length > 0 && operation === 'mint' && (
-            <motion.div
-              className={styles.breakdown}
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-            >
-              <h4>
-                <Sparkles size={16} />
-                Token Breakdown
-              </h4>
-              <p className={styles.breakdownDesc}>
-                Your {amount} sats are represented by {tokens.length} token{tokens.length !== 1 ? 's' : ''} 
-                using powers of 2 for efficient splitting
-              </p>
-              <div className={styles.tokenGrid}>
-                {tokens.map((token, index) => (
-                  <motion.div
-                    key={token.id}
-                    className={styles.token}
-                    style={{ 
-                      backgroundColor: token.color,
-                      borderColor: token.color
-                    }}
-                    initial={{ opacity: 0, scale: 0, rotate: -180 }}
-                    animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                    transition={{ delay: index * 0.05, type: 'spring' }}
-                  >
-                    <Coins size={16} />
-                    <span>{token.value}</span>
-                  </motion.div>
-                ))}
+                <span>You send Bitcoin</span>
               </div>
-              <div className={styles.infoBox}>
-                <Info size={14} />
-                <span>
-                  Powers of 2 allow efficient token splitting. Any amount can be represented, 
-                  and tokens can be combined or split as needed.
-                </span>
+              
+              <ArrowRight size={20} className={styles.flowArrow} />
+              
+              <div className={styles.flowItem}>
+                <div className={styles.flowIcon} data-type="mint">
+                  <Building size={20} />
+                </div>
+                <span>Mint holds it</span>
               </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+              
+              <ArrowRight size={20} className={styles.flowArrow} />
+              
+              <div className={styles.flowItem}>
+                <div className={styles.flowIcon} data-type="tokens">
+                  <Coins size={20} />
+                </div>
+                <span>You get tokens</span>
+              </div>
+            </div>
+
+            <div className={styles.exampleBox}>
+              <strong>Example:</strong> Send 1000 sats via Lightning, receive eCash tokens worth 1000 sats
+            </div>
+          </div>
+
+          {/* Melting */}
+          <div className={styles.operationCard}>
+            <h4 className={styles.operationTitle}>
+              <span className={styles.stepNumber}>2</span>
+              Melting (Withdraw)
+            </h4>
+            <p className={styles.operationDesc}>
+              Convert your eCash tokens back to Bitcoin
+            </p>
+            
+            <div className={styles.flowDiagram}>
+              <div className={styles.flowItem}>
+                <div className={styles.flowIcon} data-type="tokens">
+                  <Coins size={20} />
+                </div>
+                <span>You send tokens</span>
+              </div>
+              
+              <ArrowRight size={20} className={styles.flowArrow} />
+              
+              <div className={styles.flowItem}>
+                <div className={styles.flowIcon} data-type="mint">
+                  <Building size={20} />
+                </div>
+                <span>Mint destroys them</span>
+              </div>
+              
+              <ArrowRight size={20} className={styles.flowArrow} />
+              
+              <div className={styles.flowItem}>
+                <div className={styles.flowIcon} data-type="lightning">
+                  <Zap size={20} />
+                </div>
+                <span>You get Bitcoin</span>
+              </div>
+            </div>
+
+            <div className={styles.exampleBox}>
+              <strong>Example:</strong> Redeem 500 sats of tokens, receive 500 sats via Lightning
+            </div>
+          </div>
+        </div>
+
+        {/* Token denominations - simplified */}
+        <div className={styles.tokenSection}>
+          <h4 className={styles.tokenTitle}>How Tokens Work</h4>
+          <p className={styles.tokenDesc}>
+            eCash tokens come in fixed sizes (like coins). Your balance is split into multiple tokens 
+            that add up to your total.
+          </p>
+          
+          <div className={styles.tokenExample}>
+            <div className={styles.tokenEquation}>
+              <span className={styles.tokenAmount}>100 sats</span>
+              <span className={styles.tokenEquals}>=</span>
+              <div className={styles.tokenBreakdown}>
+                <span className={styles.tokenChip} data-value="64">64</span>
+                <span className={styles.tokenPlus}>+</span>
+                <span className={styles.tokenChip} data-value="32">32</span>
+                <span className={styles.tokenPlus}>+</span>
+                <span className={styles.tokenChip} data-value="4">4</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Key points */}
+        <div className={styles.keyPoints}>
+          <h4 className={styles.keyPointsTitle}>Key Points</h4>
+          <ul className={styles.keyPointsList}>
+            <li>
+              <Check size={16} className={styles.checkIcon} />
+              <span>Tokens can be sent to anyone <strong>instantly</strong> with <strong>no fees</strong></span>
+            </li>
+            <li>
+              <Check size={16} className={styles.checkIcon} />
+              <span>The mint <strong>cannot see</strong> who you send tokens to (that's the privacy!)</span>
+            </li>
+            <li>
+              <Check size={16} className={styles.checkIcon} />
+              <span>The mint <strong>holds your Bitcoin</strong> - choose one you trust</span>
+            </li>
+          </ul>
+        </div>
       </Card>
-
-    </div>
-  );
-}
-
-function MintOperation({ amount, isProcessing, tokens, showBreakdown }) {
-  return (
-    <div className={styles.operation}>
-      <div className={styles.participant}>
-        <div className={styles.participantHeader}>
-          <Zap size={24} className={styles.lightning} />
-          <div>
-            <h5>Lightning Network</h5>
-            <Badge variant="warning" size="small">Source</Badge>
-          </div>
-        </div>
-        <motion.div 
-          className={styles.balanceBox}
-          animate={isProcessing ? { scale: [1, 0.95, 1] } : {}}
-          transition={{ duration: 1, repeat: isProcessing ? Infinity : 0 }}
-        >
-          <div className={styles.balanceLabel}>Sending</div>
-          <div className={styles.balanceAmount}>{amount} sats</div>
-          <Zap size={32} className={styles.balanceIcon} />
-        </motion.div>
-      </div>
-
-      <motion.div 
-        className={styles.flowArrow}
-        animate={isProcessing ? { y: [0, 10, 0] } : {}}
-        transition={{ duration: 1, repeat: isProcessing ? Infinity : 0 }}
-      >
-        <ArrowDown size={32} />
-        {isProcessing && (
-          <motion.div
-            className={styles.flowParticle}
-            animate={{ y: [0, 100] }}
-            transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
-          />
-        )}
-      </motion.div>
-
-      <div className={styles.participant}>
-        <div className={styles.participantHeader}>
-          <Building size={24} className={styles.mint} />
-          <div>
-            <h5>Cashu Mint</h5>
-            <Badge variant="primary" size="small">
-              {isProcessing ? 'Minting...' : 'Ready'}
-            </Badge>
-          </div>
-        </div>
-        <motion.div 
-          className={`${styles.balanceBox} ${showBreakdown ? styles.success : ''}`}
-          animate={isProcessing ? { scale: [1, 1.05, 1] } : {}}
-          transition={{ duration: 1, repeat: isProcessing ? Infinity : 0 }}
-        >
-          {showBreakdown ? (
-            <>
-              <div className={styles.balanceLabel}>Created</div>
-              <div className={styles.balanceAmount}>{tokens.length} tokens</div>
-              <Coins size={32} className={styles.balanceIcon} />
-            </>
-          ) : (
-            <>
-              <div className={styles.balanceLabel}>Will Create</div>
-              <div className={styles.balanceAmount}>{amount} sats</div>
-              <Coins size={32} className={styles.balanceIcon} style={{ opacity: 0.3 }} />
-            </>
-          )}
-        </motion.div>
-      </div>
-    </div>
-  );
-}
-
-function MeltOperation({ amount, isProcessing, showBreakdown }) {
-  return (
-    <div className={styles.operation}>
-      <div className={styles.participant}>
-        <div className={styles.participantHeader}>
-          <Coins size={24} className={styles.ecash} />
-          <div>
-            <h5>eCash Tokens</h5>
-            <Badge variant="secondary" size="small">Source</Badge>
-          </div>
-        </div>
-        <motion.div 
-          className={styles.balanceBox}
-          animate={isProcessing ? { scale: [1, 0.95, 1] } : {}}
-          transition={{ duration: 1, repeat: isProcessing ? Infinity : 0 }}
-        >
-          <div className={styles.balanceLabel}>Redeeming</div>
-          <div className={styles.balanceAmount}>{amount} sats</div>
-          <Coins size={32} className={styles.balanceIcon} />
-        </motion.div>
-      </div>
-
-      <motion.div 
-        className={styles.flowArrow}
-        animate={isProcessing ? { y: [0, 10, 0] } : {}}
-        transition={{ duration: 1, repeat: isProcessing ? Infinity : 0 }}
-      >
-        <ArrowDown size={32} />
-        {isProcessing && (
-          <motion.div
-            className={styles.flowParticle}
-            animate={{ y: [0, 100] }}
-            transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
-          />
-        )}
-      </motion.div>
-
-      <div className={styles.participant}>
-        <div className={styles.participantHeader}>
-          <Zap size={24} className={styles.lightning} />
-          <div>
-            <h5>Lightning Network</h5>
-            <Badge variant="warning" size="small">
-              {isProcessing ? 'Sending...' : 'Destination'}
-            </Badge>
-          </div>
-        </div>
-        <motion.div 
-          className={`${styles.balanceBox} ${showBreakdown ? styles.success : ''}`}
-          animate={isProcessing ? { scale: [1, 1.05, 1] } : {}}
-          transition={{ duration: 1, repeat: isProcessing ? Infinity : 0 }}
-        >
-          <div className={styles.balanceLabel}>Receiving</div>
-          <div className={styles.balanceAmount}>{amount} sats</div>
-          <Zap size={32} className={styles.balanceIcon} />
-        </motion.div>
-      </div>
-
-      <div className={styles.infoBox} style={{ marginTop: 'var(--spacing-lg)' }}>
-        <Info size={14} />
-        <span>
-          Tokens are destroyed and Lightning sats are sent out. The mint burns the tokens 
-          to prevent double-spending.
-        </span>
-      </div>
     </div>
   );
 }

@@ -336,55 +336,7 @@ export function HowItWorks() {
         </div>
       </Card>
       
-      {/* Deep Dive */}
-      <Accordion
-        title="Deep Dive: How Bitcoin Verifies Multisig"
-        variant="deepdive"
-        icon={<Shield size={16} />}
-      >
-        <p>
-          When you create a multisig wallet, you're defining a special spending condition 
-          called a <strong>redeem script</strong>. This script says: "To spend these coins, 
-          provide M valid signatures from this set of N public keys."
-        </p>
-        
-        <div className={styles.deepDiveSteps}>
-          <div className={styles.deepDiveStep}>
-            <div className={styles.deepDiveNumber}>1</div>
-            <div>
-              <strong>Script Creation</strong>
-              <p>All N public keys are combined into a redeem script that defines the threshold</p>
-            </div>
-          </div>
-          <div className={styles.deepDiveStep}>
-            <div className={styles.deepDiveNumber}>2</div>
-            <div>
-              <strong>Address Generation</strong>
-              <p>The script is hashed to create the multisig address (starts with 3 or bc1)</p>
-            </div>
-          </div>
-          <div className={styles.deepDiveStep}>
-            <div className={styles.deepDiveNumber}>3</div>
-            <div>
-              <strong>Spending</strong>
-              <p>To spend, you provide the original script plus M valid signatures</p>
-            </div>
-          </div>
-          <div className={styles.deepDiveStep}>
-            <div className={styles.deepDiveNumber}>4</div>
-            <div>
-              <strong>Verification</strong>
-              <p>Bitcoin nodes verify each signature matches one of the N public keys</p>
-            </div>
-          </div>
-        </div>
-        
-        <p className={styles.deepDiveNote}>
-          <strong>Note:</strong> The order of signatures must match the order of public keys 
-          in the script. Modern wallets handle this automatically using "sortedmulti" which 
-          orders keys consistently.
-        </p>
-      </Accordion>
+      
     </div>
   );
 }
