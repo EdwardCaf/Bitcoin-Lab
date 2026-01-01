@@ -190,26 +190,7 @@ export function MerkleTreeVisualizer() {
         </Card>
       </div>
       
-      <Accordion
-        title="Deep Dive: Merkle Proofs"
-        variant="deepdive"
-        icon={<GitBranch size={16} />}
-      >
-        <p>
-          A <strong>Merkle proof</strong> allows you to verify that a specific 
-          transaction is included in a block without having all the transactions.
-        </p>
-        <p>For a block with 1000 transactions, you only need:</p>
-        <ul>
-          <li>The transaction you want to verify</li>
-          <li>About 10 intermediate hashes (log₂1000 ≈ 10)</li>
-          <li>The merkle root (from the block header)</li>
-        </ul>
-        <p>
-          This is how lightweight wallets (SPV) can verify transactions 
-          without downloading the entire 800+ GB blockchain.
-        </p>
-      </Accordion>
+      
     </div>
   );
 }

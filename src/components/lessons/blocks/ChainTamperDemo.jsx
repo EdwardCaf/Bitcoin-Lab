@@ -222,35 +222,6 @@ export function ChainTamperDemo() {
         )}
       </Card>
       
-      <Accordion
-        title="Deep Dive: Why Blockchains Are Immutable"
-        variant="deepdive"
-        icon={<Shield size={16} />}
-      >
-        <p>
-          Blockchain immutability comes from three key properties:
-        </p>
-        <ul>
-          <li>
-            <strong>Hash Chaining:</strong> Each block contains the hash of the previous 
-            block. Changing any data changes all subsequent hashes.
-          </li>
-          <li>
-            <strong>Proof of Work:</strong> Finding valid hashes requires enormous 
-            computational effort. Rewriting history means redoing all that work.
-          </li>
-          <li>
-            <strong>Decentralization:</strong> Thousands of nodes have copies of the 
-            blockchain. An attacker would need to convince more than half to accept 
-            their altered version.
-          </li>
-        </ul>
-        <p>
-          Together, these make altering historical transactions practically impossible. 
-          This is why Bitcoin is often called "digital gold" - it can't be counterfeited 
-          or double-spent.
-        </p>
-      </Accordion>
     </div>
   );
 }

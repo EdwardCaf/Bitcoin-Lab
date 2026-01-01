@@ -170,7 +170,7 @@ export function NodeTypesExplorer() {
         icon={<Shield size={16} />}
       >
         <p>
-          Running your own full node gives you the highest level of security 
+          Running your own full node gives you security 
           and privacy in Bitcoin:
         </p>
         <ul>
@@ -183,18 +183,10 @@ export function NodeTypesExplorer() {
             servers when checking balances
           </li>
           <li>
-            <strong>Network health:</strong> More nodes make Bitcoin more decentralized 
+            <strong>Network health:</strong> More nodes make the Bitcoin ledger more decentralized 
             and resilient
           </li>
-          <li>
-            <strong>Consensus votes:</strong> Nodes enforce the rules they agree with, 
-            giving them a voice in protocol governance
-          </li>
         </ul>
-        <p>
-          While SPV wallets are convenient, they trust external servers. For 
-          maximum security, connect your wallet to your own full node.
-        </p>
       </Accordion>
     </div>
   );

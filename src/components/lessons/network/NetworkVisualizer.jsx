@@ -289,31 +289,6 @@ export function NetworkVisualizer() {
         </div>
       </Card>
       
-      <Accordion
-        title="Deep Dive: Bitcoin's P2P Network"
-        variant="deepdive"
-        icon={<Network size={16} />}
-      >
-        <p>
-          Bitcoin operates on a peer-to-peer (P2P) network with no central server. 
-          Each node connects directly to several other nodes.
-        </p>
-        <p>Types of nodes:</p>
-        <ul>
-          <li>
-            <strong>Full Nodes:</strong> Store the complete blockchain and validate 
-            all transactions and blocks independently
-          </li>
-          <li>
-            <strong>Mining Nodes:</strong> Full nodes that also compete to create new 
-            blocks through proof-of-work
-          </li>
-        </ul>
-        <p>
-          When a new transaction or block is created, it propagates through the 
-          network in seconds as nodes relay it to their peers.
-        </p>
-      </Accordion>
     </div>
   );
 }

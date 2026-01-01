@@ -164,9 +164,7 @@ function PuzzleSection() {
     >
       <h2 className={styles.sectionTitle}>The Mining Puzzle</h2>
       <p className={styles.sectionText}>
-        Miners must find a hash that starts with a certain number of zeros (Difficulty target). The only 
-        way to do this is to keep trying different numbers (called a "nonce") until 
-        one works. It's pure trial and error!
+        Miners must find a hash that is below a specific target number (difficulty target). Visually, this results in the hash starting with a long string of zeros.
       </p>
 
       <NonceFinder />

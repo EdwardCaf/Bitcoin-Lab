@@ -295,7 +295,7 @@ export function DustAnalyzer() {
       >
         <p>
           <strong>Dust</strong> refers to UTXOs that are uneconomical to spend because the 
-          transaction fee would exceed the UTXO's value. The dust threshold varies with fee rates:
+          transaction fee would exceed the UTXO's value. The dust threshold varies with fee rates (assuming single input with Native Segwit):
         </p>
         <ul>
           <li>
@@ -314,7 +314,6 @@ export function DustAnalyzer() {
         <ul>
           <li>Receiving many small payments (tips, faucets, etc.)</li>
           <li>Change outputs from transactions with poor coin selection</li>
-          <li>Consolidating at high fee rates (change becomes dust)</li>
         </ul>
       </Accordion>
     </div>

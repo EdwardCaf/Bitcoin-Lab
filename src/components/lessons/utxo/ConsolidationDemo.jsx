@@ -470,33 +470,6 @@ export function ConsolidationDemo() {
         )}
       </Card>
 
-      <Accordion
-        title="Deep Dive: When to Consolidate"
-        variant="deepdive"
-        icon={<Merge size={16} />}
-      >
-        <p>
-          UTXO consolidation is a balancing act between <strong>fee efficiency</strong> and <strong>privacy</strong>:
-        </p>
-        <ul>
-          <li>
-            <strong>Best Time:</strong> Consolidate during low-fee periods (weekends, late nights UTC). 
-            If fees are 1-5 sat/vB, consolidation makes more sense.
-          </li>
-          <li>
-            <strong>Bet on Higher Fees:</strong> Consolidation pays off most when future fees rise. 
-            If you expect fees to stay low forever, consolidation may not be worth it.
-          </li>
-          <li>
-            <strong>Privacy Trade-off:</strong> Every consolidation transaction links your UTXOs together 
-            on the public blockchain. If privacy is paramount, avoid consolidation.
-          </li>
-          <li>
-            <strong>Dust Cleanup:</strong> Small UTXOs that cost more to spend than they're worth are 
-            good candidates for consolidation during extremely low fee periods.
-          </li>
-        </ul>
-      </Accordion>
     </div>
   );
 }

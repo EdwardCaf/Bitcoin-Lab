@@ -278,52 +278,20 @@ export function CoinSelectionSimulator() {
         {/* Strategy Insight */}
         <div className={styles.insightBox}>
           {selectedStrategy === 'largestFirst' && (
-            <p>Uses the fewest inputs possible, keeping fees low. However, small UTXOs accumulate over time and can become "dust" that's expensive to spend later.</p>
+            <p>Uses the fewest inputs possible, keeping fees low. However, small UTXOs accumulate over time and can become "dust" that's expensive to spend later. Bad for privacy if UTXO is much larger than what recipient receives.</p>
           )}
           {selectedStrategy === 'smallestFirst' && (
-            <p>Cleans up small UTXOs first, preventing dust accumulation. Higher fees now, but a healthier wallet long-term. Good during low-fee periods.</p>
+            <p>Cleans up small UTXOs first, preventing dust accumulation. Higher fees now, but a healthier wallet long-term. Good during low-fee periods, but can be bad for privacy.</p>
           )}
           {selectedStrategy === 'exactMatch' && (
-            <p>Tries to find UTXOs that exactly match the target amount. When successful, no change output is created, which is better for privacy and slightly lower fees.</p>
+            <p>Tries to find UTXOs that exactly match the target amount. When successful, no change, or a small output is created, which is better for privacy and can be slightly lower fees.</p>
           )}
           {selectedStrategy === 'random' && (
-            <p>Randomly selects UTXOs, making your spending patterns unpredictable. This makes chain analysis harder but results in variable fees.</p>
+            <p>Randomly selects UTXOs, making your spending patterns unpredictable. This makes chain analysis harder but results in variable fees and can be revealing wallet amounts to recipient.</p>
           )}
         </div>
       </Card>
 
-      <Accordion
-        title="Deep Dive: Coin Selection Trade-offs"
-        variant="deepdive"
-        icon={<Scale size={16} />}
-      >
-        <p>
-          Coin selection is a crucial but often invisible part of Bitcoin wallets. The algorithm 
-          determines which UTXOs are spent, affecting both your <strong>fees</strong> and <strong>privacy</strong>:
-        </p>
-        <ul>
-          <li>
-            <strong>Fewer inputs = lower fees:</strong> Each input adds ~68 bytes to your transaction. 
-            At 20 sat/vB, each additional input costs ~1,360 sats.
-          </li>
-          <li>
-            <strong>No change = better privacy:</strong> Change outputs can be traced back to you. 
-            If the algorithm finds an exact match, no change is needed.
-          </li>
-          <li>
-            <strong>Randomness = harder to analyze:</strong> Predictable selection patterns make it 
-            easier for chain analysis companies to track your wallet.
-          </li>
-          <li>
-            <strong>Long-term thinking:</strong> Cleaning up small UTXOs during low-fee periods 
-            saves money when fees spike.
-          </li>
-        </ul>
-        <p>
-          Most modern wallets use sophisticated algorithms that balance these factors. Advanced 
-          users can often manually select coins for important transactions ("coin control").
-        </p>
-      </Accordion>
     </div>
   );
 }

@@ -258,7 +258,7 @@ export function AddressReuseDemo() {
           </li>
           <li>
             <strong>Security risk:</strong> Reusing addresses slightly weakens the 
-            cryptographic security model
+            cryptographic security model (theoretically)
           </li>
         </ul>
         <p>

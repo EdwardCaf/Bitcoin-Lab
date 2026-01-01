@@ -87,7 +87,7 @@ export function PrivacyDemo() {
             <div className={styles.visibilityList}>
               <div className={styles.visibilityItem} data-visible="false">
                 <EyeOff size={14} />
-                <span>Sender hidden</span>
+                <span>Strong sender privacy</span>
               </div>
               <div className={styles.visibilityItem} data-visible="false">
                 <EyeOff size={14} />

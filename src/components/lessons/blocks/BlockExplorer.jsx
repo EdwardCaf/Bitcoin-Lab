@@ -244,25 +244,7 @@ export function BlockExplorer() {
         </p>
       </Card>
       
-      <Accordion
-        title="Deep Dive: Block Header Structure"
-        variant="deepdive"
-        icon={<Box size={16} />}
-      >
-        <p>The block header is exactly 80 bytes and contains:</p>
-        <ul>
-          <li><strong>Version (4 bytes):</strong> Block version for protocol upgrades</li>
-          <li><strong>Previous Block Hash (32 bytes):</strong> Links to the parent block</li>
-          <li><strong>Merkle Root (32 bytes):</strong> Hash of all transactions in the block</li>
-          <li><strong>Timestamp (4 bytes):</strong> When the block was mined</li>
-          <li><strong>Difficulty Target (4 bytes):</strong> The mining difficulty</li>
-          <li><strong>Nonce (4 bytes):</strong> The value miners change to find valid hashes</li>
-        </ul>
-        <p>
-          Miners hash this 80-byte header repeatedly (with different nonces) until they 
-          find a hash that meets the difficulty target.
-        </p>
-      </Accordion>
+      
     </div>
   );
 }

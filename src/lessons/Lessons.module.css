@@ -162,6 +162,7 @@
   background: var(--bg-tertiary);
   border-radius: var(--radius-lg);
   padding: var(--spacing-lg);
+  margin-top: var(--spacing-xl);
   margin-bottom: var(--spacing-xl);
 }
 

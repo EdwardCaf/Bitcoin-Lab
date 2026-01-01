@@ -259,23 +259,18 @@ export function WalletTypesExplorer() {
       >
         <p><strong>Hot Wallet Threats:</strong></p>
         <ul>
-          <li><strong>Malware/Keyloggers:</strong> Software that steals your keys or seed phrase</li>
-          <li><strong>Phishing:</strong> Fake websites or apps that trick you into revealing credentials</li>
           <li><strong>Remote Hacks:</strong> Attackers gaining access to your device over the internet</li>
           <li><strong>Clipboard Hijacking:</strong> Malware that changes Bitcoin addresses when you copy/paste</li>
         </ul>
         
         <p><strong>Cold Wallet Threats:</strong></p>
         <ul>
-          <li><strong>Physical Theft:</strong> Someone stealing your hardware wallet or backup</li>
           <li><strong>Supply Chain Attacks:</strong> Buying tampered devices (always buy from manufacturer)</li>
-          <li><strong>Loss/Damage:</strong> Losing device or backup, fire/water damage (mitigate with multiple backups)</li>
-          <li><strong>$5 Wrench Attack:</strong> Physical coercion (use passphrase, don't advertise holdings)</li>
         </ul>
 
         <p>
-          <strong>The Trade-off:</strong> Hot wallets protect against physical threats but are vulnerable 
-          to digital attacks. Cold wallets protect against digital threats but require careful physical 
+          <strong>Summary:</strong> Hot wallets are vulnerable 
+          to digital attacks. Cold wallets protect against digital threats but still require careful physical 
           security. The best approach is layered security using both.
         </p>
       </Accordion>

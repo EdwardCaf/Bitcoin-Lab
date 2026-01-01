@@ -80,7 +80,7 @@ function IntroSection() {
           <div className={styles.conceptIcon}>
             <Lock size={24} />
           </div>
-          <h3>Near-perfect Privacy</h3>
+          <h3>Near-Perfect Privacy</h3>
           <p>
             Blind signatures mean the mint cannot link withdrawals to spends. Your transactions 
             are completely untraceable - better privacy than physical cash.

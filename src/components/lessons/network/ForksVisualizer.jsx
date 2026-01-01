@@ -485,9 +485,12 @@ export function ForksVisualizer() {
         </p>
         <ul>
           <li>
-            <strong>SegWit (2017):</strong> Fixed transaction malleability and 
-            increased block capacity. Old nodes see SegWit transactions as 
-            "anyone-can-spend" but upgraded nodes enforce the new signature rules.
+            <strong>SegWit (2017):</strong> Before SegWit, blocks were strictly 
+            limited to 1MB of data. SegWit changed this: it stopped counting 
+            the "signature" data (which takes up a lot of space) against that 
+            1MB limit. This allowed blocks to hold significantly more transactions 
+            (effectively 2–4MB of real data) while still appearing to be valid, 
+            small 1MB blocks to older computers that hadn't upgraded.
           </li>
           <li>
             <strong>Taproot (2021):</strong> Added Schnorr signatures and smart 
@@ -509,11 +512,6 @@ export function ForksVisualizer() {
             chain as ETC.
           </li>
         </ul>
-        <p>
-          Soft forks are generally preferred because they're less disruptive and 
-          don't force users to upgrade. However, some changes (like increasing 
-          block size) can only be done through a hard fork.
-        </p>
       </Accordion>
     </div>
   );

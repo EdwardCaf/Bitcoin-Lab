@@ -356,28 +356,7 @@ export function NonceFinder() {
         )}
       </AnimatePresence>
 
-      {/* Deep Dive */}
-      <Accordion
-        title="Deep Dive: Proof of Work"
-        variant="deepdive"
-        icon={<Pickaxe size={16} />}
-      >
-        <p>
-          Bitcoin mining is essentially this puzzle at a massive scale. Miners around the world 
-          compete to find a nonce that produces a hash meeting the network's difficulty target.
-        </p>
-        <p>Key concepts:</p>
-        <ul>
-          <li><strong>Nonce:</strong> A 32-bit number (0 to ~4 billion) that miners change to get different hashes</li>
-          <li><strong>Difficulty:</strong> Adjusts every 2016 blocks to maintain ~10 minute block times</li>
-          <li><strong>No shortcuts:</strong> The only way to find a valid hash is trial and error</li>
-          <li><strong>Easy to verify:</strong> Once found, anyone can verify the hash is valid instantly</li>
-        </ul>
-        <p>
-          Real Bitcoin mining requires finding a hash with about 19+ leading zeros, 
-          requiring trillions of attempts. That's why specialized hardware (ASICs) is needed!
-        </p>
-      </Accordion>
+      
     </div>
   );
 }

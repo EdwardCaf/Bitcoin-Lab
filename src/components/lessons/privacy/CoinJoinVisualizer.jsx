@@ -393,36 +393,24 @@ export function CoinJoinVisualizer() {
       </Card>
 
       <Accordion
-        title="Deep Dive: Denomination-Based CoinJoin"
+        title="Deep Dive: Forward-facing Privacy"
         variant="deepdive"
         icon={<Shuffle size={16} />}
       >
         <p>
-          Real-world CoinJoin implementations use <strong>standard denominations</strong> to 
-          maximize privacy:
+          Be sure to follow these rules after coinjoin:
         </p>
         <ul>
           <li>
-            <strong>Why denominations?</strong> If everyone outputs the same amounts (e.g., 0.1 BTC), 
-            there's no way to tell which input maps to which output
+            <strong>No Consolidating:</strong> If you consolidate all the UTXOs you receive from the Coinjoin, 
+            you destroy the privacy gained
           </li>
           <li>
-            <strong>Multiple outputs:</strong> A participant with 0.25 BTC might receive 
-            two 0.1 BTC outputs plus a 0.05 BTC output
+            <strong>Label UTXOs:</strong> Make sure to label where each UTXO has come from and/or what it will be used for.
           </li>
           <li>
-            <strong>The change problem:</strong> Non-standard "change" amounts can sometimes 
-            be linked to their source, reducing privacy
+            <strong>Fees:</strong> An amount goes to transaction fees for each round of Coinjoin(not shown in this demo)
           </li>
-          <li>
-            <strong>Fees:</strong> A small amount goes to transaction fees (not shown in this demo)
-          </li>
-        </ul>
-        <p><strong>Best practices:</strong></p>
-        <ul>
-          <li>Choose input amounts that break evenly into standard denominations</li>
-          <li>Multiple rounds of mixing improve privacy exponentially</li>
-          <li>Avoid consolidating mixed outputs, as this re-links them</li>
         </ul>
       </Accordion>
     </div>

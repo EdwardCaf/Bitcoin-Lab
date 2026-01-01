@@ -178,11 +178,6 @@ export function ChannelVisualizer() {
             off-chain but can be broadcast if needed.
           </li>
           <li>
-            <strong>Security:</strong> Old states are invalidated using "revocation keys." If 
-            someone tries to broadcast an old state, the other party can claim all the funds 
-            as a penalty.
-          </li>
-          <li>
             <strong>Closing:</strong> When done, either party can broadcast the latest commitment 
             transaction, or they can cooperatively close with a simpler transaction.
           </li>

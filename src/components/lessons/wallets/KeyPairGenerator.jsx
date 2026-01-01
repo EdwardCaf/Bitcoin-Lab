@@ -268,34 +268,7 @@ export function KeyPairGenerator() {
         </div>
       </Card>
       
-      <Accordion
-        title="Deep Dive: Elliptic Curve Cryptography"
-        variant="deepdive"
-        icon={<Key size={16} />}
-      >
-        <p>
-          Bitcoin uses <strong>ECDSA (Elliptic Curve Digital Signature Algorithm)</strong> with 
-          the secp256k1 curve. Here's the magic:
-        </p>
-        <ul>
-          <li>
-            <strong>One-way derivation:</strong> You can easily compute the public key from 
-            the private key, but it's computationally impossible to reverse.
-          </li>
-          <li>
-            <strong>256-bit security:</strong> There are 2^256 possible private keys - almost as many 
-           atoms in the observable universe for a 24 word seed phrase.
-          </li>
-          <li>
-            <strong>Digital signatures:</strong> Your private key can create signatures that 
-            anyone can verify using your public key.
-          </li>
-        </ul>
-        <p>
-          The address is derived by hashing the public key (SHA-256 + RIPEMD-160) and 
-          encoding it for human readability with error checking.
-        </p>
-      </Accordion>
+      
     </div>
   );
 }

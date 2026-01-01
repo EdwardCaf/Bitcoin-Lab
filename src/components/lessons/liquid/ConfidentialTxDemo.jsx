@@ -198,16 +198,16 @@ export function ConfidentialTxDemo() {
               <span>Number of inputs/outputs</span>
             </div>
             <div className={styles.visibilityItem}>
-              <div className={`${styles.visIcon} ${isConfidential ? styles.hiddenIcon : styles.visible}`}>
-                {isConfidential ? <EyeOff size={16} /> : <Eye size={16} />}
+              <div className={`${styles.visIcon} ${styles.visible}`}>
+                {isConfidential ? <Eye size={16} /> : <Eye size={16} />}
               </div>
-              <span>Transaction amounts</span>
+              <span>Fee amount</span>
             </div>
             <div className={styles.visibilityItem}>
               <div className={`${styles.visIcon} ${isConfidential ? styles.hiddenIcon : styles.visible}`}>
                 {isConfidential ? <EyeOff size={16} /> : <Eye size={16} />}
               </div>
-              <span>Fee amount</span>
+              <span>Transaction amounts</span>
             </div>
           </div>
         </div>

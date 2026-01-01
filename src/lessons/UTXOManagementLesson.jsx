@@ -206,19 +206,19 @@ function ConsolidationSection() {
         <ul>
           <li>
             <strong>Timing is everything:</strong> Consolidate during low-fee periods 
-            (weekends, late nights) when fees drop to 1-5 sat/vB
-          </li>
-          <li>
-            <strong>Privacy cost:</strong> Consolidation links all your UTXOs on-chain, 
-            proving they belong to the same wallet
-          </li>
-          <li>
-            <strong>Calculate the break-even:</strong> Only consolidate if future fee 
-            savings exceed the consolidation cost
+            (weekends, late nights) when fees are typically lower
           </li>
           <li>
             <strong>Don't over-consolidate:</strong> Having a few medium-sized UTXOs is 
             better for privacy than one giant UTXO
+          </li>
+          <li>
+            <strong>Privacy Trade-off:</strong> Every consolidation transaction links your UTXOs together 
+            on the public blockchain. If privacy is paramount, avoid consolidation.
+          </li>
+          <li>
+            <strong>Dust Cleanup:</strong> Small UTXOs that cost more to spend than they're worth are 
+            good candidates for consolidation during extremely low fee periods.
           </li>
         </ul>
       </div>
@@ -247,19 +247,19 @@ function CoinSelectionSection() {
         <ul>
           <li>
             <strong>Largest First:</strong> Uses big coins first. Low fees now, but small 
-            UTXOs accumulate over time
+            UTXOs accumulate over time. Bad for privacy if UTXO is much larger than what recipient receives
           </li>
           <li>
             <strong>Smallest First:</strong> Cleans up small UTXOs. Higher fees now, but 
-            healthier wallet long-term
+            healthier wallet long-term. Links together UTXOs and is bad for privacy
           </li>
           <li>
             <strong>Exact Match:</strong> Tries to avoid creating change. Better privacy 
-            since there's no "leftover" to trace
+            since there's no "leftover" to trace.
           </li>
           <li>
             <strong>Random:</strong> Unpredictable selection. Makes chain analysis harder 
-            but fees are unpredictable
+            but fees are unpredictable. Can reveal too much wallet information to recipient
           </li>
         </ul>
       </div>
@@ -293,7 +293,7 @@ function DustSection() {
         </p>
         <ul>
           <li>
-            <strong>Use good wallets:</strong> Modern wallets like Sparrow and Bitcoin Core 
+            <strong>Use good wallets:</strong> Modern wallets like Sparrow and Nunchuk
             have sophisticated coin selection that minimizes dust creation
           </li>
           <li>
@@ -301,19 +301,10 @@ function DustSection() {
             important transactions
           </li>
           <li>
-            <strong>Batch transactions:</strong> Combine multiple payments into one 
-            transaction to reduce the number of change outputs
-          </li>
-          <li>
             <strong>Lightning for small amounts:</strong> Use the Lightning Network for 
             small, frequent payments instead of on-chain transactions
           </li>
         </ul>
-        <p>
-          <strong>When you do have dust:</strong> Wait for extremely low-fee periods 
-          (often during Bitcoin's "quiet" times) and consolidate it along with other 
-          small UTXOs. Accept the privacy trade-off as the cost of cleaning up your wallet.
-        </p>
       </Accordion>
     </motion.div>
   );

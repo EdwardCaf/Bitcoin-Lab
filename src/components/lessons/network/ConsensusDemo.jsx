@@ -239,32 +239,6 @@ export function ConsensusDemo() {
         )}
       </Card>
       
-      <Accordion
-        title="Deep Dive: Nakamoto Consensus"
-        variant="deepdive"
-        icon={<GitFork size={16} />}
-      >
-        <p>
-          Bitcoin uses <strong>Nakamoto Consensus</strong>, named after its creator. 
-          The core rule is simple: the valid chain with the most cumulative 
-          proof-of-work wins.
-        </p>
-        <p>How forks happen:</p>
-        <ul>
-          <li>
-            <strong>Accidental forks:</strong> Two miners find valid blocks at nearly 
-            the same time. Resolved within 1-2 blocks as one chain gets ahead.
-          </li>
-          <li>
-            <strong>Intentional forks:</strong> Network upgrades (soft/hard forks) 
-            where some nodes run different rules.
-          </li>
-        </ul>
-        <p>
-          The beauty of this system is that it requires no voting, no central 
-          authority, and no coordination. Nodes simply follow the longest/heaviest valid chain.
-        </p>
-      </Accordion>
     </div>
   );
 }

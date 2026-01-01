@@ -394,38 +394,7 @@ export function RoutingSimulator() {
         </div>
       </Card>
 
-      <Accordion
-        title="Deep Dive: Multi-Hop Routing"
-        variant="deepdive"
-        icon={<Network size={16} />}
-      >
-        <p>
-          The Lightning Network enables payments between parties who don't have a 
-          direct channel by routing through intermediate nodes:
-        </p>
-        <ul>
-          <li>
-            <strong>Pathfinding:</strong> Your wallet finds a route with sufficient 
-            capacity and low fees. Multiple algorithms exist (Dijkstra, A*, etc.)
-          </li>
-          <li>
-            <strong>Onion routing:</strong> Each hop only knows the previous and next 
-            node, not the full route. This preserves privacy.
-          </li>
-          <li>
-            <strong>Routing fees:</strong> Each intermediate node charges a small fee 
-            (typically 1-10 satoshis + a percentage) for forwarding payments.
-          </li>
-          <li>
-            <strong>Atomic payments:</strong> HTLCs ensure the payment either succeeds 
-            at all hops or fails completely - no partial payments.
-          </li>
-        </ul>
-        <p>
-          <strong>Scalability:</strong> With just 6 connections, you can reach most of 
-          the Lightning Network in 2-3 hops!
-        </p>
-      </Accordion>
+      
     </div>
   );
 }

@@ -323,39 +323,7 @@ export function HTLCDemo() {
         </div>
       </Card>
 
-      <Accordion
-        title="Deep Dive: HTLC Mechanics"
-        variant="deepdive"
-        icon={<Lock size={16} />}
-      >
-        <p>
-          Hash Time-Locked Contracts are the cryptographic foundation of Lightning payments:
-        </p>
-        <ul>
-          <li>
-            <strong>Hash lock:</strong> Funds can only be claimed by revealing the preimage 
-            that hashes to a known hash value. SHA256(preimage) = hash
-          </li>
-          <li>
-            <strong>Time lock:</strong> If the preimage isn't revealed within a timeout, 
-            the sender can reclaim their funds. This prevents funds from being stuck forever.
-          </li>
-          <li>
-            <strong>Decreasing timelocks:</strong> Each hop has a shorter timeout than the 
-            previous. This ensures intermediate nodes have time to claim their incoming 
-            payment after forwarding.
-          </li>
-          <li>
-            <strong>Atomic execution:</strong> Either the entire payment succeeds (preimage 
-            revealed at all hops) or it fails completely (everyone reclaims via timeout).
-          </li>
-        </ul>
-        <p>
-          <strong>Security:</strong> Even if Bob is malicious, he can't steal funds - he 
-          can only claim from Alice if he knows the preimage, which he only learns after 
-          paying Carol.
-        </p>
-      </Accordion>
+    
     </div>
   );
 }
