@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { motion } from 'framer-motion';
 import {
   Monitor,
@@ -12,12 +11,9 @@ import {
   BookOpen,
   Search,
   ExternalLink,
-  Library,
-  Wallet,
-  Filter,
-  X
+  Library
 } from 'lucide-react';
-import { Badge, Button } from '../components/common';
+import { Badge } from '../components/common';
 import styles from './ResourcesPage.module.css';
 
 // Resource data structure
@@ -102,7 +98,7 @@ const RESOURCES = {
       {
         name: 'Minibits',
         url: 'https://minibits.cash',
-        description: 'Lightning and Cashu ecash wallet for private payments.',
+        description: 'Cashu ecash wallet for private payments.',
         tags: ['Ecash', 'Mobile'],
         icon: Coins
       },
@@ -355,17 +351,6 @@ const getTagVariant = (tag) => {
   return 'default';
 };
 
-// Get all unique tags from all resources
-const getAllTags = () => {
-  const tags = new Set();
-  Object.values(RESOURCES).forEach(section => {
-    section.resources.forEach(resource => {
-      resource.tags.forEach(tag => tags.add(tag));
-    });
-  });
-  return Array.from(tags).sort();
-};
-
 function ResourceCard({ resource }) {
   const Icon = resource.icon;
   const cardClasses = [styles.card, resource.favorite && styles.cardFavorite].filter(Boolean).join(' ');
@@ -376,10 +361,10 @@ function ResourceCard({ resource }) {
       target="_blank"
       rel="noopener noreferrer"
       className={cardClasses}
-      initial={{ opacity: 0, scale: 0.95 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true, margin: '-50px' }}
-      transition={{ duration: 0.3 }}
+      initial={{ opacity: 0, y: 10 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '50px' }}
+      transition={{ duration: 0.15 }}
       whileHover={{ y: -4 }}
     >
       {resource.favorite && (
@@ -408,19 +393,16 @@ function ResourceCard({ resource }) {
   );
 }
 
-function ResourceSection({ section, delay = 0, filteredResources }) {
+function ResourceSection({ section }) {
   const SectionIcon = section.icon;
-  const resourcesToShow = filteredResources || section.resources;
-
-  if (resourcesToShow.length === 0) return null;
 
   return (
     <motion.section
       className={styles.section}
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
-      viewport={{ once: true, margin: '-100px' }}
-      transition={{ duration: 0.5, delay }}
+      viewport={{ once: true, margin: '50px' }}
+      transition={{ duration: 0.2 }}
     >
       <div className={styles.sectionHeader}>
         <div className={styles.sectionBadge}>
@@ -431,8 +413,8 @@ function ResourceSection({ section, delay = 0, filteredResources }) {
       </div>
 
       <div className={styles.resourceGrid}>
-        {resourcesToShow.map((resource, index) => (
-          <ResourceCard key={resource.name} resource={resource} delay={delay + index * 0.05} />
+        {section.resources.map((resource) => (
+          <ResourceCard key={resource.name} resource={resource} />
         ))}
       </div>
     </motion.section>
@@ -440,22 +422,6 @@ function ResourceSection({ section, delay = 0, filteredResources }) {
 }
 
 export function ResourcesPage() {
-  const [selectedTag, setSelectedTag] = useState(null);
-  const [showFilters, setShowFilters] = useState(false);
-  const allTags = getAllTags();
-
-  // Filter resources by selected tag
-  const getFilteredResources = (section) => {
-    if (!selectedTag) return section.resources;
-    return section.resources.filter(resource => 
-      resource.tags.some(tag => tag.toLowerCase() === selectedTag.toLowerCase())
-    );
-  };
-
-  const clearFilter = () => {
-    setSelectedTag(null);
-  };
-
   return (
     <div className={styles.container}>
       {/* Hero Section */}
@@ -478,112 +444,21 @@ export function ResourcesPage() {
           educational content, and tools. All resources are vetted for Bitcoin maximalism 
           and commitment to the Bitcoin standard.
         </p>
-
-        {/* Filter Toggle */}
-        <div className={styles.filterToggle}>
-          <Button
-            variant={showFilters ? 'primary' : 'secondary'}
-            size="medium"
-            icon={<Filter size={16} />}
-            onClick={() => setShowFilters(!showFilters)}
-          >
-            Filter by Tag
-          </Button>
-          {selectedTag && (
-            <Badge variant={getTagVariant(selectedTag)} size="medium">
-              {selectedTag}
-              <button
-                className={styles.clearFilter}
-                onClick={clearFilter}
-                aria-label="Clear filter"
-              >
-                <X size={14} />
-              </button>
-            </Badge>
-          )}
-        </div>
-
-        {/* Tag Filter Pills */}
-        {showFilters && (
-          <motion.div
-            className={styles.tagFilter}
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-          >
-            {allTags.map(tag => (
-              <button
-                key={tag}
-                className={`${styles.tagPill} ${selectedTag === tag ? styles.active : ''}`}
-                onClick={() => setSelectedTag(selectedTag === tag ? null : tag)}
-              >
-                <Badge variant={getTagVariant(tag)} size="small">
-                  {tag}
-                </Badge>
-              </button>
-            ))}
-          </motion.div>
-        )}
       </motion.section>
 
       {/* Resource Sections */}
       <div className={styles.sections}>
-        <ResourceSection 
-          section={RESOURCES.desktopWallets} 
-          delay={0}
-          filteredResources={getFilteredResources(RESOURCES.desktopWallets)}
-        />
-        <ResourceSection 
-          section={RESOURCES.mobileWallets} 
-          delay={0.05}
-          filteredResources={getFilteredResources(RESOURCES.mobileWallets)}
-        />
-        <ResourceSection 
-          section={RESOURCES.lightningWallets} 
-          delay={0.1}
-          filteredResources={getFilteredResources(RESOURCES.lightningWallets)}
-        />
-        <ResourceSection 
-          section={RESOURCES.ecashWallets} 
-          delay={0.15}
-          filteredResources={getFilteredResources(RESOURCES.ecashWallets)}
-        />
-        <ResourceSection 
-          section={RESOURCES.liquidWallets} 
-          delay={0.2}
-          filteredResources={getFilteredResources(RESOURCES.liquidWallets)}
-        />
-        <ResourceSection 
-          section={RESOURCES.hardware} 
-          delay={0.25}
-          filteredResources={getFilteredResources(RESOURCES.hardware)}
-        />
-        <ResourceSection 
-          section={RESOURCES.nodes} 
-          delay={0.3}
-          filteredResources={getFilteredResources(RESOURCES.nodes)}
-        />
-        <ResourceSection 
-          section={RESOURCES.exchanges} 
-          delay={0.35}
-          filteredResources={getFilteredResources(RESOURCES.exchanges)}
-        />
-        <ResourceSection 
-          section={RESOURCES.education} 
-          delay={0.4}
-          filteredResources={getFilteredResources(RESOURCES.education)}
-        />
-        <ResourceSection 
-          section={RESOURCES.books} 
-          delay={0.45}
-          filteredResources={getFilteredResources(RESOURCES.books)}
-        />
-        <ResourceSection 
-          section={RESOURCES.explorers} 
-          delay={0.5}
-          filteredResources={getFilteredResources(RESOURCES.explorers)}
-        />
+        <ResourceSection section={RESOURCES.desktopWallets} />
+        <ResourceSection section={RESOURCES.mobileWallets} />
+        <ResourceSection section={RESOURCES.lightningWallets} />
+        <ResourceSection section={RESOURCES.ecashWallets} />
+        <ResourceSection section={RESOURCES.liquidWallets} />
+        <ResourceSection section={RESOURCES.hardware} />
+        <ResourceSection section={RESOURCES.nodes} />
+        <ResourceSection section={RESOURCES.exchanges} />
+        <ResourceSection section={RESOURCES.education} />
+        <ResourceSection section={RESOURCES.books} />
+        <ResourceSection section={RESOURCES.explorers} />
       </div>
 
       {/* Disclaimer */}
@@ -592,7 +467,7 @@ export function ResourcesPage() {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.2 }}
       >
         <p>
           <strong>Disclaimer:</strong> These resources are provided for educational purposes. 
