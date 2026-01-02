@@ -126,10 +126,6 @@ function IntroSection() {
             <strong>Fungibility:</strong> If some coins are "tainted" by their history, 
             Bitcoin loses a key property of money
           </li>
-          <li>
-            <strong>Human right:</strong> Financial privacy is recognized as a basic 
-            right in many jurisdictions
-          </li>
         </ul>
         <p>
           The goal isn't to hide illegal activity - it's to have the same level of 

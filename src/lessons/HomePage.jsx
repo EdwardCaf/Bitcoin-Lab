@@ -7,9 +7,10 @@ import {
   BookOpen,
   Gamepad2,
   GraduationCap,
-  Zap,
   Mail,
-  Check
+  Check,
+  MonitorCheck,
+  BarChart3
 } from 'lucide-react';
 import { Button, Badge } from '../components/common';
 import styles from './HomePage.module.css';
@@ -89,7 +90,7 @@ export function HomePage() {
               11 Lessons
             </span>
             <span className={styles.badge}>
-              <Zap size={16} />
+              <MonitorCheck size={16} />
               Desktop Optimized
             </span>
             <span className={styles.badge}>
@@ -122,7 +123,7 @@ export function HomePage() {
         <div className={styles.featuresGrid}>
           <div className={styles.feature}>
             <div className={styles.featureIcon}>
-              <Gamepad2 size={24} />
+              <BarChart3 size={24} />
             </div>
             <h4>Visual Learning</h4>
             <p>Visualizations let you see Bitcoin concepts in real-time</p>

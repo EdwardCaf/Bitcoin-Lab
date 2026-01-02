@@ -6,7 +6,7 @@ import {
   Mail,
   Check,
   Shield,
-  Target,
+  Map,
   Zap,
   ArrowRight
 } from 'lucide-react';
@@ -21,7 +21,7 @@ const XIcon = ({ size = 20 }) => (
 
 const valueProps = [
   { icon: Shield, text: 'Self-custody mastery' },
-  { icon: Target, text: 'Personalized roadmap' },
+  { icon: Map, text: 'Personalized roadmap' },
   { icon: Zap, text: 'Accelerated learning' },
 ];
 

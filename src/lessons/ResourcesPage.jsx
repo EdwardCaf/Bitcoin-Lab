@@ -34,7 +34,7 @@ const RESOURCES = {
       {
         name: 'Nunchuk',
         url: 'https://nunchuk.io',
-        description: 'Collaborative multisig wallet for desktop and mobile with assisted key management.',
+        description: 'Collaborative multisig wallet for desktop with assisted key management.',
         tags: ['Desktop', 'Mobile'],
         icon: Shield
       }
@@ -55,10 +55,24 @@ const RESOURCES = {
       {
         name: 'Bull Bitcoin Wallet',
         url: 'https://bullbitcoin.com',
-        description: 'Non-custodial mobile wallet focused on Canadian Bitcoin users.',
+        description: 'Self-custody mobile wallet with hardware wallet support and Liquid integration.',
         tags: ['Mobile', 'Liquid'],
         favorite: true,
         icon: Smartphone
+      },
+      {
+        name: 'Nunchuk',
+        url: 'https://nunchuk.io',
+        description: 'Collaborative multisig wallet for mobile with assisted key management and support for NFC.',
+        tags: ['Desktop', 'Mobile'],
+        icon: Shield
+      },
+      {
+        name: 'Bitcoin Keeper',
+        url: 'https://bitcoinkeeper.app',
+        description: 'Mobile wallet with multisig support, hardware wallet integration, and advanced privacy features.',
+        tags: ['Mobile'],
+        icon: Shield
       }
     ]
   },
@@ -368,7 +382,7 @@ function ResourceCard({ resource }) {
       whileHover={{ y: -4 }}
     >
       {resource.favorite && (
-        <span className={styles.favoriteBadge}>Favorite</span>
+        <span className={styles.favoriteBadge}>Recommended</span>
       )}
       <div className={styles.cardHeader}>
         <div className={styles.cardIcon}>
@@ -441,8 +455,8 @@ export function ResourcesPage() {
         
         <p className={styles.heroText}>
           A curated collection of Bitcoin-only wallets, hardware, node software, exchanges, 
-          educational content, and tools. All resources are vetted for Bitcoin maximalism 
-          and commitment to the Bitcoin standard.
+          educational content, and tools. All resources are vetted for the Bitcoiner aspiring 
+          to level up their self-custody and understanding of Bitcoin.
         </p>
       </motion.section>
 
