@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, lazy, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
@@ -12,8 +12,16 @@ import {
   Check
 } from 'lucide-react';
 import { Button, Badge } from '../components/common';
-import { BlackHoleVisualization, StatsSection, LearningPath } from '../components/home';
 import styles from './HomePage.module.css';
+
+// Lazy load below-fold components
+const StatsSection = lazy(() => import('../components/home/StatsSection').then(m => ({ default: m.StatsSection })));
+const LearningPath = lazy(() => import('../components/home/LearningPath').then(m => ({ default: m.LearningPath })));
+
+// Minimal placeholder for below-fold content
+function SectionPlaceholder() {
+  return <div className={styles.sectionPlaceholder} />;
+}
 
 const XIcon = ({ size = 18 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
@@ -91,16 +99,16 @@ export function HomePage() {
           </div>
         </div>
         
-        <div className={styles.heroVisual}>
-          <BlackHoleVisualization />
-        </div>
       </motion.section>
 
-      {/* Stats Section */}
-      <StatsSection />
+      {/* Below-fold content - lazy loaded */}
+      <Suspense fallback={<SectionPlaceholder />}>
+        {/* Stats Section */}
+        <StatsSection />
 
-      {/* Learning Path */}
-      <LearningPath />
+        {/* Learning Path */}
+        <LearningPath />
+      </Suspense>
 
       {/* Features Section */}
       <motion.section
