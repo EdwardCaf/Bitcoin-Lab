@@ -39,36 +39,86 @@
   margin: 0;
 }
 
-/* Threshold Section */
-.thresholdSection {
-  margin-bottom: var(--spacing-xl);
-  padding: var(--spacing-lg);
+/* Diagram */
+.diagram {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  margin: var(--spacing-xl) 0;
+  padding: var(--spacing-xl);
   background: var(--bg-secondary);
   border-radius: var(--radius-lg);
 }
 
-.thresholdInfo {
-  margin-bottom: var(--spacing-md);
+.diagramSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-xl);
+  background: var(--bg-primary);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-lg);
 }
 
-.thresholdInfo h4 {
-  font-size: var(--font-lg);
-  font-weight: 600;
-  color: var(--text-primary);
-  margin: 0 0 var(--spacing-sm) 0;
-}
-
-.thresholdInfo p {
-  font-size: var(--font-sm);
-  color: var(--text-secondary);
-  margin: 0;
+.diagramHeader {
   display: flex;
   align-items: center;
   gap: var(--spacing-sm);
-  flex-wrap: wrap;
+  color: var(--primary-500);
 }
 
-.thresholdExplainer {
+.diagramHeader h4 {
+  font-size: var(--font-md);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.diagramHeader svg {
+  color: var(--primary-500);
+}
+
+.userGroup {
+  display: flex;
+  gap: var(--spacing-lg);
+  justify-content: center;
+}
+
+.userIcon {
+  font-size: 48px;
+  opacity: 0.8;
+}
+
+.ecashTokens {
+  display: flex;
+  gap: var(--spacing-lg);
+  justify-content: center;
+}
+
+.token {
+  font-size: 48px;
+  opacity: 0.9;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.diagramLabel {
+  font-size: var(--font-sm);
+  color: var(--text-secondary);
+  text-align: center;
+  margin: 0;
+  max-width: 300px;
+}
+
+.arrowDown {
+  display: flex;
+  justify-content: center;
+  color: var(--primary-500);
+  opacity: 0.6;
+  transform: rotate(90deg);
+}
+
+.federationExplainer {
   display: flex;
   align-items: flex-start;
   gap: var(--spacing-sm);
@@ -79,9 +129,11 @@
   font-size: var(--font-sm);
   color: var(--text-secondary);
   line-height: 1.5;
+  max-width: 500px;
+  margin-top: var(--spacing-md);
 }
 
-.thresholdExplainer svg {
+.federationExplainer svg {
   flex-shrink: 0;
   margin-top: 2px;
   color: var(--primary-500);
@@ -92,264 +144,90 @@
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: var(--spacing-md);
-  margin-bottom: var(--spacing-xl);
+  width: 100%;
+  max-width: 600px;
 }
 
 .guardian {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--spacing-sm);
-  padding: var(--spacing-lg);
+  gap: var(--spacing-xs);
+  padding: var(--spacing-md);
   background: var(--bg-secondary);
   border: 2px solid var(--border-color);
   border-radius: var(--radius-lg);
-  transition: all 0.2s ease;
-}
-
-.guardian.online {
-  border-color: var(--success-400);
-  background: linear-gradient(135deg, rgba(34, 197, 94, 0.05), rgba(22, 163, 74, 0.02));
-}
-
-.guardian.offline {
-  border-color: var(--border-color);
-  opacity: 0.5;
 }
 
 .guardianIcon {
-  position: relative;
-  width: 64px;
-  height: 64px;
+  width: 48px;
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--bg-primary);
+  background: var(--bg-tertiary);
   border-radius: var(--radius-lg);
   border: 2px solid var(--border-color);
 }
 
 .emoji {
-  font-size: 32px;
-}
-
-.signature {
-  position: absolute;
-  top: -8px;
-  right: -8px;
-  width: 32px;
-  height: 32px;
-  background: var(--success-500);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  box-shadow: 0 2px 8px rgba(34, 197, 94, 0.3);
-}
-
-.offlineBadge {
-  position: absolute;
-  top: -8px;
-  right: -8px;
-  width: 32px;
-  height: 32px;
-  background: var(--text-tertiary);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
+  font-size: 24px;
 }
 
 .guardianName {
-  font-size: var(--font-sm);
+  font-size: var(--font-xs);
   font-weight: 600;
   color: var(--text-primary);
   text-align: center;
+  line-height: 1.2;
 }
 
-/* Signature Progress */
-.signatureProgress {
-  margin-bottom: var(--spacing-xl);
-  padding: var(--spacing-lg);
+/* Benefits Section */
+.benefits {
+  margin-top: var(--spacing-xl);
+  padding: var(--spacing-xl);
   background: var(--bg-secondary);
   border-radius: var(--radius-lg);
 }
 
-.progressHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: var(--spacing-md);
+.benefits h4 {
+  font-size: var(--font-lg);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-lg) 0;
 }
 
-.progressHeader h4 {
+.benefitsList {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-lg);
+}
+
+.benefit {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+  padding: var(--spacing-lg);
+  background: var(--bg-primary);
+  border-radius: var(--radius-lg);
+  border: 2px solid var(--border-color);
+}
+
+.benefit svg {
+  flex-shrink: 0;
+  color: var(--success-500);
+  margin-top: 2px;
+}
+
+.benefit strong {
+  display: block;
   font-size: var(--font-md);
   font-weight: 600;
   color: var(--text-primary);
-  margin: 0;
+  margin-bottom: var(--spacing-xs);
 }
 
-.progressCount {
-  font-size: var(--font-lg);
-  font-weight: 700;
-  color: var(--primary-500);
-}
-
-.progressBar {
-  position: relative;
-  height: 32px;
-  background: var(--bg-tertiary);
-  border-radius: var(--radius-full);
-  overflow: visible;
-}
-
-.progressFill {
-  height: 100%;
-  border-radius: var(--radius-full);
-  transition: width 0.5s ease;
-}
-
-.thresholdMarker {
-  position: absolute;
-  top: 0;
-  height: 100%;
-  transform: translateX(-50%);
-  pointer-events: none;
-}
-
-.thresholdLine {
-  width: 2px;
-  height: 100%;
-  background: var(--text-primary);
-  opacity: 0.5;
-}
-
-.thresholdLabel {
-  position: absolute;
-  top: -24px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: var(--font-xs);
-  font-weight: 600;
-  color: var(--text-secondary);
-  white-space: nowrap;
-}
-
-/* Scenario Section */
-.scenarioSection {
-  margin-bottom: var(--spacing-xl);
-}
-
-.scenarioSection h4 {
-  font-size: var(--font-lg);
-  font-weight: 600;
-  color: var(--text-primary);
-  margin: 0 0 var(--spacing-md) 0;
-}
-
-.scenarioButtons {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: var(--spacing-sm);
-}
-
-.scenarioButton {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-xs);
-  padding: var(--spacing-md);
-  background: var(--bg-secondary);
-  border: 2px solid var(--border-color);
-  border-radius: var(--radius-md);
-  cursor: pointer;
-  transition: all 0.2s ease;
-  text-align: left;
-}
-
-.scenarioButton:hover {
-  background: var(--bg-tertiary);
-  transform: translateY(-2px);
-}
-
-.scenarioButton.active {
-  border-color: var(--primary-500);
-  background: rgba(59, 130, 246, 0.05);
-}
-
-.scenarioButton.success {
-  border-left: 4px solid var(--success-500);
-}
-
-.scenarioButton.failure {
-  border-left: 4px solid var(--error-500);
-}
-
-.scenarioButton.danger {
-  border-left: 4px solid var(--warning-500);
-}
-
-.scenarioTitle {
-  font-size: var(--font-sm);
-  font-weight: 600;
-  color: var(--text-primary);
-}
-
-.scenarioDesc {
-  font-size: var(--font-xs);
-  color: var(--text-secondary);
-}
-
-/* Actions */
-.actions {
-  margin-bottom: var(--spacing-lg);
-}
-
-/* Result */
-.result {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--spacing-lg);
-  padding: var(--spacing-xl);
-  border-radius: var(--radius-lg);
-  border: 2px solid;
-}
-
-.result.success {
-  background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(22, 163, 74, 0.05));
-  border-color: var(--success-500);
-}
-
-.result.success svg {
-  color: var(--success-500);
-}
-
-.result.failure {
-  background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(220, 38, 38, 0.05));
-  border-color: var(--error-500);
-}
-
-.result.failure svg {
-  color: var(--error-500);
-}
-
-.result.danger {
-  background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(249, 115, 22, 0.05));
-  border-color: var(--warning-500);
-}
-
-.result.danger svg {
-  color: var(--warning-500);
-}
-
-.result h4 {
-  font-size: var(--font-lg);
-  font-weight: 700;
-  margin: 0 0 var(--spacing-sm) 0;
-}
-
-.result p {
+.benefit p {
   font-size: var(--font-sm);
   color: var(--text-secondary);
   margin: 0;
@@ -466,8 +344,8 @@
 
 /* Responsive */
 @media (max-width: 1024px) {
-  .guardiansGrid {
-    grid-template-columns: repeat(3, 1fr);
+  .benefitsList {
+    grid-template-columns: 1fr;
   }
 
   .comparison {
@@ -483,19 +361,44 @@
 
 @media (max-width: 640px) {
   .guardiansGrid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 
-  .scenarioButtons {
-    grid-template-columns: 1fr;
+  .guardian {
+    padding: var(--spacing-sm);
   }
 
-  .result {
-    flex-direction: column;
+  .guardianIcon {
+    width: 40px;
+    height: 40px;
   }
 
-  .result svg {
+  .emoji {
+    font-size: 20px;
+  }
+
+  .guardianName {
+    font-size: 10px;
+  }
+
+  .userGroup, .ecashTokens {
+    gap: var(--spacing-md);
+  }
+
+  .userIcon, .token {
+    font-size: 36px;
+  }
+
+  .arrowDown svg {
     width: 24px;
     height: 24px;
+  }
+
+  .benefitsList {
+    gap: var(--spacing-md);
+  }
+
+  .benefit {
+    padding: var(--spacing-md);
   }
 }

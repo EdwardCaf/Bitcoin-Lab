@@ -1,106 +1,26 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Users,
   Shield,
   CheckCircle,
   XCircle,
   AlertTriangle,
-  Key,
-  Lock,
-  Unlock,
   Building,
-  Info,
-  Sparkles,
-  UserCheck,
-  UserX
+  Coins,
+  ArrowRight,
+  Lock
 } from 'lucide-react';
-import { Card, Button, Badge, Accordion } from '../../common';
+import { Card, Badge } from '../../common';
 import styles from './FedimintExplorer.module.css';
 
 const GUARDIANS = [
-  { id: 1, name: 'Coffee Shop', honest: true, icon: '☕' },
-  { id: 2, name: 'Local Bank', honest: true, icon: '🏦' },
-  { id: 3, name: 'Community Center', honest: true, icon: '🏘️' },
-  { id: 4, name: 'Bitcoin Meetup', honest: true, icon: '₿' },
-  { id: 5, name: 'Tech Cooperative', honest: true, icon: '💻' }
-];
-
-const SCENARIOS = [
-  {
-    id: 'all-honest',
-    title: 'All Guardians Honest',
-    description: 'Normal operation - all guardians sign',
-    honestGuardians: [1, 2, 3, 4, 5],
-    result: 'success',
-    threshold: 3
-  },
-  {
-    id: 'one-offline',
-    title: 'One Guardian Offline',
-    description: 'System still works with 4/5 guardians',
-    honestGuardians: [1, 2, 3, 4],
-    result: 'success',
-    threshold: 3
-  },
-  {
-    id: 'two-offline',
-    title: 'Two Guardians Offline',
-    description: 'Still have threshold (3/5), system works',
-    honestGuardians: [1, 2, 3],
-    result: 'success',
-    threshold: 3
-  },
-  {
-    id: 'threshold-minus-one',
-    title: 'Below Threshold',
-    description: 'Only 2/5 guardians - transaction fails',
-    honestGuardians: [1, 2],
-    result: 'failure',
-    threshold: 3
-  },
-  {
-    id: 'majority-malicious',
-    title: 'Majority Malicious',
-    description: '3+ malicious guardians could steal funds',
-    honestGuardians: [1, 2],
-    result: 'danger',
-    threshold: 3
-  }
+  { id: 1, name: 'Coffee Shop', icon: '☕' },
+  { id: 2, name: 'Local Bank', icon: '🏦' },
+  { id: 3, name: 'Community Center', icon: '🏘️' },
+  { id: 4, name: 'Bitcoin Meetup', icon: '₿' },
+  { id: 5, name: 'Tech Cooperative', icon: '💻' }
 ];
 
 export function FedimintExplorer() {
-  const [selectedScenario, setSelectedScenario] = useState(0);
-  const [isProcessing, setIsProcessing] = useState(false);
-  const [showSignatures, setShowSignatures] = useState(false);
-  const [threshold, setThreshold] = useState(3);
-
-  const scenario = SCENARIOS[selectedScenario];
-
-  const handleProcess = async () => {
-    setIsProcessing(true);
-    setShowSignatures(false);
-    
-    // Simulate processing
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    setShowSignatures(true);
-    setIsProcessing(false);
-  };
-
-  const getGuardianStatus = (guardianId) => {
-    if (!scenario.honestGuardians.includes(guardianId)) {
-      return 'offline';
-    }
-    return 'online';
-  };
-
-  const getResultColor = () => {
-    if (scenario.result === 'success') return 'var(--success)';
-    if (scenario.result === 'failure') return 'var(--error)';
-    return 'var(--warning)';
-  };
-
   return (
     <div className={styles.container}>
       <Card variant="elevated" padding="large">
@@ -110,204 +30,111 @@ export function FedimintExplorer() {
               <Users size={24} />
             </div>
             <div>
-              <h3 className={styles.title}>Fedimint Federation</h3>
+              <h3 className={styles.title}>What is Fedimint?</h3>
               <p className={styles.subtitle}>
-                Explore how federated consensus reduces custodial risk
+                A community custody solution that distributes trust across multiple guardians
               </p>
             </div>
           </div>
         </div>
 
-        {/* Threshold Selector */}
-        <div className={styles.thresholdSection}>
-          <div className={styles.thresholdInfo}>
-            <h4>Federation Setup</h4>
-            <p>
-              This federation has 5 guardians with a{' '}
-              <Badge variant="primary" size="medium">
-                {threshold}-of-5
-              </Badge>
-              {' '}threshold signature
-            </p>
+        {/* Static Diagram */}
+        <div className={styles.diagram}>
+          {/* Users Section */}
+          <div className={styles.diagramSection}>
+            <div className={styles.diagramHeader}>
+              <Users size={20} />
+              <h4>Community Members</h4>
+            </div>
+            <div className={styles.userGroup}>
+              <div className={styles.userIcon}>👤</div>
+              <div className={styles.userIcon}>👤</div>
+              <div className={styles.userIcon}>👤</div>
+            </div>
+            <p className={styles.diagramLabel}>Deposit Bitcoin</p>
           </div>
-          <div className={styles.thresholdExplainer}>
-            <Info size={16} />
-            <span>
-              Need {threshold} guardians to approve any transaction. This prevents a single 
-              party from stealing funds.
-            </span>
+
+          {/* Arrow */}
+          <div className={styles.arrowDown}>
+            <ArrowRight size={32} />
           </div>
-        </div>
 
-        {/* Guardians Grid */}
-        <div className={styles.guardiansGrid}>
-          {GUARDIANS.map((guardian, index) => {
-            const status = getGuardianStatus(guardian.id);
-            const isActive = scenario.honestGuardians.includes(guardian.id);
-
-            return (
-              <motion.div
-                key={guardian.id}
-                className={`${styles.guardian} ${
-                  status === 'online' ? styles.online : styles.offline
-                }`}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: index * 0.1 }}
-              >
-                <div className={styles.guardianIcon}>
-                  <span className={styles.emoji}>{guardian.icon}</span>
-                  {showSignatures && isActive && (
-                    <motion.div
-                      className={styles.signature}
-                      initial={{ scale: 0, rotate: -180 }}
-                      animate={{ scale: 1, rotate: 0 }}
-                      transition={{ delay: 0.5 + index * 0.1, type: 'spring' }}
-                    >
-                      <CheckCircle size={20} />
-                    </motion.div>
-                  )}
-                  {showSignatures && !isActive && (
-                    <motion.div
-                      className={styles.offlineBadge}
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                    >
-                      <XCircle size={20} />
-                    </motion.div>
-                  )}
+          {/* Federation Section */}
+          <div className={styles.diagramSection}>
+            <div className={styles.diagramHeader}>
+              <Shield size={20} />
+              <h4>Federation (3-of-5 Multisig)</h4>
+            </div>
+            <div className={styles.guardiansGrid}>
+              {GUARDIANS.map((guardian) => (
+                <div key={guardian.id} className={styles.guardian}>
+                  <div className={styles.guardianIcon}>
+                    <span className={styles.emoji}>{guardian.icon}</span>
+                  </div>
+                  <div className={styles.guardianName}>{guardian.name}</div>
                 </div>
-                <div className={styles.guardianName}>{guardian.name}</div>
-                <Badge 
-                  variant={status === 'online' ? 'success' : 'secondary'}
-                  size="small"
-                >
-                  {status}
-                </Badge>
-              </motion.div>
-            );
-          })}
+              ))}
+            </div>
+            <div className={styles.federationExplainer}>
+              <Lock size={16} />
+              <span>Bitcoin held in multisig wallet requiring 3 of 5 guardians to approve withdrawals</span>
+            </div>
+          </div>
+
+          {/* Arrow */}
+          <div className={styles.arrowDown}>
+            <ArrowRight size={32} />
+          </div>
+
+          {/* eCash Section */}
+          <div className={styles.diagramSection}>
+            <div className={styles.diagramHeader}>
+              <Coins size={20} />
+              <h4>eCash Tokens</h4>
+            </div>
+            <div className={styles.ecashTokens}>
+              <div className={styles.token}>💵</div>
+              <div className={styles.token}>💵</div>
+              <div className={styles.token}>💵</div>
+            </div>
+            <p className={styles.diagramLabel}>Private, instant transfers within community</p>
+          </div>
         </div>
 
-        {/* Signature Progress */}
-        <div className={styles.signatureProgress}>
-          <div className={styles.progressHeader}>
-            <h4>Signature Progress</h4>
-            <span className={styles.progressCount}>
-              {showSignatures ? scenario.honestGuardians.length : 0} / {threshold} required
-            </span>
-          </div>
-          <div className={styles.progressBar}>
-            <motion.div
-              className={styles.progressFill}
-              style={{ 
-                backgroundColor: isProcessing ? 'var(--warning)' : getResultColor()
-              }}
-              initial={{ width: 0 }}
-              animate={{ 
-                width: isProcessing 
-                  ? `${(scenario.honestGuardians.length / GUARDIANS.length) * 100}%`
-                  : showSignatures 
-                    ? `${(scenario.honestGuardians.length / GUARDIANS.length) * 100}%`
-                    : 0
-              }}
-              transition={{ duration: isProcessing ? 1.2 : 0.5, delay: isProcessing ? 0 : 0.5 }}
-            />
-            <div 
-              className={styles.thresholdMarker}
-              style={{ left: `${(threshold / GUARDIANS.length) * 100}%` }}
-            >
-              <div className={styles.thresholdLine} />
-              <span className={styles.thresholdLabel}>Threshold</span>
+        {/* Key Benefits */}
+        <div className={styles.benefits}>
+          <h4>Key Benefits</h4>
+          <div className={styles.benefitsList}>
+            <div className={styles.benefit}>
+              <CheckCircle size={20} />
+              <div>
+                <strong>Distributed Trust</strong>
+                <p>No single guardian can steal funds - requires 3 of 5 to collude</p>
+              </div>
+            </div>
+            <div className={styles.benefit}>
+              <CheckCircle size={20} />
+              <div>
+                <strong>Perfect Privacy</strong>
+                <p>Blind signatures ensure guardians cannot track your spending</p>
+              </div>
+            </div>
+            <div className={styles.benefit}>
+              <CheckCircle size={20} />
+              <div>
+                <strong>Resilient</strong>
+                <p>Federation continues operating even if 2 guardians go offline</p>
+              </div>
+            </div>
+            <div className={styles.benefit}>
+              <CheckCircle size={20} />
+              <div>
+                <strong>Instant Transfers</strong>
+                <p>Send eCash tokens instantly with zero fees within your community</p>
+              </div>
             </div>
           </div>
         </div>
-
-        {/* Scenario Selector */}
-        <div className={styles.scenarioSection}>
-          <h4>Test Scenarios</h4>
-          <div className={styles.scenarioButtons}>
-            {SCENARIOS.map((s, index) => (
-              <button
-                key={s.id}
-                className={`${styles.scenarioButton} ${
-                  selectedScenario === index ? styles.active : ''
-                } ${styles[s.result]}`}
-                onClick={() => {
-                  setSelectedScenario(index);
-                  setShowSignatures(false);
-                }}
-                disabled={isProcessing}
-              >
-                <span className={styles.scenarioTitle}>{s.title}</span>
-                <span className={styles.scenarioDesc}>{s.description}</span>
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Process Button */}
-        <div className={styles.actions}>
-          <Button
-            variant="primary"
-            size="large"
-            onClick={handleProcess}
-            disabled={isProcessing}
-            fullWidth
-          >
-            {isProcessing ? 'Processing Transaction...' : 'Process Transaction'}
-          </Button>
-        </div>
-
-        {/* Result */}
-        <AnimatePresence>
-          {showSignatures && (
-            <motion.div
-              className={`${styles.result} ${styles[scenario.result]}`}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-            >
-              {scenario.result === 'success' && (
-                <>
-                  <CheckCircle size={32} />
-                  <div>
-                    <h4>Transaction Approved!</h4>
-                    <p>
-                      {scenario.honestGuardians.length} guardians signed, meeting the {threshold}-of-{GUARDIANS.length} threshold. 
-                      The transaction is valid and will be processed.
-                    </p>
-                  </div>
-                </>
-              )}
-              {scenario.result === 'failure' && (
-                <>
-                  <XCircle size={32} />
-                  <div>
-                    <h4>Transaction Failed</h4>
-                    <p>
-                      Only {scenario.honestGuardians.length} guardians available, but {threshold} are required. 
-                      The transaction cannot proceed without reaching threshold.
-                    </p>
-                  </div>
-                </>
-              )}
-              {scenario.result === 'danger' && (
-                <>
-                  <AlertTriangle size={32} />
-                  <div>
-                    <h4>Security Compromised!</h4>
-                    <p>
-                      With {GUARDIANS.length - scenario.honestGuardians.length} malicious guardians and a {threshold}-of-{GUARDIANS.length} threshold, 
-                      they could collude to steal funds. This demonstrates why choosing trustworthy 
-                      guardians is critical.
-                    </p>
-                  </div>
-                </>
-              )}
-            </motion.div>
-          )}
-        </AnimatePresence>
       </Card>
 
       {/* Comparison Card */}
