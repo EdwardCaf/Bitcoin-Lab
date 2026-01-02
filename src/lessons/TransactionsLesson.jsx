@@ -205,7 +205,8 @@ function BuildingSection() {
     >
       <h2 className={styles.sectionTitle}>Build Your First Transaction</h2>
       <p className={styles.sectionText}>
-        Now let's build a transaction!
+        Now let's build a transaction! We start by selecting inputs, a 
+        recipient to send to, and then a fee to the network.
       </p>
 
       <TransactionBuilder />
