@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { 
   Key, 
@@ -9,7 +9,9 @@ import {
   Plus,
   Minus,
   Lock,
-  Unlock
+  Unlock,
+  Play,
+  RotateCcw
 } from 'lucide-react';
 import { Card, Accordion } from '../../common';
 import styles from './HowItWorks.module.css';
@@ -38,7 +40,7 @@ const addressFormats = [
   }
 ];
 
-function ThresholdDiagram({ m, n, activeKeys }) {
+function ThresholdDiagram({ m, n, activeKeys, onToggleKey }) {
   const signedCount = activeKeys.filter(Boolean).length;
   const thresholdMet = signedCount >= m;
   
@@ -49,12 +51,13 @@ function ThresholdDiagram({ m, n, activeKeys }) {
         {Array.from({ length: n }, (_, index) => {
           const isActive = activeKeys[index];
           return (
-            <motion.div
+            <motion.button
               key={index}
               className={`${styles.keyCard} ${isActive ? styles.keyCardActive : ''}`}
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.05 }}
+              onClick={() => onToggleKey(index)}
             >
               <div className={styles.keyCardIcon}>
                 <Key size={24} />
@@ -67,7 +70,7 @@ function ThresholdDiagram({ m, n, activeKeys }) {
                   <XCircle size={16} />
                 )}
               </div>
-            </motion.div>
+            </motion.button>
           );
         })}
       </div>
@@ -116,6 +119,9 @@ function ThresholdDiagram({ m, n, activeKeys }) {
 
 function SigningFlowDiagram({ m, n }) {
   const [currentStep, setCurrentStep] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [hasStarted, setHasStarted] = useState(false);
+  const intervalRef = useRef(null);
   
   const steps = [
     { 
@@ -147,21 +153,52 @@ function SigningFlowDiagram({ m, n }) {
   ];
   
   const step = steps[currentStep];
+  const isComplete = currentStep === steps.length - 1;
+  
+  useEffect(() => {
+    if (isPlaying && !isComplete) {
+      intervalRef.current = setInterval(() => {
+        setCurrentStep(prev => {
+          if (prev >= steps.length - 1) {
+            setIsPlaying(false);
+            return prev;
+          }
+          return prev + 1;
+        });
+      }, 1500);
+    }
+    
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, [isPlaying, isComplete, steps.length]);
+  
+  const handleStart = () => {
+    setHasStarted(true);
+    setIsPlaying(true);
+  };
+  
+  const handleReset = () => {
+    setCurrentStep(0);
+    setIsPlaying(false);
+    setHasStarted(false);
+  };
   
   return (
     <div className={styles.flowContainer}>
       <div className={styles.flowSteps}>
         {steps.map((s, index) => (
-          <button
+          <div
             key={index}
             className={`${styles.flowStep} ${currentStep === index ? styles.active : ''} ${index < currentStep ? styles.complete : ''}`}
-            onClick={() => setCurrentStep(index)}
           >
             <div className={styles.flowStepIndicator}>
               {index < currentStep ? <CheckCircle size={16} /> : index + 1}
             </div>
             <span className={styles.flowStepTitle}>{s.title}</span>
-          </button>
+          </div>
         ))}
       </div>
       
@@ -173,13 +210,16 @@ function SigningFlowDiagram({ m, n }) {
         
         <div className={styles.signaturesVisual}>
           {Array.from({ length: n }, (_, i) => (
-            <div 
+            <motion.div 
               key={i} 
               className={`${styles.signatureSlot} ${i < step.signatures ? styles.signed : ''}`}
+              initial={false}
+              animate={i < step.signatures ? { scale: [1, 1.1, 1] } : {}}
+              transition={{ duration: 0.3 }}
             >
               <Key size={18} />
               <span>{i < step.signatures ? 'Signed' : 'Pending'}</span>
-            </div>
+            </motion.div>
           ))}
         </div>
         
@@ -209,6 +249,20 @@ function SigningFlowDiagram({ m, n }) {
             <span>Transaction broadcasted to Bitcoin network!</span>
           </motion.div>
         )}
+        
+        <div className={styles.flowControls}>
+          {!hasStarted ? (
+            <button className={styles.startButton} onClick={handleStart}>
+              <Play size={18} />
+              <span>Start Signing Process</span>
+            </button>
+          ) : isComplete ? (
+            <button className={styles.resetButton} onClick={handleReset}>
+              <RotateCcw size={18} />
+              <span>Reset</span>
+            </button>
+          ) : null}
+        </div>
       </Card>
     </div>
   );
@@ -282,21 +336,7 @@ export function HowItWorks() {
           </div>
         </div>
         
-        <ThresholdDiagram m={m} n={n} activeKeys={activeKeys} />
-        
-        <div className={styles.keyToggleGrid}>
-          {Array.from({ length: n }, (_, i) => (
-            <button
-              key={i}
-              className={`${styles.keyToggle} ${activeKeys[i] ? styles.active : ''}`}
-              onClick={() => toggleKey(i)}
-            >
-              <Key size={16} />
-              <span>Key {i + 1}</span>
-              {activeKeys[i] ? <CheckCircle size={14} /> : <XCircle size={14} />}
-            </button>
-          ))}
-        </div>
+        <ThresholdDiagram m={m} n={n} activeKeys={activeKeys} onToggleKey={toggleKey} />
       </Card>
       
       {/* Signing Flow */}

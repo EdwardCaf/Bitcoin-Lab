@@ -89,21 +89,21 @@ const securityTiers = [
   },
   {
     tier: 'Moderate',
-    value: '$10K - $100K',
+    value: '$50K - $250K',
     color: 'var(--info)',
     recommendation: 'Consider 2-of-3 multisig with three hardware wallets',
     setup: '2-of-3: Hardware wallet (home) + two Hardware wallets in separate secure locations'
   },
   {
     tier: 'Significant',
-    value: '$100K - $500K',
+    value: '$250K - $1M',
     color: 'var(--warning)',
     recommendation: '2-of-3 with geographic distribution and different vendors. Consider professional guidance.',
     setup: '2-of-3: Hardware wallet (home) + two Hardware wallets in separate secure locations. Inheritance planning should be considered'
   },
   {
     tier: 'High Value',
-    value: '$500K+',
+    value: '$1M+',
     color: 'var(--bitcoin-orange)',
     recommendation: '2-of-3 or collaborative custody with professional services. Involve legal/estate planning.',
     setup: '2-of-4 with Nunchuk or 2-of-3 for recovery and robust inheritance protocol.'
