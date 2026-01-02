@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Clock, Zap, TrendingUp } from 'lucide-react';
+import { Clock, Zap, TrendingUp, Box } from 'lucide-react';
 import { Card } from '../../common';
 import styles from './FeeVisualizer.module.css';
 
@@ -10,8 +10,7 @@ const PRIORITIES = {
     label: 'High Priority',
     feeRate: '50+ sat/vB',
     time: '~10 minutes',
-    blocks: '1-2 blocks',
-    position: 'front', // front of queue
+    targetBlock: 1,
     color: 'var(--success)',
     description: 'Your transaction jumps to the front of the queue and gets included in the next block.',
   },
@@ -19,8 +18,7 @@ const PRIORITIES = {
     label: 'Medium Priority',
     feeRate: '20-50 sat/vB',
     time: '~30 minutes',
-    blocks: '2-3 blocks',
-    position: 'middle',
+    targetBlock: 2,
     color: 'var(--warning)',
     description: 'Your transaction waits behind higher-fee transactions but confirms within a few blocks.',
   },
@@ -28,69 +26,60 @@ const PRIORITIES = {
     label: 'Low Priority',
     feeRate: '1-20 sat/vB',
     time: '1+ hours',
-    blocks: '6+ blocks',
-    position: 'back',
+    targetBlock: 4,
     color: 'var(--error)',
     description: 'Your transaction waits at the back of the queue. It may take a while to confirm.',
   },
 };
 
-// Generate static mempool transactions for visualization
-function generateMempoolTxs() {
-  const txs = [];
-  
-  // High fee transactions (positions 1-8)
-  for (let i = 0; i < 8; i++) {
-    txs.push({
-      id: `high-${i}`,
-      feeRate: Math.floor(Math.random() * 30) + 50,
-      tier: 'high',
-    });
-  }
-  
-  // Medium fee transactions (positions 9-20)
-  for (let i = 0; i < 12; i++) {
-    txs.push({
-      id: `med-${i}`,
-      feeRate: Math.floor(Math.random() * 30) + 20,
-      tier: 'medium',
-    });
-  }
-  
-  // Low fee transactions (positions 21-40)
-  for (let i = 0; i < 20; i++) {
-    txs.push({
-      id: `low-${i}`,
-      feeRate: Math.floor(Math.random() * 19) + 1,
-      tier: 'low',
-    });
-  }
-  
-  return txs.sort((a, b) => b.feeRate - a.feeRate);
-}
-
-const MEMPOOL_TXS = generateMempoolTxs();
+// Upcoming blocks with sample transactions
+const UPCOMING_BLOCKS = [
+  {
+    id: 1,
+    label: 'Next Block',
+    subtitle: '~10 min',
+    txCount: 4,
+    feeRange: '50-80 sat/vB',
+    tier: 'high',
+  },
+  {
+    id: 2,
+    label: 'Block +2',
+    subtitle: '~20 min',
+    txCount: 5,
+    feeRange: '25-50 sat/vB',
+    tier: 'medium',
+  },
+  {
+    id: 3,
+    label: 'Block +3',
+    subtitle: '~30 min',
+    txCount: 5,
+    feeRange: '10-25 sat/vB',
+    tier: 'medium',
+  },
+  {
+    id: 4,
+    label: 'Block +4+',
+    subtitle: '1+ hour',
+    txCount: 6,
+    feeRange: '1-10 sat/vB',
+    tier: 'low',
+  },
+];
 
 export function FeeVisualizer() {
   const [selectedPriority, setSelectedPriority] = useState('medium');
   
   const priority = PRIORITIES[selectedPriority];
-  
-  // Calculate user position based on priority
-  const getUserPosition = () => {
-    if (selectedPriority === 'high') return 3; // Near the front
-    if (selectedPriority === 'medium') return 15; // Middle
-    return 32; // Back of the queue
-  };
-  
-  const userPosition = getUserPosition();
+  const targetBlock = priority.targetBlock;
 
   return (
     <div className={styles.container}>
       <Card variant="elevated" padding="large">
         <h3 className={styles.title}>How Fees Affect Confirmation Time</h3>
         <p className={styles.description}>
-          Select a fee priority to see where your transaction would be in the mempool queue.
+          Select a fee priority to see which block your transaction will likely be included in.
         </p>
 
         {/* Priority Toggle Buttons */}
@@ -114,11 +103,13 @@ export function FeeVisualizer() {
         <div className={styles.statusGrid}>
           <div className={styles.statusCard}>
             <div className={styles.statusIcon} style={{ background: `${priority.color}20`, color: priority.color }}>
-              <TrendingUp size={20} />
+              <Box size={20} />
             </div>
             <div className={styles.statusInfo}>
-              <span className={styles.statusLabel}>Queue Position</span>
-              <span className={styles.statusValue}>#{userPosition} of 40</span>
+              <span className={styles.statusLabel}>Target Block</span>
+              <span className={styles.statusValue}>
+                {targetBlock === 1 ? 'Next Block' : `Block +${targetBlock}`}
+              </span>
             </div>
           </div>
           
@@ -137,8 +128,8 @@ export function FeeVisualizer() {
               <Zap size={20} />
             </div>
             <div className={styles.statusInfo}>
-              <span className={styles.statusLabel}>Blocks to Wait</span>
-              <span className={styles.statusValue}>{priority.blocks}</span>
+              <span className={styles.statusLabel}>Fee Rate</span>
+              <span className={styles.statusValue}>{priority.feeRate}</span>
             </div>
           </div>
         </div>
@@ -154,57 +145,80 @@ export function FeeVisualizer() {
           <p>{priority.description}</p>
         </motion.div>
 
-        {/* Mempool Visualization */}
-        <div className={styles.mempoolSection}>
-          <div className={styles.mempoolHeader}>
-            <h4>Mempool Queue</h4>
-            <span className={styles.mempoolNote}>Sorted by fee rate (highest first)</span>
+        {/* Blocks Visualization */}
+        <div className={styles.blocksSection}>
+          <div className={styles.blocksHeader}>
+            <h4>Upcoming Blocks</h4>
+            <span className={styles.blocksNote}>Higher fees = earlier block</span>
           </div>
           
-          <div className={styles.mempoolViz}>
-            {/* Block zones */}
-            <div className={styles.blockZones}>
-              <div className={styles.blockZone} data-block="1">
-                <span>Block 1</span>
-              </div>
-              <div className={styles.blockZone} data-block="2">
-                <span>Block 2</span>
-              </div>
-              <div className={styles.blockZone} data-block="3">
-                <span>Block 3+</span>
-              </div>
-            </div>
-            
-            <div className={styles.txList}>
-              {MEMPOOL_TXS.map((tx, index) => {
-                const isUserPosition = index === userPosition - 1;
-                
-                return (
-                  <motion.div
-                    key={tx.id}
-                    className={`${styles.txItem} ${styles[tx.tier]} ${isUserPosition ? styles.userTx : ''}`}
-                    initial={false}
-                    animate={{
-                      scale: isUserPosition ? 1.05 : 1,
-                      zIndex: isUserPosition ? 10 : 1,
-                    }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    {isUserPosition && (
-                      <motion.span 
-                        className={styles.youLabel}
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        key={selectedPriority}
-                      >
-                        YOUR TX
-                      </motion.span>
-                    )}
-                    <span className={styles.txFee}>{tx.feeRate}</span>
-                  </motion.div>
-                );
-              })}
-            </div>
+          <div className={styles.blocksContainer}>
+            {UPCOMING_BLOCKS.map((block) => {
+              const isTarget = block.id === targetBlock || (targetBlock >= 4 && block.id === 4);
+              const isPast = block.id < targetBlock;
+              
+              return (
+                <motion.div
+                  key={block.id}
+                  className={`${styles.block} ${styles[block.tier]} ${isTarget ? styles.targetBlock : ''} ${isPast ? styles.pastBlock : ''}`}
+                  initial={false}
+                  animate={{
+                    scale: isTarget ? 1.02 : 1,
+                  }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <div className={styles.blockHeader}>
+                    <span className={styles.blockLabel}>{block.label}</span>
+                    <span className={styles.blockTime}>{block.subtitle}</span>
+                  </div>
+                  
+                  <div className={styles.blockContent}>
+                    {/* Sample transactions in block */}
+                    <div className={styles.blockTxs}>
+                      {Array.from({ length: block.txCount }).map((_, i) => (
+                        <div 
+                          key={i} 
+                          className={`${styles.blockTx} ${isTarget && i === Math.floor(block.txCount / 2) ? styles.userTx : ''}`}
+                        >
+                          {isTarget && i === Math.floor(block.txCount / 2) && (
+                            <motion.span
+                              className={styles.youIndicator}
+                              initial={{ opacity: 0, scale: 0.8 }}
+                              animate={{ opacity: 1, scale: 1 }}
+                              key={selectedPriority}
+                            >
+                              YOU
+                            </motion.span>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                    
+                    <div className={styles.blockFeeRange}>
+                      {block.feeRange}
+                    </div>
+                  </div>
+
+                  {isTarget && (
+                    <motion.div 
+                      className={styles.targetIndicator}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      key={`target-${selectedPriority}`}
+                    >
+                      Your TX Here
+                    </motion.div>
+                  )}
+                </motion.div>
+              );
+            })}
+          </div>
+
+          {/* Connection line / flow indicator */}
+          <div className={styles.flowIndicator}>
+            <span className={styles.flowArrow}>Mined first</span>
+            <div className={styles.flowLine} />
+            <span className={styles.flowArrow}>Mined later</span>
           </div>
         </div>
       </Card>
@@ -213,15 +227,19 @@ export function FeeVisualizer() {
       <div className={styles.legend}>
         <div className={styles.legendItem}>
           <div className={`${styles.legendColor} ${styles.legendHigh}`} />
-          <span>High fee (50+ sat/vB)</span>
+          <span>High priority</span>
         </div>
         <div className={styles.legendItem}>
           <div className={`${styles.legendColor} ${styles.legendMedium}`} />
-          <span>Medium fee (20-50 sat/vB)</span>
+          <span>Medium priority</span>
         </div>
         <div className={styles.legendItem}>
           <div className={`${styles.legendColor} ${styles.legendLow}`} />
-          <span>Low fee (1-20 sat/vB)</span>
+          <span>Low priority</span>
+        </div>
+        <div className={styles.legendItem}>
+          <div className={`${styles.legendColor} ${styles.legendUser}`} />
+          <span>Your transaction</span>
         </div>
       </div>
     </div>
