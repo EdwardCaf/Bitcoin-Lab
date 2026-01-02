@@ -110,9 +110,6 @@ function IntroSection() {
       </div>
 
       <Accordion title="The Casino Chips Analogy" defaultOpen>
-        <p>
-          eCash works like exchanging money for casino chips:
-        </p>
         <ul>
           <li>
             <strong>Entering the casino:</strong> You exchange Bitcoin (via Lightning) for 
@@ -366,7 +363,7 @@ function UseCasesSection() {
             </li>
             <li>
               <Target size={16} />
-              <span>Simplicity matters more than sovereignty</span>
+              <span>Privacy matters more than sovereignty</span>
             </li>
             <li>
               <Target size={16} />
@@ -383,7 +380,7 @@ function UseCasesSection() {
             <h4>Cashu</h4>
             <p>
               Lightweight eCash protocol. Easy to run a mint, perfect for individuals or 
-              small groups. Available in mobile wallets like eNuts and Minibits.
+              small groups. Available in mobile wallets like Macadamia and Minibits.
             </p>
           </div>
           <div>

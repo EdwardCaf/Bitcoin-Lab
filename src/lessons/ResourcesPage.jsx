@@ -121,7 +121,7 @@ const RESOURCES = {
     description: 'Wallets supporting the Liquid Network sidechain',
     resources: [
       {
-        name: 'Green Wallet',
+        name: 'Blockstream Wallet',
         url: 'https://blockstream.com/green',
         description: 'Multi-platform wallet supporting Bitcoin and Liquid Network.',
         tags: ['Liquid', 'Mobile', 'Desktop'],
@@ -251,7 +251,7 @@ const RESOURCES = {
       },
       {
         name: 'RoboSats',
-        url: 'https://robosats.com',
+        url: 'https://learn.robosats.org',
         description: 'Private peer-to-peer Bitcoin exchange over Lightning and Tor.',
         tags: ['P2P'],
         icon: Zap

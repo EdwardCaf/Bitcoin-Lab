@@ -144,4 +144,62 @@
   line-height: 1.6;
 }
 
+/* Social Section */
+.socialSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-xl);
+  padding-top: var(--spacing-xl);
+  border-top: 1px solid var(--border-subtle);
+}
 
+.socialLabel {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  color: var(--text-primary);
+  transition: all var(--transition-base);
+}
+
+.socialLink:hover {
+  border-color: var(--bitcoin-orange);
+  background: var(--bg-tertiary);
+}
+
+.socialLink svg {
+  color: var(--bitcoin-orange);
+}
+
+.socialName {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.socialHandle {
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+}
+
+.emailText {
+  color: var(--text-primary);
+  font-size: var(--text-sm);
+}
+
+button.socialLink {
+  cursor: pointer;
+  font-family: inherit;
+}

@@ -143,7 +143,7 @@ const LEARNING_TREE = {
       icon: Coins, 
       path: '/lessons/ecash', 
       level: 4,
-      description: 'Learn how Chaumian ecash enables perfect near-privacy with Bitcoin-backed tokens.',
+      description: 'Learn how Chaumian ecash enables near-perfect privacy with Bitcoin-backed tokens.',
       difficulty: 'Advanced',
       duration: '23 min',
       topics: ['Cashu Mints', 'Privacy', 'Federated Custody']
@@ -169,10 +169,10 @@ function LessonNode({ lesson, delay = 0 }) {
 
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.8 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true, margin: '-50px' }}
-      transition={{ delay, duration: 0.4 }}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '50px' }}
+      transition={{ delay, duration: 0.2, ease: 'easeOut' }}
       className={styles.nodeWrapper}
     >
       <Link to={lesson.path} className={styles.node}>
@@ -229,7 +229,7 @@ export function LearningPath() {
           </div>
           <div className={styles.nodeContainer}>
             {LEARNING_TREE.foundation.map((lesson, index) => (
-              <LessonNode key={lesson.id} lesson={lesson} delay={index * 0.1} />
+              <LessonNode key={lesson.id} lesson={lesson} delay={index * 0.05} />
             ))}
           </div>
         </div>
@@ -244,7 +244,7 @@ export function LearningPath() {
             initial={{ pathLength: 0 }}
             whileInView={{ pathLength: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.3 }}
           />
         </svg>
 
@@ -255,7 +255,7 @@ export function LearningPath() {
           </div>
           <div className={`${styles.nodeContainer} ${styles.branching}`}>
             {LEARNING_TREE.core.map((lesson, index) => (
-              <LessonNode key={lesson.id} lesson={lesson} delay={0.3 + index * 0.1} />
+              <LessonNode key={lesson.id} lesson={lesson} delay={index * 0.05} />
             ))}
           </div>
         </div>
@@ -270,7 +270,7 @@ export function LearningPath() {
             initial={{ pathLength: 0 }}
             whileInView={{ pathLength: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.6 }}
+            transition={{ duration: 0.3 }}
           />
           <motion.path
             d="M 150 0 L 150 80"
@@ -280,7 +280,7 @@ export function LearningPath() {
             initial={{ pathLength: 0 }}
             whileInView={{ pathLength: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.6 }}
+            transition={{ duration: 0.3 }}
           />
           <motion.path
             d="M 250 0 Q 200 40 150 80"
@@ -290,7 +290,7 @@ export function LearningPath() {
             initial={{ pathLength: 0 }}
             whileInView={{ pathLength: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.6 }}
+            transition={{ duration: 0.3 }}
           />
         </svg>
 
@@ -301,7 +301,7 @@ export function LearningPath() {
           </div>
           <div className={styles.nodeContainer}>
             {LEARNING_TREE.protocol.map((lesson, index) => (
-              <LessonNode key={lesson.id} lesson={lesson} delay={0.9 + index * 0.1} />
+              <LessonNode key={lesson.id} lesson={lesson} delay={index * 0.05} />
             ))}
           </div>
         </div>
@@ -316,7 +316,7 @@ export function LearningPath() {
             initial={{ pathLength: 0 }}
             whileInView={{ pathLength: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 1.1 }}
+            transition={{ duration: 0.3 }}
           />
         </svg>
 
@@ -327,7 +327,7 @@ export function LearningPath() {
           </div>
           <div className={styles.nodeContainer}>
             {LEARNING_TREE.advanced.map((lesson, index) => (
-              <LessonNode key={lesson.id} lesson={lesson} delay={1.3 + index * 0.1} />
+              <LessonNode key={lesson.id} lesson={lesson} delay={index * 0.05} />
             ))}
           </div>
         </div>

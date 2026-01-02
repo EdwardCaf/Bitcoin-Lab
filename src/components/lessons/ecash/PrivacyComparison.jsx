@@ -72,7 +72,7 @@ const SCENARIOS = [
     layers: {
       bitcoin: { risk: 'high', description: 'Charity can see all your addresses and balance history' },
       lightning: { risk: 'low', description: 'Only the payment amount is visible, not your balance' },
-      ecash: { risk: 'low', description: 'Near-perfect privacy - charity can\'t link payment to you at all' }
+      ecash: { risk: 'very little', description: 'Near-perfect privacy - charity can\'t link payment to you at all' }
     }
   },
   {
@@ -82,7 +82,7 @@ const SCENARIOS = [
     layers: {
       bitcoin: { risk: 'high', description: 'Employer can follow the chain and see where you spend' },
       lightning: { risk: 'low', description: 'Channel opens visible, but payments are private' },
-      ecash: { risk: 'low', description: 'Once converted to eCash, spending is completely untraceable' }
+      ecash: { risk: 'very little', description: 'Once converted to eCash, spending is completely untraceable' }
     }
   },
   {
@@ -92,7 +92,7 @@ const SCENARIOS = [
     layers: {
       bitcoin: { risk: 'high', description: 'Merchant sees your transaction history and can estimate balance' },
       lightning: { risk: 'low', description: 'Merchant only sees this payment, not your channels or balance' },
-      ecash: { risk: 'low', description: 'Tokens reveal nothing about your financial history' }
+      ecash: { risk: 'very little', description: 'Tokens reveal nothing about your financial history' }
     }
   }
 ];
@@ -238,6 +238,7 @@ export function PrivacyComparison() {
                       <Badge 
                         variant={
                           layerScenario.risk === 'none' ? 'success' :
+                          layerScenario.risk === 'very little' ? 'success' :
                           layerScenario.risk === 'low' ? 'warning' :
                           'error'
                         }

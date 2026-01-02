@@ -102,7 +102,7 @@
 .assetTicker {
   display: block;
   font-size: var(--font-size-xs);
-  color: var(--text-tertiary);
+  color: var(--text-primary);
   font-family: var(--font-mono);
 }
 

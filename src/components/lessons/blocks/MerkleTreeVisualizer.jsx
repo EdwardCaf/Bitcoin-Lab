@@ -184,7 +184,7 @@ export function MerkleTreeVisualizer() {
         <Card padding="medium" className={styles.benefitCard}>
           <h4>Light Clients</h4>
           <p>
-            SPV wallets can verify payments without downloading the 
+            Neutrino nodes can verify payments without storing the 
             entire blockchain.
           </p>
         </Card>
