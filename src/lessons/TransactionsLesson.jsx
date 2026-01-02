@@ -205,8 +205,7 @@ function BuildingSection() {
     >
       <h2 className={styles.sectionTitle}>Build Your First Transaction</h2>
       <p className={styles.sectionText}>
-        Now let's build a transaction! Select coins from your wallet to use them as inputs, 
-        then adjust how much you want to send.
+        Now let's build a transaction!
       </p>
 
       <TransactionBuilder />

@@ -129,12 +129,6 @@
   background: var(--bg-tertiary);
   border: 2px solid var(--border-subtle);
   border-radius: var(--radius-lg);
-  transition: all var(--transition-base);
-}
-
-.exampleCard:hover {
-  border-color: var(--bitcoin-orange);
-  transform: translateY(-2px);
 }
 
 .exampleIcon {

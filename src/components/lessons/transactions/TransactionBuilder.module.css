@@ -4,22 +4,32 @@
   gap: var(--spacing-lg);
 }
 
-.builderHeader {
+/* Static Header */
+.staticHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: var(--spacing-lg);
 }
 
-.builderTitle {
+.staticTitle {
   font-size: var(--text-xl);
   font-weight: 600;
   color: var(--text-primary);
   margin: 0;
 }
 
-.section {
+/* Transaction Flow Layout */
+.transactionFlow {
+  display: flex;
+  align-items: stretch;
+  gap: var(--spacing-md);
   margin-bottom: var(--spacing-lg);
+}
+
+.flowSection {
+  flex: 1;
+  min-width: 0;
 }
 
 .sectionLabel {
@@ -34,38 +44,28 @@
   letter-spacing: 0.5px;
 }
 
-/* Inputs Container - replaces drop zone */
-.inputsContainer {
-  min-height: 80px;
-  border: 2px dashed var(--border-medium);
-  border-radius: var(--radius-lg);
+/* Arrow Section */
+.arrowSection {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all var(--transition-fast);
-  background: var(--bg-tertiary);
-}
-
-.inputsContainer.hasItems {
-  border-style: solid;
-  align-items: stretch;
-  padding: var(--spacing-sm);
-}
-
-.emptyPlaceholder {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--spacing-sm);
+  padding: 0 var(--spacing-sm);
   color: var(--text-muted);
-  padding: var(--spacing-md);
 }
 
+.arrowDesktop {
+  display: block;
+}
+
+.arrowMobile {
+  display: none;
+}
+
+/* Inputs List */
 .inputsList {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-sm);
-  width: 100%;
 }
 
 .inputItem {
@@ -73,7 +73,7 @@
   align-items: center;
   gap: var(--spacing-sm);
   padding: var(--spacing-sm) var(--spacing-md);
-  background: var(--bg-elevated);
+  background: var(--bg-tertiary);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
 }
@@ -87,6 +87,7 @@
   background: var(--bitcoin-orange-subtle);
   border-radius: var(--radius-sm);
   color: var(--bitcoin-orange);
+  flex-shrink: 0;
 }
 
 .inputInfo {
@@ -111,105 +112,60 @@
   text-overflow: ellipsis;
 }
 
-.removeButton {
+/* Outputs List */
+.outputsList {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 24px;
-  height: 24px;
-  background: transparent;
-  border: none;
-  border-radius: var(--radius-sm);
-  color: var(--text-muted);
-  cursor: pointer;
-  transition: all var(--transition-fast);
+  flex-direction: column;
+  gap: var(--spacing-sm);
 }
 
-.removeButton:hover {
-  background: var(--error-bg);
-  color: var(--error);
-}
-
-.arrowSection {
-  display: flex;
-  justify-content: center;
-  padding: var(--spacing-md) 0;
-  color: var(--text-muted);
-}
-
-.outputCard {
-  background: var(--bg-tertiary);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
-  padding: var(--spacing-md);
-  margin-bottom: var(--spacing-sm);
-}
-
-.outputHeader {
+.outputItem {
   display: flex;
   align-items: center;
   gap: var(--spacing-sm);
-  margin-bottom: var(--spacing-md);
-  font-size: var(--text-sm);
-  font-weight: 500;
-  color: var(--text-secondary);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
 }
 
-.outputIcon {
-  color: var(--bitcoin-orange);
-}
-
-.changeOutput {
+.outputItem.changeOutput {
   border-style: dashed;
   background: transparent;
 }
 
-.changeAmount {
-  font-size: var(--text-lg);
+.outputIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: var(--bitcoin-orange-subtle);
+  border-radius: var(--radius-sm);
+  color: var(--bitcoin-orange);
+  flex-shrink: 0;
+}
+
+.outputInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.outputLabel {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+}
+
+.outputAmount {
+  display: block;
+  font-size: var(--text-sm);
   font-weight: 600;
   color: var(--text-primary);
   font-family: var(--font-mono);
-  text-align: center;
-  padding: var(--spacing-md);
 }
 
-.recipientSelect {
-  width: 100%;
-  padding: var(--spacing-sm) var(--spacing-md);
-  background: var(--bg-elevated);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
-  color: var(--text-primary);
-  font-size: var(--text-sm);
-  margin-top: var(--spacing-md);
-  cursor: pointer;
-}
-
-.recipientSelect:focus {
-  outline: none;
-  border-color: var(--bitcoin-orange);
-}
-
-.feeCard {
-  background: var(--bg-tertiary);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
-  padding: var(--spacing-md);
-}
-
-.feeDetails {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: var(--spacing-md);
-  font-size: var(--text-sm);
-  color: var(--text-secondary);
-}
-
-.feeTime {
-  color: var(--success);
-}
-
+/* Summary */
 .summary {
   background: var(--bg-tertiary);
   border-radius: var(--radius-md);
@@ -240,241 +196,72 @@
   padding-top: var(--spacing-sm);
 }
 
-.validationError {
+/* Equation Box */
+.equationBox {
   display: flex;
-  align-items: center;
-  gap: var(--spacing-sm);
-  padding: var(--spacing-sm) var(--spacing-md);
-  background: var(--error-bg);
-  border-radius: var(--radius-md);
-  color: var(--error);
-  font-size: var(--text-sm);
-  margin-bottom: var(--spacing-md);
-}
-
-.successState {
-  text-align: center;
-  padding: var(--spacing-xl) 0;
-}
-
-.successIcon {
-  display: inline-flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  width: 80px;
-  height: 80px;
-  background: var(--success-bg);
-  border-radius: 50%;
-  color: var(--success);
-  margin-bottom: var(--spacing-lg);
-}
-
-.successState h4 {
-  font-size: var(--text-xl);
-  font-weight: 600;
-  color: var(--text-primary);
-  margin: 0 0 var(--spacing-sm);
-}
-
-.successState p {
-  color: var(--text-secondary);
-  margin-bottom: var(--spacing-lg);
-}
-
-.successDetails {
-  background: var(--bg-tertiary);
-  border-radius: var(--radius-md);
-  padding: var(--spacing-md);
-  margin-bottom: var(--spacing-lg);
-  text-align: left;
-}
-
-.successRow {
-  display: flex;
-  justify-content: space-between;
-  padding: var(--spacing-xs) 0;
-  font-size: var(--text-sm);
-}
-
-.successRow span:first-child {
-  color: var(--text-muted);
-}
-
-.successRow span:last-child {
-  color: var(--text-primary);
-  font-family: var(--font-mono);
-}
-
-/* Wallet Section */
-.walletHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: var(--spacing-lg);
-}
-
-.walletTitle {
-  font-size: var(--text-lg);
-  font-weight: 600;
-  color: var(--text-primary);
-  margin: 0 0 var(--spacing-xs);
-}
-
-.walletSubtitle {
-  font-size: var(--text-sm);
-  color: var(--text-muted);
-  margin: 0;
-}
-
-.walletBalance {
-  text-align: right;
-}
-
-.walletBalanceLabel {
-  display: block;
-  font-size: var(--text-xs);
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.walletBalanceAmount {
-  display: block;
-  font-size: var(--text-xl);
-  font-weight: 700;
-  color: var(--bitcoin-orange);
-  font-family: var(--font-mono);
-}
-
-/* Coin Buttons Grid */
-.coinButtonsGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: var(--spacing-md);
-}
-
-.coinButton {
-  display: flex;
-  align-items: center;
   gap: var(--spacing-sm);
   padding: var(--spacing-md);
   background: var(--bg-tertiary);
-  border: 2px solid var(--border-subtle);
-  border-radius: var(--radius-lg);
-  cursor: pointer;
-  transition: all var(--transition-fast);
-  text-align: left;
-  position: relative;
-}
-
-.coinButton:hover {
-  border-color: var(--bitcoin-orange);
-  box-shadow: var(--shadow-glow);
-}
-
-.coinButtonSelected {
-  border-color: var(--bitcoin-orange);
-  background: var(--bitcoin-orange-subtle);
-}
-
-.coinButtonIcon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  background: var(--bitcoin-orange-subtle);
+  border: 1px solid var(--bitcoin-orange);
   border-radius: var(--radius-md);
-  color: var(--bitcoin-orange);
-  flex-shrink: 0;
-}
-
-.coinButtonInfo {
-  flex: 1;
-  min-width: 0;
-}
-
-.coinButtonAmount {
-  display: block;
   font-size: var(--text-sm);
-  font-weight: 600;
+}
+
+.equationPart {
   color: var(--text-primary);
   font-family: var(--font-mono);
 }
 
-.coinButtonLabel {
-  display: block;
-  font-size: var(--text-xs);
-  color: var(--text-muted);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.coinButtonCheck {
-  position: absolute;
-  top: -6px;
-  right: -6px;
-  width: 24px;
-  height: 24px;
-  background: var(--bitcoin-orange);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-inverse);
-  box-shadow: var(--shadow-md);
-}
-
-/* Selection Summary */
-.selectionSummary {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: var(--spacing-lg);
-  padding-top: var(--spacing-md);
-  border-top: 1px solid var(--border-subtle);
-}
-
-.selectedAmount {
-  font-size: var(--text-lg);
-  font-weight: 600;
+.equationPart strong {
   color: var(--bitcoin-orange);
-  font-family: var(--font-mono);
+}
+
+.equationOperator {
+  color: var(--text-muted);
+  font-weight: 600;
 }
 
 /* Mobile styles */
-@media (max-width: 480px) {
-  .builderHeader {
+@media (max-width: 640px) {
+  .transactionFlow {
     flex-direction: column;
-    gap: var(--spacing-sm);
   }
-  
-  .walletHeader {
-    flex-direction: column;
-    gap: var(--spacing-sm);
+
+  .arrowDesktop {
+    display: none;
   }
-  
-  .walletBalance {
-    text-align: left;
+
+  .arrowMobile {
+    display: block;
   }
-  
-  .coinButtonsGrid {
-    grid-template-columns: 1fr;
+
+  .arrowSection {
+    padding: var(--spacing-sm) 0;
   }
-  
-  .selectionSummary {
-    flex-direction: column;
-    gap: var(--spacing-sm);
-    text-align: center;
-  }
-  
-  .feeDetails {
+
+  .equationBox {
     flex-direction: column;
     gap: var(--spacing-xs);
     text-align: center;
   }
-  
+
+  .equationOperator {
+    display: none;
+  }
+
+  .equationPart {
+    padding: var(--spacing-xs) 0;
+    border-bottom: 1px solid var(--border-subtle);
+    width: 100%;
+  }
+
+  .equationPart:last-child {
+    border-bottom: none;
+  }
+
   .summaryRow {
     flex-direction: column;
     gap: 2px;

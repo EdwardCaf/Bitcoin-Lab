@@ -1,393 +1,146 @@
-import { useState, useMemo, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  ArrowRight, 
-  Plus, 
-  Trash2, 
-  AlertCircle, 
-  CheckCircle2,
-  Coins,
-  Send,
-  RotateCcw
-} from 'lucide-react';
-import { Card, Button, Slider, Badge, Accordion } from '../../common';
-import { generateSampleUTXOs, SAMPLE_RECIPIENTS, calculateFee } from '../../../utils/bitcoin';
+import { Coins, Send, RotateCcw, ArrowRight, ArrowDown } from 'lucide-react';
+import { Card, Badge, Accordion } from '../../common';
 import styles from './TransactionBuilder.module.css';
 
 function formatBTC(sats) {
   return (sats / 100000000).toFixed(8).replace(/\.?0+$/, '');
 }
 
-function InputsList({ inputs, onRemove }) {
+// Static sample transaction data
+// Fee calculation: 10 + (2 inputs × 148) + (2 outputs × 34) = 374 vBytes × 10 sat/vB = 3,740 sats
+const SAMPLE_TRANSACTION = {
+  inputs: [
+    { id: 'utxo-1', amount: 50000000, label: 'Payment from Alice' },
+    { id: 'utxo-2', amount: 30000000, label: 'Mining reward' }
+  ],
+  outputs: {
+    recipient: { name: 'Bob', amount: 60000000 },
+    change: { amount: 19996260 }
+  },
+  fee: 3740,
+  feeRate: 10
+};
+
+function InputItem({ input }) {
   return (
-    <div className={`${styles.inputsContainer} ${inputs.length > 0 ? styles.hasItems : ''}`}>
-      {inputs.length === 0 ? (
-        <div className={styles.emptyPlaceholder}>
-          <Plus size={24} />
-          <span>Select coins from wallet above</span>
-        </div>
-      ) : (
-        <div className={styles.inputsList}>
-          {inputs.map((input) => (
-            <motion.div
-              key={input.id}
-              className={styles.inputItem}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              layout
-            >
-              <div className={styles.inputIcon}>
-                <Coins size={16} />
-              </div>
-              <div className={styles.inputInfo}>
-                <span className={styles.inputAmount}>{formatBTC(input.amount)} BTC</span>
-                <span className={styles.inputLabel}>{input.label}</span>
-              </div>
-              <button
-                className={styles.removeButton}
-                onClick={() => onRemove(input.id)}
-                aria-label="Remove input"
-              >
-                <Trash2 size={14} />
-              </button>
-            </motion.div>
-          ))}
-        </div>
-      )}
+    <div className={styles.inputItem}>
+      <div className={styles.inputIcon}>
+        <Coins size={16} />
+      </div>
+      <div className={styles.inputInfo}>
+        <span className={styles.inputAmount}>{formatBTC(input.amount)} BTC</span>
+        <span className={styles.inputLabel}>{input.label}</span>
+      </div>
     </div>
   );
 }
 
-function CoinButton({ utxo, isSelected, onToggle }) {
+function OutputItem({ icon: Icon, label, amount, variant }) {
   return (
-    <motion.button
-      className={`${styles.coinButton} ${isSelected ? styles.coinButtonSelected : ''}`}
-      onClick={() => onToggle(utxo)}
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
-    >
-      <div className={styles.coinButtonIcon}>
-        <Coins size={18} />
+    <div className={`${styles.outputItem} ${variant === 'change' ? styles.changeOutput : ''}`}>
+      <div className={styles.outputIcon}>
+        <Icon size={16} />
       </div>
-      <div className={styles.coinButtonInfo}>
-        <span className={styles.coinButtonAmount}>{formatBTC(utxo.amount)} BTC</span>
-        <span className={styles.coinButtonLabel}>{utxo.label}</span>
+      <div className={styles.outputInfo}>
+        <span className={styles.outputLabel}>{label}</span>
+        <span className={styles.outputAmount}>{formatBTC(amount)} BTC</span>
       </div>
-      {isSelected && (
-        <motion.div 
-          className={styles.coinButtonCheck}
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-        >
-          <CheckCircle2 size={16} />
-        </motion.div>
-      )}
-    </motion.button>
+    </div>
   );
 }
 
-export function TransactionBuilder({ onTransactionCreated }) {
-  const [utxos] = useState(() => generateSampleUTXOs());
-  const [selectedInputs, setSelectedInputs] = useState([]);
-  const [recipient, setRecipient] = useState(SAMPLE_RECIPIENTS[0]);
-  const [sendAmount, setSendAmount] = useState(0);
-  const [feeRate, setFeeRate] = useState(10);
-  const [showSuccess, setShowSuccess] = useState(false);
-
-  // Calculate transaction details
-  const inputTotal = useMemo(() => 
-    selectedInputs.reduce((sum, input) => sum + input.amount, 0), 
-    [selectedInputs]
-  );
-
-  const fee = useMemo(() => 
-    calculateFee(selectedInputs.length || 1, 2, feeRate),
-    [selectedInputs.length, feeRate]
-  );
-
-  const change = useMemo(() => 
-    Math.max(0, inputTotal - sendAmount - fee),
-    [inputTotal, sendAmount, fee]
-  );
-
-  const isValid = useMemo(() => {
-    return selectedInputs.length > 0 && 
-           sendAmount > 0 && 
-           sendAmount <= inputTotal - fee &&
-           inputTotal >= sendAmount + fee;
-  }, [selectedInputs, sendAmount, inputTotal, fee]);
-
-  // Update send amount when inputs change
-  useEffect(() => {
-    if (inputTotal > 0 && sendAmount === 0) {
-      const maxSend = Math.max(0, inputTotal - fee);
-      setSendAmount(Math.floor(maxSend * 0.8)); // Default to 80% of available
-    }
-  }, [inputTotal, fee]);
-
-  const handleToggleCoin = (utxo) => {
-    const isAlreadySelected = selectedInputs.some(i => i.id === utxo.id);
-    if (isAlreadySelected) {
-      setSelectedInputs(selectedInputs.filter(i => i.id !== utxo.id));
-    } else {
-      setSelectedInputs([...selectedInputs, utxo]);
-    }
-  };
-
-  const handleRemoveInput = (id) => {
-    setSelectedInputs(selectedInputs.filter(i => i.id !== id));
-  };
-
-  const handleReset = () => {
-    setSelectedInputs([]);
-    setSendAmount(0);
-    setShowSuccess(false);
-  };
-
-  const handleCreateTransaction = () => {
-    if (!isValid) return;
-    setShowSuccess(true);
-    onTransactionCreated?.({
-      inputs: selectedInputs,
-      outputs: [
-        { address: recipient.address, amount: sendAmount },
-        { address: 'change', amount: change }
-      ],
-      fee
-    });
-  };
-
-  const maxSendAmount = Math.max(0, inputTotal - fee);
-  const totalWalletBalance = utxos.reduce((sum, u) => sum + u.amount, 0);
+export function TransactionBuilder() {
+  const { inputs, outputs, fee, feeRate } = SAMPLE_TRANSACTION;
+  const inputTotal = inputs.reduce((sum, input) => sum + input.amount, 0);
 
   return (
     <div className={styles.container}>
-      {/* Coin Selection Section */}
-      <Card variant="gradient" padding="large">
-        <div className={styles.walletHeader}>
-          <div>
-            <h3 className={styles.walletTitle}>Your Wallet</h3>
-            <p className={styles.walletSubtitle}>Select coins to use as inputs</p>
-          </div>
-          <div className={styles.walletBalance}>
-            <span className={styles.walletBalanceLabel}>Total Balance</span>
-            <span className={styles.walletBalanceAmount}>{formatBTC(totalWalletBalance)} BTC</span>
-          </div>
-        </div>
-
-        <div className={styles.coinButtonsGrid}>
-          {utxos.map((utxo) => (
-            <CoinButton
-              key={utxo.id}
-              utxo={utxo}
-              isSelected={selectedInputs.some(i => i.id === utxo.id)}
-              onToggle={handleToggleCoin}
-            />
-          ))}
-        </div>
-
-        {selectedInputs.length > 0 && (
-          <motion.div 
-            className={styles.selectionSummary}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-          >
-            <Badge variant="primary">
-              {selectedInputs.length} coin{selectedInputs.length > 1 ? 's' : ''} selected
-            </Badge>
-            <span className={styles.selectedAmount}>
-              {formatBTC(inputTotal)} BTC
-            </span>
-          </motion.div>
-        )}
-      </Card>
-
-      {/* Transaction Builder */}
       <Card variant="elevated" padding="large">
-        <div className={styles.builderHeader}>
-          <h3 className={styles.builderTitle}>Build Transaction</h3>
-          <Button
-            variant="ghost"
-            size="small"
-            icon={<RotateCcw size={14} />}
-            onClick={handleReset}
-          >
-            Reset
-          </Button>
+        <div className={styles.staticHeader}>
+          <h3 className={styles.staticTitle}>Example Transaction</h3>
+          <Badge variant="primary">Signed & Ready</Badge>
         </div>
 
-        <AnimatePresence mode="wait">
-          {showSuccess ? (
-            <motion.div
-              className={styles.successState}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-            >
-              <div className={styles.successIcon}>
-                <CheckCircle2 size={48} />
-              </div>
-              <h4>Transaction Created!</h4>
-              <p>Your simulated transaction is ready to be broadcast.</p>
-              <div className={styles.successDetails}>
-                <div className={styles.successRow}>
-                  <span>Sent:</span>
-                  <span>{formatBTC(sendAmount)} BTC</span>
-                </div>
-                <div className={styles.successRow}>
-                  <span>To:</span>
-                  <span>{recipient.name}</span>
-                </div>
-                <div className={styles.successRow}>
-                  <span>Fee:</span>
-                  <span>{fee.toLocaleString()} sats</span>
-                </div>
-                <div className={styles.successRow}>
-                  <span>Change:</span>
-                  <span>{formatBTC(change)} BTC</span>
-                </div>
-              </div>
-              <Button onClick={handleReset} variant="primary">
-                Create Another
-              </Button>
-            </motion.div>
-          ) : (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-            >
-              {/* Inputs Section */}
-              <div className={styles.section}>
-                <label className={styles.sectionLabel}>
-                  <span>Inputs</span>
-                  <Badge variant="outline" size="small">
-                    {formatBTC(inputTotal)} BTC
-                  </Badge>
-                </label>
-                <InputsList 
-                  inputs={selectedInputs} 
-                  onRemove={handleRemoveInput}
-                />
-              </div>
+        <div className={styles.transactionFlow}>
+          {/* Inputs Section */}
+          <div className={styles.flowSection}>
+            <label className={styles.sectionLabel}>
+              <span>Inputs</span>
+              <Badge variant="outline" size="small">
+                {formatBTC(inputTotal)} BTC
+              </Badge>
+            </label>
+            <div className={styles.inputsList}>
+              {inputs.map((input) => (
+                <InputItem key={input.id} input={input} />
+              ))}
+            </div>
+          </div>
 
-              {/* Arrow */}
-              <div className={styles.arrowSection}>
-                <ArrowRight size={24} />
-              </div>
+          {/* Arrow */}
+          <div className={styles.arrowSection}>
+            <ArrowRight size={24} className={styles.arrowDesktop} />
+            <ArrowDown size={24} className={styles.arrowMobile} />
+          </div>
 
-              {/* Outputs Section */}
-              <div className={styles.section}>
-                <label className={styles.sectionLabel}>Outputs</label>
-                
-                {/* Send Output */}
-                <div className={styles.outputCard}>
-                  <div className={styles.outputHeader}>
-                    <Send size={16} className={styles.outputIcon} />
-                    <span>Send to {recipient.name}</span>
-                  </div>
-                  <Slider
-                    value={sendAmount}
-                    onChange={setSendAmount}
-                    min={0}
-                    max={maxSendAmount}
-                    step={1000}
-                    label="Amount"
-                    formatValue={(v) => `${formatBTC(v)} BTC`}
-                    disabled={inputTotal === 0}
-                  />
-                  <select
-                    className={styles.recipientSelect}
-                    value={recipient.id}
-                    onChange={(e) => setRecipient(SAMPLE_RECIPIENTS.find(r => r.id === e.target.value))}
-                  >
-                    {SAMPLE_RECIPIENTS.slice(0, 3).map(r => (
-                      <option key={r.id} value={r.id}>{r.name}</option>
-                    ))}
-                  </select>
-                </div>
+          {/* Outputs Section */}
+          <div className={styles.flowSection}>
+            <label className={styles.sectionLabel}>
+              <span>Outputs</span>
+            </label>
+            <div className={styles.outputsList}>
+              <OutputItem
+                icon={Send}
+                label={`Send to ${outputs.recipient.name}`}
+                amount={outputs.recipient.amount}
+              />
+              <OutputItem
+                icon={RotateCcw}
+                label="Change (back to you)"
+                amount={outputs.change.amount}
+                variant="change"
+              />
+            </div>
+          </div>
+        </div>
 
-                {/* Change Output */}
-                <div className={`${styles.outputCard} ${styles.changeOutput}`}>
-                  <div className={styles.outputHeader}>
-                    <RotateCcw size={16} className={styles.outputIcon} />
-                    <span>Change (back to you)</span>
-                  </div>
-                  <div className={styles.changeAmount}>
-                    {formatBTC(change)} BTC
-                  </div>
-                </div>
-              </div>
+        {/* Summary */}
+        <div className={styles.summary}>
+          <div className={styles.summaryRow}>
+            <span>Input Total:</span>
+            <span>{formatBTC(inputTotal)} BTC</span>
+          </div>
+          <div className={styles.summaryRow}>
+            <span>Sending:</span>
+            <span className={styles.summaryHighlight}>- {formatBTC(outputs.recipient.amount)} BTC</span>
+          </div>
+          <div className={styles.summaryRow}>
+            <span>Fee ({feeRate} sat/vB):</span>
+            <span>- {fee.toLocaleString()} sats</span>
+          </div>
+          <div className={`${styles.summaryRow} ${styles.summaryTotal}`}>
+            <span>Change:</span>
+            <span>{formatBTC(outputs.change.amount)} BTC</span>
+          </div>
+        </div>
 
-              {/* Fee Section */}
-              <div className={styles.section}>
-                <label className={styles.sectionLabel}>Transaction Fee</label>
-                <div className={styles.feeCard}>
-                  <Slider
-                    value={feeRate}
-                    onChange={setFeeRate}
-                    min={1}
-                    max={100}
-                    step={1}
-                    label="Fee Rate"
-                    formatValue={(v) => `${v} sat/vB`}
-                  />
-                  <div className={styles.feeDetails}>
-                    <span>Total Fee: {fee.toLocaleString()} sats</span>
-                    <span className={styles.feeTime}>
-                      {feeRate <= 5 ? '~1 hour' : feeRate <= 20 ? '~30 min' : feeRate <= 40 ? '~10 min' : 'Next block'}
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Summary */}
-              <div className={styles.summary}>
-                <div className={styles.summaryRow}>
-                  <span>Input Total:</span>
-                  <span>{formatBTC(inputTotal)} BTC</span>
-                </div>
-                <div className={styles.summaryRow}>
-                  <span>Sending:</span>
-                  <span className={styles.summaryHighlight}>- {formatBTC(sendAmount)} BTC</span>
-                </div>
-                <div className={styles.summaryRow}>
-                  <span>Fee:</span>
-                  <span>- {fee.toLocaleString()} sats</span>
-                </div>
-                <div className={`${styles.summaryRow} ${styles.summaryTotal}`}>
-                  <span>Change:</span>
-                  <span>{formatBTC(change)} BTC</span>
-                </div>
-              </div>
-
-              {/* Validation */}
-              {selectedInputs.length > 0 && !isValid && (
-                <motion.div 
-                  className={styles.validationError}
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                >
-                  <AlertCircle size={16} />
-                  <span>Insufficient funds for this transaction</span>
-                </motion.div>
-              )}
-
-              {/* Create Button */}
-              <Button
-                variant="primary"
-                fullWidth
-                size="large"
-                disabled={!isValid}
-                onClick={handleCreateTransaction}
-                icon={<Send size={18} />}
-              >
-                Create Transaction
-              </Button>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        <div className={styles.equationBox}>
+          <span className={styles.equationPart}>
+            <strong>Inputs</strong> ({formatBTC(inputTotal)})
+          </span>
+          <span className={styles.equationOperator}>=</span>
+          <span className={styles.equationPart}>
+            <strong>Send</strong> ({formatBTC(outputs.recipient.amount)})
+          </span>
+          <span className={styles.equationOperator}>+</span>
+          <span className={styles.equationPart}>
+            <strong>Change</strong> ({formatBTC(outputs.change.amount)})
+          </span>
+          <span className={styles.equationOperator}>+</span>
+          <span className={styles.equationPart}>
+            <strong>Fee</strong> ({fee.toLocaleString()} sats)
+          </span>
+        </div>
       </Card>
 
       {/* Deep Dive */}
