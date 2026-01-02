@@ -113,7 +113,7 @@ const configurations = [
       'Regulatory compliance'
     ],
     example: 'Three co-founders must all agree to any company Bitcoin expenditure, preventing unauthorized spending.',
-    pros: ['Maximum security', 'No single point of compromise'],
+    pros: ['Good security', 'No single point of compromise'],
     cons: ['No key loss tolerance', 'All parties must coordinate', 'Single unavailable party blocks spending']
   }
 ];

@@ -141,7 +141,7 @@ function IntroSection() {
             <p style={{ margin: 0, color: 'var(--text-secondary)', fontSize: 'var(--text-sm)', lineHeight: 1.6 }}>
               Multisig adds complexity. For small amounts you're learning with, a single 
               hardware wallet is simpler and sufficient. Consider multisig when the value 
-              justifies the extra security, typically above $10,000-$50,000, or when you 
+              justifies the extra security, typically above ~$50,000, or when you 
               need shared control for business or family purposes.
             </p>
           </div>

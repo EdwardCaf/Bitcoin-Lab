@@ -7,7 +7,7 @@ const STATS = [
   {
     icon: BookOpen,
     value: 11,
-    label: 'Interactive Lessons',
+    label: 'Visual Lessons',
     suffix: '',
   },
   {
@@ -25,7 +25,7 @@ const STATS = [
   {
     icon: Trophy,
     value: 100,
-    label: 'Free Forever',
+    label: 'Free',
     suffix: '%',
   },
 ];

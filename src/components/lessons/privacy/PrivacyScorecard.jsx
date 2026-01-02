@@ -81,13 +81,13 @@ const practices = [
   },
   {
     id: 'lightning',
-    title: 'Use Lightning Network for payments',
-    description: 'Lightning offers better privacy than on-chain transactions.',
+    title: 'Use Lightning Network & Liquid for payments',
+    description: 'Lightning & Liquid offer better privacy than on-chain transactions.',
     weight: 10,
     tips: [
       'Lightning payments are not recorded on the blockchain',
       'Onion routing hides sender/receiver from intermediate nodes',
-      'Use private (unannounced) channels when possible'
+      'Confidential TXs on Liquid hide TX amounts'
     ]
   }
 ];

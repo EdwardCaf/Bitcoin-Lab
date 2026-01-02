@@ -402,7 +402,6 @@ export function TransactionBuilder({ onTransactionCreated }) {
         <ul>
           <li><strong>Inputs</strong> reference previous transaction outputs (UTXOs) that you're spending</li>
           <li><strong>Outputs</strong> define where the bitcoin goes - typically one to the recipient and one for change</li>
-          <li>The <strong>fee</strong> is implicit: it's the difference between input and output totals</li>
         </ul>
         <p>
           Each input requires a digital signature to prove you own the coins. 

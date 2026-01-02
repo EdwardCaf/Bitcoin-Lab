@@ -150,8 +150,11 @@ export function Sidebar({ isOpen, onClose }) {
 
           <div className={styles.footer}>
             <p className={styles.footerText}>
-              All simulations are for educational purposes.
-              No real Bitcoin is involved.
+              All visuals are for educational purposes.
+              Nothing stated is finanical advice.
+            </p>
+            <p className={styles.footerText}>
+              Created by Edward Cafarella
             </p>
           </div>
         </div>

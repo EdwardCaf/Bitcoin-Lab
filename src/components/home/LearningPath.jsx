@@ -27,10 +27,10 @@ const LEARNING_TREE = {
       icon: Wallet, 
       path: '/lessons/wallets', 
       level: 1,
-      description: 'Understand how Bitcoin wallets work, from private keys to address types and scripts.',
+      description: 'Understand how Bitcoin wallets work, from private keys to address types.',
       difficulty: 'Beginner',
       duration: '15 min',
-      topics: ['Private Keys', 'Address Types', 'Bitcoin Script', 'HD Wallets']
+      topics: ['Private Keys', 'Address Types', 'HD Wallets']
     },
     { 
       id: 'transactions', 
@@ -143,10 +143,10 @@ const LEARNING_TREE = {
       icon: Coins, 
       path: '/lessons/ecash', 
       level: 4,
-      description: 'Learn how Chaumian blind signatures enable perfect near-privacy with Bitcoin-backed tokens.',
+      description: 'Learn how Chaumian ecash enables perfect near-privacy with Bitcoin-backed tokens.',
       difficulty: 'Advanced',
       duration: '23 min',
-      topics: ['Blind Signatures', 'Cashu Mints', 'Privacy', 'Federated Custody']
+      topics: ['Cashu Mints', 'Privacy', 'Federated Custody']
     },
   ],
 };
@@ -217,7 +217,7 @@ export function LearningPath() {
       <div className={styles.header}>
         <h2 className={styles.title}>Your Learning Journey</h2>
         <p className={styles.subtitle}>
-          Progress from Bitcoin basics to advanced topics through our structured curriculum
+          Progress from Bitcoin basics to advanced topics through a structured curriculum
         </p>
       </div>
 

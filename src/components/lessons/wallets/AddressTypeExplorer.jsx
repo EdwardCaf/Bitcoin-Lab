@@ -254,7 +254,7 @@ export function AddressTypeExplorer() {
         </p>
         <ul>
           <li>
-            <strong>2009 - P2PKH:</strong> Satoshi's original design. Simple but inefficient.
+            <strong>2009 - P2PKH:</strong> Original address format. Simple but inefficient.
           </li>
           <li>
             <strong>2012 - P2SH:</strong> Introduced to enable multisig and more complex scripts 

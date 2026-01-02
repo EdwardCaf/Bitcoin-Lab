@@ -237,7 +237,8 @@ function CoinSelectionSection() {
       <p className={styles.sectionText}>
         When you make a transaction, your wallet must decide which UTXOs to spend. Different 
         algorithms optimize for different goals—some minimize fees, others maximize privacy, 
-        and some try to balance both.
+        and some try to balance both. Some wallets allow the user to select what UTXOs they 
+        want to send, this should always be done when available.
       </p>
 
       <CoinSelectionSimulator />

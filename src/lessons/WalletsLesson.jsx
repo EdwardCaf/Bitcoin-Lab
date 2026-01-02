@@ -99,7 +99,7 @@ function IntroSection() {
           <h3>Seed Phrases</h3>
           <p>
             12-24 words that can recover all your keys. One backup protects 
-            unlimited addresses. Write it down, keep it safe.
+            multiple addresses. Write it down, keep it safe.
           </p>
         </Card>
       </div>
@@ -191,7 +191,7 @@ function HDWalletsSection() {
       <h2 className={styles.sectionTitle}>HD Wallets & Seed Phrases</h2>
       <p className={styles.sectionText}>
         Modern wallets use <strong>Hierarchical Deterministic (HD)</strong> key generation. 
-        This means one seed phrase can generate billions of addresses. You only need to 
+        This means one seed phrase can generate multiple addresses. You only need to 
         back up 12-24 words, and you can recover everything.
       </p>
 

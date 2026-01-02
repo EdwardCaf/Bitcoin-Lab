@@ -66,7 +66,7 @@ export function HomePage() {
             </span>
             <span className={styles.badge}>
               <Zap size={16} />
-              No Setup
+              Desktop Optimized
             </span>
             <span className={styles.badge}>
               <Sparkles size={16} />
@@ -100,8 +100,8 @@ export function HomePage() {
             <div className={styles.featureIcon}>
               <Gamepad2 size={24} />
             </div>
-            <h4>Hands-On Learning</h4>
-            <p>Interactive visualizations let you experiment with Bitcoin concepts in real-time without risk</p>
+            <h4>Visual Learning</h4>
+            <p>Visualizations let you see Bitcoin concepts in real-time</p>
           </div>
           <div className={styles.feature}>
             <div className={styles.featureIcon}>
@@ -115,7 +115,7 @@ export function HomePage() {
               <Sparkles size={24} />
             </div>
             <h4>Deep Technical Content</h4>
-            <p>Expand any topic to dive into the underlying technical details and cryptography</p>
+            <p>Expand certain topics to dive into the underlying technical details</p>
           </div>
         </div>
       </motion.section>
@@ -128,7 +128,7 @@ export function HomePage() {
         viewport={{ once: true, margin: '-100px' }}
         transition={{ duration: 0.5 }}
       >
-        <h2 className={styles.ctaTitle}>Ready to Master Bitcoin?</h2>
+        <h2 className={styles.ctaTitle}>Ready to Learn?</h2>
         <Link to="/lessons/wallets">
           <Button 
             variant="primary" 
@@ -140,7 +140,7 @@ export function HomePage() {
           </Button>
         </Link>
         <p className={styles.ctaSubtext}>
-          No account required • Takes 2 minutes to start • Completely free
+          No account required • Completely free
         </p>
       </motion.section>
     </div>

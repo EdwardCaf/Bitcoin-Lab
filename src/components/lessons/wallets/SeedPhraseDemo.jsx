@@ -95,7 +95,7 @@ export function SeedPhraseDemo() {
             <div>
               <h3 className={styles.title}>HD Wallet & Seed Phrases</h3>
               <p className={styles.subtitle}>
-                See how one seed phrase generates unlimited addresses
+                See how one seed phrase generates multiple addresses
               </p>
             </div>
           </div>
@@ -311,7 +311,7 @@ export function SeedPhraseDemo() {
         </ul>
         <p>
           This hierarchical structure (HD = Hierarchical Deterministic) means one backup 
-          protects unlimited addresses.
+          protects multiple addresses.
         </p>
       </Accordion>
     </div>

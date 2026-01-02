@@ -140,7 +140,7 @@ export function UTXOWallet({
 
       {interactive && (
         <p className={styles.hint}>
-          Click or drag coins to select them for your transaction
+          Select coins for your transaction
         </p>
       )}
     </Card>
