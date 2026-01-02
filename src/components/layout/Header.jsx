@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Eye, Menu, X, Users } from 'lucide-react';
 import { useBlockHeight } from '../../hooks/useBlockHeight';
@@ -8,7 +8,9 @@ import styles from './Header.module.css';
 export function Header({ sidebarOpen, onToggleSidebar }) {
   const { blockHeight, isLoading, error } = useBlockHeight(5000);
   const [isNewBlock, setIsNewBlock] = useState(false);
+  const [showBlockModal, setShowBlockModal] = useState(false);
   const prevBlockHeight = useRef(null);
+  const statusRef = useRef(null);
 
   // Detect when block height changes
   useEffect(() => {
@@ -51,6 +53,28 @@ export function Header({ sidebarOpen, onToggleSidebar }) {
 
   const { text, dotClass } = getStatusContent();
 
+  // Handle click on status indicator (mobile only)
+  const handleStatusClick = () => {
+    // Only toggle modal on mobile (when status text is hidden)
+    if (window.innerWidth <= 640) {
+      setShowBlockModal(prev => !prev);
+    }
+  };
+
+  // Close modal when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (statusRef.current && !statusRef.current.contains(event.target)) {
+        setShowBlockModal(false);
+      }
+    };
+
+    if (showBlockModal) {
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => document.removeEventListener('mousedown', handleClickOutside);
+    }
+  }, [showBlockModal]);
+
   return (
     <header className={styles.header}>
       <div className={styles.left}>
@@ -84,9 +108,28 @@ export function Header({ sidebarOpen, onToggleSidebar }) {
           <Users size={18} />
           <span className={styles.supportText}>Bitcoin Mentor</span>
         </Link>
-        <div className={`${styles.status} ${isNewBlock ? styles.statusNewBlock : ''}`}>
+        <div 
+          ref={statusRef}
+          className={`${styles.status} ${isNewBlock ? styles.statusNewBlock : ''}`}
+          onClick={handleStatusClick}
+        >
           <span className={dotClass} />
           <span className={styles.statusText}>{text}</span>
+          
+          <AnimatePresence>
+            {showBlockModal && (
+              <motion.div
+                className={styles.blockModal}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.15 }}
+              >
+                <span className={styles.blockModalLabel}>Current Block</span>
+                <span className={styles.blockModalValue}>{text}</span>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </div>
     </header>

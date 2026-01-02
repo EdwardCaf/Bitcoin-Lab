@@ -225,4 +225,46 @@
   .statusText {
     display: none;
   }
+  
+  .status {
+    cursor: pointer;
+    position: relative;
+  }
+}
+
+/* Block modal - only visible on mobile */
+.blockModal {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .blockModal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-xs);
+    position: absolute;
+    top: calc(100% + var(--spacing-sm));
+    right: 0;
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    white-space: nowrap;
+    z-index: 101;
+  }
+  
+  .blockModalLabel {
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .blockModalValue {
+    font-size: var(--text-md);
+    font-weight: 600;
+    color: var(--text-primary);
+  }
 }
