@@ -54,6 +54,7 @@
 @media (max-width: 600px) {
   .heroButtons {
     flex-direction: column;
+    align-items: center;
   }
 }
 
