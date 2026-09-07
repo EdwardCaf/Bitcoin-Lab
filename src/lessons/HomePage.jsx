@@ -186,27 +186,25 @@ export function HomePage() {
       >
         <div className={styles.newsletterShell}>
           <div className={styles.newsletterIntro}>
-            <p className={styles.newsletterIntroEyebrow}>Read Between Blocks</p>
+            <p className={styles.newsletterIntroEyebrow}>
+              Ideas worth thinking about
+            </p>
             <h2 className={styles.newsletterIntroTitle}>
-              <span className={styles.newsletterHeadingMain}>
-                The Bitcoin <span className={styles.heroHighlight}>OP</span>tic
-              </span>{" "}
+              <span className={styles.newsletterHeadingMain}>Edward&apos;s</span>{" "}
               <span className={styles.newsletterTitleAccent}>Newsletter</span>
             </h2>
             <p className={styles.newsletterIntroText}>
-              Stay up-to-date on the latest tools, best practices, and avoid
-              common mistakes.
+              I write about technology, philosophy, bitcoin, and whatever else I
+              find worth exploring.
             </p>
           </div>
 
           <div className={styles.newsletterCardWrap}>
             <div className={styles.newsletterSignup}>
-              <p className={styles.newsletterTitle}>
-                Self-custody guidance in your inbox
-              </p>
+              <p className={styles.newsletterTitle}>Follow my curiosity</p>
               <p className={styles.newsletterPromo}>
-                Get first access to exclusive promotions, resources, and new
-                content I create.
+                Occasional notes on ideas, tools, books, conversations, and
+                anything else that changes how I see the world.
               </p>
               <div className={styles.newsletterMeta}>
                 <span>1-2 emails/month</span>
