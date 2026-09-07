@@ -1,32 +1,15 @@
-import { useState, useEffect, useRef, lazy, Suspense } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
 import {
   ArrowRight,
-  Sparkles,
-  BookOpen,
-  GraduationCap,
   Mail,
   Check,
-  BarChart3,
   Globe,
   Handshake,
 } from "lucide-react";
 import { Button, Badge } from "../components/common";
 import { useMailerLiteOnVisible } from "../hooks/useMailerLite";
 import styles from "./HomePage.module.css";
-
-// Lazy load below-fold components
-const LearningPath = lazy(() =>
-  import("../components/home/LearningPath").then((m) => ({
-    default: m.LearningPath,
-  })),
-);
-
-// Minimal placeholder for below-fold content
-function SectionPlaceholder() {
-  return <div className={styles.sectionPlaceholder} />;
-}
 
 const XIcon = ({ size = 18 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
@@ -38,9 +21,6 @@ const MAILERLITE_SUBSCRIBE_ENDPOINT =
   "https://assets.mailerlite.com/jsonp/2111034/forms/179249626676725407/subscribe";
 
 export function HomePage() {
-  const learningPathTriggerRef = useRef(null);
-  const [shouldRenderLearningPath, setShouldRenderLearningPath] =
-    useState(false);
   const [copied, setCopied] = useState(false);
   const [newsletterEmail, setNewsletterEmail] = useState("");
   const [newsletterStatus, setNewsletterStatus] = useState("idle");
@@ -48,25 +28,6 @@ export function HomePage() {
   const { targetRef: newsletterSectionRef } = useMailerLiteOnVisible({
     rootMargin: "1000px 0px",
   });
-
-  useEffect(() => {
-    const target = learningPathTriggerRef.current;
-    if (!target || shouldRenderLearningPath) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (!entries.some((entry) => entry.isIntersecting)) return;
-        setShouldRenderLearningPath(true);
-        observer.disconnect();
-      },
-      {
-        rootMargin: "1000px 0px",
-      },
-    );
-
-    observer.observe(target);
-    return () => observer.disconnect();
-  }, [shouldRenderLearningPath]);
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText("edward@bitcoinmentor.io");
@@ -184,19 +145,6 @@ export function HomePage() {
     }
   };
 
-  const handleScrollToLearningPath = () => {
-    if (typeof window === "undefined") return;
-    const learningPathSection = document.getElementById(
-      "learning-path-section",
-    );
-    if (!learningPathSection) return;
-
-    learningPathSection.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
-  };
-
   return (
     <div className={styles.container}>
       {/* Hero Section */}
@@ -225,20 +173,6 @@ export function HomePage() {
             wallets, privacy, Lightning payments, and more. Master the
             technology, all completely for free.
           </p>
-
-          <div className={styles.heroButtons}>
-            <Button
-              type="button"
-              variant="primary"
-              size="large"
-              className={styles.heroCtaButton}
-              icon={<ArrowRight size={18} />}
-              iconPosition="right"
-              onClick={handleScrollToLearningPath}
-            >
-              Start Learning
-            </Button>
-          </div>
         </motion.div>
       </motion.section>
 
@@ -424,22 +358,6 @@ export function HomePage() {
           </div>
         </aside>
       </motion.section>
-
-      <div
-        id="learning-path-section"
-        ref={learningPathTriggerRef}
-        className={styles.learningPathAnchor}
-        aria-hidden="true"
-      />
-
-      {/* Below-fold content - lazy loaded */}
-      {shouldRenderLearningPath ? (
-        <Suspense fallback={<SectionPlaceholder />}>
-          <LearningPath />
-        </Suspense>
-      ) : (
-        <SectionPlaceholder />
-      )}
 
       {/* Footer Contact */}
       <motion.section
